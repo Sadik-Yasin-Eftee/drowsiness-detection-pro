@@ -12,7 +12,7 @@ export default function Drive() {
   useDrowsinessSimulation();
 
   return (
-    <div className="min-h-full">
+    <div className="h-full flex flex-col">
       {mode === 'companion' && <CompanionMode />}
       {mode === 'dashboard' && <DashboardMode />}
       {mode === 'hud' && <HUDMode />}

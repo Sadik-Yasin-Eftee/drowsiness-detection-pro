@@ -17,7 +17,7 @@ export function DashboardMode() {
   const pulseClass = currentAlertLevel >= 3 ? 'animate-critical-shake' : currentAlertLevel >= 2 ? 'animate-worried-pulse' : 'animate-breathing';
 
   return (
-    <div className="min-h-full bg-bg-dark px-4 pt-4 pb-4">
+    <div className="flex-1 flex flex-col bg-bg-dark px-4 pt-10 pb-4 min-h-full">
       {/* Top bar */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-1.5 bg-primary/20 px-2.5 py-1 rounded-lg">
