@@ -18,27 +18,32 @@ export function AlertOverlay() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="absolute inset-0 z-50 bg-bg-warm/95 flex flex-col items-center justify-center px-6"
+        className="theme-warm absolute inset-0 z-50 bg-bg-warm flex flex-col items-center justify-center px-6"
       >
         <motion.div
           initial={{ scale: 0.8 }}
           animate={{ scale: [0.8, 1.3, 1] }}
           transition={{ type: 'spring', stiffness: 300, damping: 15 }}
-          className="w-24 h-24 rounded-full bg-coral/20 flex items-center justify-center mb-6"
+          className="w-24 h-24 rounded-full bg-primary/15 flex items-center justify-center mb-6"
         >
-          <span className="text-5xl">👁️</span>
+          <svg viewBox="0 0 100 100" width={56} height={56}>
+            <ellipse cx="50" cy="50" rx="40" ry="28" fill="hsl(210, 40%, 98%)" stroke="hsl(var(--color-primary))" strokeWidth="3" />
+            <circle cx="50" cy="52" r="14" fill="hsl(var(--color-primary))" />
+            <circle cx="50" cy="52" r="6" fill="hsl(222, 47%, 11%)" />
+            <circle cx="46" cy="48" r="2.5" fill="hsl(210, 40%, 98%)" opacity="0.85" />
+          </svg>
         </motion.div>
         <p className="font-bangla text-xl font-bold text-center mb-2 text-[hsl(var(--color-text-dark))]">{currentAlert.reason_bn}</p>
         <p className="font-english text-sm text-center text-muted-foreground mb-8">{currentAlert.reason_en}</p>
         <div className="w-full space-y-3 max-w-xs">
-          <button onClick={dismissAlert} className="w-full py-4 rounded-xl border-2 border-border font-bangla text-base font-semibold text-foreground active:scale-95 transition-transform">
-            ঠিক আছি, ধন্যবাদ
+          <button onClick={dismissAlert} className="w-full py-4 rounded-xl bg-primary text-primary-foreground font-bangla text-base font-semibold active:scale-95 transition-transform shadow-md">
+            ঠিক আছি, ধন্যবাদ ✓
           </button>
-          <button onClick={goRest} className="w-full py-4 rounded-xl bg-coral text-primary-foreground font-bangla text-base font-semibold active:scale-95 transition-transform">
+          <button onClick={goRest} className="w-full py-4 rounded-xl bg-coral text-primary-foreground font-bangla text-base font-semibold active:scale-95 transition-transform shadow-md">
             বিশ্রাম দরকার
           </button>
         </div>
-        <button onClick={flagFalseAlarm} className="mt-4 font-bangla text-sm text-muted-foreground underline">ভুল সতর্কতা হিসেবে চিহ্নিত করুন</button>
+        <button onClick={flagFalseAlarm} className="mt-6 font-bangla text-sm text-muted-foreground underline">ভুল সতর্কতা হিসেবে চিহ্নিত করুন</button>
       </motion.div>
     );
   }
