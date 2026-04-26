@@ -16,7 +16,7 @@ export default function Splash() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-bg-dark">
+    <div className="min-h-full flex flex-col items-center justify-center bg-bg-dark">
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
