@@ -21,7 +21,7 @@ export function CompanionMode() {
   const statusColor = perclos > 40 ? 'text-coral' : perclos > 20 ? 'text-warning' : 'text-primary';
 
   return (
-    <div className="min-h-full theme-warm bg-bg-warm">
+    <div className="flex-1 flex flex-col theme-warm bg-bg-warm min-h-full">
       {/* Top bar */}
       <div className="flex items-center justify-between px-4 pt-4 pb-2">
         <div className="flex items-center gap-1.5 text-primary">
@@ -33,18 +33,14 @@ export function CompanionMode() {
         </span>
       </div>
 
-      {/* Center character */}
-      <div className="flex-1 flex flex-col items-center justify-center min-h-[60vh] px-4">
+      {/* Center group: character + status, vertically centered in available space */}
+      <div className="flex-1 flex flex-col items-center justify-center px-4 gap-6">
         <SaathiCharacter size={160} />
-      </div>
-
-      {/* Status */}
-      <div className="text-center px-4 pb-4">
-        <p className={`font-bangla text-xl font-bold ${statusColor}`}>{statusText}</p>
+        <p className={`font-bangla text-xl font-bold text-center ${statusColor}`}>{statusText}</p>
       </div>
 
       {/* Bottom action buttons */}
-      <div className="flex justify-around px-6 pb-4">
+      <div className="flex justify-around px-6 pb-4 pt-2">
         <button className="flex flex-col items-center gap-1 min-w-[56px] min-h-[48px] text-muted-foreground">
           <Zap size={22} />
           <span className="font-bangla text-[11px]">ভুল সতর্কতা</span>
