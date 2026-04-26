@@ -23,7 +23,7 @@ export default function Analytics() {
 
   if (!unlocked) {
     return (
-      <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6 pb-20">
+      <div className="min-h-full bg-background flex flex-col items-center justify-center px-6 py-8">
         <Lock size={40} className="text-primary mb-4" />
         <p className="font-bangla text-lg font-semibold text-foreground mb-2">সাপ্তাহিক রিপোর্ট দেখতে PIN দিন</p>
         <p className="font-english text-sm text-muted-foreground mb-6">Enter PIN to view weekly report</p>

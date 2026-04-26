@@ -21,7 +21,7 @@ export default function SettingsPage() {
   );
 
   return (
-    <div className="min-h-screen bg-background pb-20">
+    <div className="min-h-full bg-background pb-4">
       <div className="px-4 pt-4 pb-2">
         <h1 className="font-bangla text-xl font-bold text-foreground">
           {store.interfaceMode === 'companion' ? 'সাথীর পছন্দ' : 'সেটিংস'}
