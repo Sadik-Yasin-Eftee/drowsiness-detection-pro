@@ -21,7 +21,7 @@ export function CompanionMode() {
   const statusColor = perclos > 40 ? 'text-coral' : perclos > 20 ? 'text-warning' : 'text-primary';
 
   return (
-    <div className="min-h-screen theme-warm bg-bg-warm">
+    <div className="min-h-full theme-warm bg-bg-warm">
       {/* Top bar */}
       <div className="flex items-center justify-between px-4 pt-4 pb-2">
         <div className="flex items-center gap-1.5 text-primary">

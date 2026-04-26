@@ -1,6 +1,5 @@
 import { useAppStore } from '@/store/useAppStore';
 import { useDrowsinessSimulation } from '@/hooks/useDrowsinessSimulation';
-import { BottomNav } from '@/components/BottomNav';
 import { CompanionMode } from '@/components/drive/CompanionMode';
 import { DashboardMode } from '@/components/drive/DashboardMode';
 import { HUDMode } from '@/components/drive/HUDMode';
@@ -13,12 +12,11 @@ export default function Drive() {
   useDrowsinessSimulation();
 
   return (
-    <div className="min-h-screen pb-16">
+    <div className="min-h-full">
       {mode === 'companion' && <CompanionMode />}
       {mode === 'dashboard' && <DashboardMode />}
       {mode === 'hud' && <HUDMode />}
       {showAlert && <AlertOverlay />}
-      <BottomNav />
     </div>
   );
 }

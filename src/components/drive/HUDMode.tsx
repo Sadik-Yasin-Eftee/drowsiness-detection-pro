@@ -26,7 +26,7 @@ export function HUDMode() {
   const perclosColor = perclosScore > 40 ? 'text-danger' : perclosScore > 20 ? 'text-warning' : 'text-primary';
 
   return (
-    <div className="min-h-screen bg-bg-dark px-3 pt-3 pb-4">
+    <div className="min-h-full bg-bg-dark px-3 pt-3 pb-4">
       {/* Primary metrics */}
       <div className="flex items-start justify-between mb-4">
         <div>

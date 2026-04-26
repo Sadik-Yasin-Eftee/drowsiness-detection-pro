@@ -1,5 +1,4 @@
 import { useAppStore } from '@/store/useAppStore';
-import { BottomNav } from '@/components/BottomNav';
 import { Shield, Lock, AlertTriangle } from 'lucide-react';
 
 export default function SettingsPage() {
@@ -22,7 +21,7 @@ export default function SettingsPage() {
   );
 
   return (
-    <div className="min-h-screen bg-background pb-20">
+    <div className="min-h-full bg-background pb-4">
       <div className="px-4 pt-4 pb-2">
         <h1 className="font-bangla text-xl font-bold text-foreground">
           {store.interfaceMode === 'companion' ? 'সাথীর পছন্দ' : 'সেটিংস'}
@@ -126,7 +125,6 @@ export default function SettingsPage() {
           <p className="font-english text-xs text-muted-foreground">Version 1.0.0</p>
         </div>
       </div>
-      <BottomNav />
     </div>
   );
 }

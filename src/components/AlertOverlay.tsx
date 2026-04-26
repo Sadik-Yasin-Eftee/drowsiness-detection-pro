@@ -18,7 +18,7 @@ export function AlertOverlay() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="fixed inset-0 z-50 bg-bg-warm/95 flex flex-col items-center justify-center px-6"
+        className="absolute inset-0 z-50 bg-bg-warm/95 flex flex-col items-center justify-center px-6"
       >
         <motion.div
           initial={{ scale: 0.8 }}
@@ -48,7 +48,7 @@ export function AlertOverlay() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="fixed inset-0 z-50 bg-background/80 flex items-end justify-center"
+        className="absolute inset-0 z-50 bg-background/80 flex items-end justify-center"
       >
         <motion.div
           initial={{ y: '100%' }}
@@ -79,7 +79,7 @@ export function AlertOverlay() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="fixed inset-0 z-50 flex items-center justify-center"
+      className="absolute inset-0 z-50 flex items-center justify-center"
     >
       <motion.div
         animate={{ opacity: [0, 0.1, 0, 0.1, 0] }}

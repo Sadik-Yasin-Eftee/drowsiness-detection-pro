@@ -1,4 +1,3 @@
-import { BottomNav } from '@/components/BottomNav';
 import { ArrowLeft, MapPin } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -14,7 +13,7 @@ export default function RestStops() {
   const [selectedStop, setSelectedStop] = useState<string | null>(null);
 
   return (
-    <div className="min-h-screen bg-background pb-20">
+    <div className="min-h-full bg-background pb-4">
       <div className="flex items-center gap-3 px-4 pt-4 pb-3">
         <button onClick={() => navigate(-1)} className="min-w-[48px] min-h-[48px] flex items-center justify-center">
           <ArrowLeft size={22} className="text-foreground" />
@@ -63,7 +62,6 @@ export default function RestStops() {
           </div>
         ))}
       </div>
-      <BottomNav />
     </div>
   );
 }

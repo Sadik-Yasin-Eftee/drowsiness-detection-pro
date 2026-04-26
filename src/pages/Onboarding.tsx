@@ -26,7 +26,7 @@ export default function Onboarding() {
   };
 
   return (
-    <div className="min-h-screen bg-bg-dark flex flex-col">
+    <div className="min-h-full bg-bg-dark flex flex-col">
       <AnimatePresence mode="wait">
         {step < 2 ? (
           <motion.div
