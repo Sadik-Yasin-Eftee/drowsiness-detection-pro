@@ -13,8 +13,8 @@ export function BottomNav() {
   const location = useLocation();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-card border-t border-border z-50">
-      <div className="flex justify-around items-center h-16 max-w-md mx-auto">
+    <nav className="sticky bottom-0 left-0 right-0 bg-card border-t border-border z-40 pb-[env(safe-area-inset-bottom)]">
+      <div className="flex justify-around items-center h-16 w-full">
         {tabs.map((tab) => {
           const active = location.pathname.startsWith(tab.path);
           return (
