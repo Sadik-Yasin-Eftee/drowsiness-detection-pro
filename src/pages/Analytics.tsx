@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useAppStore } from '@/store/useAppStore';
-import { BottomNav } from '@/components/BottomNav';
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Tooltip } from 'recharts';
 import { ArrowLeft, Lock } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -50,7 +49,6 @@ export default function Analytics() {
             </button>
           ))}
         </div>
-        <BottomNav />
       </div>
     );
   }
@@ -59,7 +57,7 @@ export default function Analytics() {
   const smileys = '😊'.repeat(weeklyData.weekScore);
 
   return (
-    <div className="min-h-screen bg-background pb-20">
+    <div className="min-h-full bg-background pb-4">
       <div className="flex items-center gap-3 px-4 pt-4 pb-3">
         <button onClick={() => navigate(-1)} className="min-w-[48px] min-h-[48px] flex items-center justify-center">
           <ArrowLeft size={22} className="text-foreground" />
@@ -138,7 +136,6 @@ export default function Analytics() {
           </div>
         </div>
       </div>
-      <BottomNav />
     </div>
   );
 }

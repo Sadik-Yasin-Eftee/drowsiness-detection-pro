@@ -1,5 +1,4 @@
 import { useAppStore } from '@/store/useAppStore';
-import { BottomNav } from '@/components/BottomNav';
 import { Shield, Lock, AlertTriangle } from 'lucide-react';
 
 export default function SettingsPage() {
@@ -126,7 +125,6 @@ export default function SettingsPage() {
           <p className="font-english text-xs text-muted-foreground">Version 1.0.0</p>
         </div>
       </div>
-      <BottomNav />
     </div>
   );
 }
