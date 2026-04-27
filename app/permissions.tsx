@@ -24,6 +24,7 @@ import { View, Text, Pressable, StyleSheet, Alert, Linking, ScrollView } from 'r
 import { useRouter } from 'expo-router';
 import { useCameraPermissions } from 'expo-camera';
 import Animated, { FadeInUp, FadeIn } from 'react-native-reanimated';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useAppStore } from '@/store/useAppStore';
 import { CameraIcon, LockIcon, ShieldIcon, CheckIcon, XIcon } from '@/components/Icons';
@@ -31,6 +32,7 @@ import { colors, radius } from '@/lib/theme';
 
 export default function Permissions() {
   const router = useRouter();
+  const insets = useSafeAreaInsets();
   const [permission, requestPermission] = useCameraPermissions();
   const setCameraPermission = useAppStore((s) => s.setCameraPermission);
   const setPermissionsRequested = useAppStore((s) => s.setPermissionsRequested);
@@ -82,7 +84,7 @@ export default function Permissions() {
   const isPermanentlyDenied = permission?.status === 'denied' && !permission?.canAskAgain;
 
   return (
-    <ScrollView contentContainerStyle={styles.scroll} style={{ backgroundColor: colors.bgDark }}>
+    <ScrollView contentContainerStyle={styles.scroll} style={{ backgroundColor: colors.bgDark, paddingTop: insets.top }}>
       <Animated.View entering={FadeIn.duration(300)} style={styles.iconWrap}>
         <CameraIcon size={48} color={colors.primary} />
       </Animated.View>

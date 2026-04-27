@@ -11,6 +11,7 @@
 
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useAppStore } from '@/store/useAppStore';
 import { BottomNav } from '@/components/BottomNav';
@@ -20,13 +21,14 @@ import { toBn } from '@/lib/i18n';
 export default function Analytics() {
   const weeklyData = useAppStore((s) => s.weeklyData);
   const drowsinessEvents = useAppStore((s) => s.drowsinessEvents);
+  const insets = useSafeAreaInsets();
 
   // Combine current trip events with last week's data
   const todayEvents = drowsinessEvents.filter((e) => !e.flaggedFalseAlarm).length;
   const maxDay = Math.max(1, ...weeklyData.dailyEvents.map((d) => d.count));
 
   return (
-    <View style={{ flex: 1, backgroundColor: colors.bgDark }}>
+    <View style={{ flex: 1, backgroundColor: colors.bgDark, paddingTop: insets.top }}>
       <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 32, gap: 16 }}>
         <View style={styles.header}>
           <Text style={styles.titleBn}>সাপ্তাহিক বিশ্লেষণ</Text>

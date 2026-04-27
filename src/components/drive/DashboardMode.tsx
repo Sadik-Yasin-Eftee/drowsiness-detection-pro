@@ -79,29 +79,32 @@ export function DashboardMode() {
         <Text style={styles.timer}>{toBn(formatTime(tripElapsedSeconds))}</Text>
       </View>
 
-      {/* Status ring */}
-      <View style={styles.ringWrap}>
-        <Animated.View
-          style={[
-            styles.ring,
-            { borderColor: ringColor, shadowColor: ringColor },
-            ringStyle,
-          ]}
-        >
-          <Text style={styles.ringPercent}>{toBn(String(perclosScore))}%</Text>
-          <Text style={[styles.ringStatus, { color: ringColor }]}>{statusText}</Text>
-          <Text style={styles.ringConfidence}>AI: {toBn(`${Math.round(aiConfidence)}%`)}</Text>
-        </Animated.View>
-      </View>
+      {/* Centre-weighted content */}
+      <View style={styles.centreContent}>
+        {/* Status ring */}
+        <View style={styles.ringWrap}>
+          <Animated.View
+            style={[
+              styles.ring,
+              { borderColor: ringColor, shadowColor: ringColor },
+              ringStyle,
+            ]}
+          >
+            <Text style={styles.ringPercent}>{toBn(String(perclosScore))}%</Text>
+            <Text style={[styles.ringStatus, { color: ringColor }]}>{statusText}</Text>
+            <Text style={styles.ringConfidence}>AI: {toBn(`${Math.round(aiConfidence)}%`)}</Text>
+          </Animated.View>
+        </View>
 
-      {/* Quick stats */}
-      <View style={styles.statsGrid}>
-        <Stat label="ব্লিংক রেট" value={`${toBn(String(Math.round(blinkRate)))}/মিনিট`} />
-        <Stat label="চোখ" value={
-          eyeState === 'open' ? 'খোলা ✓' : eyeState === 'closing' ? 'বন্ধ হচ্ছে ⚠' : 'বন্ধ ✗'
-        } />
-        <Stat label="PERCLOS" value={`${toBn(String(perclosScore))}%`} />
-        <Stat label="সতর্কতা" value={toBn(String(drowsinessEvents.length))} />
+        {/* Quick stats */}
+        <View style={styles.statsGrid}>
+          <Stat label="ব্লিংক রেট" value={`${toBn(String(Math.round(blinkRate)))}/মিনিট`} />
+          <Stat label="চোখ" value={
+            eyeState === 'open' ? 'খোলা ✓' : eyeState === 'closing' ? 'বন্ধ হচ্ছে ⚠' : 'বন্ধ ✗'
+          } />
+          <Stat label="PERCLOS" value={`${toBn(String(perclosScore))}%`} />
+          <Stat label="সতর্কতা" value={toBn(String(drowsinessEvents.length))} />
+        </View>
       </View>
 
       {/* Bottom actions */}
@@ -136,12 +139,13 @@ function ActionBtn({
 
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: colors.bgDark, paddingHorizontal: 16, paddingTop: 16, paddingBottom: 16 },
-  topBar: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24 },
+  topBar: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 },
   lockBadge: { flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: colors.primaryAlpha20, paddingHorizontal: 10, paddingVertical: 4, borderRadius: 8 },
   lockText: { color: colors.primary, fontSize: 12 },
   timer: { color: colors.muted, fontSize: 14, fontVariant: ['tabular-nums'] },
 
-  ringWrap: { alignItems: 'center', marginVertical: 24 },
+  centreContent: { flex: 1, justifyContent: 'center', gap: 24 },
+  ringWrap: { alignItems: 'center' },
   ring: {
     width: 192, height: 192, borderRadius: 96,
     borderWidth: 3,
@@ -153,12 +157,12 @@ const styles = StyleSheet.create({
   ringStatus:     { fontSize: 16, fontWeight: '700', marginTop: 4 },
   ringConfidence: { fontSize: 12, color: colors.muted, marginTop: 4 },
 
-  statsGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 12, marginBottom: 24 },
+  statsGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 12 },
   stat: { flexBasis: '48%', backgroundColor: colors.card, borderRadius: radius.lg, padding: 12 },
   statLabel: { color: colors.muted, fontSize: 12 },
   statValue: { color: colors.foreground, fontSize: 16, fontWeight: '700', marginTop: 2 },
 
-  actions: { flexDirection: 'row', justifyContent: 'space-around', marginTop: 'auto' },
+  actions: { flexDirection: 'row', justifyContent: 'space-around', paddingTop: 8 },
   actionBtn: { alignItems: 'center', minHeight: 48, gap: 4 },
   actionLabel: { color: colors.muted, fontSize: 11 },
 });

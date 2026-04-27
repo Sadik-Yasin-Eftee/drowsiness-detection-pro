@@ -16,28 +16,31 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { CameraView } from 'expo-camera';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useAppStore } from '@/store/useAppStore';
 import { colors, radius } from '@/lib/theme';
 
 export function CameraDetector({ active }: { active: boolean }) {
   const cameraPermission = useAppStore((s) => s.cameraPermission);
+  const insets = useSafeAreaInsets();
+  // Sit 8px below the status bar so the pip never overlaps the notification area
+  const topOffset = insets.top + 8;
 
   if (cameraPermission !== 'granted') {
     return (
-      <View style={styles.warnPip}>
+      <View style={[styles.warnPip, { top: topOffset }]}>
         <Text style={styles.warnText}>Camera off</Text>
       </View>
     );
   }
 
   return (
-    <View pointerEvents="none" style={styles.previewPip}>
+    <View pointerEvents="none" style={[styles.previewPip, { top: topOffset }]}>
       <CameraView
         style={StyleSheet.absoluteFillObject}
         facing="front"
         active={active}
-        // No photo / video / audio — we just need the live preview
         mode="picture"
         mute={true}
       />
@@ -46,11 +49,9 @@ export function CameraDetector({ active }: { active: boolean }) {
 }
 
 const styles = StyleSheet.create({
-  // A tiny corner preview — visible just enough to confirm "camera is on"
-  // without distracting the driver.
   previewPip: {
     position: 'absolute',
-    top: 16, right: 16,
+    right: 16,
     width: 64, height: 80,
     borderRadius: radius.md,
     overflow: 'hidden',
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
   },
   warnPip: {
     position: 'absolute',
-    top: 16, right: 16,
+    right: 16,
     backgroundColor: colors.danger,
     paddingHorizontal: 8, paddingVertical: 4,
     borderRadius: radius.sm,

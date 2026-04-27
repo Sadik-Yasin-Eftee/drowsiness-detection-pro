@@ -11,6 +11,7 @@ import React, { useState } from 'react';
 import { View, Text, Pressable, StyleSheet, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
 import Svg, { Path } from 'react-native-svg';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { ArrowLeftIcon, MapPinIcon } from '@/components/Icons';
 import { BottomNav } from '@/components/BottomNav';
@@ -24,10 +25,11 @@ const STOPS = [
 
 export default function RestStops() {
   const router = useRouter();
+  const insets = useSafeAreaInsets();
   const [selected, setSelected] = useState<string | null>(null);
 
   return (
-    <View style={{ flex: 1, backgroundColor: colors.bgDark }}>
+    <View style={{ flex: 1, backgroundColor: colors.bgDark, paddingTop: insets.top }}>
       <ScrollView contentContainerStyle={{ paddingBottom: 24 }}>
         <View style={styles.header}>
           <Pressable

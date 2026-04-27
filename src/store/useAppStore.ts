@@ -119,8 +119,8 @@ const PERSIST_FIELDS: (keyof AppState)[] = [
   'sensitivity',
   'perclosThreshold',
   'language',
-  'onboardingComplete',
-  'permissionsRequested',
+  // onboardingComplete and permissionsRequested are intentionally NOT persisted
+  // so the permissions + mode-selection screens always show on every app launch
   'cameraPermission',
   'analyticsPIN',
   'deleteDataAfterTrip',
@@ -346,7 +346,13 @@ export const useAppStore = create<AppState>((set, get) => ({
       const raw = await AsyncStorage.getItem(PERSIST_KEY);
       if (!raw) return;
       const parsed = JSON.parse(raw);
-      set((s) => ({ ...s, ...parsed }));
+      // Only restore keys in PERSIST_FIELDS — stale keys (e.g. onboardingComplete,
+      // permissionsRequested) in old AsyncStorage data are ignored this way.
+      const safe: Record<string, unknown> = {};
+      PERSIST_FIELDS.forEach((k) => {
+        if (k in parsed) safe[k as string] = parsed[k as string];
+      });
+      set((s) => ({ ...s, ...safe }));
     } catch (err) {
       console.warn('[store] hydrate failed:', err);
     }

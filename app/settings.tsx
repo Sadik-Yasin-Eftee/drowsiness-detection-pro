@@ -12,6 +12,7 @@
 
 import React from 'react';
 import { View, Text, Pressable, StyleSheet, ScrollView } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useAppStore, type Sensitivity, type InterfaceMode } from '@/store/useAppStore';
 import { BottomNav } from '@/components/BottomNav';
@@ -21,9 +22,10 @@ import { toBn } from '@/lib/i18n';
 
 export default function SettingsPage() {
   const store = useAppStore();
+  const insets = useSafeAreaInsets();
 
   return (
-    <View style={{ flex: 1, backgroundColor: colors.bgDark }}>
+    <View style={{ flex: 1, backgroundColor: colors.bgDark, paddingTop: insets.top }}>
       <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 32, gap: 16 }}>
         <View>
           <Text style={styles.titleBn}>

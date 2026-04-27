@@ -37,68 +37,70 @@ export function HUDMode() {
 
   return (
     <View style={styles.root}>
-      {/* Top: PERCLOS + chips */}
-      <View style={styles.topRow}>
+      <View style={styles.centreContent}>
+        {/* Top: PERCLOS + chips */}
+        <View style={styles.topRow}>
+          <View>
+            <Text style={[styles.bigPercent, { color: perclosColor }]}>{toBn(String(perclosScore))}%</Text>
+            <Text style={styles.eng}>PERCLOS</Text>
+          </View>
+          <View style={{ alignItems: 'flex-end', gap: 4 }}>
+            <View style={[styles.chip, { backgroundColor: colors.primaryAlpha20 }]}>
+              <Text style={[styles.chipText, { color: colors.primary }]}>
+                AI Confidence: {toBn(String(Math.round(aiConfidence)))}%
+              </Text>
+            </View>
+            <View style={[styles.chip, { backgroundColor: levelBg }]}>
+              <Text style={[styles.chipText, { color: colors.foreground }]}>
+                Level {toBn(String(currentAlertLevel))}
+              </Text>
+            </View>
+          </View>
+        </View>
+
+        {/* Eye-state timeline */}
         <View>
-          <Text style={[styles.bigPercent, { color: perclosColor }]}>{toBn(String(perclosScore))}%</Text>
-          <Text style={styles.eng}>PERCLOS</Text>
-        </View>
-        <View style={{ alignItems: 'flex-end', gap: 4 }}>
-          <View style={[styles.chip, { backgroundColor: colors.primaryAlpha20 }]}>
-            <Text style={[styles.chipText, { color: colors.primary }]}>
-              AI Confidence: {toBn(String(Math.round(aiConfidence)))}%
-            </Text>
+          <Text style={styles.engLabel}>Eye State Timeline (30s)</Text>
+          <View style={styles.timeline}>
+            {timeline.map((entry, i) => (
+              <View
+                key={`t-${i}`}
+                style={[
+                  styles.timeBar,
+                  {
+                    backgroundColor:
+                      entry.state === 'open'    ? colors.primary :
+                      entry.state === 'closing' ? colors.warning :
+                      colors.danger,
+                    height: entry.state === 'open' ? 18 : entry.state === 'closing' ? 14 : 10,
+                  },
+                ]}
+              />
+            ))}
+            {Array.from({ length: padding }).map((_, i) => (
+              <View key={`pad-${i}`} style={[styles.timeBar, { backgroundColor: colors.border, height: 18, opacity: 0.3 }]} />
+            ))}
           </View>
-          <View style={[styles.chip, { backgroundColor: levelBg }]}>
-            <Text style={[styles.chipText, { color: colors.foreground }]}>
-              Level {toBn(String(currentAlertLevel))}
-            </Text>
-          </View>
         </View>
-      </View>
 
-      {/* Eye-state timeline */}
-      <View style={{ marginBottom: 16 }}>
-        <Text style={styles.engLabel}>Eye State Timeline (30s)</Text>
-        <View style={styles.timeline}>
-          {timeline.map((entry, i) => (
-            <View
-              key={`t-${i}`}
-              style={[
-                styles.timeBar,
-                {
-                  backgroundColor:
-                    entry.state === 'open'    ? colors.primary :
-                    entry.state === 'closing' ? colors.warning :
-                    colors.danger,
-                  height: entry.state === 'open' ? 18 : entry.state === 'closing' ? 14 : 10,
-                },
-              ]}
-            />
-          ))}
-          {Array.from({ length: padding }).map((_, i) => (
-            <View key={`pad-${i}`} style={[styles.timeBar, { backgroundColor: colors.border, height: 18, opacity: 0.3 }]} />
-          ))}
+        {/* Head-pose gauges */}
+        <View style={styles.gaugeRow}>
+          <Gauge label="Pitch" value={headPose.pitch} max={30} />
+          <Gauge label="Yaw"   value={headPose.yaw}   max={45} />
+          <Gauge label="Roll"  value={headPose.roll}  max={20} />
         </View>
-      </View>
 
-      {/* Head-pose gauges */}
-      <View style={styles.gaugeRow}>
-        <Gauge label="Pitch" value={headPose.pitch} max={30} />
-        <Gauge label="Yaw"   value={headPose.yaw}   max={45} />
-        <Gauge label="Roll"  value={headPose.roll}  max={20} />
-      </View>
+        {/* Bottom metrics grid */}
+        <View style={styles.metricGrid}>
+          <Metric label="Trip"        value={toBn(formatTime(tripElapsedSeconds))} />
+          <Metric label="EAR / Blink" value={`${toBn(String(eyeAspectRatio))} / ${toBn(String(Math.round(blinkRate)))}`} />
+          <Metric label="Events"      value={toBn(String(drowsinessEvents.length))} />
+        </View>
 
-      {/* Bottom metrics grid */}
-      <View style={styles.metricGrid}>
-        <Metric label="Trip"        value={toBn(formatTime(tripElapsedSeconds))} />
-        <Metric label="EAR / Blink" value={`${toBn(String(eyeAspectRatio))} / ${toBn(String(Math.round(blinkRate)))}`} />
-        <Metric label="Events"      value={toBn(String(drowsinessEvents.length))} />
+        <Text style={styles.footer}>
+          Sensitivity: {sensitivity} | Threshold: {toBn(String(perclosThreshold))}%
+        </Text>
       </View>
-
-      <Text style={styles.footer}>
-        Sensitivity: {sensitivity} | Threshold: {toBn(String(perclosThreshold))}%
-      </Text>
     </View>
   );
 }
@@ -137,9 +139,10 @@ function Metric({ label, value }: { label: string; value: string }) {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: colors.bgDark, paddingHorizontal: 12, paddingTop: 16, paddingBottom: 16 },
+  root: { flex: 1, backgroundColor: colors.bgDark, paddingHorizontal: 12, paddingVertical: 16 },
+  centreContent: { flex: 1, justifyContent: 'center', gap: 16 },
 
-  topRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 },
+  topRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' },
   bigPercent: { fontSize: 48, fontWeight: '800', fontVariant: ['tabular-nums'] },
   eng: { color: colors.muted, fontSize: 11 },
 
@@ -153,7 +156,7 @@ const styles = StyleSheet.create({
   },
   timeBar: { flex: 1, minWidth: 4, borderRadius: 2 },
 
-  gaugeRow: { flexDirection: 'row', justifyContent: 'space-around', backgroundColor: colors.card, borderRadius: radius.lg, padding: 12, marginBottom: 16 },
+  gaugeRow: { flexDirection: 'row', justifyContent: 'space-around', backgroundColor: colors.card, borderRadius: radius.lg, padding: 12 },
   gauge: { alignItems: 'center' },
   gaugeLabel: { color: colors.muted, fontSize: 10, fontVariant: ['tabular-nums'], marginTop: 2 },
 

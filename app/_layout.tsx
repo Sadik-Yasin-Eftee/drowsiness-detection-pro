@@ -51,7 +51,7 @@ export default function RootLayout() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
         <StatusBar style="light" backgroundColor={colors.bgDark} />
-        <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.bgDark } }}>
+        <Stack screenOptions={{ headerShown: false, animation: 'fade', contentStyle: { backgroundColor: colors.bgDark } }}>
           <Stack.Screen name="index" />
           <Stack.Screen name="permissions" />
           <Stack.Screen name="onboarding/index" />

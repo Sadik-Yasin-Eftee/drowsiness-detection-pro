@@ -16,6 +16,7 @@
 
 import React, { useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useAppStore } from '@/store/useAppStore';
 import { useDrowsinessDetection } from '@/hooks/useDrowsinessDetection';
@@ -31,6 +32,7 @@ export default function Drive() {
   const interfaceMode = useAppStore((s) => s.interfaceMode);
   const showAlert = useAppStore((s) => s.showAlert);
   const endTrip = useAppStore((s) => s.endTrip);
+  const insets = useSafeAreaInsets();
 
   // Kick off the detection pipeline whenever this screen is mounted
   useDrowsinessDetection(true);
@@ -40,8 +42,8 @@ export default function Drive() {
 
   return (
     <View style={styles.root}>
-      {/* The view mode fills the screen */}
-      <View style={styles.modeWrap}>
+      {/* The view mode fills the screen — paddingTop keeps content below the status bar */}
+      <View style={[styles.modeWrap, { paddingTop: insets.top }]}>
         {interfaceMode === 'companion' && <CompanionMode />}
         {interfaceMode === 'dashboard' && <DashboardMode />}
         {interfaceMode === 'hud'       && <HUDMode />}
