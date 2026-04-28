@@ -34,8 +34,9 @@ export default function Drive() {
   const endTrip = useAppStore((s) => s.endTrip);
   const insets = useSafeAreaInsets();
 
-  // Kick off the detection pipeline whenever this screen is mounted
-  useDrowsinessDetection(true);
+  // Kick off the detection pipeline whenever this screen is mounted.
+  // registerCamera wires the CameraDetector's camera ref to MLKitFaceDetector.
+  const { registerCamera } = useDrowsinessDetection(true);
 
   // End trip when this screen unmounts (e.g. user navigates away)
   useEffect(() => () => endTrip(), [endTrip]);
@@ -49,8 +50,8 @@ export default function Drive() {
         {interfaceMode === 'hud'       && <HUDMode />}
       </View>
 
-      {/* Camera preview pip layered on top */}
-      <CameraDetector active={true} />
+      {/* Camera preview pip + ML Kit frame capture */}
+      <CameraDetector active={true} onCameraReady={registerCamera} />
 
       {/* Drowsiness alert overlay */}
       {showAlert && <AlertOverlay />}
