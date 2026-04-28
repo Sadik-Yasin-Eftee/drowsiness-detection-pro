@@ -1,11 +1,3 @@
-/**
- * CompanionMode — the warm, friendly view.
- *
- * The "saathi" character anchors the screen.  Three quick-action buttons at
- * the bottom let the driver flag a false alarm, find rest stops, or ask why
- * an alert fired.  Bilingual (Bangla primary, English supporting).
- */
-
 import React from 'react';
 import { View, Text, Pressable, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
@@ -36,7 +28,6 @@ export function CompanionMode() {
 
   return (
     <View style={[styles.root, { backgroundColor: colors.bgWarm }]}>
-      {/* Top status bar */}
       <View style={styles.topBar}>
         <View style={styles.topBarLeft}>
           <LockIcon size={14} color={colors.primary} />
@@ -45,13 +36,11 @@ export function CompanionMode() {
         <Text style={styles.timer}>{toBn(formatTime(tripElapsed))}</Text>
       </View>
 
-      {/* Centre — Saathi */}
       <View style={styles.centre}>
         <SaathiCharacter size={170} />
         <Text style={[styles.statusText, { color: statusColor }]}>{statusText}</Text>
       </View>
 
-      {/* Bottom actions */}
       <View style={styles.actions}>
         <ActionBtn label="ভুল সতর্কতা" Icon={ZapIcon} onPress={() => {}} />
         <ActionBtn label="বিশ্রামের জায়গা" Icon={MapPinIcon} onPress={() => router.push('/rest-stops')} />

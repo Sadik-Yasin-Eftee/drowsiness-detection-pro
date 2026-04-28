@@ -1,11 +1,3 @@
-/**
- * HUDMode — the engineering / power-user view.
- *
- * Shows raw PERCLOS, AI confidence, alert level chip, head-pose gauges,
- * a 30-sample eye-state timeline, and current trip metrics.  English-first
- * because this mode is for users who want technical detail.
- */
-
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Svg, { Path, Line } from 'react-native-svg';

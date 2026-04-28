@@ -1,10 +1,6 @@
 import { create } from 'zustand';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-/* ────────────────────────────────────────────────────────────────────────── */
-/*  Types                                                                    */
-/* ────────────────────────────────────────────────────────────────────────── */
-
 export interface DrowsinessEvent {
   id: string;
   timestamp: number;
@@ -108,10 +104,6 @@ export interface AppState {
   hydrate: () => Promise<void>;
 }
 
-/* ────────────────────────────────────────────────────────────────────────── */
-/*  Helpers                                                                  */
-/* ────────────────────────────────────────────────────────────────────────── */
-
 const PERSIST_KEY = 'drowsyguard:prefs:v1';
 
 const PERSIST_FIELDS: (keyof AppState)[] = [
@@ -174,10 +166,6 @@ const persist = async (state: AppState) => {
   }
 };
 
-/* ────────────────────────────────────────────────────────────────────────── */
-/*  Store                                                                    */
-/* ────────────────────────────────────────────────────────────────────────── */
-
 export const useAppStore = create<AppState>((set, get) => ({
   // Defaults — preferences
   interfaceMode: 'companion',
@@ -224,7 +212,6 @@ export const useAppStore = create<AppState>((set, get) => ({
     void persist(get());
   },
   setSensitivity: (s) => {
-    // sensitivity → adjusts default PERCLOS threshold
     const threshold = s === 'conservative' ? 22 : s === 'balanced' ? 30 : 38;
     set({ sensitivity: s, perclosThreshold: threshold });
     void persist(get());

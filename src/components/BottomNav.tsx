@@ -1,12 +1,3 @@
-/**
- * BottomNav — persistent tab bar on Drive, RestStops, Analytics and Settings.
- *
- * Uses expo-router's `usePathname` for active-state and `router.push` for
- * navigation.  We avoid expo-router's built-in <Tabs> here because the FE
- * design uses a custom non-standard layout (rounded pills, Bangla labels)
- * that's easier to render manually.
- */
-
 import React from 'react';
 import { View, Pressable, Text, StyleSheet } from 'react-native';
 import { useRouter, usePathname } from 'expo-router';
@@ -17,10 +8,10 @@ import { colors, radius } from '@/lib/theme';
 import { useAppStore } from '@/store/useAppStore';
 
 const TABS = [
-  { path: '/drive',      bn: 'ড্রাইভ',     en: 'Drive',     Icon: CarIcon },
-  { path: '/rest-stops', bn: 'বিশ্রাম',   en: 'Rest',       Icon: MapPinIcon },
-  { path: '/analytics',  bn: 'বিশ্লেষণ',  en: 'Analytics',  Icon: ChartIcon },
-  { path: '/settings',   bn: 'সেটিংস',    en: 'Settings',   Icon: SettingsIcon },
+  { path: '/drive',      bn: 'ড্রাইভ',    en: 'Drive',     Icon: CarIcon },
+  { path: '/rest-stops', bn: 'বিশ্রাম',   en: 'Rest',      Icon: MapPinIcon },
+  { path: '/analytics',  bn: 'বিশ্লেষণ', en: 'Analytics', Icon: ChartIcon },
+  { path: '/settings',   bn: 'সেটিংস',   en: 'Settings',  Icon: SettingsIcon },
 ] as const;
 
 export function BottomNav() {

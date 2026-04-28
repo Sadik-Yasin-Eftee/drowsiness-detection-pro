@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 217 33% 17%;
+    --card-foreground: 210 40% 98%;
+    --popover: 217 33% 17%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 174 84% 32%;
+    --primary-foreground: 210 40% 98%;
+    --primary-light: 174 72% 40%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 25% 63%;
+    --accent: 217 33% 17%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 33% 25%;
+    --input: 217 33% 25%;
+    --ring: 174 84% 32%;
+    --radius: 1rem;
+
+    --color-bg-dark: 222 47% 11%;
+    --color-bg-warm: 30 100% 98%;
+    --color-primary: 174 84% 32%;
+    --color-primary-light: 174 72% 40%;
+    --color-warning: 38 92% 50%;
+    --color-danger: 0 84% 60%;
+    --color-alert-coral: 18 82% 50%;
+    --color-alert-soft: 14 100% 63%;
+    --color-surface: 217 33% 17%;
+    --color-surface-light: 210 40% 96%;
+    --color-text-primary: 210 40% 98%;
+    --color-text-dark: 217 33% 17%;
+    --color-text-muted: 215 25% 63%;
+
+    --sidebar-background: 222 47% 11%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 174 84% 32%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 217 33% 17%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 33% 25%;
+    --sidebar-ring: 174 84% 32%;
+  }
+
+  .theme-warm {
+    --background: 30 100% 98%;
+    --foreground: 217 33% 17%;
+    --card: 0 0% 100%;
+    --card-foreground: 217 33% 17%;
+    --muted-foreground: 215 25% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Noto Sans Bengali', 'Inter', sans-serif;
+  }
+}
+
+@layer utilities {
+  .font-bangla {
+    font-family: 'Noto Sans Bengali', sans-serif;
+  }
+  .font-english {
+    font-family: 'Inter', sans-serif;
+  }
+  .font-mono-hud {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Saathi character animations */
+@keyframes idle-blink {
+  0%, 90%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+}
+
+@keyframes worried-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 hsl(var(--color-alert-coral) / 0.4); }
+  50% { box-shadow: 0 0 0 16px hsl(var(--color-alert-coral) / 0); }
+}
+
+@keyframes critical-shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-3px); }
+  20%, 40%, 60%, 80% { transform: translateX(3px); }
+}
+
+@keyframes danger-ring {
+  0% { box-shadow: 0 0 0 0 hsl(var(--color-danger) / 0.5); }
+  100% { box-shadow: 0 0 0 30px hsl(var(--color-danger) / 0); }
+}
+
+@keyframes breathing-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.85; }
+}
+
+@keyframes scroll-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-8px); }
+}
+
+.animate-idle-blink {
+  animation: idle-blink 4s ease-in-out infinite;
+}
+.animate-worried-pulse {
+  animation: worried-pulse 1.5s ease-in-out infinite;
+}
+.animate-critical-shake {
+  animation: critical-shake 0.5s ease-in-out infinite;
+}
+.animate-danger-ring {
+  animation: danger-ring 1s ease-out infinite;
+}
+.animate-breathing {
+  animation: breathing-pulse 3s ease-in-out infinite;
+}

@@ -1,19 +1,3 @@
-/**
- * AlertOverlay — full-screen drowsiness alert.
- *
- * Three distinct visual treatments matching the three interface modes from
- * the FE:
- *
- *   companion → warm beige background, soft animated eye, friendly Bangla copy
- *   dashboard → dark sheet sliding up from the bottom with PERCLOS readout
- *   hud       → minimal red-tinted technical readout
- *
- * The overlay also offers three actions:
- *   • DISMISS         — "I'm fine" (most common — false positive or transient)
- *   • REST            — navigates to /rest-stops
- *   • FALSE ALARM     — flags this event so it can be filtered from analytics
- */
-
 import React from 'react';
 import { View, Text, Pressable, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
@@ -47,9 +31,6 @@ export function AlertOverlay() {
   return <HudAlert alert={currentAlert} onDismiss={dismissAlert} onRest={goRest} onFlag={flagFalseAlarm} />;
 }
 
-/* ────────────────────────────────────────────────────────────── */
-/*  Companion mode                                                */
-/* ────────────────────────────────────────────────────────────── */
 function CompanionAlert({
   alert, onDismiss, onRest, onFlag,
 }: { alert: NonNullable<ReturnType<typeof useAppStore.getState>['currentAlert']>;
@@ -86,9 +67,6 @@ function CompanionAlert({
   );
 }
 
-/* ────────────────────────────────────────────────────────────── */
-/*  Dashboard mode                                                */
-/* ────────────────────────────────────────────────────────────── */
 function DashboardAlert({
   alert, onDismiss, onRest,
 }: { alert: NonNullable<ReturnType<typeof useAppStore.getState>['currentAlert']>;
@@ -122,9 +100,6 @@ function DashboardAlert({
   );
 }
 
-/* ────────────────────────────────────────────────────────────── */
-/*  HUD mode                                                       */
-/* ────────────────────────────────────────────────────────────── */
 function HudAlert({
   alert, onDismiss, onRest, onFlag,
 }: { alert: NonNullable<ReturnType<typeof useAppStore.getState>['currentAlert']>;
@@ -172,9 +147,6 @@ function HudCell({ label, value }: { label: string; value: string }) {
   );
 }
 
-/* ────────────────────────────────────────────────────────────── */
-/*  Styles                                                         */
-/* ────────────────────────────────────────────────────────────── */
 const styles = StyleSheet.create({
   fullScreen: {
     ...StyleSheet.absoluteFillObject,
@@ -182,7 +154,6 @@ const styles = StyleSheet.create({
     elevation: 999,
   },
 
-  // Companion
   companionInner: {
     flex: 1,
     alignItems: 'center',
@@ -204,7 +175,6 @@ const styles = StyleSheet.create({
 
   linkUnderline: { color: colors.muted, textDecorationLine: 'underline', fontSize: 13 },
 
-  // Dashboard
   dashSheet: {
     backgroundColor: colors.card,
     borderTopLeftRadius: 24, borderTopRightRadius: 24,
@@ -223,7 +193,6 @@ const styles = StyleSheet.create({
   dashBtnGhost: { borderWidth: 1, borderColor: colors.border },
   dashBtnGhostText: { color: colors.foreground, fontWeight: '700' },
 
-  // HUD
   hudCard: {
     margin: 16,
     backgroundColor: colors.card,

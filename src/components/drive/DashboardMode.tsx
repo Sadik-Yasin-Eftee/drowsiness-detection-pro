@@ -1,12 +1,3 @@
-/**
- * DashboardMode — clean stats view with a big status ring and four stat tiles.
- *
- * The ring's colour matches the current alert level (teal → amber → red), and
- * its inner pulse animation intensifies with the level — sharing the same
- * "alert grammar" as the Saathi character in CompanionMode so users who
- * switch between modes have continuous visual context.
- */
-
 import React, { useEffect } from 'react';
 import { View, Text, Pressable, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
@@ -45,7 +36,6 @@ export function DashboardMode() {
     currentAlertLevel >= 2 ? 'সতর্কতা!' :
     'পর্যবেক্ষণ করছি';
 
-  // Pulsing animation tied to alert level
   const pulse = useSharedValue(1);
   useEffect(() => {
     cancelAnimation(pulse);
@@ -79,9 +69,7 @@ export function DashboardMode() {
         <Text style={styles.timer}>{toBn(formatTime(tripElapsedSeconds))}</Text>
       </View>
 
-      {/* Centre-weighted content */}
       <View style={styles.centreContent}>
-        {/* Status ring */}
         <View style={styles.ringWrap}>
           <Animated.View
             style={[
@@ -96,7 +84,6 @@ export function DashboardMode() {
           </Animated.View>
         </View>
 
-        {/* Quick stats */}
         <View style={styles.statsGrid}>
           <Stat label="ব্লিংক রেট" value={`${toBn(String(Math.round(blinkRate)))}/মিনিট`} />
           <Stat label="চোখ" value={
@@ -107,7 +94,6 @@ export function DashboardMode() {
         </View>
       </View>
 
-      {/* Bottom actions */}
       <View style={styles.actions}>
         <ActionBtn label="ভুল সতর্কতা" Icon={ZapIcon} onPress={() => {}} />
         <ActionBtn label="বিশ্রাম" Icon={MapPinIcon} onPress={() => router.push('/rest-stops')} />

@@ -1,136 +1,176 @@
 # DrowsyGuard — Mobile
 
-> Real-time driver drowsiness detection for the **Lovable-FE preview**, ported to a production-ready iOS/Android app.
-
-DrowsyGuard is the mobile companion to the [drowsiness-detection-pro](https://github.com/Sadik-Yasin-Eftee/drowsiness-detection-pro) web prototype. It carries the same UX intent — bilingual (Bangla + English) drowsiness monitoring with three interface modes — into a real cross-platform mobile app you can install on a phone, point at the driver, and ship.
+Real-time driver drowsiness detection for iOS and Android. Bilingual (Bangla + English), three interface modes, fully on-device.
 
 ---
 
 ## Tech stack
 
-| Concern               | Choice                                       | Why                                                                                                                                                                |
-|-----------------------|----------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Framework             | **Expo SDK 55** (file-based router)          | Single codebase → iOS + Android + web. SDK 55 is the latest stable (Feb 2026), brings RN 0.83 + React 19.2 + the New Architecture as default.                       |
-| Camera preview        | **`expo-camera@17`**                         | Stable, official, no native-module conflicts.                                                                                                                       |
-| Drowsiness algorithm  | **Custom on-device engine** (`src/lib/drowsinessEngine.ts`) | Real PERCLOS + EAR + head-pose + microsleep detection. Not a black box — it's all here, ~250 lines of plain TypeScript.                                              |
-| Face data             | **Pluggable detector interface** (`src/lib/faceDetector.ts`) — see [Real face detection](#real-face-detection) below |
-| Alerts (audio)        | **`expo-audio@55`** + 3 hand-tuned WAVs       | AHCI-designed sounds: gentle nudge → clear alert → urgent pulse. All sine-wave, no clipping, plays even on silent.                                                  |
-| Alerts (haptics)      | **`expo-haptics`**                           | Second feedback channel for noisy cars or muted phones.                                                                                                              |
-| Animations            | **Reanimated 4 + worklets**                  | New-architecture native; no extra setup (auto-configured by `babel-preset-expo`).                                                                                   |
-| State                 | **`zustand`** + AsyncStorage persistence     | Same library as the web FE; preferences persist, trip data does not (privacy).                                                                                       |
-| Navigation            | **`expo-router@6`**                          | File-based — `app/index.tsx`, `app/drive.tsx`, etc.                                                                                                                  |
-
-### Why **not** `react-native-vision-camera` or `react-native-vision-camera-face-detector`?
-
-You specifically asked us to make sure **version-matching issues are solved**. The honest answer for SDK 55 in April 2026:
-
-- Reanimated 4 (required for SDK 55) depends on **`react-native-worklets`**.
-- Vision Camera v4 (the latest stable) depends on **`react-native-worklets-core`**.
-- Both packages register a Java class named `WorkletsPackage` on Android, and the auto-link generator throws a duplicate-import error → Android builds fail.
-- Vision Camera v5 fixes this by switching to `react-native-worklets`, but it is currently sponsor-gated (paid GitHub sponsorship required).
-
-So we shipped DrowsyGuard with a clean, well-defined `FaceDetector` interface and a default `SimulatedFaceDetector` that drives **the real drowsiness engine** with realistic synthetic data. Everything else — the alert grammar, the sound design, the Bangla/English copy, the three view modes, the AlertOverlay — is fully wired and exercised. Plugging in a real detector is a single-file change. See the [Real face detection](#real-face-detection) section below.
+| Concern               | Choice                                                        |
+|-----------------------|---------------------------------------------------------------|
+| Framework             | **Expo SDK 55** (expo-router, RN 0.83, React 19.2, New Arch) |
+| Camera preview        | **`expo-camera@17`**                                          |
+| Drowsiness engine     | Custom on-device PERCLOS + EAR + head-pose (`src/lib/drowsinessEngine.ts`) |
+| Face data             | Pluggable `FaceDetector` interface + `SimulatedFaceDetector` (see [Real face detection](#real-face-detection)) |
+| Alerts (audio)        | **`expo-audio@55`** + 3 AHCI-tuned WAVs                      |
+| Alerts (haptics)      | **`expo-haptics`**                                            |
+| Animations            | **Reanimated 4 + worklets** (New Architecture native)        |
+| State                 | **`zustand`** + selective AsyncStorage persistence            |
+| Navigation            | **`expo-router@6`** — file-based screens under `app/`        |
+| Safe area             | **`react-native-safe-area-context`** — applied on every screen |
 
 ---
 
-## What's in the box
+## Project structure
 
 ```
 drowsyguard-mobile/
-├─ app/                                 # expo-router screens
-│  ├─ _layout.tsx                       #   root: SafeArea, GestureHandler, hydration
-│  ├─ index.tsx                         #   splash → routes to /permissions or /drive
-│  ├─ permissions.tsx                   #   ⭐ camera permission flow (the explicit module you asked for)
-│  ├─ onboarding/index.tsx              #   3-step intro: hello, privacy, sensitivity+mode
-│  ├─ drive.tsx                         #   active monitoring screen
-│  ├─ rest-stops.tsx                    #   nearby rest areas (map deferred per project brief)
-│  ├─ analytics.tsx                     #   weekly score, daily chart, peak-risk hours
-│  └─ settings.tsx                      #   sensitivity, mode, privacy, sound, threshold
+├─ app/
+│  ├─ _layout.tsx              # root: GestureHandler, SafeArea, store hydration, fade transitions
+│  ├─ index.tsx                # splash → always routes to /permissions on launch
+│  ├─ permissions.tsx          # camera permission flow (shown on every launch)
+│  ├─ onboarding/index.tsx     # 3-step intro: hello, privacy, sensitivity + mode picker
+│  ├─ drive.tsx                # active monitoring screen
+│  ├─ rest-stops.tsx           # nearby rest areas
+│  ├─ analytics.tsx            # weekly score, daily chart, peak-risk hours
+│  └─ settings.tsx             # sensitivity, mode, privacy, sound, threshold
 ├─ src/
-│  ├─ store/useAppStore.ts              # zustand store (mirrors the FE)
-│  ├─ hooks/useDrowsinessDetection.ts   # the single hook that powers Drive
+│  ├─ store/useAppStore.ts     # zustand store — selective persistence, safe hydration
+│  ├─ hooks/useDrowsinessDetection.ts
 │  ├─ lib/
-│  │  ├─ drowsinessEngine.ts            # PERCLOS + EAR + head-pose + microsleep alert engine
-│  │  ├─ faceDetector.ts                # Detector interface + SimulatedFaceDetector
-│  │  ├─ alertSounds.ts                 # AHCI-tuned audio playback
-│  │  ├─ haptics.ts                     # vibration patterns by alert level
-│  │  ├─ theme.ts                       # colour + spacing tokens (mirrors FE Tailwind)
-│  │  └─ i18n.ts                        # Bangla numeral conversion + time formatting
+│  │  ├─ drowsinessEngine.ts   # PERCLOS + EAR + head-pose + microsleep engine
+│  │  ├─ faceDetector.ts       # FaceDetector interface + SimulatedFaceDetector
+│  │  ├─ alertSounds.ts        # AHCI-tuned audio
+│  │  ├─ haptics.ts
+│  │  ├─ theme.ts              # colour + spacing tokens
+│  │  └─ i18n.ts               # Bangla numeral conversion + time formatting
 │  └─ components/
-│     ├─ AlertOverlay.tsx               # full-screen alert with three mode-specific layouts
-│     ├─ BottomNav.tsx                  # persistent tab bar (Drive / Rest / Analytics / Settings)
-│     ├─ CameraDetector.tsx             # corner camera-preview pip
-│     ├─ SaathiCharacter.tsx            # animated AI companion mascot
-│     ├─ Icons.tsx                      # hand-rolled SVG icon set (no extra deps)
+│     ├─ AlertOverlay.tsx
+│     ├─ BottomNav.tsx         # tab bar — handles bottom safe-area inset
+│     ├─ CameraDetector.tsx    # corner pip — positioned below status bar via insets.top
+│     ├─ SaathiCharacter.tsx   # animated companion mascot
+│     ├─ Icons.tsx
 │     └─ drive/
-│        ├─ CompanionMode.tsx           # warm, friendly view with Saathi
-│        ├─ DashboardMode.tsx           # status ring + stats grid
-│        └─ HUDMode.tsx                 # technical readout (PERCLOS, EAR, head-pose gauges)
-├─ assets/
-│  ├─ icon.png, adaptive-icon.png, splash.png, favicon.png
-│  └─ sounds/
-│     ├─ alert_level1.wav               # gentle G5+B5 chime, 0.7s
-│     ├─ alert_level2.wav               # rising D5→F#5→A5 arpeggio, 0.7s
-│     └─ alert_level3.wav               # urgent E6↔A5 pulse pattern, 1.4s
-├─ app.json                             # Expo config: permissions, plugins, build props
-├─ babel.config.js                      # minimal — Reanimated/worklets auto-config
-├─ package.json                         # locked SDK-55 versions (see below)
-├─ tsconfig.json
-└─ metro.config.js
+│        ├─ CompanionMode.tsx  # warm view with Saathi — content vertically centred
+│        ├─ DashboardMode.tsx  # status ring + stats grid — content vertically centred
+│        └─ HUDMode.tsx        # technical readout — content vertically centred
+├─ assets/sounds/
+│  ├─ alert_level1.wav
+│  ├─ alert_level2.wav
+│  └─ alert_level3.wav
+├─ app.json
+├─ package.json
+└─ tsconfig.json
 ```
+
+---
+
+## App flow on every launch
+
+The app intentionally **does not skip** the permission or mode-selection screens between launches:
+
+```
+Splash (1.8 s)
+  └─▶ /permissions       — camera permission explained + OS prompt
+        └─▶ /onboarding  — step 0: meet Saathi
+                           step 1: privacy promise
+                           step 2: pick sensitivity + interface mode   ← always shown
+              └─▶ /drive
+```
+
+This is enforced by removing `onboardingComplete` and `permissionsRequested` from the persisted fields in the store. Preferences (mode, sensitivity, language, etc.) **are** still persisted — so the user's last choices are pre-selected on the mode picker but they must confirm them each time.
+
+---
+
+## UI / layout
+
+### Safe area insets
+
+Every screen applies `useSafeAreaInsets()` so content never sits behind the device's status bar or home indicator:
+
+| Screen | Where `insets.top` is applied |
+|--------|-------------------------------|
+| `permissions.tsx` | `ScrollView` style |
+| `onboarding/index.tsx` | root `View` |
+| `drive.tsx` | `modeWrap` (covers all three modes) |
+| `analytics.tsx` | root `View` |
+| `rest-stops.tsx` | root `View` |
+| `settings.tsx` | root `View` |
+
+`BottomNav` applies `insets.bottom` independently. `CameraDetector` positions its pip at `insets.top + 8` so it sits just below the notification bar.
+
+### Screen transitions
+
+All stack transitions use `animation: 'fade'` (set in `_layout.tsx`) to eliminate the white-flash artefact of the default slide animation.
+
+### Drive mode layouts
+
+All three drive modes centre their primary content vertically in the available space between the top bar and the action buttons:
+
+- **CompanionMode** — Saathi character + status text in a `flex:1, justifyContent:'center'` container.
+- **DashboardMode** — status ring + stats grid wrapped in `centreContent` (`flex:1, justifyContent:'center'`).
+- **HUDMode** — all metric sections wrapped in `centreContent` (`flex:1, justifyContent:'center'`).
+
+### Onboarding step 2
+
+The mode + sensitivity picker uses full-width cards (`alignSelf:'stretch'`) with a 48 × 48 emoji container on the left and bold bilingual text on the right. The previous layout had `alignItems:'center'` on the wrapper which collapsed cards to emoji-only width.
 
 ---
 
 ## Drowsiness algorithm
 
-The engine in `src/lib/drowsinessEngine.ts` is a real implementation of the metrics drowsiness research uses, not a placeholder:
+Engine lives in `src/lib/drowsinessEngine.ts`:
 
-- **PERCLOS** — Percentage of Eye Closure. Computed as the share of frames in a rolling 60-second window where both eyes were classified as ≥80% closed. This is the gold-standard drowsiness metric (Wierwille 1994 et al.) used by automotive OEMs.
+- **PERCLOS** — share of frames in a rolling 60 s window where eyes are ≥ 80% closed (gold-standard automotive metric).
 - **EAR proxy** — averaged eye-open probability from the detector.
-- **Blink rate** — blinks-per-minute over a rolling window. Healthy baseline is ~17. A rate dropping below 6 with elevated PERCLOS is a strong fatigue indicator.
-- **Closure duration** — length of the current closure event. ≥ 1.5 s is a microsleep → Level-3 alert immediately.
-- **Head pose** — pitch / yaw / roll in degrees. Sustained pitch > 18° is the head-droop signal.
+- **Blink rate** — blinks/min over a rolling window; < 6 + elevated PERCLOS = strong fatigue indicator.
+- **Closure duration** — ≥ 1.5 s = microsleep → Level-3 alert immediately.
+- **Head pose** — sustained pitch > 18° = head-droop signal.
 
-Alerts are emitted at four levels, each with an 8-second debounce so we don't spam:
+| Level | Trigger | Feedback |
+|------:|---------|---------|
+| 0 | Normal | — |
+| 1 | PERCLOS ≥ 70% of threshold; mild head tilt | Gentle chime + single haptic |
+| 2 | PERCLOS ≥ threshold; low blink + elevated PERCLOS | Arpeggio + warning haptic |
+| 3 | Microsleep; head-droop + elevated PERCLOS | Urgent pulse + error haptic ×3 |
 
-| Level | Condition (any of)                                                                                           | UI / sound                                |
-|------:|:-------------------------------------------------------------------------------------------------------------|:------------------------------------------|
-| 0     | Normal driving                                                                                                | (none)                                    |
-| 1     | PERCLOS ≥ 70% of threshold; or mild head tilt                                                                 | Gentle chime, single haptic tap           |
-| 2     | PERCLOS ≥ user threshold; or low blink rate + elevated PERCLOS                                                | Three-note arpeggio + Warning haptic      |
-| 3     | Microsleep (≥1.5s closure); or head-droop with elevated PERCLOS                                                | Urgent two-tone pulse + Error haptic ×3   |
-
-Alert reasons render bilingually (Bangla + English) so the driver gets immediate context regardless of which language they prefer.
+Alert reasons render bilingually in Bangla + English.
 
 ---
 
-## AHCI alert sound design
+## AHCI alert sounds
 
-These are the comfortable-but-alerting tones you asked for:
+- **Level 1** (`alert_level1.wav`, 0.7 s) — G5 + B5 chime, volume 0.55. Friendly notification tone.
+- **Level 2** (`alert_level2.wav`, 0.7 s) — D5 → F#5 → A5 ascending arpeggio, volume 0.78. Rising pitch = wake up.
+- **Level 3** (`alert_level3.wav`, 1.4 s) — E6 ↔ A5 pulse ×3 at 4 Hz, volume 1.0. Most reliably attention-grabbing pattern from auditory-icons literature.
 
-- **Level 1 (`alert_level1.wav`, 0.7s)** — A warm two-note chime (G5 + B5) with a long release and 5 Hz tremolo. Sounds like a friendly notification, not an alarm. Volume 0.55.
-- **Level 2 (`alert_level2.wav`, 0.7s)** — An ascending major arpeggio (D5 → F#5 → A5). Pitch rises = "wake up". Still musical, never harsh. Volume 0.78.
-- **Level 3 (`alert_level3.wav`, 1.4s)** — Three repetitions of an alternating E6 ↔ A5 pulse at 4 Hz, the most reliably attention-grabbing pattern from the auditory-icons literature. All sine waves with smooth attack/release envelopes — designed to wake a nodding driver without causing a startle response that would jerk the wheel. Volume 1.0.
-
-All three tones are mono 44.1 kHz 16-bit PCM, peak around -3 dBFS, and play **even on silent mode** because driver safety overrides the user's silent-toggle preference. The three WAV files are checked into `assets/sounds/` and were generated programmatically — see `gen_alerts.py` (kept outside the project repo for reference).
-
-In **night quiet mode** (toggle in Settings), Level 1 and 2 are suppressed and Level 3 is played at 70% volume to avoid jarring sleeping passengers in the car.
+All tones play **even on silent mode**. Night quiet mode suppresses Level 1–2 and reduces Level 3 to 70%.
 
 ---
 
 ## Permission flow
 
-The explicit permissions module you asked for lives at **`app/permissions.tsx`** and is the first screen a new user sees after the splash. It:
+`app/permissions.tsx` is shown on **every launch**. It:
 
-1. Explains in plain Bangla + English **why** DrowsyGuard needs the camera.
-2. Shows a four-row "Privacy Promise" card: video never leaves the phone, on-device AI, no cloud, no storage.
-3. Exposes a single CTA — `ক্যামেরা চালু করুন / Allow Camera` — that triggers `useCameraPermissions().requestPermission()` from `expo-camera`.
-4. Handles all three branches:
-   - `granted` → routes to `/onboarding` (first time) or `/drive` (returning user).
-   - `denied + canAskAgain=false` → shows a clear banner and an **Open Settings** button that calls `Linking.openSettings()`. (Once iOS/Android refuse to re-prompt, the user must visit OS Settings to re-grant — this is the only honest path.)
-   - `undetermined` → re-shows the CTA.
+1. Explains in Bangla + English why the camera is needed.
+2. Shows a four-row "Privacy Promise" card.
+3. Triggers `useCameraPermissions().requestPermission()` on tap.
+4. Handles all three OS branches: `granted` → onboarding; `denied + canAskAgain=false` → Open Settings button; `undetermined` → re-shows CTA.
 
-The OS permission prompts use the strings from `app.json` (`NSCameraUsageDescription` / `cameraPermission`).
+---
+
+## State persistence
+
+`useAppStore` (zustand) persists only the fields in `PERSIST_FIELDS` via AsyncStorage. `hydrate()` filters the stored JSON against that allowlist before applying it — stale keys from old storage (e.g. `onboardingComplete` written by a previous build) are silently ignored rather than restoring skipped-screen state.
+
+**Not persisted** (reset to defaults on every launch):
+- `onboardingComplete`, `permissionsRequested`
+- All live trip / detection state
+
+**Persisted** (survive app restarts):
+- `interfaceMode`, `sensitivity`, `perclosThreshold`, `language`
+- `cameraPermission`
+- All privacy / sound / sharing toggles
 
 ---
 
@@ -138,63 +178,45 @@ The OS permission prompts use the strings from `app.json` (`NSCameraUsageDescrip
 
 ### Requirements
 
-- Node.js 20.x or 22.x
-- For iOS: macOS with Xcode 16 + CocoaPods 1.16+
-- For Android: Android Studio with SDK 35 + Java 17
+- Node.js 20+ / 22+
+- iOS: macOS + Xcode 16 + CocoaPods 1.16+
+- Android: Android Studio + SDK 35 + Java 17
 
-### First-time setup
+### Setup
 
 ```bash
-cd drowsyguard-mobile
 npm install
+npm run doctor   # should report 0 issues; npm run fix auto-aligns if not
 ```
 
-If `npm install` complains about peer-dependency conflicts (it should NOT with the locked versions in `package.json`, but if you're on an older npm), use:
+### Development build (required — Expo Go won't work)
 
 ```bash
-npm install --legacy-peer-deps
+npm run ios      # iOS simulator or connected device
+npm run android  # Android emulator or connected device
 ```
 
-After install, run the doctor to verify everything is aligned:
+First run: 5–15 min (prebuild + CocoaPods/Gradle). Subsequent runs: 30–60 s.
+
+### Clearing Metro cache (after dependency or config changes)
 
 ```bash
-npm run doctor
+npx expo start --clear
 ```
 
-This should report **0 issues**. If something drifts, run `npm run fix` to auto-align with what Expo SDK 55 expects.
-
-### Run on a phone
-
-The app uses native modules (`expo-camera`, `expo-audio`, `expo-haptics`, `react-native-reanimated`), which means **Expo Go won't work** — you need a development build. The two commands you'll use:
-
-```bash
-# iOS  — needs macOS + Xcode + a connected iPhone or simulator
-npm run ios
-
-# Android — needs Android Studio + a USB device or emulator
-npm run android
-```
-
-The first run will:
-1. Generate `ios/` and `android/` folders via `expo prebuild`.
-2. Install CocoaPods (iOS) or run Gradle (Android).
-3. Build the dev client and launch it.
-
-This takes 5–15 minutes the first time. Subsequent runs are 30–60 seconds.
-
-### Run on web (limited)
+### Web (layout preview only)
 
 ```bash
 npm run web
 ```
 
-The web build works for layout testing but has limited camera + audio + haptics support. It's mainly useful for iterating on UI without rebuilding native.
+Camera, audio, and haptics are limited on web.
 
 ---
 
 ## Real face detection
 
-When you're ready to swap the simulator for a real on-device CV pipeline, the contract is in `src/lib/faceDetector.ts`. You implement:
+The `FaceDetector` interface in `src/lib/faceDetector.ts` is the swap-in point:
 
 ```ts
 interface FaceDetector {
@@ -203,33 +225,22 @@ interface FaceDetector {
   read(): RawFaceFrame | null;
   dispose(): void;
 }
+// RawFaceFrame: { leftEyeOpenProbability, rightEyeOpenProbability, pitch, yaw, roll, timestamp }
 ```
 
-…where `RawFaceFrame` is `{ leftEyeOpenProbability, rightEyeOpenProbability, pitch, yaw, roll, timestamp }`. The drowsiness engine, store, and every screen consume this same shape — they don't know or care whether the face data is real or synthetic.
-
-When the Vision Camera v4 / Reanimated 4 worklets conflict is resolved upstream, **or** when v5 becomes publicly available, you'll:
-
-1. `npm install react-native-vision-camera react-native-vision-camera-face-detector` (and update `app.json` with the v-camera plugin).
-2. Create `src/lib/visionCameraFaceDetector.ts` that wires a `useFrameProcessor` worklet to MLKit and exposes the same `FaceDetector` shape.
-3. Change `createFaceDetector()` in `src/lib/faceDetector.ts` to return your new implementation.
-
-The map integration for `app/rest-stops.tsx` follows the same pattern — there's a `<FakeMap />` SVG component to replace with `react-native-maps` when you're ready.
+The default `SimulatedFaceDetector` drives the real drowsiness engine with realistic synthetic data. When Vision Camera v5 becomes publicly available, create `src/lib/visionCameraFaceDetector.ts` that wires an MLKit frame processor to the same shape and swap it into `createFaceDetector()` — no other files need to change.
 
 ---
 
 ## Privacy
 
-The privacy promises in the UI are real:
-
-- **No camera frames are stored or transmitted.** The simulated detector doesn't even use the camera; the real-detector path (when wired up) processes frames in memory and discards them.
-- **Trip data wipes by default.** When a trip ends, `endTrip()` clears all `drowsinessEvents` and the live timeline unless the user explicitly opts to retain.
-- **Preferences persist locally.** AsyncStorage holds only the user's settings (sensitivity, mode, language, etc.) — never any inferred state about their driving.
-- **Insurance and employer sharing default to OFF.** Both toggles in Settings come with explicit warning copy.
+- No camera frames are stored or transmitted.
+- Trip data wipes on trip end by default (`deleteDataAfterTrip: true`).
+- Preferences persist locally only — never any inferred driving state.
+- Insurance and employer sharing default to OFF with explicit warning copy.
 
 ---
 
 ## License
 
-Project code: MIT.
-Generated alert sounds: CC0 (public domain).
-Bangla translations: human-written, free to use.
+Project code: MIT. Generated alert sounds: CC0. Bangla translations: human-written, free to use.
