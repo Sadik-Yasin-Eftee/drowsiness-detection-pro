@@ -1,0 +1,25 @@
+# DrowsyGuard Backend
+# Python 3.11+
+
+# Web framework
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+
+# Settings & validation
+pydantic>=2.7.0
+pydantic-settings>=2.3.0
+python-dotenv>=1.0.0
+
+# Roboflow inference (YOLOv8 + RF-DETR)
+# Docs: https://inference.roboflow.com
+inference-sdk>=0.38.0
+
+# Image processing
+pillow>=10.4.0
+numpy>=1.26.0
+opencv-python-headless>=4.10.0
+
+# HTTP + WebSocket
+httpx>=0.27.0
+websockets>=13.0
+python-multipart>=0.0.12
