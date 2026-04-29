@@ -50,6 +50,5 @@
   "private": true,
   "overrides": {
     "expo-constants": "~55.0.15"
-  },
-  "packageManager": "npm@11.12.1"
+  }
 }

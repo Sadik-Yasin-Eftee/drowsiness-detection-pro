@@ -49,3 +49,9 @@ coverage/
 
 # Bun (project uses npm)
 bun.lockb
+
+# Python backend virtualenv
+backend/.venv/
+backend/__pycache__/
+backend/**/__pycache__/
+backend/.env
