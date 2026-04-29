@@ -26,6 +26,7 @@
 import React from 'react';
 import type { CameraView } from 'expo-camera';
 import type { RawFaceFrame } from './drowsinessEngine';
+import { BACKEND_URL, BACKEND_CAPTURE_INTERVAL_MS } from './backendConfig';
 
 /* ────────────────────────────────────────────────────────────────────────── */
 /*  Interface                                                                */
@@ -44,7 +45,7 @@ export interface FaceDetector {
 /*  MLKitFaceDetector — on-device, free, no network required                */
 /* ────────────────────────────────────────────────────────────────────────── */
 
-class MLKitFaceDetector implements FaceDetector {
+export class MLKitFaceDetector implements FaceDetector {
   private active = false;
   private capturing = false;
   private cameraRef: React.RefObject<CameraView | null> | null = null;
@@ -140,6 +141,121 @@ class MLKitFaceDetector implements FaceDetector {
         const FS = require('expo-file-system') as typeof import('expo-file-system');
         void FS.deleteAsync(photo.uri, { idempotent: true });
       } catch { /* cache will be cleaned by OS */ }
+    }
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────────────── */
+/*  BackendDetector — Roboflow via FastAPI backend                           */
+/* ────────────────────────────────────────────────────────────────────────── */
+
+export class BackendDetector implements FaceDetector {
+  private active = false;
+  private capturing = false;
+  private cameraRef: React.RefObject<CameraView | null> | null = null;
+  private latest: RawFaceFrame | null = null;
+  private captureTimer: ReturnType<typeof setTimeout> | null = null;
+  private sessionId = '';
+
+  setCameraRef(ref: React.RefObject<CameraView | null>): void {
+    this.cameraRef = ref;
+  }
+
+  start(): void {
+    if (this.active) return;
+    this.active = true;
+    this.sessionId = `session-${Date.now()}`;
+    void this.captureLoop();
+  }
+
+  stop(): void {
+    this.active = false;
+    if (this.captureTimer) {
+      clearTimeout(this.captureTimer);
+      this.captureTimer = null;
+    }
+    this.latest = null;
+  }
+
+  read(): RawFaceFrame | null {
+    return this.latest;
+  }
+
+  dispose(): void {
+    this.stop();
+    if (this.sessionId) {
+      fetch(`${BACKEND_URL}/api/v1/session/${this.sessionId}`, { method: 'DELETE' })
+        .catch(() => {});
+    }
+    this.cameraRef = null;
+  }
+
+  private async captureLoop(): Promise<void> {
+    if (!this.active) return;
+    if (!this.capturing && this.cameraRef?.current) {
+      this.capturing = true;
+      try {
+        await this.doCapture();
+      } catch {
+        // Camera not ready or network error — keep latest frame, retry
+      } finally {
+        this.capturing = false;
+      }
+    }
+    if (this.active) {
+      this.captureTimer = setTimeout(() => void this.captureLoop(), BACKEND_CAPTURE_INTERVAL_MS);
+    }
+  }
+
+  private async doCapture(): Promise<void> {
+    const camera = this.cameraRef?.current;
+    if (!camera) return;
+
+    const photo = await (camera as any).takePictureAsync({
+      quality: 0.4,
+      skipProcessing: true,
+      base64: true,
+    });
+
+    if (!photo?.base64) return;
+
+    try {
+      const resp = await fetch(`${BACKEND_URL}/api/v1/analyze`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          frame: photo.base64,
+          session_id: this.sessionId,
+          timestamp_ms: Date.now(),
+        }),
+      });
+
+      if (!resp.ok) return;
+
+      const data = await resp.json() as {
+        face_detected: boolean;
+        left_eye_open_probability: number | null;
+        right_eye_open_probability: number | null;
+        head_pose: { pitch: number; yaw: number; roll: number };
+      };
+
+      if (data.face_detected) {
+        this.latest = {
+          leftEyeOpenProbability:  data.left_eye_open_probability  ?? null,
+          rightEyeOpenProbability: data.right_eye_open_probability ?? null,
+          pitch: data.head_pose?.pitch ?? 0,
+          yaw:   data.head_pose?.yaw   ?? 0,
+          roll:  data.head_pose?.roll  ?? 0,
+          timestamp: Date.now(),
+        };
+      } else {
+        this.latest = null;
+      }
+    } finally {
+      try {
+        const FS = require('expo-file-system') as typeof import('expo-file-system');
+        void FS.deleteAsync(photo.uri, { idempotent: true });
+      } catch { /* OS will clean cache */ }
     }
   }
 }

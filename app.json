@@ -21,7 +21,9 @@
         "NSCameraUsageDescription": "DrowsyGuard needs access to your front camera so it can monitor for drowsiness signs (eye-closure, head-droop) entirely on this device. No video or images ever leave your phone.",
         "NSMicrophoneUsageDescription": "Optional — used only if you choose to record audio notes while driving.",
         "ITSAppUsesNonExemptEncryption": false,
-        "UIBackgroundModes": ["audio"]
+        "UIBackgroundModes": [
+          "audio"
+        ]
       }
     },
     "android": {
@@ -36,7 +38,10 @@
         "android.permission.CAMERA",
         "android.permission.VIBRATE",
         "android.permission.WAKE_LOCK",
-        "android.permission.MODIFY_AUDIO_SETTINGS"
+        "android.permission.MODIFY_AUDIO_SETTINGS",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"
       ]
     },
     "web": {
@@ -44,6 +49,7 @@
       "bundler": "metro"
     },
     "plugins": [
+      "expo-dev-client",
       "expo-router",
       [
         "expo-camera",
@@ -76,6 +82,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "23611513-d960-4b13-a88a-74cdf9ffc31a"
+      }
     }
   }
 }
