@@ -102,9 +102,9 @@ export class BackendDetector implements FaceDetector {
     if (!camera) return;
 
     const photo = await (camera as any).takePictureAsync({
-      quality: 0.4,
-      skipProcessing: true,
+      quality: 0.5,
       base64: true,
+      shutterSound: false,
     });
 
     if (!photo?.base64) return;
@@ -143,8 +143,9 @@ export class BackendDetector implements FaceDetector {
       }
     } finally {
       try {
-        const FS = require('expo-file-system') as typeof import('expo-file-system');
-        void FS.deleteAsync(photo.uri, { idempotent: true });
+        // expo-file-system v18 deprecated the top-level deleteAsync; use legacy path
+        const FS = require('expo-file-system/legacy') as { deleteAsync: (uri: string) => Promise<void> };
+        void FS.deleteAsync(photo.uri);
       } catch { /* OS will clean cache */ }
     }
   }

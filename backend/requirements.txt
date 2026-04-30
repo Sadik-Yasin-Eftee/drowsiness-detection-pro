@@ -10,9 +10,8 @@ pydantic>=2.7.0
 pydantic-settings>=2.3.0
 python-dotenv>=1.0.0
 
-# Roboflow inference (YOLOv8 + RF-DETR)
-# Docs: https://inference.roboflow.com
-inference-sdk>=0.38.0
+# Face landmark detection (on-device, no API key required)
+mediapipe==0.10.9
 
 # Image processing
 pillow>=10.4.0

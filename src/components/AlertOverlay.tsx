@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, Pressable, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
 import Animated, { FadeIn, SlideInDown } from 'react-native-reanimated';
@@ -7,6 +7,8 @@ import Svg, { Ellipse, Circle } from 'react-native-svg';
 import { useAppStore } from '@/store/useAppStore';
 import { colors, radius } from '@/lib/theme';
 import { toBn } from '@/lib/i18n';
+import { alertSounds } from '@/lib/alertSounds';
+import { stopHapticLoop } from '@/lib/haptics';
 
 export function AlertOverlay() {
   const currentAlert = useAppStore((s) => s.currentAlert);
@@ -14,6 +16,14 @@ export function AlertOverlay() {
   const dismissAlert = useAppStore((s) => s.dismissAlert);
   const flagFalseAlarm = useAppStore((s) => s.flagFalseAlarm);
   const router = useRouter();
+
+  // Stop continuous alerts as soon as the alert is dismissed (currentAlert → null)
+  useEffect(() => {
+    if (!currentAlert) {
+      alertSounds.stopLoop();
+      stopHapticLoop();
+    }
+  }, [currentAlert]);
 
   if (!currentAlert) return null;
 

@@ -1,29 +1,26 @@
 """
-Roboflow inference client
-══════════════════════════
-Wraps the Roboflow inference-sdk to support both:
-  • YOLOv8 detection models  — bounding boxes, class labels
-  • RF-DETR detection models — same output format as YOLOv8
-  • Classification models    — top class + confidence
+MediaPipe Face Mesh inference client
+══════════════════════════════════════
+Replaces the Roboflow inference backend with on-device MediaPipe Face Mesh,
+which requires no API key, no network, and runs in ~5–20ms per frame.
 
-Then maps model output → (left_eye_prob, right_eye_prob, face_detected) so the
-PERCLOS engine receives consistent RawFaceFrame objects regardless of which
-Roboflow model is active.
+Pipeline:
+  base64 JPEG → PIL → numpy → MediaPipe FaceMesh
+    → 468 3D face landmarks
+    → EAR (Eye Aspect Ratio) per eye
+    → left/right eye-open probability (0.0–1.0)
+    → FrameAnalysis → PERCLOS engine
 
-Class-name mapping strategy
-────────────────────────────
-Different Roboflow datasets use different class names.  We handle them with
-broad keyword matching rather than exact equals, so new models "just work"
-without code changes.
+EAR formula (Soukupová & Čech 2016):
+  EAR = (‖p2−p6‖ + ‖p3−p5‖) / (2 · ‖p1−p4‖)
 
-  Open-eye classes:   open, eye-open, awake, alert, nodrowsy, no-drowsy …
-  Closed-eye classes: closed, eye-closed, drowsy, sleepy, sleeping, yawn …
-  Right-eye hints:    right, r-eye, righteye …
-  Left-eye hints:     left, l-eye, lefteye …
+EAR ≈ 0.30 → eye open
+EAR ≈ 0.10 → eye closing
+EAR ≈ 0.00 → eye fully closed
 
-If a model outputs a single "drowsy / awake" class for the whole frame
-(classification), we map it to equivalent eye-open probabilities and apply
-a confidence-weighted scaling so the PERCLOS engine still sees realistic values.
+We normalise EAR to a 0–1 probability using a sigmoid-like mapping
+so the downstream PERCLOS engine receives values consistent with what
+it expects from the old ML-Kit / Roboflow backends.
 """
 
 from __future__ import annotations
@@ -32,10 +29,13 @@ import asyncio
 import base64
 import io
 import logging
+import math
 import time
 from dataclasses import dataclass, field
 from typing import Any, Optional
 
+import mediapipe as mp
+import numpy as np
 from PIL import Image
 
 from config import Settings
@@ -43,32 +43,19 @@ from engine import RawFaceFrame
 
 logger = logging.getLogger(__name__)
 
+# ── MediaPipe landmark indices ────────────────────────────────────────────────
+# Six-point EAR landmarks per eye (order: outer-corner, top1, top2,
+#                                         inner-corner, bot1, bot2)
+_LEFT_EYE_IDX  = [362, 385, 387, 263, 373, 380]
+_RIGHT_EYE_IDX = [33,  160, 158, 133, 153, 144]
 
-# ── Class-name keyword sets ───────────────────────────────────────────────────
-
-_OPEN_KW   = {"open", "awake", "alert", "nodrowsy", "no-drowsy", "active"}
-_CLOSED_KW = {"closed", "close", "drowsy", "sleepy", "sleeping", "fatigue",
-              "tired", "yawn", "yawning", "microsleep"}
-_RIGHT_KW  = {"right", "r-eye", "righteye", "reye"}
-_LEFT_KW   = {"left",  "l-eye", "lefteye",  "leye"}
-
-# Whole-frame classification → canonical eye-open probability
-_CLASS_TO_EYE_PROB: dict[str, float] = {
-    "awake":     0.92,
-    "alert":     0.92,
-    "nodrowsy":  0.92,
-    "no-drowsy": 0.92,
-    "active":    0.92,
-    "yawn":      0.65,
-    "yawning":   0.65,
-    "drowsy":    0.35,
-    "sleepy":    0.25,
-    "fatigue":   0.30,
-    "tired":     0.30,
-    "sleeping":  0.05,
-    "closed":    0.05,
-    "microsleep":0.02,
-}
+# EAR → probability calibration:
+# EAR values observed in practice:
+#   fully open  ≈ 0.28–0.35
+#   half-closed ≈ 0.15–0.22
+#   fully closed ≈ 0.00–0.08
+_EAR_OPEN   = 0.28   # EAR at which we call the eye "open"   (→ prob ≈ 1.0)
+_EAR_CLOSED = 0.06   # EAR at which we call the eye "closed" (→ prob ≈ 0.0)
 
 
 # ── Output data class ─────────────────────────────────────────────────────────
@@ -81,7 +68,7 @@ class FrameAnalysis:
     pitch:              float = 0.0
     yaw:                float = 0.0
     roll:               float = 0.0
-    model_used:         str   = "unknown"
+    model_used:         str   = "mediapipe-facemesh"
     inference_time_ms:  float = 0.0
     raw_predictions:    list[dict[str, Any]] = field(default_factory=list)
 
@@ -89,206 +76,163 @@ class FrameAnalysis:
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
 def _b64_to_pil(b64: str) -> Image.Image:
-    """Accept data-URI or raw base64 string."""
     if "," in b64:
         b64 = b64.split(",", 1)[1]
-    return Image.open(io.BytesIO(base64.b64decode(b64))).convert("RGB")
+    img = Image.open(io.BytesIO(base64.b64decode(b64)))
+    # Apply EXIF rotation so MediaPipe always receives an upright face.
+    # Android cameras embed orientation in EXIF; PIL won't auto-rotate without this.
+    try:
+        from PIL import ImageOps
+        img = ImageOps.exif_transpose(img)
+    except Exception:
+        pass
+    return img.convert("RGB")
 
 
-def _cls_tokens(raw: str) -> set[str]:
-    """Lowercase, split on common separators into a set of tokens."""
-    import re
-    norm = raw.lower()
-    return set(re.split(r"[-_\s]+", norm))
+def _dist(a: np.ndarray, b: np.ndarray) -> float:
+    return float(np.linalg.norm(a - b))
 
 
-def _is_open(tokens: set[str]) -> bool:
-    return bool(tokens & _OPEN_KW) or "open" in tokens
+def _ear(landmarks: list, indices: list[int], w: int, h: int) -> float:
+    """Eye Aspect Ratio from six MediaPipe landmarks."""
+    pts = np.array(
+        [[landmarks[i].x * w, landmarks[i].y * h] for i in indices],
+        dtype=np.float32,
+    )
+    # p1=pts[0] (outer), p4=pts[3] (inner)
+    # p2=pts[1], p6=pts[5] (upper/lower pair 1)
+    # p3=pts[2], p5=pts[4] (upper/lower pair 2)
+    A = _dist(pts[1], pts[5])
+    B = _dist(pts[2], pts[4])
+    C = _dist(pts[0], pts[3])
+    return (A + B) / (2.0 * C) if C > 1e-6 else 0.0
 
 
-def _is_closed(tokens: set[str]) -> bool:
-    return bool(tokens & _CLOSED_KW)
+def _ear_to_prob(ear_val: float) -> float:
+    """Map EAR → eye-open probability in [0, 1] via linear clamp."""
+    p = (ear_val - _EAR_CLOSED) / (_EAR_OPEN - _EAR_CLOSED)
+    return max(0.0, min(1.0, p))
 
 
-def _is_right(tokens: set[str]) -> bool:
-    return bool(tokens & _RIGHT_KW)
-
-
-def _is_left(tokens: set[str]) -> bool:
-    return bool(tokens & _LEFT_KW)
-
-
-# ── Output parsers ────────────────────────────────────────────────────────────
-
-def _parse_detection(
-    predictions: list[dict],
-    image_w: int,
-    image_h: int,
-) -> tuple[Optional[float], Optional[float], bool]:
+def _head_pose(landmarks: list, w: int, h: int) -> tuple[float, float, float]:
     """
-    Parse bounding-box predictions → (left_prob, right_prob, face_detected).
+    Rough head-pose estimate (pitch, yaw, roll in degrees) from MediaPipe
+    Face Mesh landmarks using a simplified PnP approach.
 
-    Assignment strategy:
-      1. If class name contains left/right hint → assign directly.
-      2. Otherwise use x-coordinate: in a mirrored front-facing camera the
-         driver's anatomical left eye appears on the RIGHT side of the frame.
-         x > image_w/2  → left eye
-         x < image_w/2  → right eye
+    Landmark indices used:
+      1  = nose tip
+      33 = left eye outer corner (viewer left)
+      263= right eye outer corner (viewer right)
+      61 = mouth left corner
+      291= mouth right corner
+      199= chin
     """
-    if not predictions:
-        return None, None, False
+    try:
+        nose   = np.array([landmarks[1].x * w,   landmarks[1].y * h,   landmarks[1].z * w])
+        l_eye  = np.array([landmarks[33].x * w,  landmarks[33].y * h,  landmarks[33].z * w])
+        r_eye  = np.array([landmarks[263].x * w, landmarks[263].y * h, landmarks[263].z * w])
+        m_left = np.array([landmarks[61].x * w,  landmarks[61].y * h,  landmarks[61].z * w])
+        m_right= np.array([landmarks[291].x * w, landmarks[291].y * h, landmarks[291].z * w])
+        chin   = np.array([landmarks[199].x * w, landmarks[199].y * h, landmarks[199].z * w])
 
-    face_detected = False
-    left_buckets:  list[float] = []
-    right_buckets: list[float] = []
+        eye_mid  = (l_eye + r_eye) / 2
+        face_vec = chin - eye_mid
+        eye_vec  = r_eye - l_eye
 
-    for pred in predictions:
-        raw_cls = pred.get("class", "")
-        tokens  = _cls_tokens(raw_cls)
-        conf    = float(pred.get("confidence", 0.5))
-        cx      = float(pred.get("x", image_w / 2))
+        # Pitch: how much the face tilts forward/back
+        pitch = math.degrees(math.atan2(face_vec[2], face_vec[1]))
+        # Yaw: left-right turn
+        yaw   = math.degrees(math.atan2(nose[2] - eye_mid[2], nose[0] - eye_mid[0]))
+        # Roll: head tilt
+        roll  = math.degrees(math.atan2(eye_vec[1], eye_vec[0]))
 
-        if "face" in tokens:
-            face_detected = True
-            continue
-
-        open_eye   = _is_open(tokens)
-        closed_eye = _is_closed(tokens)
-        if not (open_eye or closed_eye):
-            continue
-
-        face_detected = True
-        # Eye-open probability: high confidence + open class → near 1.0
-        prob = conf if open_eye else (1.0 - conf)
-
-        if _is_right(tokens):
-            right_buckets.append(prob)
-        elif _is_left(tokens):
-            left_buckets.append(prob)
-        else:
-            # Fallback: position-based assignment (mirrored camera)
-            if cx >= image_w / 2:
-                left_buckets.append(prob)
-            else:
-                right_buckets.append(prob)
-
-    def _avg(bucket: list[float]) -> Optional[float]:
-        return sum(bucket) / len(bucket) if bucket else None
-
-    left_prob  = _avg(left_buckets)
-    right_prob = _avg(right_buckets)
-
-    # Mirror missing eye from the detected one
-    if left_prob is not None and right_prob is None:
-        right_prob = left_prob
-    elif right_prob is not None and left_prob is None:
-        left_prob = right_prob
-
-    return left_prob, right_prob, face_detected
-
-
-def _parse_classification(result: dict) -> tuple[Optional[float], Optional[float], bool]:
-    """
-    Parse whole-frame classification output → (left_prob, right_prob, face_detected).
-
-    Roboflow classification format:
-      { "top": "drowsy", "confidence": 0.87,
-        "predictions": {"0": {"class": "awake", "confidence": 0.13},
-                        "1": {"class": "drowsy", "confidence": 0.87}} }
-    """
-    top_raw = result.get("top", "").lower().replace("_", "-").replace(" ", "-")
-    conf    = float(result.get("confidence", 0.5))
-
-    # Map known classes; fall back to a neutral guess
-    base_prob = _CLASS_TO_EYE_PROB.get(top_raw)
-    if base_prob is None:
-        tokens = _cls_tokens(top_raw)
-        base_prob = 0.90 if _is_open(tokens) else (0.10 if _is_closed(tokens) else 0.55)
-
-    # Scale: high confidence pushes probability further from neutral (0.5)
-    scaled = 0.5 + (base_prob - 0.5) * conf
-    scaled = max(0.0, min(1.0, scaled))
-
-    face_detected = top_raw not in {"no-face", "noface", "no_face", "background"}
-    return (scaled, scaled, face_detected) if face_detected else (None, None, False)
+        return round(pitch, 1), round(yaw, 1), round(roll, 1)
+    except Exception:
+        return 0.0, 0.0, 0.0
 
 
 # ── Main client ───────────────────────────────────────────────────────────────
 
 class RoboflowClient:
     """
-    Async wrapper around the synchronous inference-sdk InferenceHTTPClient.
+    Drop-in replacement for the old Roboflow inference client.
+    Uses MediaPipe FaceMesh — runs entirely locally, no API key required.
 
-    Blocking inference calls are offloaded to a thread pool so they don't
-    block the FastAPI event loop.
+    The class name is kept as RoboflowClient so main.py / routes need no changes.
     """
 
     def __init__(self, settings: Settings) -> None:
         self._settings = settings
-        self._sdk_client: Any = None   # InferenceHTTPClient, lazily created
-
-    def _sdk(self):
-        """Lazily build the inference-sdk client (sync, called from thread pool)."""
-        if self._sdk_client is None:
-            from inference_sdk import InferenceHTTPClient  # noqa: PLC0415
-            self._sdk_client = InferenceHTTPClient(
-                api_url=self._settings.roboflow_api_url,
-                api_key=self._settings.roboflow_api_key,
-            )
-        return self._sdk_client
-
-    def _run_inference_sync(self, pil_image: Image.Image, model_id: str) -> dict:
-        """Synchronous inference call — runs in executor."""
-        return self._sdk().infer(pil_image, model_id=model_id)
+        self._face_mesh = mp.solutions.face_mesh.FaceMesh(
+            static_image_mode=True,
+            max_num_faces=1,
+            refine_landmarks=True,   # iris landmarks for finer eye tracking
+            min_detection_confidence=0.5,
+            min_tracking_confidence=0.5,
+        )
+        logger.info("MediaPipe FaceMesh initialised (no API key required)")
 
     async def analyze_frame(
         self,
         image_b64: str,
-        model_id:  str,
+        model_id:  str = "mediapipe-facemesh",   # ignored — kept for API compat
     ) -> FrameAnalysis:
         """
-        Decode a base64 JPEG, run Roboflow inference, and return a FrameAnalysis.
-        Never raises — returns a no-face FrameAnalysis on any error.
+        Decode a base64 JPEG, run FaceMesh inference, and return a FrameAnalysis.
+        Runs the blocking MediaPipe call in a thread pool to avoid blocking the event loop.
         """
         t0 = time.perf_counter()
         try:
             pil = _b64_to_pil(image_b64)
-            image_w, image_h = pil.size
-
-            loop   = asyncio.get_event_loop()
-            result = await loop.run_in_executor(
-                None, self._run_inference_sync, pil, model_id
-            )
-
-            elapsed_ms = (time.perf_counter() - t0) * 1000
-            raw_preds  = result.get("predictions", []) if isinstance(result, dict) else []
-
-            # Determine output format: list → detection, dict → classification
-            if isinstance(raw_preds, list):
-                left_p, right_p, face_det = _parse_detection(
-                    raw_preds, image_w, image_h
-                )
-            else:
-                left_p, right_p, face_det = _parse_classification(result)
-
-            return FrameAnalysis(
-                face_detected              = face_det,
-                left_eye_open_probability  = left_p,
-                right_eye_open_probability = right_p,
-                model_used                 = model_id,
-                inference_time_ms          = round(elapsed_ms, 1),
-                raw_predictions            = raw_preds if isinstance(raw_preds, list) else [],
-            )
-
+            loop = asyncio.get_event_loop()
+            result = await loop.run_in_executor(None, self._infer_sync, pil)
+            result.inference_time_ms = round((time.perf_counter() - t0) * 1000, 1)
+            return result
         except Exception:
-            logger.exception("Roboflow inference failed for model=%s", model_id)
+            logger.exception("MediaPipe FaceMesh inference failed")
             return FrameAnalysis(
-                face_detected              = False,
-                left_eye_open_probability  = None,
-                right_eye_open_probability = None,
-                model_used                 = model_id,
-                inference_time_ms          = round((time.perf_counter() - t0) * 1000, 1),
+                face_detected=False,
+                left_eye_open_probability=None,
+                right_eye_open_probability=None,
+                inference_time_ms=round((time.perf_counter() - t0) * 1000, 1),
             )
+
+    def _infer_sync(self, pil: Image.Image) -> FrameAnalysis:
+        """Blocking inference — called from thread pool."""
+        w, h = pil.size
+        rgb = np.array(pil, dtype=np.uint8)
+
+        results = self._face_mesh.process(rgb)
+
+        if not results.multi_face_landmarks:
+            return FrameAnalysis(
+                face_detected=False,
+                left_eye_open_probability=None,
+                right_eye_open_probability=None,
+            )
+
+        lm = results.multi_face_landmarks[0].landmark
+
+        left_ear  = _ear(lm, _LEFT_EYE_IDX,  w, h)
+        right_ear = _ear(lm, _RIGHT_EYE_IDX, w, h)
+        left_prob  = _ear_to_prob(left_ear)
+        right_prob = _ear_to_prob(right_ear)
+        pitch, yaw, roll = _head_pose(lm, w, h)
+
+        logger.debug(
+            "FaceMesh: left_ear=%.3f (%.2f) right_ear=%.3f (%.2f) pitch=%.1f",
+            left_ear, left_prob, right_ear, right_prob, pitch,
+        )
+
+        return FrameAnalysis(
+            face_detected=True,
+            left_eye_open_probability=left_prob,
+            right_eye_open_probability=right_prob,
+            pitch=pitch,
+            yaw=yaw,
+            roll=roll,
+            model_used="mediapipe-facemesh",
+        )
 
     def to_raw_face_frame(
         self,

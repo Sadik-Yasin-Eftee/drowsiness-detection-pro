@@ -20,7 +20,7 @@ import { useAppStore, type DrowsinessEvent } from '@/store/useAppStore';
 import { DrowsinessEngine } from '@/lib/drowsinessEngine';
 import { createFaceDetector, type FaceDetector } from '@/lib/faceDetector';
 import { alertSounds } from '@/lib/alertSounds';
-import { buzzForAlert } from '@/lib/haptics';
+import { startHapticLoop } from '@/lib/haptics';
 
 const POLL_INTERVAL_MS = 100; // 10 Hz — reads the latest ML Kit frame, if any
 
@@ -46,8 +46,14 @@ export function useDrowsinessDetection(active: boolean) {
     engineRef.current?.reconfigure({ sensitivity, perclosThreshold });
   }, [sensitivity, perclosThreshold]);
 
-  // ── Detector — MLKitFaceDetector by default ─────────────────────────────
+  // ── Detector — created synchronously so registerCamera can set the ref
+  // before the lifecycle useEffect fires. CameraDetector's useEffect (child)
+  // runs before Drive's useEffects (parent), so if we created the detector
+  // inside a useEffect it would still be null when registerCamera is called.
   const detectorRef = useRef<FaceDetector | null>(null);
+  if (detectorRef.current === null) {
+    detectorRef.current = createFaceDetector();
+  }
 
   // Track the timestamp of the last frame we fed to the engine.
   // ML Kit produces one frame every ~250ms; the poll runs at 100ms, so without
@@ -100,8 +106,8 @@ export function useDrowsinessDetection(active: boolean) {
       addDrowsinessEvent(event);
       setShowAlert(true, event);
 
-      if (soundAlerts) void alertSounds.play(tick.alertLevel as 1 | 2 | 3, { nightQuiet });
-      void buzzForAlert(tick.alertLevel as 1 | 2 | 3);
+      if (soundAlerts) void alertSounds.startLoop(tick.alertLevel as 1 | 2 | 3, { nightQuiet });
+      startHapticLoop(tick.alertLevel as 1 | 2 | 3);
     }
   }, [updateDetection, addDrowsinessEvent, setShowAlert, soundAlerts, nightQuiet]);
 
@@ -109,10 +115,7 @@ export function useDrowsinessDetection(active: boolean) {
   useEffect(() => {
     if (!active) return;
 
-    if (!detectorRef.current) {
-      detectorRef.current = createFaceDetector();
-    }
-    detectorRef.current.start();
+    detectorRef.current!.start();
 
     const id = setInterval(handleDetection, POLL_INTERVAL_MS);
     return () => {

@@ -1,15 +1,15 @@
 /**
- * AlertSoundManager — plays the level-1/2/3 AHCI tones using expo-audio.
+ * AlertSoundManager — looping AHCI alert tones via expo-audio.
  *
- * Why a singleton? expo-audio's AudioPlayer instances are precious — creating
- * a new player on every alert leaks native resources. We pre-load all three
- * sounds once and replay on demand.
+ * On alert fire  → startLoop(level)  plays the tone, then repeats every
+ *                  LOOP_GAP_MS until stopLoop() is called.
+ * On dismiss     → stopLoop() pauses playback and cancels the repeat timer.
  *
- * AHCI design notes:
- *   • Sounds are short (≤ 1.4s) — never block the driver's auditory channel.
- *   • Volume escalates with level (0.55 → 0.75 → 1.0).
- *   • In "night quiet" mode, level 1+2 are skipped and level 3 is dampened.
- *   • If `soundAlerts` is off, haptics-only fallback is used by the caller.
+ * Singleton pattern: pre-load all three sounds once to avoid native resource
+ * leaks from creating a new AudioPlayer on every alert.
+ *
+ * Volume escalates with level (0.55 → 0.75 → 1.0).
+ * Night-quiet mode skips levels 1+2 and dampens level 3.
  */
 
 import { createAudioPlayer, setAudioModeAsync, AudioPlayer } from 'expo-audio';
@@ -22,10 +22,16 @@ const SOURCES = {
   3: require('../../assets/sounds/alert_level3.wav'),
 } as const;
 
+// Gap between repeated plays (ms). Level 3 repeats faster for urgency.
+const LOOP_GAP: Record<Level, number> = { 1: 3000, 2: 2000, 3: 1200 };
+
 class AlertSoundManager {
   private players: Partial<Record<Level, AudioPlayer>> = {};
   private loaded = false;
   private loadingPromise: Promise<void> | null = null;
+  private loopTimer: ReturnType<typeof setTimeout> | null = null;
+  private activeLevel: Level | null = null;
+  private activeOpts: { nightQuiet?: boolean } = {};
 
   private async ensureLoaded(): Promise<void> {
     if (this.loaded) return;
@@ -33,24 +39,16 @@ class AlertSoundManager {
 
     this.loadingPromise = (async () => {
       try {
-        // Configure audio session — play alerts even if the phone is on silent
-        // (driver safety > user's silent toggle).
         await setAudioModeAsync({
           playsInSilentMode: true,
           shouldPlayInBackground: false,
           allowsRecording: false,
-          // 'duckOthers' lowers any music/podcast playing through the same
-          // speaker so our chime cuts through, then restores the volume after.
-          // This works on both iOS and Android in expo-audio 55+.
           interruptionMode: 'duckOthers',
           shouldRouteThroughEarpiece: false,
         });
-
-        // Pre-create players. createAudioPlayer is synchronous in expo-audio.
         this.players[1] = createAudioPlayer(SOURCES[1]);
         this.players[2] = createAudioPlayer(SOURCES[2]);
         this.players[3] = createAudioPlayer(SOURCES[3]);
-
         this.loaded = true;
       } catch (err) {
         console.warn('[AlertSound] load failed:', err);
@@ -62,45 +60,85 @@ class AlertSoundManager {
     return this.loadingPromise;
   }
 
-  /**
-   * Play the alert tone for a level.
-   * @param level   1, 2, or 3
-   * @param opts.nightQuiet   if true, level 1+2 are skipped, level 3 is softer
-   */
+  /** Start looping the alert tone until stopLoop() is called. */
+  async startLoop(level: Level, opts: { nightQuiet?: boolean } = {}): Promise<void> {
+    // If already looping the same level, don't restart
+    if (this.activeLevel === level) return;
+    this.stopLoop();
+
+    this.activeLevel = level;
+    this.activeOpts  = opts;
+
+    await this.ensureLoaded();
+    this._playOnce();
+  }
+
+  private _playOnce(): void {
+    const level = this.activeLevel;
+    if (!level) return;
+
+    const opts   = this.activeOpts;
+    const player = this.players[level];
+    if (!player) return;
+
+    if (opts.nightQuiet && level < 3) {
+      // Still schedule the next tick so we stop cleanly when dismissed
+      this.loopTimer = setTimeout(() => this._playOnce(), LOOP_GAP[level]);
+      return;
+    }
+
+    const baseVol = level === 1 ? 0.55 : level === 2 ? 0.78 : 1.0;
+    const volume  = opts.nightQuiet && level === 3 ? baseVol * 0.7 : baseVol;
+
+    try {
+      player.volume = volume;
+      player.seekTo(0);
+      player.play();
+    } catch (err) {
+      console.warn('[AlertSound] play failed:', err);
+    }
+
+    // Schedule the next repeat
+    this.loopTimer = setTimeout(() => this._playOnce(), LOOP_GAP[level]);
+  }
+
+  /** Stop looping and silence any current playback. */
+  stopLoop(): void {
+    if (this.loopTimer !== null) {
+      clearTimeout(this.loopTimer);
+      this.loopTimer = null;
+    }
+    this.activeLevel = null;
+    this.activeOpts  = {};
+    Object.values(this.players).forEach((p) => {
+      try { p?.pause(); } catch {}
+    });
+  }
+
+  /** One-shot play (kept for non-alert use cases). */
   async play(level: Level, opts: { nightQuiet?: boolean } = {}): Promise<void> {
     await this.ensureLoaded();
     const player = this.players[level];
     if (!player) return;
-
-    if (opts.nightQuiet && level < 3) return; // suppress soft alerts at night
-
+    if (opts.nightQuiet && level < 3) return;
     const baseVol = level === 1 ? 0.55 : level === 2 ? 0.78 : 1.0;
-    const volume = opts.nightQuiet && level === 3 ? baseVol * 0.7 : baseVol;
-
+    const volume  = opts.nightQuiet && level === 3 ? baseVol * 0.7 : baseVol;
     try {
       player.volume = volume;
-      // seekTo(0) before play → restart cleanly even if mid-playback
-      await player.seekTo(0);
+      player.seekTo(0);
       player.play();
     } catch (err) {
       console.warn('[AlertSound] play failed:', err);
     }
   }
 
-  /** Stop everything — call when ending a trip or unmounting */
-  stopAll(): void {
-    Object.values(this.players).forEach((p) => {
-      try { p?.pause(); } catch {}
-    });
-  }
+  stopAll(): void { this.stopLoop(); }
 
-  /** Free native resources. Call only on full app shutdown. */
   release(): void {
-    Object.values(this.players).forEach((p) => {
-      try { p?.remove(); } catch {}
-    });
+    this.stopLoop();
+    Object.values(this.players).forEach((p) => { try { p?.remove(); } catch {} });
     this.players = {};
-    this.loaded = false;
+    this.loaded  = false;
   }
 }
 

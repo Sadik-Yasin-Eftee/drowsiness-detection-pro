@@ -8,10 +8,16 @@ GET   /api/v1/models         — list configured Roboflow models
 
 from __future__ import annotations
 
+import base64
+import io
+import logging
 import time
 from typing import Optional
 
 from fastapi import APIRouter, HTTPException, Request
+from PIL import Image, ImageOps
+
+logger = logging.getLogger(__name__)
 
 from schemas import (
     AnalyzeRequest,
@@ -173,3 +179,39 @@ async def list_models(request: Request) -> ModelsResponse:
         ),
     ]
     return ModelsResponse(active=settings.active_model, models=models)
+
+
+@router.post("/debug/frame", summary="Debug: inspect a frame without running inference")
+async def debug_frame(body: AnalyzeRequest) -> dict:
+    """
+    Decodes the incoming base64 frame, applies EXIF rotation, and returns
+    image metadata so you can confirm what the backend actually receives.
+    """
+    try:
+        raw = body.frame
+        if "," in raw:
+            raw = raw.split(",", 1)[1]
+        img = Image.open(io.BytesIO(base64.b64decode(raw)))
+        exif_info = {}
+        try:
+            exif_raw = img.getexif()
+            exif_info = {str(k): str(v) for k, v in exif_raw.items()} if exif_raw else {}
+        except Exception:
+            pass
+        orig_size = img.size
+        img_rotated = ImageOps.exif_transpose(img)
+        rotated_size = img_rotated.size
+        mode = img.mode
+        logger.info(
+            "DEBUG FRAME: original=%s rotated=%s mode=%s exif_keys=%s",
+            orig_size, rotated_size, mode, list(exif_info.keys())[:5],
+        )
+        return {
+            "original_size": orig_size,
+            "after_exif_rotate_size": rotated_size,
+            "mode": mode,
+            "exif_orientation_tag": exif_info.get("274"),  # 274 = Orientation
+            "frame_bytes": len(raw),
+        }
+    except Exception as exc:
+        return {"error": str(exc)}

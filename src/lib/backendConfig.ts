@@ -9,5 +9,5 @@
  */
 export const BACKEND_URL = 'http://192.168.68.102:8000';
 
-/** Frames per second sent to the backend. Lower = less load on Roboflow API. */
-export const BACKEND_CAPTURE_INTERVAL_MS = 333; // ~3 FPS
+/** Capture interval in ms. 500ms = 2 FPS — sufficient for PERCLOS (60s window). */
+export const BACKEND_CAPTURE_INTERVAL_MS = 500; // 2 FPS
