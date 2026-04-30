@@ -1,26 +1,20 @@
 /**
  * FaceDetector abstraction
  * ─────────────────────────────────────────────────────────────────────────────
- * The DEFAULT implementation is MLKitFaceDetector, which uses expo-face-detector
- * (Google ML Kit) to detect faces in frames captured from expo-camera.
+ * The DEFAULT implementation is BackendDetector, which POSTs frames to the
+ * FastAPI backend (Roboflow inference) for face/drowsiness analysis.
  *
  * Data flow:
- *   CameraView.ref.takePictureAsync()
- *     → expo-face-detector.detectFacesAsync(uri)
- *     → leftEyeOpenProbability, rightEyeOpenProbability, yawAngle, rollAngle
+ *   CameraView.ref.takePictureAsync({ base64: true })
+ *     → POST ${BACKEND_URL}/api/v1/analyze
+ *     → left_eye_open_probability, right_eye_open_probability, head_pose
  *     → RawFaceFrame
  *     → DrowsinessEngine.process()
  *
- * Capture rate: ~4 FPS (250ms between captures). ML Kit fast mode processes
- * a 0.25-quality frame in ~30-80ms on modern hardware. The existing engine
- * and store are unchanged — only this module swaps the data source.
+ * Capture rate: ~3 FPS (333ms). The backend returns full head-pose including
+ * pitch, so all alert levels (PERCLOS, eye-closure, head-droop) are active.
  *
- * Note: expo-face-detector v13 does not expose pitch (head nod angle), so
- * headPose.pitch is always 0. PERCLOS and eye-closure-duration remain the
- * primary drowsiness signals and are unaffected. Head-droop alerts (which
- * require pitch) are disabled but all other alert levels work normally.
- *
- * SimulatedFaceDetector is kept as a named export for unit tests.
+ * SimulatedFaceDetector is kept as a named export for unit tests / web preview.
  */
 
 import React from 'react';
@@ -39,110 +33,6 @@ export interface FaceDetector {
   dispose(): void;
   /** Register the live camera ref used for frame capture (MLKitFaceDetector). */
   setCameraRef?: (ref: React.RefObject<CameraView | null>) => void;
-}
-
-/* ────────────────────────────────────────────────────────────────────────── */
-/*  MLKitFaceDetector — on-device, free, no network required                */
-/* ────────────────────────────────────────────────────────────────────────── */
-
-export class MLKitFaceDetector implements FaceDetector {
-  private active = false;
-  private capturing = false;
-  private cameraRef: React.RefObject<CameraView | null> | null = null;
-  private latest: RawFaceFrame | null = null;
-  private captureTimer: ReturnType<typeof setTimeout> | null = null;
-
-  setCameraRef(ref: React.RefObject<CameraView | null>): void {
-    this.cameraRef = ref;
-  }
-
-  start(): void {
-    if (this.active) return;
-    this.active = true;
-    void this.captureLoop();
-  }
-
-  stop(): void {
-    this.active = false;
-    if (this.captureTimer) {
-      clearTimeout(this.captureTimer);
-      this.captureTimer = null;
-    }
-    this.latest = null;
-  }
-
-  read(): RawFaceFrame | null {
-    return this.latest;
-  }
-
-  dispose(): void {
-    this.stop();
-    this.cameraRef = null;
-  }
-
-  private async captureLoop(): Promise<void> {
-    if (!this.active) return;
-
-    // Only capture if the camera is ready and no capture is already running
-    if (!this.capturing && this.cameraRef?.current) {
-      this.capturing = true;
-      try {
-        await this.doCapture();
-      } catch {
-        // Camera not ready or transient error — keep latest frame, retry next tick
-      } finally {
-        this.capturing = false;
-      }
-    }
-
-    if (this.active) {
-      this.captureTimer = setTimeout(() => void this.captureLoop(), 250);
-    }
-  }
-
-  private async doCapture(): Promise<void> {
-    const camera = this.cameraRef?.current;
-    if (!camera) return;
-
-    // Capture a low-quality frame — sufficient for face detection, fast
-    const photo = await (camera as any).takePictureAsync({
-      quality: 0.25,
-      skipProcessing: true,
-      base64: false,
-    });
-
-    if (!photo?.uri) return;
-
-    try {
-      // expo-face-detector (Google ML Kit) — on-device, no API key needed
-      const FD = require('expo-face-detector') as typeof import('expo-face-detector');
-      const result = await FD.detectFacesAsync(photo.uri, {
-        mode: FD.FaceDetectorMode.fast,
-        detectLandmarks: FD.FaceDetectorLandmarks.none,
-        runClassifications: FD.FaceDetectorClassifications.all,
-      });
-
-      if (result.faces && result.faces.length > 0) {
-        const face = result.faces[0];
-        this.latest = {
-          leftEyeOpenProbability:  face.leftEyeOpenProbability  ?? null,
-          rightEyeOpenProbability: face.rightEyeOpenProbability ?? null,
-          pitch: 0,               // expo-face-detector v13 doesn't expose pitch
-          yaw:   face.yawAngle  ?? 0,
-          roll:  face.rollAngle ?? 0,
-          timestamp: Date.now(),
-        };
-      } else {
-        this.latest = null; // no face in view
-      }
-    } finally {
-      // Clean up temp file — best effort
-      try {
-        const FS = require('expo-file-system') as typeof import('expo-file-system');
-        void FS.deleteAsync(photo.uri, { idempotent: true });
-      } catch { /* cache will be cleaned by OS */ }
-    }
-  }
 }
 
 /* ────────────────────────────────────────────────────────────────────────── */
@@ -334,5 +224,5 @@ export class SimulatedFaceDetector implements FaceDetector {
 /* ────────────────────────────────────────────────────────────────────────── */
 
 export function createFaceDetector(): FaceDetector {
-  return new MLKitFaceDetector();
+  return new BackendDetector();
 }
