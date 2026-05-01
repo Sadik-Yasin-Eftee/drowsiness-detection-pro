@@ -16,6 +16,15 @@
         "buildType": "apk"
       }
     },
+    "evaluation": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_BACKEND_URL": "https://drowsiness-detection-pro-production.up.railway.app"
+      }
+    },
     "production": {
       "android": {
         "buildType": "app-bundle"
