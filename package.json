@@ -23,6 +23,7 @@
     "expo-camera": "~55.0.16",
     "expo-constants": "~55.0.15",
     "expo-dev-client": "~55.0.28",
+    "expo-face-detector": "^13.0.2",
     "expo-file-system": "~55.0.0",
     "expo-haptics": "~55.0.14",
     "expo-keep-awake": "~55.0.6",
