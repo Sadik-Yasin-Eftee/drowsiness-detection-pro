@@ -50,7 +50,6 @@
     "plugins": [
       "expo-dev-client",
       "expo-router",
-      "expo-face-detector",
       [
         "expo-camera",
         {
