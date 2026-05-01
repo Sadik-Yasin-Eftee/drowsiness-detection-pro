@@ -13,7 +13,7 @@
 
 import 'react-native-gesture-handler';
 import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
+import { AppState, View } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -38,9 +38,21 @@ export default function RootLayout() {
       await SplashScreen.hideAsync().catch(() => {});
     })();
 
-    // Keep the screen on while the app is in the foreground — driving safety
-    KeepAwake.activateKeepAwakeAsync().catch(() => {});
-    return () => { KeepAwake.deactivateKeepAwake().catch(() => {}); };
+    // Keep the screen on only while the app is active — activating from a
+    // paused/background Android activity throws "activity no longer available".
+    const handleAppState = (state: string) => {
+      if (state === 'active') {
+        KeepAwake.activateKeepAwakeAsync().catch(() => {});
+      } else {
+        KeepAwake.deactivateKeepAwake().catch(() => {});
+      }
+    };
+    handleAppState(AppState.currentState);
+    const sub = AppState.addEventListener('change', handleAppState);
+    return () => {
+      sub.remove();
+      KeepAwake.deactivateKeepAwake().catch(() => {});
+    };
   }, [hydrate]);
 
   if (!ready) {

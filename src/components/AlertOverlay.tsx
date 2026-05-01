@@ -17,13 +17,15 @@ export function AlertOverlay() {
   const flagFalseAlarm = useAppStore((s) => s.flagFalseAlarm);
   const router = useRouter();
 
-  // Stop continuous alerts as soon as the alert is dismissed (currentAlert → null)
+  // AlertOverlay is conditionally rendered ({showAlert && <AlertOverlay />}), so
+  // it unmounts when the alert is dismissed. Stop loops in the cleanup so they
+  // halt even though the component never re-renders with currentAlert = null.
   useEffect(() => {
-    if (!currentAlert) {
+    return () => {
       alertSounds.stopLoop();
       stopHapticLoop();
-    }
-  }, [currentAlert]);
+    };
+  }, []);
 
   if (!currentAlert) return null;
 
@@ -116,10 +118,7 @@ function HudAlert({
      onDismiss: () => void; onRest: () => void; onFlag: () => void }) {
   return (
     <Animated.View entering={FadeIn.duration(150)} style={styles.fullScreen}>
-      <Animated.View
-        entering={FadeIn.duration(120)}
-        style={[StyleSheet.absoluteFill, { backgroundColor: colors.danger, opacity: 0.10 }]}
-      />
+      <View style={[StyleSheet.absoluteFill, { backgroundColor: colors.danger, opacity: 0.10 }]} />
       <View style={styles.hudCard}>
         <Text style={styles.hudHeader}>DROWSINESS DETECTED</Text>
 

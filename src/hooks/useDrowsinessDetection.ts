@@ -13,7 +13,7 @@
  *   5. Fires sound + haptics when a drowsiness event is confirmed.
  */
 
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import type { CameraView } from 'expo-camera';
 
 import { useAppStore, type DrowsinessEvent } from '@/store/useAppStore';
@@ -54,6 +54,11 @@ export function useDrowsinessDetection(active: boolean) {
   if (detectorRef.current === null) {
     detectorRef.current = createFaceDetector();
   }
+
+  // Persists the camera ref across detector recreations (strict-mode cleanup sets
+  // detectorRef.current = null, so registerCamera's optional chain skips it on
+  // the re-run — saving it here lets the lifecycle effect re-apply it).
+  const savedCameraRef = useRef<React.RefObject<CameraView | null> | null>(null);
 
   // Track the timestamp of the last frame we fed to the engine.
   // ML Kit produces one frame every ~250ms; the poll runs at 100ms, so without
@@ -115,7 +120,17 @@ export function useDrowsinessDetection(active: boolean) {
   useEffect(() => {
     if (!active) return;
 
-    detectorRef.current!.start();
+    // In React Strict Mode the disposal cleanup sets detectorRef.current = null
+    // before this effect re-runs (there is no intermediate render to recreate it).
+    // Re-create here and re-apply the saved camera ref so captures resume.
+    if (!detectorRef.current) {
+      detectorRef.current = createFaceDetector();
+    }
+    if (savedCameraRef.current) {
+      detectorRef.current.setCameraRef?.(savedCameraRef.current);
+    }
+
+    detectorRef.current.start();
 
     const id = setInterval(handleDetection, POLL_INTERVAL_MS);
     return () => {
@@ -145,8 +160,10 @@ export function useDrowsinessDetection(active: boolean) {
 
   // ── Camera registration ─────────────────────────────────────────────────
   // CameraDetector calls this once it mounts, passing its stable CameraView ref.
-  // The MLKitFaceDetector stores the ref and uses it for takePictureAsync().
+  // savedCameraRef persists the value so the lifecycle effect can re-apply it
+  // if the detector is recreated (strict mode or re-mount after navigation).
   const registerCamera = useCallback((ref: React.RefObject<CameraView | null>) => {
+    savedCameraRef.current = ref;
     detectorRef.current?.setCameraRef?.(ref);
   }, []);
 
