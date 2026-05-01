@@ -18,6 +18,7 @@
  */
 
 import React from 'react';
+import { Platform } from 'react-native';
 import type { CameraView } from 'expo-camera';
 import type { RawFaceFrame } from './drowsinessEngine';
 import { BACKEND_URL, BACKEND_CAPTURE_INTERVAL_MS } from './backendConfig';
@@ -86,8 +87,8 @@ export class BackendDetector implements FaceDetector {
       this.capturing = true;
       try {
         await this.doCapture();
-      } catch {
-        // Camera not ready or network error — keep latest frame, retry
+      } catch (err) {
+        console.warn('[BackendDetector] capture/network error:', err);
       } finally {
         this.capturing = false;
       }
@@ -105,9 +106,16 @@ export class BackendDetector implements FaceDetector {
       quality: 0.5,
       base64: true,
       shutterSound: false,
+      // Android: bypasses the still-capture pipeline (no white shutter flash).
+      // The preview surface is sampled directly — faster and silent.
+      // Backend handles potential rotation via multi-angle fallback.
+      ...(Platform.OS === 'android' && { skipProcessing: true }),
     });
 
     if (!photo?.base64) return;
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
 
     try {
       const resp = await fetch(`${BACKEND_URL}/api/v1/analyze`, {
@@ -118,9 +126,14 @@ export class BackendDetector implements FaceDetector {
           session_id: this.sessionId,
           timestamp_ms: Date.now(),
         }),
+        signal: controller.signal,
       });
+      clearTimeout(timeoutId);
 
-      if (!resp.ok) return;
+      if (!resp.ok) {
+        console.warn(`[BackendDetector] server error ${resp.status}:`, await resp.text().catch(() => ''));
+        return;
+      }
 
       const data = await resp.json() as {
         face_detected: boolean;

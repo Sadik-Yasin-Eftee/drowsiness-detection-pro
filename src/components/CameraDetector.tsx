@@ -71,6 +71,8 @@ export function CameraDetector({ active, onCameraReady }: Props) {
         active={permitted && active}
         mode="picture"
         mute={true}
+        flash="off"
+        animateShutter={false}
       />
 
       {/* Opaque cover — hides the camera surface + any capture flicker */}
@@ -99,7 +101,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   cover: {
-    backgroundColor: 'rgba(10, 14, 26, 0.80)',
+    backgroundColor: colors.bgDark,
     borderRadius: radius.pill,
   },
   content: {

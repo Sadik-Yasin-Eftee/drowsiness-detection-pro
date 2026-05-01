@@ -199,12 +199,17 @@ class RoboflowClient:
 
     def _infer_sync(self, pil: Image.Image) -> FrameAnalysis:
         """Blocking inference — called from thread pool."""
-        w, h = pil.size
-        rgb = np.array(pil, dtype=np.uint8)
-
-        results = self._face_mesh.process(rgb)
-
-        if not results.multi_face_landmarks:
+        # Try the image as-is first, then rotate if no face found.
+        # Android skipProcessing=true delivers frames from the preview surface
+        # which can be 90° or 270° off-display-orientation depending on device.
+        for angle in (0, 90, 270):
+            candidate = pil if angle == 0 else pil.rotate(angle, expand=True)
+            w, h = candidate.size
+            rgb = np.array(candidate, dtype=np.uint8)
+            results = self._face_mesh.process(rgb)
+            if results.multi_face_landmarks:
+                break
+        else:
             return FrameAnalysis(
                 face_detected=False,
                 left_eye_open_probability=None,
