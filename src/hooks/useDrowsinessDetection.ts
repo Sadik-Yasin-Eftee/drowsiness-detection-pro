@@ -18,6 +18,7 @@ import type { CameraView } from 'expo-camera';
 
 import { useAppStore, type DrowsinessEvent } from '@/store/useAppStore';
 import { DrowsinessEngine } from '@/lib/drowsinessEngine';
+import { DrowsinessPrediction } from '@/lib/drowsinessPrediction';
 import { createFaceDetector, type FaceDetector } from '@/lib/faceDetector';
 import { alertSounds } from '@/lib/alertSounds';
 import { startHapticLoop } from '@/lib/haptics';
@@ -46,6 +47,9 @@ export function useDrowsinessDetection(active: boolean) {
   useEffect(() => {
     engineRef.current?.reconfigure({ sensitivity, perclosThreshold });
   }, [sensitivity, perclosThreshold]);
+
+  // ── Prediction — one instance per mount, reset with each trip ──────────
+  const predictionRef = useRef<DrowsinessPrediction>(new DrowsinessPrediction());
 
   // ── Detector — created synchronously so registerCamera can set the ref
   // before the lifecycle useEffect fires. CameraDetector's useEffect (child)
@@ -80,7 +84,13 @@ export function useDrowsinessDetection(active: boolean) {
 
     const tick = engine.process(face);
 
+    // Only feed the predictor when a face is present — stale-face gaps skew the slope.
+    const nextRiskEtaMin = tick.faceDetected && tick.alertLevel === 0
+      ? predictionRef.current.update(tick.fatigueScore)
+      : null;
+
     updateDetection({
+      nextRiskEtaMin,
       perclosScore:      tick.perclos,
       blinkRate:         tick.blinkRate,
       eyeAspectRatio:    tick.ear,
@@ -149,6 +159,7 @@ export function useDrowsinessDetection(active: boolean) {
   useEffect(() => {
     if (active && !tripActive) {
       engineRef.current?.reset();
+      predictionRef.current.reset();
       startTrip();
     }
   }, [active, tripActive, startTrip]);

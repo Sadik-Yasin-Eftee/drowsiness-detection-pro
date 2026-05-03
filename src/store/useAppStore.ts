@@ -68,6 +68,7 @@ export interface AppState {
   eyeStateTimeline: { timestamp: number; state: EyeState }[];
   fatigueScore: number;
   faceDetected: boolean;
+  nextRiskEtaMin: number | null; // minutes until predicted Level-1 risk; null = unknown
 
   // Display + alert state
   weeklyData: WeeklyDrowsinessData;
@@ -204,6 +205,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   eyeStateTimeline: [],
   fatigueScore: 12,
   faceDetected: false,
+  nextRiskEtaMin: null,
 
   weeklyData: generateWeeklyData(),
   isNightMode: new Date().getHours() >= 19 || new Date().getHours() < 6,

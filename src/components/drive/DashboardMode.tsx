@@ -17,13 +17,14 @@ import { colors, radius } from '@/lib/theme';
 import { toBn, formatTime } from '@/lib/i18n';
 
 export function DashboardMode() {
-  const perclosScore = useAppStore((s) => s.perclosScore);
-  const blinkRate = useAppStore((s) => s.blinkRate);
-  const eyeState = useAppStore((s) => s.eyeState);
-  const currentAlertLevel = useAppStore((s) => s.currentAlertLevel);
-  const aiConfidence = useAppStore((s) => s.aiConfidence);
+  const perclosScore       = useAppStore((s) => s.perclosScore);
+  const blinkRate          = useAppStore((s) => s.blinkRate);
+  const eyeState           = useAppStore((s) => s.eyeState);
+  const currentAlertLevel  = useAppStore((s) => s.currentAlertLevel);
+  const aiConfidence       = useAppStore((s) => s.aiConfidence);
   const tripElapsedSeconds = useAppStore((s) => s.tripElapsedSeconds);
-  const drowsinessEvents = useAppStore((s) => s.drowsinessEvents);
+  const drowsinessEvents   = useAppStore((s) => s.drowsinessEvents);
+  const nextRiskEtaMin     = useAppStore((s) => s.nextRiskEtaMin);
   const router = useRouter();
 
   const ringColor =
@@ -91,6 +92,17 @@ export function DashboardMode() {
           } />
           <Stat label="PERCLOS" value={`${toBn(String(perclosScore))}%`} />
           <Stat label="সতর্কতা" value={toBn(String(drowsinessEvents.length))} />
+          {currentAlertLevel === 0 && (
+            <Stat
+              label="পরের ঝুঁকি"
+              value={
+                nextRiskEtaMin === null ? '—'
+                : nextRiskEtaMin <= 2   ? '⚠️ আসছে!'
+                : `~${toBn(String(nextRiskEtaMin))} মিনিট`
+              }
+              highlight={nextRiskEtaMin !== null && nextRiskEtaMin <= 5}
+            />
+          )}
         </View>
       </View>
 
@@ -103,11 +115,11 @@ export function DashboardMode() {
   );
 }
 
-function Stat({ label, value }: { label: string; value: string }) {
+function Stat({ label, value, highlight }: { label: string; value: string; highlight?: boolean }) {
   return (
-    <View style={styles.stat}>
+    <View style={[styles.stat, highlight && styles.statHighlight]}>
       <Text style={styles.statLabel}>{label}</Text>
-      <Text style={styles.statValue}>{value}</Text>
+      <Text style={[styles.statValue, highlight && styles.statValueHighlight]}>{value}</Text>
     </View>
   );
 }
@@ -145,8 +157,10 @@ const styles = StyleSheet.create({
 
   statsGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 12 },
   stat: { flexBasis: '48%', backgroundColor: colors.card, borderRadius: radius.lg, padding: 12 },
+  statHighlight: { backgroundColor: 'rgba(239,68,68,0.10)', borderWidth: 1, borderColor: colors.danger },
   statLabel: { color: colors.muted, fontSize: 12 },
   statValue: { color: colors.foreground, fontSize: 16, fontWeight: '700', marginTop: 2 },
+  statValueHighlight: { color: colors.danger },
 
   actions: { flexDirection: 'row', justifyContent: 'space-around', paddingTop: 8 },
   actionBtn: { alignItems: 'center', minHeight: 48, gap: 4 },

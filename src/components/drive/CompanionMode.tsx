@@ -9,9 +9,11 @@ import { colors, radius } from '@/lib/theme';
 import { toBn, formatTime } from '@/lib/i18n';
 
 export function CompanionMode() {
-  const perclos = useAppStore((s) => s.perclosScore);
-  const tripElapsed = useAppStore((s) => s.tripElapsedSeconds);
-  const faceDetected = useAppStore((s) => s.faceDetected);
+  const perclos        = useAppStore((s) => s.perclosScore);
+  const tripElapsed    = useAppStore((s) => s.tripElapsedSeconds);
+  const faceDetected   = useAppStore((s) => s.faceDetected);
+  const alertLevel     = useAppStore((s) => s.currentAlertLevel);
+  const nextRiskEtaMin = useAppStore((s) => s.nextRiskEtaMin);
   const router = useRouter();
 
   const statusText =
@@ -39,6 +41,21 @@ export function CompanionMode() {
       <View style={styles.centre}>
         <SaathiCharacter size={170} />
         <Text style={[styles.statusText, { color: statusColor }]}>{statusText}</Text>
+        {alertLevel === 0 && nextRiskEtaMin !== null && (
+          <View style={[
+            styles.etaChip,
+            nextRiskEtaMin <= 5 ? styles.etaChipUrgent : styles.etaChipNormal,
+          ]}>
+            <Text style={[
+              styles.etaText,
+              nextRiskEtaMin <= 5 ? styles.etaTextUrgent : styles.etaTextNormal,
+            ]}>
+              {nextRiskEtaMin <= 2
+                ? '⚠️ ঝুঁকি আসছে!'
+                : `⏱ পরের ঝুঁকি: ~${toBn(String(nextRiskEtaMin))} মিনিটে`}
+            </Text>
+          </View>
+        )}
       </View>
 
       <View style={styles.actions}>
@@ -75,6 +92,16 @@ const styles = StyleSheet.create({
 
   centre: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 24, paddingHorizontal: 16 },
   statusText: { fontSize: 22, fontWeight: '800', textAlign: 'center' },
+
+  etaChip: {
+    paddingHorizontal: 14, paddingVertical: 6,
+    borderRadius: 20, borderWidth: 1, marginTop: 4,
+  },
+  etaChipNormal: { backgroundColor: colors.primaryAlpha10, borderColor: colors.primary },
+  etaChipUrgent: { backgroundColor: 'rgba(239,68,68,0.12)', borderColor: colors.danger },
+  etaText: { fontSize: 13, fontWeight: '600' },
+  etaTextNormal: { color: colors.primary },
+  etaTextUrgent: { color: colors.danger },
 
   actions: {
     flexDirection: 'row',
