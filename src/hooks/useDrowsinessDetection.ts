@@ -28,6 +28,7 @@ export function useDrowsinessDetection(active: boolean) {
   const sensitivity      = useAppStore((s) => s.sensitivity);
   const perclosThreshold = useAppStore((s) => s.perclosThreshold);
   const soundAlerts      = useAppStore((s) => s.soundAlerts);
+  const hapticAlerts     = useAppStore((s) => s.hapticAlerts);
   const nightQuiet       = useAppStore((s) => s.nightQuiet);
   const tripActive       = useAppStore((s) => s.tripActive);
 
@@ -112,9 +113,9 @@ export function useDrowsinessDetection(active: boolean) {
       setShowAlert(true, event);
 
       if (soundAlerts) void alertSounds.startLoop(tick.alertLevel as 1 | 2 | 3, { nightQuiet });
-      startHapticLoop(tick.alertLevel as 1 | 2 | 3);
+      if (hapticAlerts) startHapticLoop(tick.alertLevel as 1 | 2 | 3);
     }
-  }, [updateDetection, addDrowsinessEvent, setShowAlert, soundAlerts, nightQuiet]);
+  }, [updateDetection, addDrowsinessEvent, setShowAlert, soundAlerts, hapticAlerts, nightQuiet]);
 
   // ── Detector lifecycle ──────────────────────────────────────────────────
   useEffect(() => {

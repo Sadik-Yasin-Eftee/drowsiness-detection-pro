@@ -48,6 +48,7 @@ export interface AppState {
   employerSharing: boolean;
   dataRetention: DataRetention;
   soundAlerts: boolean;
+  hapticAlerts: boolean;
   nightQuiet: boolean;
   emergencyContact: string;
   calibrated: boolean;
@@ -86,6 +87,7 @@ export interface AppState {
   setEmployerSharing: (v: boolean) => void;
   setDataRetention: (v: DataRetention) => void;
   setSoundAlerts: (v: boolean) => void;
+  setHapticAlerts: (v: boolean) => void;
   setNightQuiet: (v: boolean) => void;
   setAnalyticsPIN: (pin: string) => void;
   setPerclosThreshold: (v: number) => void;
@@ -120,6 +122,7 @@ const PERSIST_FIELDS: (keyof AppState)[] = [
   'employerSharing',
   'dataRetention',
   'soundAlerts',
+  'hapticAlerts',
   'nightQuiet',
   'emergencyContact',
   'calibrated',
@@ -181,6 +184,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   employerSharing: false,
   dataRetention: 'end-of-trip',
   soundAlerts: true,
+  hapticAlerts: true,
   nightQuiet: false,
   emergencyContact: '',
   calibrated: false,
@@ -250,6 +254,10 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
   setSoundAlerts: (v) => {
     set({ soundAlerts: v });
+    void persist(get());
+  },
+  setHapticAlerts: (v) => {
+    set({ hapticAlerts: v });
     void persist(get());
   },
   setNightQuiet: (v) => {

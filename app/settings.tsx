@@ -106,6 +106,12 @@ export default function SettingsPage() {
             en="Sound alerts"
           />
           <Toggle
+            value={store.hapticAlerts}
+            onChange={store.setHapticAlerts}
+            bn="কম্পনে সতর্ক করুন"
+            en="Haptic vibration alerts"
+          />
+          <Toggle
             value={store.nightQuiet}
             onChange={store.setNightQuiet}
             bn="রাতে শান্ত মোড"
