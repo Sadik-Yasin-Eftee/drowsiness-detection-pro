@@ -1,20 +1,19 @@
 /**
  * FaceDetector abstraction
  * ─────────────────────────────────────────────────────────────────────────────
- * DEFAULT: MLKitFaceDetector — on-device Google ML Kit face detection.
- *   • No network, no API key, runs at ~5–8 FPS on mid-range Android.
- *   • Provides leftEyeOpenProbability, rightEyeOpenProbability, yaw, roll.
- *   • Pitch is estimated from 2D landmarks (see estimatePitch()).
+ * DEFAULT: BackendDetector — POSTs frames to the FastAPI/MediaPipe backend.
  *
- * BackendDetector is kept as a named export for cloud/research builds.
+ * NOTE: expo-face-detector (ML Kit) was attempted but its native Kotlin code
+ * does not compile with Expo SDK 55 (removed expo-modules-core types). The
+ * proper on-device replacement is react-native-vision-camera v4 with frame
+ * processors — to be implemented post-evaluation.
+ *
  * SimulatedFaceDetector is kept for unit tests / web preview.
  */
 
 import React from 'react';
 import { Platform } from 'react-native';
 import type { CameraView } from 'expo-camera';
-import * as FaceDetectorLib from 'expo-face-detector';
-import type { DetectionResult, FaceFeature } from 'expo-face-detector';
 import type { RawFaceFrame } from './drowsinessEngine';
 import { BACKEND_URL, BACKEND_CAPTURE_INTERVAL_MS } from './backendConfig';
 
@@ -31,149 +30,7 @@ export interface FaceDetector {
 }
 
 /* ────────────────────────────────────────────────────────────────────────── */
-/*  Pitch estimation from 2D ML Kit landmarks                                */
-/*                                                                           */
-/*  ML Kit doesn't expose pitch directly. We estimate it from the vertical  */
-/*  position of the eye midpoint within the face bounding box:              */
-/*                                                                           */
-/*    At neutral gaze: eyes sit ~38% from the top of the bounding box.      */
-/*    Head droops forward → eyes ride higher → ratio drops below 0.38.      */
-/*    Head tilts back     → eyes sink lower  → ratio rises above 0.38.      */
-/*                                                                           */
-/*  Empirical calibration on ~20 subjects: 0.01 ratio ≈ 2.5°.              */
-/*  Clamped to ±45° — sufficient for head-droop detection (threshold ~15°). */
-/* ────────────────────────────────────────────────────────────────────────── */
-
-const PITCH_NEUTRAL = 0.38; // eye-midpoint fraction at 0° pitch
-const PITCH_SCALE   = 250;  // degrees per unit of fraction (empirical)
-
-function estimatePitch(face: FaceFeature): number {
-  const leftEye  = face.leftEyePosition;
-  const rightEye = face.rightEyePosition;
-  if (!leftEye || !rightEye) return 0;
-
-  const eyeMidY  = (leftEye.y + rightEye.y) / 2;
-  const faceTop  = face.bounds.origin.y;
-  const faceH    = face.bounds.size.height;
-  if (faceH < 1) return 0;
-
-  const eyeRatio = (eyeMidY - faceTop) / faceH;
-  return Math.max(-45, Math.min(45, (PITCH_NEUTRAL - eyeRatio) * PITCH_SCALE));
-}
-
-/* ────────────────────────────────────────────────────────────────────────── */
-/*  MLKitFaceDetector — on-device, zero network latency                      */
-/* ────────────────────────────────────────────────────────────────────────── */
-
-const MLKIT_INTERVAL_MS = 200; // 5 FPS — comfortable for real-time feel
-
-export class MLKitFaceDetector implements FaceDetector {
-  private active    = false;
-  private capturing = false;
-  private cameraRef: React.RefObject<CameraView | null> | null = null;
-  private latest:    RawFaceFrame | null = null;
-  private captureTimer: ReturnType<typeof setTimeout> | null = null;
-
-  setCameraRef(ref: React.RefObject<CameraView | null>): void {
-    this.cameraRef = ref;
-  }
-
-  start(): void {
-    if (this.active) return;
-    this.active = true;
-    void this.captureLoop();
-  }
-
-  stop(): void {
-    this.active = false;
-    if (this.captureTimer) {
-      clearTimeout(this.captureTimer);
-      this.captureTimer = null;
-    }
-    this.latest = null;
-  }
-
-  read(): RawFaceFrame | null {
-    return this.latest;
-  }
-
-  dispose(): void {
-    this.stop();
-    this.cameraRef = null;
-  }
-
-  private async captureLoop(): Promise<void> {
-    if (!this.active) return;
-    if (!this.capturing && this.cameraRef?.current) {
-      this.capturing = true;
-      try {
-        await this.doCapture();
-      } catch (err) {
-        console.warn('[MLKitFaceDetector] capture error:', err);
-      } finally {
-        this.capturing = false;
-      }
-    }
-    if (this.active) {
-      this.captureTimer = setTimeout(() => void this.captureLoop(), MLKIT_INTERVAL_MS);
-    }
-  }
-
-  private async doCapture(): Promise<void> {
-    const camera = this.cameraRef?.current;
-    if (!camera) return;
-
-    const photo = await (camera as any).takePictureAsync({
-      quality: 0.4,
-      base64: false,
-      shutterSound: false,
-      ...(Platform.OS === 'android' && { skipProcessing: true }),
-    });
-
-    if (!photo?.uri) return;
-
-    try {
-      // expo-face-detector emits a deprecation console.warn on every call;
-      // suppress it here to avoid spamming logs at 5 FPS.
-      const _warn = console.warn;
-      console.warn = () => {};
-      let result: DetectionResult;
-      try {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        result = await (FaceDetectorLib as any).detectFacesAsync(photo.uri, {
-          mode:               FaceDetectorLib.FaceDetectorMode.fast,
-          detectLandmarks:    FaceDetectorLib.FaceDetectorLandmarks.all,
-          runClassifications: FaceDetectorLib.FaceDetectorClassifications.all,
-        });
-      } finally {
-        console.warn = _warn;
-      }
-
-      if (!result.faces.length) {
-        this.latest = null;
-        return;
-      }
-
-      const face = result.faces[0];
-      this.latest = {
-        leftEyeOpenProbability:  face.leftEyeOpenProbability  ?? null,
-        rightEyeOpenProbability: face.rightEyeOpenProbability ?? null,
-        pitch: estimatePitch(face),
-        yaw:   face.yawAngle  ?? 0,
-        roll:  face.rollAngle ?? 0,
-        timestamp: Date.now(),
-      };
-    } finally {
-      try {
-        const FS = require('expo-file-system/legacy') as { deleteAsync: (uri: string) => Promise<void> };
-        void FS.deleteAsync(photo.uri);
-      } catch { /* OS cleans cache */ }
-    }
-  }
-}
-
-/* ────────────────────────────────────────────────────────────────────────── */
-/*  BackendDetector — FastAPI / MediaPipe cloud backend (kept for reference) */
+/*  BackendDetector — FastAPI / MediaPipe cloud backend                      */
 /* ────────────────────────────────────────────────────────────────────────── */
 
 export class BackendDetector implements FaceDetector {
@@ -370,5 +227,5 @@ export class SimulatedFaceDetector implements FaceDetector {
 /* ────────────────────────────────────────────────────────────────────────── */
 
 export function createFaceDetector(): FaceDetector {
-  return new MLKitFaceDetector();
+  return new BackendDetector();
 }
