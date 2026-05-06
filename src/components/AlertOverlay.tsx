@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, Pressable, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
 import Animated, { FadeIn, SlideInDown } from 'react-native-reanimated';
@@ -9,13 +9,68 @@ import { colors, radius } from '@/lib/theme';
 import { toBn } from '@/lib/i18n';
 import { alertSounds } from '@/lib/alertSounds';
 import { stopHapticLoop } from '@/lib/haptics';
+import { sendEmergencySms, isSmsAvailable } from '@/lib/emergencySms';
+
+const SMS_COUNTDOWN_SEC = 30;
+
+function useSmsCountdown(alertLevel: number, emergencyContact: string) {
+  const [countdown, setCountdown] = useState<number | null>(null);
+  const cancelledRef = useRef(false);
+  const sentRef = useRef(false);
+
+  useEffect(() => {
+    if (alertLevel < 3 || !emergencyContact) {
+      setCountdown(null);
+      return;
+    }
+
+    cancelledRef.current = false;
+    sentRef.current = false;
+
+    isSmsAvailable().then((available) => {
+      if (!available || cancelledRef.current) return;
+      setCountdown(SMS_COUNTDOWN_SEC);
+
+      const interval = setInterval(() => {
+        if (cancelledRef.current) {
+          clearInterval(interval);
+          setCountdown(null);
+          return;
+        }
+        setCountdown((prev) => {
+          if (prev === null || prev <= 1) {
+            clearInterval(interval);
+            if (!sentRef.current && !cancelledRef.current) {
+              sentRef.current = true;
+              sendEmergencySms(emergencyContact);
+            }
+            return null;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+
+      return () => clearInterval(interval);
+    });
+
+    return () => { cancelledRef.current = true; };
+  }, [alertLevel, emergencyContact]);
+
+  const cancel = () => { cancelledRef.current = true; setCountdown(null); };
+
+  return { countdown, cancel };
+}
 
 export function AlertOverlay() {
   const currentAlert = useAppStore((s) => s.currentAlert);
   const interfaceMode = useAppStore((s) => s.interfaceMode);
   const dismissAlert = useAppStore((s) => s.dismissAlert);
   const flagFalseAlarm = useAppStore((s) => s.flagFalseAlarm);
+  const emergencyContact = useAppStore((s) => s.emergencyContact);
   const router = useRouter();
+
+  const alertLevel = currentAlert?.alertLevel ?? 0;
+  const { countdown, cancel } = useSmsCountdown(alertLevel, emergencyContact);
 
   // AlertOverlay is conditionally rendered ({showAlert && <AlertOverlay />}), so
   // it unmounts when the alert is dismissed. Stop loops in the cleanup so they
@@ -34,19 +89,33 @@ export function AlertOverlay() {
     router.push('/rest-stops');
   };
 
+  const handleDismiss = () => { cancel(); dismissAlert(); };
+  const handleFlag = () => { cancel(); flagFalseAlarm(); };
+
+  const smsBanner = countdown !== null ? (
+    <View style={styles.smsBanner}>
+      <Text style={styles.smsBannerText}>
+        📱 {toBn(String(countdown))}s পরে জরুরি SMS পাঠানো হবে
+      </Text>
+      <Pressable onPress={cancel} style={styles.smsCancelBtn}>
+        <Text style={styles.smsCancelText}>বাতিল</Text>
+      </Pressable>
+    </View>
+  ) : null;
+
   if (interfaceMode === 'companion') {
-    return <CompanionAlert alert={currentAlert} onDismiss={dismissAlert} onRest={goRest} onFlag={flagFalseAlarm} />;
+    return <CompanionAlert alert={currentAlert} onDismiss={handleDismiss} onRest={goRest} onFlag={handleFlag} smsBanner={smsBanner} />;
   }
   if (interfaceMode === 'dashboard') {
-    return <DashboardAlert alert={currentAlert} onDismiss={dismissAlert} onRest={goRest} />;
+    return <DashboardAlert alert={currentAlert} onDismiss={handleDismiss} onRest={goRest} smsBanner={smsBanner} />;
   }
-  return <HudAlert alert={currentAlert} onDismiss={dismissAlert} onRest={goRest} onFlag={flagFalseAlarm} />;
+  return <HudAlert alert={currentAlert} onDismiss={handleDismiss} onRest={goRest} onFlag={handleFlag} smsBanner={smsBanner} />;
 }
 
 function CompanionAlert({
-  alert, onDismiss, onRest, onFlag,
+  alert, onDismiss, onRest, onFlag, smsBanner,
 }: { alert: NonNullable<ReturnType<typeof useAppStore.getState>['currentAlert']>;
-     onDismiss: () => void; onRest: () => void; onFlag: () => void }) {
+     onDismiss: () => void; onRest: () => void; onFlag: () => void; smsBanner: React.ReactNode }) {
   return (
     <Animated.View entering={FadeIn.duration(200)} style={[styles.fullScreen, { backgroundColor: colors.bgWarm }]}>
       <Animated.View entering={FadeIn.delay(100).springify()} style={styles.companionInner}>
@@ -61,6 +130,8 @@ function CompanionAlert({
 
         <Text style={[styles.companionTitle, { color: colors.textDark }]}>{alert.reason_bn}</Text>
         <Text style={[styles.companionSub, { color: colors.muted }]}>{alert.reason_en}</Text>
+
+        {smsBanner}
 
         <View style={styles.companionActions}>
           <Pressable onPress={onDismiss} style={[styles.bigBtn, { backgroundColor: colors.primary }]}>
@@ -80,9 +151,9 @@ function CompanionAlert({
 }
 
 function DashboardAlert({
-  alert, onDismiss, onRest,
+  alert, onDismiss, onRest, smsBanner,
 }: { alert: NonNullable<ReturnType<typeof useAppStore.getState>['currentAlert']>;
-     onDismiss: () => void; onRest: () => void }) {
+     onDismiss: () => void; onRest: () => void; smsBanner: React.ReactNode }) {
   return (
     <Animated.View entering={FadeIn.duration(200)} style={[styles.fullScreen, { backgroundColor: colors.overlay, justifyContent: 'flex-end' }]}>
       <Animated.View entering={SlideInDown.springify().damping(20)} style={styles.dashSheet}>
@@ -99,6 +170,8 @@ function DashboardAlert({
           <Text style={styles.confidenceVal}>{Math.round(alert.confidence)}%</Text>
         </View>
 
+        {smsBanner}
+
         <View style={styles.dashBtnRow}>
           <Pressable onPress={onDismiss} style={[styles.dashBtn, styles.dashBtnGhost]}>
             <Text style={styles.dashBtnGhostText}>ঠিক আছি</Text>
@@ -113,9 +186,9 @@ function DashboardAlert({
 }
 
 function HudAlert({
-  alert, onDismiss, onRest, onFlag,
+  alert, onDismiss, onRest, onFlag, smsBanner,
 }: { alert: NonNullable<ReturnType<typeof useAppStore.getState>['currentAlert']>;
-     onDismiss: () => void; onRest: () => void; onFlag: () => void }) {
+     onDismiss: () => void; onRest: () => void; onFlag: () => void; smsBanner: React.ReactNode }) {
   return (
     <Animated.View entering={FadeIn.duration(150)} style={styles.fullScreen}>
       <View style={[StyleSheet.absoluteFill, { backgroundColor: colors.danger, opacity: 0.10 }]} />
@@ -130,6 +203,8 @@ function HudAlert({
         </View>
 
         <Text style={styles.hudReason}>{alert.reason_bn}</Text>
+
+        {smsBanner}
 
         <View style={styles.hudActions}>
           <Pressable onPress={onDismiss} style={[styles.hudBtn, { borderColor: colors.border }]}>
@@ -222,4 +297,20 @@ const styles = StyleSheet.create({
   hudActions: { flexDirection: 'row', gap: 8 },
   hudBtn: { flex: 1, paddingVertical: 10, borderRadius: 8, borderWidth: 1, alignItems: 'center' },
   hudBtnText: { fontSize: 12, fontWeight: '700' },
+
+  smsBanner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(239,68,68,0.15)',
+    borderWidth: 1,
+    borderColor: colors.danger,
+    borderRadius: 10,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    marginVertical: 10,
+    gap: 8,
+  },
+  smsBannerText: { flex: 1, color: colors.danger, fontSize: 13, fontWeight: '600' },
+  smsCancelBtn: { paddingHorizontal: 10, paddingVertical: 4, borderRadius: 6, borderWidth: 1, borderColor: colors.danger },
+  smsCancelText: { color: colors.danger, fontSize: 12, fontWeight: '700' },
 });

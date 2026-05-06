@@ -90,6 +90,7 @@ export interface AppState {
   setSoundAlerts: (v: boolean) => void;
   setHapticAlerts: (v: boolean) => void;
   setNightQuiet: (v: boolean) => void;
+  setEmergencyContact: (v: string) => void;
   setAnalyticsPIN: (pin: string) => void;
   setPerclosThreshold: (v: number) => void;
 
@@ -264,6 +265,10 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
   setNightQuiet: (v) => {
     set({ nightQuiet: v });
+    void persist(get());
+  },
+  setEmergencyContact: (v) => {
+    set({ emergencyContact: v });
     void persist(get());
   },
   setAnalyticsPIN: (pin) => {

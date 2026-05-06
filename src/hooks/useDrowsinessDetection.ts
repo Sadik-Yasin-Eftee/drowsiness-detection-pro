@@ -4,26 +4,21 @@
  * Owns the full detection pipeline:
  *
  *   1. Creates a DrowsinessEngine (stays alive for the trip).
- *   2. Creates an MLKitFaceDetector and polls its `read()` at ~10 Hz.
- *      Because ML Kit captures at ~4 FPS, frames are timestamped and the hook
- *      skips re-processing the same frame (deduplication via lastTimestamp).
- *   3. Exposes `registerCamera(ref)` — called by CameraDetector once it mounts
- *      so the detector can call takePictureAsync() on the live camera.
- *   4. Mirrors each engine tick into the Zustand store.
- *   5. Fires sound + haptics when a drowsiness event is confirmed.
+ *   2. Exposes `onFaceResult(frame)` — called by CameraDetector from the
+ *      react-native-vision-camera frame processor (via runOnJS) on every
+ *      camera frame (~30 FPS). The engine processes each frame immediately,
+ *      no polling or network round-trip needed.
+ *   3. Mirrors each engine tick into the Zustand store.
+ *   4. Fires sound + haptics when a drowsiness event is confirmed.
  */
 
-import React, { useCallback, useEffect, useRef } from 'react';
-import type { CameraView } from 'expo-camera';
+import { useCallback, useEffect, useRef } from 'react';
 
 import { useAppStore, type DrowsinessEvent } from '@/store/useAppStore';
-import { DrowsinessEngine } from '@/lib/drowsinessEngine';
+import { DrowsinessEngine, type RawFaceFrame } from '@/lib/drowsinessEngine';
 import { DrowsinessPrediction } from '@/lib/drowsinessPrediction';
-import { createFaceDetector, type FaceDetector } from '@/lib/faceDetector';
 import { alertSounds } from '@/lib/alertSounds';
 import { startHapticLoop } from '@/lib/haptics';
-
-const POLL_INTERVAL_MS = 100; // 10 Hz — reads the latest ML Kit frame, if any
 
 export function useDrowsinessDetection(active: boolean) {
   const sensitivity      = useAppStore((s) => s.sensitivity);
@@ -33,13 +28,13 @@ export function useDrowsinessDetection(active: boolean) {
   const nightQuiet       = useAppStore((s) => s.nightQuiet);
   const tripActive       = useAppStore((s) => s.tripActive);
 
-  const startTrip         = useAppStore((s) => s.startTrip);
-  const incrementTripTime = useAppStore((s) => s.incrementTripTime);
-  const updateDetection   = useAppStore((s) => s.updateDetection);
+  const startTrip          = useAppStore((s) => s.startTrip);
+  const incrementTripTime  = useAppStore((s) => s.incrementTripTime);
+  const updateDetection    = useAppStore((s) => s.updateDetection);
   const addDrowsinessEvent = useAppStore((s) => s.addDrowsinessEvent);
-  const setShowAlert      = useAppStore((s) => s.setShowAlert);
+  const setShowAlert       = useAppStore((s) => s.setShowAlert);
 
-  // ── Engine — one instance per mount, reconfigured on prefs change ──────
+  // ── Engine — one instance per mount, reconfigured when prefs change ──────
   const engineRef = useRef<DrowsinessEngine | null>(null);
   if (engineRef.current === null) {
     engineRef.current = new DrowsinessEngine({ sensitivity, perclosThreshold });
@@ -48,43 +43,26 @@ export function useDrowsinessDetection(active: boolean) {
     engineRef.current?.reconfigure({ sensitivity, perclosThreshold });
   }, [sensitivity, perclosThreshold]);
 
-  // ── Prediction — one instance per mount, reset with each trip ──────────
+  // ── Prediction — one instance per mount, reset with each trip ───────────
   const predictionRef = useRef<DrowsinessPrediction>(new DrowsinessPrediction());
 
-  // ── Detector — created synchronously so registerCamera can set the ref
-  // before the lifecycle useEffect fires. CameraDetector's useEffect (child)
-  // runs before Drive's useEffects (parent), so if we created the detector
-  // inside a useEffect it would still be null when registerCamera is called.
-  const detectorRef = useRef<FaceDetector | null>(null);
-  if (detectorRef.current === null) {
-    detectorRef.current = createFaceDetector();
-  }
+  // ── Refs to latest prefs for the hot-path callback ───────────────────────
+  // Using refs avoids stale closures without recreating onFaceResult on every
+  // store update (which would cause the frame processor dep to change 30×/s).
+  const soundAlertsRef  = useRef(soundAlerts);
+  const hapticAlertsRef = useRef(hapticAlerts);
+  const nightQuietRef   = useRef(nightQuiet);
+  useEffect(() => { soundAlertsRef.current  = soundAlerts;  }, [soundAlerts]);
+  useEffect(() => { hapticAlertsRef.current = hapticAlerts; }, [hapticAlerts]);
+  useEffect(() => { nightQuietRef.current   = nightQuiet;   }, [nightQuiet]);
 
-  // Persists the camera ref across detector recreations (strict-mode cleanup sets
-  // detectorRef.current = null, so registerCamera's optional chain skips it on
-  // the re-run — saving it here lets the lifecycle effect re-apply it).
-  const savedCameraRef = useRef<React.RefObject<CameraView | null> | null>(null);
+  // ── Frame callback — called by CameraDetector via runOnJS @ ~30 FPS ─────
+  const onFaceResult = useCallback((frame: RawFaceFrame | null) => {
+    const engine = engineRef.current;
+    if (!engine) return;
 
-  // Track the timestamp of the last frame we fed to the engine.
-  // ML Kit produces one frame every ~250ms; the poll runs at 100ms, so without
-  // deduplication the engine would process the same frame 2-3 times per capture.
-  const lastFrameTs = useRef<number>(0);
+    const tick = engine.process(frame);
 
-  // ── Process one poll tick ───────────────────────────────────────────────
-  const handleDetection = useCallback(() => {
-    const engine   = engineRef.current;
-    const detector = detectorRef.current;
-    if (!engine || !detector) return;
-
-    const face = detector.read();
-
-    // Skip if this is the same frame we already processed
-    if (face !== null && face.timestamp <= lastFrameTs.current) return;
-    if (face !== null) lastFrameTs.current = face.timestamp;
-
-    const tick = engine.process(face);
-
-    // Only feed the predictor when a face is present — stale-face gaps skew the slope.
     const nextRiskEtaMin = tick.faceDetected && tick.alertLevel === 0
       ? predictionRef.current.update(tick.fatigueScore)
       : null;
@@ -108,8 +86,8 @@ export function useDrowsinessDetection(active: boolean) {
 
     if (engine.shouldFireAlertEvent(tick) && tick.reason_bn && tick.reason_en) {
       const event: DrowsinessEvent = {
-        id: `evt-${Date.now()}`,
-        timestamp: Date.now(),
+        id:                  `evt-${Date.now()}`,
+        timestamp:           Date.now(),
         perclosAtTrigger:    tick.perclos,
         eyeClosureDuration:  tick.closureDurationMs / 1000,
         confidence:          tick.confidence,
@@ -122,40 +100,12 @@ export function useDrowsinessDetection(active: boolean) {
       addDrowsinessEvent(event);
       setShowAlert(true, event);
 
-      if (soundAlerts) void alertSounds.startLoop(tick.alertLevel as 1 | 2 | 3, { nightQuiet });
-      if (hapticAlerts) startHapticLoop(tick.alertLevel as 1 | 2 | 3);
+      if (soundAlertsRef.current)  void alertSounds.startLoop(tick.alertLevel as 1 | 2 | 3, { nightQuiet: nightQuietRef.current });
+      if (hapticAlertsRef.current) startHapticLoop(tick.alertLevel as 1 | 2 | 3);
     }
-  }, [updateDetection, addDrowsinessEvent, setShowAlert, soundAlerts, hapticAlerts, nightQuiet]);
+  }, [updateDetection, addDrowsinessEvent, setShowAlert]);
 
-  // ── Detector lifecycle ──────────────────────────────────────────────────
-  useEffect(() => {
-    if (!active) return;
-
-    // In React Strict Mode the disposal cleanup sets detectorRef.current = null
-    // before this effect re-runs (there is no intermediate render to recreate it).
-    // Re-create here and re-apply the saved camera ref so captures resume.
-    if (!detectorRef.current) {
-      detectorRef.current = createFaceDetector();
-    }
-    if (savedCameraRef.current) {
-      detectorRef.current.setCameraRef?.(savedCameraRef.current);
-    }
-
-    detectorRef.current.start();
-
-    const id = setInterval(handleDetection, POLL_INTERVAL_MS);
-    return () => {
-      clearInterval(id);
-      detectorRef.current?.stop();
-    };
-  }, [active, handleDetection]);
-
-  useEffect(() => () => {
-    detectorRef.current?.dispose();
-    detectorRef.current = null;
-  }, []);
-
-  // ── Trip lifecycle ──────────────────────────────────────────────────────
+  // ── Trip lifecycle ────────────────────────────────────────────────────────
   useEffect(() => {
     if (active && !tripActive) {
       engineRef.current?.reset();
@@ -170,14 +120,5 @@ export function useDrowsinessDetection(active: boolean) {
     return () => clearInterval(id);
   }, [active, tripActive, incrementTripTime]);
 
-  // ── Camera registration ─────────────────────────────────────────────────
-  // CameraDetector calls this once it mounts, passing its stable CameraView ref.
-  // savedCameraRef persists the value so the lifecycle effect can re-apply it
-  // if the detector is recreated (strict mode or re-mount after navigation).
-  const registerCamera = useCallback((ref: React.RefObject<CameraView | null>) => {
-    savedCameraRef.current = ref;
-    detectorRef.current?.setCameraRef?.(ref);
-  }, []);
-
-  return { registerCamera };
+  return { onFaceResult };
 }

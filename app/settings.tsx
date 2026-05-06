@@ -10,8 +10,8 @@
  *   • About
  */
 
-import React from 'react';
-import { View, Text, Pressable, StyleSheet, ScrollView } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, Pressable, StyleSheet, ScrollView, TextInput } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useAppStore, type Sensitivity, type InterfaceMode } from '@/store/useAppStore';
@@ -92,6 +92,9 @@ export default function SettingsPage() {
             warning="এটি চালু করলে আপনার নিয়োগকর্তা আপনার ড্রাইভিং ডেটা দেখতে পারবে।"
           />
         </View>
+
+        {/* Emergency Contact */}
+        <EmergencyContactCard />
 
         {/* Sound */}
         <View style={styles.card}>
@@ -176,6 +179,50 @@ export default function SettingsPage() {
 /* ───────────────────────────────────────────────────────────── */
 /*  Reusable controls                                            */
 /* ───────────────────────────────────────────────────────────── */
+
+function EmergencyContactCard() {
+  const saved = useAppStore((s) => s.emergencyContact);
+  const setEmergencyContact = useAppStore((s) => s.setEmergencyContact);
+  const [draft, setDraft] = useState(saved);
+
+  const isDirty = draft.trim() !== saved.trim();
+  const save = () => setEmergencyContact(draft.trim());
+
+  return (
+    <View style={styles.card}>
+      <View style={styles.cardHeader}>
+        <Text style={styles.emergencyIcon}>🆘</Text>
+        <Text style={styles.cardLabelTight}>জরুরি যোগাযোগ / Emergency Contact</Text>
+      </View>
+      <Text style={styles.emergencyHint}>
+        Level 3 সতর্কতায় ৩০ সেকেন্ডের মধ্যে এই নম্বরে SMS পাঠানো হবে।
+        {'\n'}An SMS is sent to this number on a Level 3 (critical) alert after 30s.
+      </Text>
+      <View style={styles.emergencyRow}>
+        <TextInput
+          style={styles.emergencyInput}
+          value={draft}
+          onChangeText={setDraft}
+          onBlur={() => { if (!isDirty) return; save(); }}
+          placeholder="+880 1XXX-XXXXXX"
+          placeholderTextColor={colors.muted}
+          keyboardType="phone-pad"
+          returnKeyType="done"
+          onSubmitEditing={save}
+          maxLength={20}
+        />
+        {isDirty && (
+          <Pressable onPress={save} style={styles.emergencySaveBtn}>
+            <Text style={styles.emergencySaveBtnText}>সেভ</Text>
+          </Pressable>
+        )}
+      </View>
+      {saved ? (
+        <Text style={styles.emergencySaved}>✓ সংরক্ষিত: {saved}</Text>
+      ) : null}
+    </View>
+  );
+}
 
 function SegmentedControl<T extends string>({
   options, value, onChange,
@@ -264,4 +311,29 @@ const styles = StyleSheet.create({
   aboutChipMain: { color: colors.primary, fontSize: 12, fontWeight: '600' },
   aboutChipSub:  { color: colors.muted, fontSize: 11, marginTop: 4 },
   aboutLine: { color: colors.muted, fontSize: 11 },
+
+  // Emergency contact
+  emergencyIcon: { fontSize: 16 },
+  emergencyHint: { color: colors.muted, fontSize: 12, marginBottom: 10, lineHeight: 18 },
+  emergencyRow: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  emergencyInput: {
+    flex: 1,
+    backgroundColor: colors.bgDark,
+    borderWidth: 1,
+    borderColor: colors.border,
+    borderRadius: radius.md,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    color: colors.foreground,
+    fontSize: 15,
+    fontVariant: ['tabular-nums'],
+  },
+  emergencySaveBtn: {
+    backgroundColor: colors.primary,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    borderRadius: radius.md,
+  },
+  emergencySaveBtnText: { color: colors.primaryFg, fontWeight: '700', fontSize: 14 },
+  emergencySaved: { color: colors.primary, fontSize: 12, marginTop: 6 },
 });

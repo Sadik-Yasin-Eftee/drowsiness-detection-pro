@@ -23,6 +23,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, Pressable, StyleSheet, Alert, Linking, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useCameraPermissions } from 'expo-camera';
+
 import Animated, { FadeInUp, FadeIn } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -39,12 +40,12 @@ export default function Permissions() {
   const onboardingComplete = useAppStore((s) => s.onboardingComplete);
   const [submitting, setSubmitting] = useState(false);
 
-  // Sync OS permission state into our store whenever it changes
+  // Sync OS permission state into the store whenever it changes.
   useEffect(() => {
     if (!permission) return;
     setCameraPermission(
       permission.status === 'granted' ? 'granted'
-      : permission.status === 'denied' && !permission.canAskAgain ? 'denied'
+      : permission.status === 'denied' ? 'denied'
       : 'undetermined',
     );
   }, [permission, setCameraPermission]);
@@ -57,13 +58,9 @@ export default function Permissions() {
       setPermissionsRequested();
       if (result.granted) {
         setCameraPermission('granted');
-        // Route based on whether onboarding has run before
         router.replace(onboardingComplete ? '/drive' : '/onboarding');
-      } else if (!result.canAskAgain) {
-        // OS won't re-prompt — user must go to Settings
-        setCameraPermission('denied');
       } else {
-        setCameraPermission('undetermined');
+        setCameraPermission(result.status === 'denied' ? 'denied' : 'undetermined');
       }
     } finally {
       setSubmitting(false);
@@ -81,7 +78,8 @@ export default function Permissions() {
     );
   };
 
-  const isPermanentlyDenied = permission?.status === 'denied' && !permission?.canAskAgain;
+  // canAskAgain=false + denied means the OS won't re-prompt — must go to Settings
+  const isPermanentlyDenied = permission?.status === 'denied' && !permission.canAskAgain;
 
   return (
     <ScrollView contentContainerStyle={styles.scroll} style={{ backgroundColor: colors.bgDark, paddingTop: insets.top }}>
