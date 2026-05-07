@@ -1,0 +1,177 @@
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{12}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{} and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showURL}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showURL #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[Doma and Pirouz(2020)]%
+        {ref8}
+\bibfield{author}{\bibinfo{person}{V. Doma} {and} \bibinfo{person}{M. Pirouz}.}
+  \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{A comparative analysis of machine learning methods
+  for emotion recognition using EEG and peripheral physiological signals}.
+\newblock \bibinfo{journal}{\emph{Journal of Big Data}}  \bibinfo{volume}{7}
+  (\bibinfo{year}{2020}), \bibinfo{pages}{18}.
+\newblock
+
+
+\bibitem[Essahraui et~al\mbox{.}(2025)]%
+        {ref3}
+\bibfield{author}{\bibinfo{person}{Siham Essahraui}, \bibinfo{person}{Ismail
+  Lamaakal}, \bibinfo{person}{Ikhlas El~Hamly}, \bibinfo{person}{Yassine
+  Maleh}, \bibinfo{person}{Ibrahim Ouahbi}, \bibinfo{person}{Khalid
+  El~Makkaoui}, \bibinfo{person}{Mouncef Filali~Bouami},
+  \bibinfo{person}{Paweł Pławiak}, \bibinfo{person}{Osama Alfarraj}, {and}
+  \bibinfo{person}{Ahmed~A. Abd El-Latif}.} \bibinfo{year}{2025}\natexlab{}.
+\newblock \showarticletitle{Real-Time Driver Drowsiness Detection Using Facial
+  Analysis and Machine Learning Techniques}.
+\newblock \bibinfo{journal}{\emph{Sensors}} \bibinfo{volume}{25},
+  \bibinfo{number}{3} (\bibinfo{year}{2025}).
+\newblock
+\showISSN{1424-8220}
+\href{https://doi.org/10.3390/s25030812}{doi:\nolinkurl{10.3390/s25030812}}
+
+
+\bibitem[Hashemi et~al\mbox{.}(2020)]%
+        {ref5}
+\bibfield{author}{\bibinfo{person}{M. Hashemi}, \bibinfo{person}{A. Mirrashid},
+  {and} \bibinfo{person}{A. Beheshti~Shirazi}.}
+  \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{Driver safety development: Real-time convolutional
+  neural network}.
+\newblock \bibinfo{journal}{\emph{SN Computer Science}}  \bibinfo{volume}{1}
+  (\bibinfo{year}{2020}), \bibinfo{pages}{289}.
+\newblock
+
+
+\bibitem[Kwak et~al\mbox{.}(2020)]%
+        {ref9}
+\bibfield{author}{\bibinfo{person}{B.I. Kwak}, \bibinfo{person}{M.L. Han},
+  {and} \bibinfo{person}{H.K. Kim}.} \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{Driver identification based on wavelet transform
+  using driving patterns}.
+\newblock \bibinfo{journal}{\emph{IEEE Transactions on Industrial Informatics}}
+   \bibinfo{volume}{17} (\bibinfo{year}{2020}), \bibinfo{pages}{2400--2410}.
+\newblock
+
+
+\bibitem[Mirabdullayev et~al\mbox{.}(2023)]%
+        {ref6}
+\bibfield{author}{\bibinfo{person}{I. Mirabdullayev}, \bibinfo{person}{M.U.A.
+  Ayoobkhan}, \bibinfo{person}{A.M.J. Hashana}, {and} \bibinfo{person}{L.A.K.S.
+  Ali}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Drowsy Driving Detection System Using Face
+  Detection}. In \bibinfo{booktitle}{\emph{Proceedings of the 3rd International
+  Conference on Technological Advancements in Computational Sciences
+  (ICTACS)}}. \bibinfo{address}{Tashkent, Uzbekistan},
+  \bibinfo{pages}{779--784}.
+\newblock
+
+
+\bibitem[{National Highway Traffic Safety Administration (NHTSA)}(2025)]%
+        {ref1}
+\bibfield{author}{\bibinfo{person}{{National Highway Traffic Safety
+  Administration (NHTSA)}}.} \bibinfo{year}{2025}\natexlab{}.
+\newblock \bibinfo{title}{Drowsy Driving}.
+\newblock
+\newblock
+\shownote{Available online: https://www.nhtsa.gov/risky-driving/drowsy-driving
+  (accessed on 3 January 2025)}.
+
+
+\bibitem[Norman(2013)]%
+        {ref13}
+\bibfield{author}{\bibinfo{person}{Donald Norman}.}
+  \bibinfo{year}{2013}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{The Design of Everyday Things}}.
+\newblock \bibinfo{publisher}{Basic Books}.
+\newblock
+
+
+\bibitem[Rogers et~al\mbox{.}(2019)]%
+        {ref12}
+\bibfield{author}{\bibinfo{person}{Yvonne Rogers}, \bibinfo{person}{Helen
+  Sharp}, {and} \bibinfo{person}{Jennifer Preece}.}
+  \bibinfo{year}{2019}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{Interaction Design: Beyond Human-Computer
+  Interaction}}.
+\newblock \bibinfo{publisher}{Wiley}.
+\newblock
+
+
+\bibitem[Shaik(2023)]%
+        {ref10}
+\bibfield{author}{\bibinfo{person}{M.E. Shaik}.}
+  \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{A systematic review on detection and prediction of
+  driver drowsiness}.
+\newblock \bibinfo{journal}{\emph{Transportation Research Interdisciplinary
+  Perspectives}}  \bibinfo{volume}{21} (\bibinfo{year}{2023}),
+  \bibinfo{pages}{100864}.
+\newblock
+
+
+\bibitem[Shneiderman(2022)]%
+        {ref14}
+\bibfield{author}{\bibinfo{person}{Ben Shneiderman}.}
+  \bibinfo{year}{2022}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{Human-Centered AI}}.
+\newblock \bibinfo{publisher}{Oxford University Press}.
+\newblock
+
+
+\bibitem[{World Health Organization}(2015)]%
+        {ref2}
+\bibfield{author}{\bibinfo{person}{{World Health Organization}}.}
+  \bibinfo{year}{2015}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{Global Status Report on Road Safety 2015}}.
+\newblock \bibinfo{publisher}{World Health Organization},
+  \bibinfo{address}{Geneva, Switzerland}.
+\newblock
+
+
+\bibitem[Yogarajan et~al\mbox{.}(2024)]%
+        {ref4}
+\bibfield{author}{\bibinfo{person}{G. Yogarajan}, \bibinfo{person}{R.N. Singh},
+  \bibinfo{person}{S.A. Nandhu}, {and} \bibinfo{person}{R.M. Rudhran}.}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{Drowsiness detection system using deep learning
+  based data fusion approach}.
+\newblock \bibinfo{journal}{\emph{Multimedia Tools and Applications}}
+  \bibinfo{volume}{83} (\bibinfo{year}{2024}), \bibinfo{pages}{36081--36095}.
+\newblock
+
+
+\end{thebibliography}

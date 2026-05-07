@@ -1,0 +1,2799 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Homebrew) (preloaded format=pdflatex 2026.3.4)  8 MAY 2026 00:20
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**"AHCI_Assignment 2.tex"
+(./AHCI_Assignment 2.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/acmart/acmart
+.cls
+Document Class: acmart 2025/08/27 v2.16 Typesetting articles for the Associatio
+n for Computing Machinery
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xkeyval/xkeyv
+al.sty
+Package: xkeyval 2025/11/04 v2.10 package option processing (HA)
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/xkeyval/xke
+yval.tex
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/xkeyval/xkv
+utils.tex
+\XKV@toks=\toks17
+\XKV@tempa@toks=\toks18
+\XKV@tempb@toks=\toks19
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/xkeyval/key
+val.tex))
+\XKV@depth=\count275
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/xstring/xst
+ring.sty
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/xstring/xst
+ring.tex
+\xs_counta=\count276
+\xs_countb=\count277
+)
+Package: xstring 2023/08/22 v1.86 String manipulations (CT)
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/iftex/iftex
+.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+)
+Package acmart Info: Not using screen mode on input line 77.
+Package acmart Info: Using breaking urls on hyphens on input line 85.
+Package acmart Info: Requiring acmthm on input line 93.
+Package acmart Info: Not using review mode on input line 102.
+Package acmart Info: Not using authorversion mode on input line 110.
+Package acmart Info: Not using nonacm mode on input line 122.
+Package acmart Info: Explicitly selecting natbib mode on input line 138.
+Package acmart Info: Not using anonymous mode on input line 146.
+Package acmart Info: Not using timestamp mode on input line 154.
+Package acmart Info: Not using authordraft mode on input line 164.
+Class acmart Info: Using format sigconf, number 4 on input line 179.
+Class acmart Info: Using fontsize 9pt on input line 281.
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amscls/amsart
+.cls
+Document Class: amsart 2020/05/29 v2.20.6
+\linespacing=\dimen148
+\normalparindent=\dimen149
+\normaltopskip=\skip49
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsmath/amsma
+th.sty
+Package: amsmath 2025/07/09 v2.17z AMS math features
+\@mathmargin=\skip50
+
+For additional information on amsmath, use the `?' option.
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsmath/amste
+xt.sty
+Package: amstext 2024/11/17 v2.01 AMS text
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsmath/amsge
+n.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks20
+\ex@=\dimen150
+))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsmath/amsbs
+y.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen151
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsmath/amsop
+n.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count278
+LaTeX Info: Redefining \frac on input line 233.
+\uproot@=\count279
+\leftroot@=\count280
+LaTeX Info: Redefining \overline on input line 398.
+LaTeX Info: Redefining \colon on input line 409.
+\classnum@=\count281
+\DOTSCASE@=\count282
+LaTeX Info: Redefining \ldots on input line 495.
+LaTeX Info: Redefining \dots on input line 498.
+LaTeX Info: Redefining \cdots on input line 619.
+\Mathstrutbox@=\box53
+\strutbox@=\box54
+LaTeX Info: Redefining \big on input line 721.
+LaTeX Info: Redefining \Big on input line 722.
+LaTeX Info: Redefining \bigg on input line 723.
+LaTeX Info: Redefining \Bigg on input line 724.
+\big@size=\dimen152
+LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
+\macc@depth=\count283
+LaTeX Info: Redefining \bmod on input line 904.
+LaTeX Info: Redefining \pmod on input line 909.
+LaTeX Info: Redefining \smash on input line 939.
+LaTeX Info: Redefining \relbar on input line 969.
+LaTeX Info: Redefining \Relbar on input line 970.
+\c@MaxMatrixCols=\count284
+\dotsspace@=\muskip17
+\c@parentequation=\count285
+\dspbrk@lvl=\count286
+\tag@help=\toks21
+\row@=\count287
+\column@=\count288
+\maxfields@=\count289
+\andhelp@=\toks22
+\eqnshift@=\dimen153
+\alignsep@=\dimen154
+\tagshift@=\dimen155
+\tagwidth@=\dimen156
+\totwidth@=\dimen157
+\lineht@=\dimen158
+\@envbody=\toks23
+\multlinegap=\skip51
+\multlinetaggap=\skip52
+\mathdisplay@stack=\toks24
+LaTeX Info: Redefining \[ on input line 2950.
+LaTeX Info: Redefining \] on input line 2951.
+)
+LaTeX Font Info:    Trying to load font information for U+msa on input line 397
+.
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/umsa
+.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/amsf
+onts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)
+\copyins=\insert252
+\abstractbox=\box55
+\listisep=\skip53
+\c@part=\count290
+\c@section=\count291
+\c@subsection=\count292
+\c@subsubsection=\count293
+\c@paragraph=\count294
+\c@subparagraph=\count295
+\c@figure=\count296
+\c@table=\count297
+\abovecaptionskip=\skip54
+\belowcaptionskip=\skip55
+\captionindent=\dimen159
+\thm@style=\toks25
+\thm@bodyfont=\toks26
+\thm@headfont=\toks27
+\thm@notefont=\toks28
+\thm@headpunct=\toks29
+\thm@preskip=\skip56
+\thm@postskip=\skip57
+\thm@headsep=\skip58
+\dth@everypar=\toks30
+)
+LaTeX Info: Redefining \markboth on input line 283.
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mic
+rotype.sty
+Package: microtype 2026/03/01 v3.2d Micro-typographical refinements (RS)
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/etoolbox/etoo
+lbox.sty
+Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count298
+)
+\MT@toks=\toks31
+\MT@tempbox=\box56
+\MT@count=\count299
+LaTeX Info: Redefining \noprotrusionifhmode on input line 1084.
+LaTeX Info: Redefining \leftprotrusion on input line 1085.
+\MT@prot@toks=\toks32
+LaTeX Info: Redefining \rightprotrusion on input line 1104.
+LaTeX Info: Redefining \textls on input line 1449.
+\MT@outer@kern=\dimen160
+LaTeX Info: Redefining \microtypecontext on input line 2053.
+LaTeX Info: Redefining \textmicrotypecontext on input line 2070.
+\MT@listname@count=\count300
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mic
+rotype-pdftex.def
+File: microtype-pdftex.def 2026/03/01 v3.2d Definitions specific to pdftex (RS)
+
+LaTeX Info: Redefining \lsstyle on input line 944.
+LaTeX Info: Redefining \lslig on input line 944.
+\MT@outer@space=\skip59
+)
+Package microtype Info: Loading configuration file microtype.cfg.
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mic
+rotype.cfg
+File: microtype.cfg 2026/03/01 v3.2d microtype main configuration file (RS)
+)
+LaTeX Info: Redefining \microtypesetup on input line 3065.
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/booktabs/book
+tabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen161
+\lightrulewidth=\dimen162
+\cmidrulewidth=\dimen163
+\belowrulesep=\dimen164
+\belowbottomsep=\dimen165
+\aboverulesep=\dimen166
+\abovetopsep=\dimen167
+\cmidrulesep=\dimen168
+\cmidrulekern=\dimen169
+\defaultaddspace=\dimen170
+\@cmidla=\count301
+\@cmidlb=\count302
+\@aboverulesep=\dimen171
+\@belowrulesep=\dimen172
+\@thisruleclass=\count303
+\@lastruleclass=\count304
+\@thisrulewidth=\dimen173
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/refcount/refc
+ount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/ltxcmds/ltx
+cmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/infwarerr/i
+nfwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/totpages/totp
+ages.sty
+Package: totpages 2005/09/19 v2.00 Totpages Package (muewi)
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/everyshi/ever
+yshi.sty
+Package: everyshi 2020/11/18 v4.00 EveryShipout Package
+))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/environ/envir
+on.sty
+Package: environ 2014/05/04 v0.3 A new way to define environments
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/trimspaces/tr
+imspaces.sty
+Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
+))
+\@ACM@acmcp@delta=\dimen174
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/natbib/natbib
+.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip60
+\bibsep=\skip61
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count305
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/hyperref/hype
+rref.sty
+Package: hyperref 2026-01-29 v7.01p Hypertext links for LaTeX
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/kvsetkeys/kvs
+etkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/kvdefinekey
+s/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pdfescape/p
+dfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pdftexcmds/
+pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/hycolor/hycol
+or.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/hyperref/name
+ref.sty
+Package: nameref 2026-01-29 v2.58 Cross-referencing by name of section
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/gettitlestr
+ing/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/kvoptions/kvo
+ptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+))
+\c@section@level=\count306
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/stringenc/s
+tringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
+)
+\@linkdim=\dimen175
+\Hy@linkcounter=\count307
+\Hy@pagecounter=\count308
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/hyperref/pd1e
+nc.def
+File: pd1enc.def 2026-01-29 v7.01p Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/intcalc/int
+calc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+\Hy@SavedSpaceFactor=\count309
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/hyperref/puen
+c.def
+File: puenc.def 2026-01-29 v7.01p Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 4072
+.
+Package hyperref Info: Option `unicode' set `true' on input line 4072.
+Package hyperref Info: Hyper figures OFF on input line 4201.
+Package hyperref Info: Link nesting OFF on input line 4206.
+Package hyperref Info: Hyper index ON on input line 4209.
+Package hyperref Info: Plain pages OFF on input line 4216.
+Package hyperref Info: Backreferencing OFF on input line 4221.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4468.
+\c@Hy@tempcnt=\count310
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip18
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4807.
+\XeTeXLinkMargin=\dimen176
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/bitset/bits
+et.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/bigintcalc/
+bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count311
+\Field@Width=\dimen177
+\Fld@charsize=\dimen178
+Package hyperref Info: Hyper figures OFF on input line 6084.
+Package hyperref Info: Link nesting OFF on input line 6089.
+Package hyperref Info: Hyper index ON on input line 6092.
+Package hyperref Info: backreferencing OFF on input line 6099.
+Package hyperref Info: Link coloring OFF on input line 6104.
+Package hyperref Info: Link coloring with OCG OFF on input line 6109.
+Package hyperref Info: PDF/A mode OFF on input line 6114.
+\Hy@abspage=\count312
+\c@Item=\count313
+\c@Hfootnote=\count314
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/hyperref/hpdf
+tex.def
+File: hpdftex.def 2026-01-29 v7.01p Hyperref driver for pdfTeX
+\Fld@listcount=\count315
+\c@bookmark@seq@number=\count316
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/rerunfilechec
+k/rerunfilecheck.sty
+Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/uniquecount
+er/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+84.
+)
+\Hy@SectionHShift=\skip62
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/hyperxmp/hype
+rxmp.sty
+Package: hyperxmp 2024/03/17 v5.13 Store hyperref metadata in XMP format
+\hyxmp@aep@toks=\toks33
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/ifmtarg/ifmta
+rg.sty
+Package: ifmtarg 2018/04/16 v1.2b check for an empty argument
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/base/ifthen.s
+ty
+Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
+)
+\@hyxmp@count=\count317
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/oberdiek/ifdr
+aft.sty
+Package: ifdraft 2016/05/16 v1.4 Detect class options draft and final (HO)
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/iftex/iflua
+tex.sty
+Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
+))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/graphics/grap
+hicx.sty
+Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/graphics/grap
+hics.sty
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/graphics/trig
+.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/graphics-cfg/
+graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 106.
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/graphics-def/
+pdftex.def
+File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen179
+\Gin@req@width=\dimen180
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xcolor/xcolor
+.sty
+Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/graphics-cfg/
+color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 274.
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/graphics/math
+color.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
+Package xcolor Info: Model `RGB' extended on input line 1365.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1367.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/geometry/geom
+etry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/iftex/ifvte
+x.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+)
+\Gm@cnth=\count318
+\Gm@cntv=\count319
+\c@Gm@tempcnt=\count320
+\Gm@bindingoffset=\dimen181
+\Gm@wd@mp=\dimen182
+\Gm@odd@mp=\dimen183
+\Gm@even@mp=\dimen184
+\Gm@layoutwidth=\dimen185
+\Gm@layoutheight=\dimen186
+\Gm@layouthoffset=\dimen187
+\Gm@layoutvoffset=\dimen188
+\Gm@dimlist=\toks34
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/ncctools/many
+foot.sty
+Package: manyfoot 2019/08/03 v1.11 Many Footnote Levels Package (NCC)
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/ncctools/nccf
+oots.sty
+Package: nccfoots 2005/02/03 v1.2 NCC Footnotes Package (NCC)
+)
+\MFL@columnwidth=\dimen189
+)
+\footinsauthorsaddresses=\insert251
+\c@footnoteauthorsaddresses=\count321
+\footinscopyrightpermission=\insert250
+\c@footnotecopyrightpermission=\count322
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pdftex/glyp
+htounicode.tex)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/cmap/cmap.sty
+Package: cmap 2021/02/06 v1.0j CMap support: searchable PDF
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/base/fontenc.
+sty
+Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
+<<t1.cmap>>)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/libertine/lib
+ertine.sty
+Package: libertine 2024/04/23 (Bob Tennent) Supports Libertine and Biolinum fon
+ts for all LaTeX engines.
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/iftex/ifxet
+ex.sty
+Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/base/textcomp
+.sty
+Package: textcomp 2024/04/24 v2.1b Standard LaTeX package
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/base/fontenc.
+sty
+Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/fontaxes/font
+axes.sty
+Package: fontaxes 2026-01-02 v2.0.2 Font selection axes (deprecated)
+Applying: [2024-11-01] Use figureversions if present on input line 74.
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/figureversion
+s/figureversions.sty
+Package: figureversions 2025-04-29 v1.0.1 Figure versions
+)
+Already applied: [0000-00-00] Fall back to v1 on input line 76.
+)
+LaTeX Info: Redefining \oldstylenums on input line 485.
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/libertine/Lin
+Libertine_I.tex))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/inconsolata/z
+i4.sty
+Package: zi4 2019/05/17 v1.12
+
+`inconsolata-zi4' v1.12, 2019/05/17 Text macros for Inconsolata (msharpe)
+\zifour@ocount=\count323
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/newtx/newtxma
+th.sty
+Package: newtxmath 2024/09/22 v1.754
+
+`newtxmath' v1.754, 2024/09/22 Math macros based originally on txfonts (msharpe
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/oberdiek/cent
+ernot.sty
+Package: centernot 2016/05/16 v1.4 Centers the not symbol horizontally (HO)
+)
+\tx@cntz=\count324
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/kastrup/bin
+hex.tex)
+\tx@Isdigit=\count325
+\tx@IsAlNum=\count326
+\tx@tA=\toks35
+\tx@tB=\toks36
+\tx@su=\read2
+
+amsthm NOT loaded
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 402.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/LinuxLibertineT-TLF/m/n on input li
+ne 402.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/LinuxLibertineT-TLF/m/n on input l
+ine 402.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/LinuxLibertineT-TLF/m/n --> OT1/LinuxLibertineT-TLF
+/sb/n on input line 403.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 410.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/LinuxBiolinumT-TLF/m/n on input li
+ne 410.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/LinuxBiolinumT-TLF/m/n on input l
+ine 410.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/LinuxBiolinumT-TLF/m/n --> OT1/LinuxBiolinumT-TLF/b
+/n on input line 412.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 419.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/LinuxLibertineT-TLF/m/it on input 
+line 419.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/LinuxLibertineT-TLF/m/it on input
+ line 419.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 420.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> T1/zi4/m/n on input line 420.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> T1/zi4/m/n on input line 420.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 422.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/LinuxLibertineT-TLF/sb/n on input 
+line 422.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/LinuxLibertineT-TLF/sb/n on input 
+line 422.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/LinuxLibertineT-TLF/m/it --> OT1/LinuxLibertineT-TL
+F/sb/it on input line 423.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  T1/zi4/m/n --> T1/zi4/b/n on input line 426.
+LaTeX Font Info:    Redeclaring symbol font `letters' on input line 444.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/nxlmi/m/it on input line 444.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/nxlmi/m/it on input line 444.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/nxlmi/m/it --> OML/nxlmi/b/it on input line 445.
+\symlettersA=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `lettersA' in version `bold'
+(Font)                  U/ntxmia/m/it --> U/ntxmia/b/it on input line 582.
+LaTeX Font Info:    Redeclaring math alphabet \mathfrak on input line 584.
+Now handling font encoding LMS ...
+... no UTF-8 mapping file for font encoding LMS
+LaTeX Font Info:    Redeclaring symbol font `symbols' on input line 604.
+LaTeX Font Info:    Encoding `OMS' has changed to `LMS' for symbol font
+(Font)              `symbols' in the math version `normal' on input line 604.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> LMS/ntxsy/m/n on input line 604.
+LaTeX Font Info:    Encoding `OMS' has changed to `LMS' for symbol font
+(Font)              `symbols' in the math version `bold' on input line 604.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> LMS/ntxsy/m/n on input line 604.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  LMS/ntxsy/m/n --> LMS/ntxsy/b/n on input line 605.
+\symAMSm=\mathgroup7
+LaTeX Font Info:    Overwriting symbol font `AMSm' in version `bold'
+(Font)                  U/ntxsym/m/n --> U/ntxsym/b/n on input line 630.
+\symsymbolsC=\mathgroup8
+LaTeX Font Info:    Overwriting symbol font `symbolsC' in version `bold'
+(Font)                  U/ntxsyc/m/n --> U/ntxsyc/b/n on input line 651.
+Now handling font encoding LMX ...
+... no UTF-8 mapping file for font encoding LMX
+LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 664.
+LaTeX Font Info:    Encoding `OMX' has changed to `LMX' for symbol font
+(Font)              `largesymbols' in the math version `normal' on input line 6
+64.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> LMX/ntxexx/m/n on input line 664.
+LaTeX Font Info:    Encoding `OMX' has changed to `LMX' for symbol font
+(Font)              `largesymbols' in the math version `bold' on input line 664
+.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> LMX/ntxexx/m/n on input line 664.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  LMX/ntxexx/m/n --> LMX/ntxexx/b/n on input line 665.
+\symlargesymbolsTXA=\mathgroup9
+LaTeX Font Info:    Overwriting symbol font `largesymbolsTXA' in version `bold'
+
+(Font)                  U/ntxexa/m/n --> U/ntxexa/b/n on input line 679.
+\tx@sbptoks=\toks37
+LaTeX Font Info:    Redeclaring math delimiter \lfloor on input line 902.
+LaTeX Font Info:    Redeclaring math delimiter \rfloor on input line 903.
+LaTeX Font Info:    Redeclaring math delimiter \lceil on input line 904.
+LaTeX Font Info:    Redeclaring math delimiter \rceil on input line 905.
+LaTeX Font Info:    Redeclaring math delimiter \lbrace on input line 910.
+LaTeX Font Info:    Redeclaring math delimiter \rbrace on input line 911.
+LaTeX Font Info:    Redeclaring math delimiter \langle on input line 913.
+LaTeX Font Info:    Redeclaring math delimiter \rangle on input line 915.
+LaTeX Font Info:    Redeclaring math delimiter \arrowvert on input line 919.
+LaTeX Font Info:    Redeclaring math delimiter \vert on input line 920.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 991.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 992.
+LaTeX Font Info:    Redeclaring math accent \vec on input line 2057.
+LaTeX Info: Redefining \Bbbk on input line 2847.
+LaTeX Info: Redefining \not on input line 2995.
+LaTeX Info: Redefining \textsquare on input line 3025.
+LaTeX Info: Redefining \openbox on input line 3027.
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/caption/capti
+on.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/caption/capti
+on3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen190
+\captionmargin=\dimen191
+\caption@leftmargin=\dimen192
+\caption@rightmargin=\dimen193
+\caption@width=\dimen194
+\caption@indent=\dimen195
+\caption@parindent=\dimen196
+\caption@hangindent=\dimen197
+Package caption Info: AMS or SMF document class detected.
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/caption/capti
+on-ams-smf.sto
+File: caption-ams-smf.sto 2020/08/22 v2.0 Adaption of the caption package to th
+e AMS and SMF document classes (AR)
+))
+\c@caption@flags=\count327
+\c@continuedfloat=\count328
+Package caption Info: hyperref package is loaded.
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/float/float.s
+ty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count329
+\float@exts=\toks38
+\float@box=\box57
+\@float@everytoks=\toks39
+\@floatcapt=\box58
+)
+\@float@every@sidebar=\toks40
+\c@sidebar=\count330
+\fulltextwidth=\dimen198
+\@ACM@labelwidth=\dimen199
+\listisep=\skip63
+\num@authorgroups=\count331
+\num@authors=\count332
+\@ACM@badge@width=\skip64
+\@ACM@title@width=\skip65
+\@ACM@badge@skip=\skip66
+Class acmart Info: Printing CCS on input line 1848.
+Class acmart Info: Printing bibformat on input line 1848.
+Class acmart Info: Suppressing folios on input line 1855.
+Class acmart Info: Setting authorsperrow to 0 on input line 1858.
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/comment/comme
+nt.sty
+\CommentStream=\write3
+ Excluding comment 'comment') Excluding comment 'CCSXML'
+\c@@concepts=\count333
+\mktitle@bx=\box59
+\@ACM@acmcpbox=\box60
+\@ACM@commabox=\box61
+\author@bx=\box62
+\author@bx@wd=\dimen256
+\author@bx@sep=\skip67
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/fancyhdr/fanc
+yhdr.sty
+Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
+
+\f@nch@headwidth=\skip68
+\f@nch@offset@elh=\skip69
+\f@nch@offset@erh=\skip70
+\f@nch@offset@olh=\skip71
+\f@nch@offset@orh=\skip72
+\f@nch@offset@elf=\skip73
+\f@nch@offset@erf=\skip74
+\f@nch@offset@olf=\skip75
+\f@nch@offset@orf=\skip76
+\f@nch@height=\skip77
+\f@nch@footalignment=\skip78
+\f@nch@widthL=\skip79
+\f@nch@widthC=\skip80
+\f@nch@widthR=\skip81
+\@temptokenb=\toks41
+) Special comment 'acks'
+LaTeX Font Info:    Trying to load font information for T1+LinuxLibertineT-TLF 
+on input line 3652.
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/libertine/T1L
+inuxLibertineT-TLF.fd
+File: T1LinuxLibertineT-TLF.fd 2017/03/20 (autoinst) Font definitions for T1/Li
+nuxLibertineT-TLF.
+)
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 9.0pt on input line 3652.
+)
+Class acmart Info: Suppressing bibformat on input line 3.
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/multirow/mult
+irow.sty
+Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
+\multirow@colwidth=\skip82
+\multirow@cntb=\count334
+\multirow@dima=\skip83
+\bigstrutjot=\dimen257
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/enumitem/enum
+item.sty
+Package: enumitem 2025/02/06 v3.11 Customized lists
+\enitkv@toks@=\toks42
+\labelindent=\skip84
+\enit@outerparindent=\dimen258
+\enit@toks=\toks43
+\enit@inbox=\box63
+\enit@count@id=\count335
+\enitdp@description=\count336
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/tools/array.s
+ty
+Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
+\col@sep=\dimen259
+\ar@mcellbox=\box64
+\extrarowheight=\dimen260
+\NC@list=\toks44
+\extratabsurround=\skip85
+\backup@length=\skip86
+\ar@cellbox=\box65
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/tcolorbox/tco
+lorbox.sty
+Package: tcolorbox 2025/11/28 version 6.9.0 text color boxes
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/pgf/frontendl
+ayer/tikz.sty
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/pgf/basiclaye
+r/pgf.sty
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/pgf/utilities
+/pgfrcs.sty
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/utiliti
+es/pgfutil-common.tex
+\pgfutil@everybye=\toks45
+\pgfutil@tempdima=\dimen261
+\pgfutil@tempdimb=\dimen262
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/utiliti
+es/pgfutil-latex.def
+\pgfutil@abb=\box66
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/utiliti
+es/pgfrcs.code.tex
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/pgf.rev
+ision.tex)
+Package: pgfrcs 2025-08-29 v3.1.11a (3.1.11a)
+))
+Package: pgf 2025-08-29 v3.1.11a (3.1.11a)
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/pgf/basiclaye
+r/pgfcore.sty
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/pgf/systemlay
+er/pgfsys.sty
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/systeml
+ayer/pgfsys.code.tex
+Package: pgfsys 2025-08-29 v3.1.11a (3.1.11a)
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/utiliti
+es/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks46
+\pgfkeys@temptoks=\toks47
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/utiliti
+es/pgfkeyslibraryfiltered.code.tex
+\pgfkeys@tmptoks=\toks48
+))
+\pgf@x=\dimen263
+\pgf@y=\dimen264
+\pgf@xa=\dimen265
+\pgf@ya=\dimen266
+\pgf@xb=\dimen267
+\pgf@yb=\dimen268
+\pgf@xc=\dimen269
+\pgf@yc=\dimen270
+\pgf@xd=\dimen271
+\pgf@yd=\dimen272
+\w@pgf@writea=\write4
+\r@pgf@reada=\read3
+\c@pgf@counta=\count337
+\c@pgf@countb=\count338
+\c@pgf@countc=\count339
+\c@pgf@countd=\count340
+\t@pgf@toka=\toks49
+\t@pgf@tokb=\toks50
+\t@pgf@tokc=\toks51
+\pgf@sys@id@count=\count341
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/systeml
+ayer/pgf.cfg
+File: pgf.cfg 2025-08-29 v3.1.11a (3.1.11a)
+)
+Driver file for pgf: pgfsys-pdftex.def
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/systeml
+ayer/pgfsys-pdftex.def
+File: pgfsys-pdftex.def 2025-08-29 v3.1.11a (3.1.11a)
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/systeml
+ayer/pgfsys-common-pdf.def
+File: pgfsys-common-pdf.def 2025-08-29 v3.1.11a (3.1.11a)
+)))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/systeml
+ayer/pgfsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfsyssoftpath@smallbuffer@items=\count342
+\pgfsyssoftpath@bigbuffer@items=\count343
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/systeml
+ayer/pgfsysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/basicla
+yer/pgfcore.code.tex
+Package: pgfcore 2025-08-29 v3.1.11a (3.1.11a)
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/math/pg
+fmath.code.tex
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/math/pg
+fmathutil.code.tex)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/math/pg
+fmathparser.code.tex
+\pgfmath@dimen=\dimen273
+\pgfmath@count=\count344
+\pgfmath@box=\box67
+\pgfmath@toks=\toks52
+\pgfmath@stack@operand=\toks53
+\pgfmath@stack@operation=\toks54
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/math/pg
+fmathfunctions.code.tex)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/math/pg
+fmathfunctions.basic.code.tex)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/math/pg
+fmathfunctions.trigonometric.code.tex)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/math/pg
+fmathfunctions.random.code.tex)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/math/pg
+fmathfunctions.comparison.code.tex)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/math/pg
+fmathfunctions.base.code.tex)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/math/pg
+fmathfunctions.round.code.tex)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/math/pg
+fmathfunctions.misc.code.tex)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/math/pg
+fmathfunctions.integerarithmetics.code.tex)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/math/pg
+fmathcalc.code.tex)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/math/pg
+fmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count345
+))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/math/pg
+fint.code.tex)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/basicla
+yer/pgfcorepoints.code.tex
+File: pgfcorepoints.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@picminx=\dimen274
+\pgf@picmaxx=\dimen275
+\pgf@picminy=\dimen276
+\pgf@picmaxy=\dimen277
+\pgf@pathminx=\dimen278
+\pgf@pathmaxx=\dimen279
+\pgf@pathminy=\dimen280
+\pgf@pathmaxy=\dimen281
+\pgf@xx=\dimen282
+\pgf@xy=\dimen283
+\pgf@yx=\dimen284
+\pgf@yy=\dimen285
+\pgf@zx=\dimen286
+\pgf@zy=\dimen287
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/basicla
+yer/pgfcorepathconstruct.code.tex
+File: pgfcorepathconstruct.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@path@lastx=\dimen288
+\pgf@path@lasty=\dimen289
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/basicla
+yer/pgfcorepathusage.code.tex
+File: pgfcorepathusage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@shorten@end@additional=\dimen290
+\pgf@shorten@start@additional=\dimen291
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/basicla
+yer/pgfcorescopes.code.tex
+File: pgfcorescopes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfpic=\box68
+\pgf@hbox=\box69
+\pgf@layerbox@main=\box70
+\pgf@picture@serial@count=\count346
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/basicla
+yer/pgfcoregraphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgflinewidth=\dimen292
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/basicla
+yer/pgfcoretransformations.code.tex
+File: pgfcoretransformations.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@pt@x=\dimen293
+\pgf@pt@y=\dimen294
+\pgf@pt@temp=\dimen295
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/basicla
+yer/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/basicla
+yer/pgfcoreobjects.code.tex
+File: pgfcoreobjects.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/basicla
+yer/pgfcorepathprocessing.code.tex
+File: pgfcorepathprocessing.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/basicla
+yer/pgfcorearrows.code.tex
+File: pgfcorearrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfarrowsep=\dimen296
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/basicla
+yer/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@max=\dimen297
+\pgf@sys@shading@range@num=\count347
+\pgf@shadingcount=\count348
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/basicla
+yer/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/basicla
+yer/pgfcoreexternal.code.tex
+File: pgfcoreexternal.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfexternal@startupbox=\box71
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/basicla
+yer/pgfcorelayers.code.tex
+File: pgfcorelayers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/basicla
+yer/pgfcoretransparency.code.tex
+File: pgfcoretransparency.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/basicla
+yer/pgfcorepatterns.code.tex
+File: pgfcorepatterns.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/basicla
+yer/pgfcorerdf.code.tex
+File: pgfcorerdf.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/modules
+/pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfnodeparttextbox=\box72
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/modules
+/pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/pgf/compatibi
+lity/pgfcomp-version-0-65.sty
+Package: pgfcomp-version-0-65 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@nodesepstart=\dimen298
+\pgf@nodesepend=\dimen299
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/pgf/compatibi
+lity/pgfcomp-version-1-18.sty
+Package: pgfcomp-version-1-18 2025-08-29 v3.1.11a (3.1.11a)
+))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/pgf/utilities
+/pgffor.sty
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/pgf/utilities
+/pgfkeys.sty
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/utiliti
+es/pgfkeys.code.tex))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/pgf/math/pgfm
+ath.sty
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/math/pg
+fmath.code.tex))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/utiliti
+es/pgffor.code.tex
+Package: pgffor 2025-08-29 v3.1.11a (3.1.11a)
+\pgffor@iter=\dimen300
+\pgffor@skip=\dimen301
+\pgffor@stack=\toks55
+\pgffor@toks=\toks56
+))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/fronten
+dlayer/tikz/tikz.code.tex
+Package: tikz 2025-08-29 v3.1.11a (3.1.11a)
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/librari
+es/pgflibraryplothandlers.code.tex
+File: pgflibraryplothandlers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@plot@mark@count=\count349
+\pgfplotmarksize=\dimen302
+)
+\tikz@lastx=\dimen303
+\tikz@lasty=\dimen304
+\tikz@lastxsaved=\dimen305
+\tikz@lastysaved=\dimen306
+\tikz@lastmovetox=\dimen307
+\tikz@lastmovetoy=\dimen308
+\tikzleveldistance=\dimen309
+\tikzsiblingdistance=\dimen310
+\tikz@figbox=\box73
+\tikz@figbox@bg=\box74
+\tikz@tempbox=\box75
+\tikz@tempbox@bg=\box76
+\tikztreelevel=\count350
+\tikznumberofchildren=\count351
+\tikznumberofcurrentchild=\count352
+\tikz@fig@count=\count353
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/modules
+/pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfmatrixcurrentrow=\count354
+\pgfmatrixcurrentcolumn=\count355
+\pgf@matrix@numberofcolumns=\count356
+)
+\tikz@expandcount=\count357
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/fronten
+dlayer/tikz/libraries/tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/tools/verbati
+m.sty
+Package: verbatim 2024-01-22 v1.5x LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks57
+\verbatim@line=\toks58
+\verbatim@in@stream=\read4
+)
+\tcb@titlebox=\box77
+\tcb@upperbox=\box78
+\tcb@lowerbox=\box79
+\tcb@phantombox=\box80
+\c@tcbbreakpart=\count358
+\c@tcblayer=\count359
+\c@tcolorbox@number=\count360
+\l__tcobox_tmpa_box=\box81
+\l__tcobox_tmpa_dim=\dimen311
+\tcb@temp=\box82
+\tcb@temp=\box83
+\tcb@temp=\box84
+\tcb@temp=\box85
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/tcolorbox/tcb
+breakable.code.tex
+Library (tcolorbox): 'tcbbreakable.code.tex' version '6.9.0'
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/pdfcol/pdfcol
+.sty
+Package: pdfcol 2022-09-21 v1.7 Handle new color stacks for pdfTeX (HO)
+)
+Package pdfcol Info: New color stack `tcb@breakable' = 1 on input line 23.
+\tcb@testbox=\box86
+\tcb@totalupperbox=\box87
+\tcb@totallowerbox=\box88
+)
+Package hyperref Info: Option `pdfdisplaydoctitle' set `true' on input line 97.
+
+\c@theorem=\count361
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/preprint/bala
+nce.sty
+Package: balance 1999/02/23 4.3 (PWD)
+\oldvsize=\dimen312
+) Excluding comment 'screenonly' Include comment 'printonly'
+Include comment 'anonsuppress'
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/l3backend/l3b
+ackend-pdftex.def
+File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count362
+) (./AHCI_Assignment 2.aux)
+\openout1 = `"AHCI_Assignment 2.aux"'.
+
+LaTeX Font Info:    Checking defaults for OML/nxlmi/m/it on input line 97.
+LaTeX Font Info:    Trying to load font information for OML+nxlmi on input line
+ 97.
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/newtx/omlnxlm
+i.fd
+File: omlnxlmi.fd 2013/11/19 Fontinst v1.933 font definitions for OML/nxlmi.
+)
+LaTeX Font Info:    ... okay on input line 97.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 97.
+LaTeX Font Info:    ... okay on input line 97.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 97.
+LaTeX Font Info:    ... okay on input line 97.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 97.
+LaTeX Font Info:    ... okay on input line 97.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 97.
+LaTeX Font Info:    ... okay on input line 97.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 97.
+LaTeX Font Info:    ... okay on input line 97.
+LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 97.
+LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 
+97.
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/newtx/untxexa
+.fd
+File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
+)
+LaTeX Font Info:    ... okay on input line 97.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 97.
+LaTeX Font Info:    ... okay on input line 97.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 97.
+LaTeX Font Info:    ... okay on input line 97.
+LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 97.
+LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line
+ 97.
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/newtx/lmsntxs
+y.fd
+File: lmsntxsy.fd 2016/07/02 Fontinst v1.933 font definitions for LMS/ntxsy.
+)
+LaTeX Font Info:    ... okay on input line 97.
+LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 97.
+LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input lin
+e 97.
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/newtx/lmxntxe
+xx.fd
+File: lmxntxexx.fd 2016/07/03 Fontinst v1.933 font definitions for LMX/ntxexx.
+)
+LaTeX Font Info:    ... okay on input line 97.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 7.0pt on input line 97.
+LaTeX Font Info:    Trying to load font information for OT1+LinuxLibertineT-TLF
+ on input line 97.
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/libertine/OT1
+LinuxLibertineT-TLF.fd
+File: OT1LinuxLibertineT-TLF.fd 2017/03/20 (autoinst) Font definitions for OT1/
+LinuxLibertineT-TLF.
+)
+LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 7.3pt on input line 97.
+<<ot1.cmap>>
+LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 5.5pt on input line 97.
+LaTeX Font Info:    Font shape `OML/nxlmi/m/it' will be
+(Font)              scaled to size 7.3pt on input line 97.
+<<oml.cmap>>
+LaTeX Font Info:    Font shape `OML/nxlmi/m/it' will be
+(Font)              scaled to size 5.5pt on input line 97.
+LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
+(Font)              scaled to size 7.3pt on input line 97.
+LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
+(Font)              scaled to size 5.5pt on input line 97.
+LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
+(Font)              scaled to size 7.3pt on input line 97.
+LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
+(Font)              scaled to size 5.5pt on input line 97.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 97.
+
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/umsa
+.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 97.
+
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/umsb
+.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 
+97.
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/newtx/untxmia
+.fd
+File: untxmia.fd 2024/04/09 Fontinst v1.933 font definitions for U/ntxmia.
+)
+LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
+(Font)              scaled to size 7.3pt on input line 97.
+LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
+(Font)              scaled to size 5.5pt on input line 97.
+LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 
+97.
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/newtx/untxsym
+.fd
+File: untxsym.fd 2023/08/16 Fontinst v1.933 font definitions for U/ntxsym.
+)
+LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
+(Font)              scaled to size 7.3pt on input line 97.
+LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
+(Font)              scaled to size 5.5pt on input line 97.
+LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 
+97.
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/newtx/untxsyc
+.fd
+File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
+)
+LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
+(Font)              scaled to size 7.3pt on input line 97.
+LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
+(Font)              scaled to size 5.5pt on input line 97.
+LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
+(Font)              scaled to size 7.3pt on input line 97.
+LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
+(Font)              scaled to size 5.5pt on input line 97.
+LaTeX Info: Command `\dddot' is already robust on input line 97.
+LaTeX Info: Command `\ddddot' is already robust on input line 97.
+LaTeX Info: Redefining \microtypecontext on input line 97.
+Package microtype Info: Applying patch `item' on input line 97.
+Package microtype Info: Applying patch `toc' on input line 97.
+Package microtype Info: Applying patch `eqnum' on input line 97.
+Package microtype Info: Applying patch `footnote' on input line 97.
+Package microtype Info: Applying patch `verbatim' on input line 97.
+LaTeX Info: Redefining \microtypesetup on input line 97.
+Package microtype Info: Generating PDF output.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using default protrusion set `alltext'.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `alltext-nott'.
+Package microtype Info: Patching command `\showhyphens'.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `LinuxLibertineT-TLF' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+Package hyperref Info: Link coloring OFF on input line 97.
+ (./AHCI_Assignment 2.out) (./AHCI_Assignment 2.out)
+\@outlinefile=\write5
+\openout5 = `"AHCI_Assignment 2.out"'.
+
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/context/base/mkii/s
+upp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count363
+\scratchdimen=\dimen313
+\scratchbox=\box89
+\nofMPsegments=\count364
+\nofMParguments=\count365
+\everyMPshowfont=\toks59
+\MPscratchCnt=\count366
+\MPscratchDim=\dimen314
+\MPnumerator=\count367
+\makeMPintoPDFobject=\count368
+\everyMPtoPDFconversion=\toks60
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/epstopdf-pkg/
+epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/latexconfig/e
+pstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: includehead includefoot twoside heightrounded 
+* h-part:(L,W,R)=(54.0pt, 506.295pt, 54.0pt)
+* v-part:(T,H,B)=(57.0pt, 664.96999pt, 73.0pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=506.295pt
+* \textheight=626.0pt
+* \oddsidemargin=-18.26999pt
+* \evensidemargin=-18.26999pt
+* \topmargin=-15.26999pt
+* \headheight=13.0pt
+* \headsep=14.0pt
+* \topskip=10.0pt
+* \footskip=12.0pt
+* \marginparwidth=24.0pt
+* \marginparsep=11.0pt
+* \columnsep=24.0pt
+* \skip\footins=7.0pt plus 11.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidetrue
+* \@mparswitchtrue
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+\c@mv@tabular=\count369
+\c@mv@boldtabular=\count370
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/upquote/upquo
+te.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
+tim
+)
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
+Package caption Info: End \AtBeginDocument code.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 17.28pt on input line 113.
+LaTeX Font Info:    Trying to load font information for T1+LinuxBiolinumT-TLF o
+n input line 113.
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/libertine/T1L
+inuxBiolinumT-TLF.fd
+File: T1LinuxBiolinumT-TLF.fd 2017/03/20 (autoinst) Font definitions for T1/Lin
+uxBiolinumT-TLF.
+)
+LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
+(Font)              scaled to size 17.28pt on input line 113.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `LinuxBiolinumT-TLF' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/b/n' will be
+(Font)              scaled to size 17.28pt on input line 113.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 12.0pt on input line 113.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 10.0pt on input line 113.
+LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 10.0pt on input line 113.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `LinuxLibertineT-TLF' (encoding: OT1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+LaTeX Font Info:    Font shape `OML/nxlmi/m/it' will be
+(Font)              scaled to size 10.0pt on input line 113.
+LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
+(Font)              scaled to size 10.0pt on input line 113.
+LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
+(Font)              scaled to size 10.0pt on input line 113.
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mt-
+msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mt-
+msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+)
+LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
+(Font)              scaled to size 10.0pt on input line 113.
+LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
+(Font)              scaled to size 10.0pt on input line 113.
+LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
+(Font)              scaled to size 10.0pt on input line 113.
+LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
+(Font)              scaled to size 10.0pt on input line 113.
+LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 12.0pt on input line 113.
+LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 8.8pt on input line 113.
+LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 6.6pt on input line 113.
+LaTeX Font Info:    Font shape `OML/nxlmi/m/it' will be
+(Font)              scaled to size 12.0pt on input line 113.
+LaTeX Font Info:    Font shape `OML/nxlmi/m/it' will be
+(Font)              scaled to size 8.8pt on input line 113.
+LaTeX Font Info:    Font shape `OML/nxlmi/m/it' will be
+(Font)              scaled to size 6.6pt on input line 113.
+LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
+(Font)              scaled to size 12.0pt on input line 113.
+LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
+(Font)              scaled to size 8.8pt on input line 113.
+LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
+(Font)              scaled to size 6.6pt on input line 113.
+LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
+(Font)              scaled to size 12.0pt on input line 113.
+LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
+(Font)              scaled to size 8.8pt on input line 113.
+LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
+(Font)              scaled to size 6.6pt on input line 113.
+LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
+(Font)              scaled to size 12.0pt on input line 113.
+LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
+(Font)              scaled to size 8.8pt on input line 113.
+LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
+(Font)              scaled to size 6.6pt on input line 113.
+LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
+(Font)              scaled to size 12.0pt on input line 113.
+LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
+(Font)              scaled to size 8.8pt on input line 113.
+LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
+(Font)              scaled to size 6.6pt on input line 113.
+LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
+(Font)              scaled to size 12.0pt on input line 113.
+LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
+(Font)              scaled to size 8.8pt on input line 113.
+LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
+(Font)              scaled to size 6.6pt on input line 113.
+LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
+(Font)              scaled to size 12.0pt on input line 113.
+LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
+(Font)              scaled to size 8.8pt on input line 113.
+LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
+(Font)              scaled to size 6.6pt on input line 113.
+LaTeX Font Info:    Trying to load font information for TS1+LinuxLibertineT-TLF
+ on input line 113.
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/libertine/TS1
+LinuxLibertineT-TLF.fd
+File: TS1LinuxLibertineT-TLF.fd 2017/03/20 (autoinst) Font definitions for TS1/
+LinuxLibertineT-TLF.
+)
+LaTeX Font Info:    Font shape `TS1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 8.8pt on input line 113.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `LinuxLibertineT-TLF' (encoding: TS1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 5.5pt on input line 113.
+LaTeX Font Info:    Font shape `TS1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 5.5pt on input line 113.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
+(Font)              scaled to size 9.0pt on input line 113.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
+(Font)              scaled to size 10.95pt on input line 113.
+LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 9.0pt on input line 113.
+LaTeX Font Info:    Font shape `OML/nxlmi/m/it' will be
+(Font)              scaled to size 9.0pt on input line 113.
+LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
+(Font)              scaled to size 9.0pt on input line 113.
+LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
+(Font)              scaled to size 9.0pt on input line 113.
+LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
+(Font)              scaled to size 9.0pt on input line 113.
+LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
+(Font)              scaled to size 9.0pt on input line 113.
+LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
+(Font)              scaled to size 9.0pt on input line 113.
+LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
+(Font)              scaled to size 9.0pt on input line 113.
+ [1.1{/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/map/pdftex/u
+pdmap/pdftex.map}{/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/
+enc/dvips/libertine/lbtn_25tcsq.enc}{/opt/homebrew/Cellar/texlive/20260301/shar
+e/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc}{/opt/homebrew/Cellar/te
+xlive/20260301/share/texmf-dist/fonts/enc/dvips/libertine/lbtn_naooyc.enc}
+
+{/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/enc/dvips/liberti
+ne/lbtn_nh77jq.enc}]
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
+(Font)              scaled to size 9.0pt on input line 124.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (7.67453pt too wide) in paragraph at lines 156--177
+ [][] 
+ []
+
+LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
+(Font)              scaled to size 9.0pt on input line 189.
+LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
+(Font)              scaled to size 7.0pt on input line 189.
+[2.2{/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/enc/dvips/lib
+ertine/lbtn_7grukw.enc}]
+Overfull \hbox (3.73509pt too wide) in paragraph at lines 190--191
+[]\T1/LinuxLibertineT-TLF/m/n/9 (-20) An evaluation-driven uni-fi-ca-tion into 
+a sin-gle mode-switching
+ []
+
+
+Overfull \hbox (18.27869pt too wide) in paragraph at lines 198--199
+\T1/LinuxLibertineT-TLF/m/n/9 (-20) learn-ing tech-niques. Mod-ern sys-tems pri
+-mar-ily an-a-lyze fa-cial behaviors---
+ []
+
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 8.0pt on input line 215.
+LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 8.0pt on input line 217.
+LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 6.0pt on input line 217.
+LaTeX Font Info:    Font shape `OML/nxlmi/m/it' will be
+(Font)              scaled to size 8.0pt on input line 217.
+LaTeX Font Info:    Font shape `OML/nxlmi/m/it' will be
+(Font)              scaled to size 6.0pt on input line 217.
+LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
+(Font)              scaled to size 8.0pt on input line 217.
+LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
+(Font)              scaled to size 6.0pt on input line 217.
+LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
+(Font)              scaled to size 8.0pt on input line 217.
+LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
+(Font)              scaled to size 6.0pt on input line 217.
+LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
+(Font)              scaled to size 8.0pt on input line 217.
+LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
+(Font)              scaled to size 6.0pt on input line 217.
+LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
+(Font)              scaled to size 8.0pt on input line 217.
+LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
+(Font)              scaled to size 6.0pt on input line 217.
+LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
+(Font)              scaled to size 8.0pt on input line 217.
+LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
+(Font)              scaled to size 6.0pt on input line 217.
+LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
+(Font)              scaled to size 8.0pt on input line 217.
+LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
+(Font)              scaled to size 6.0pt on input line 217.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
+(Font)              scaled to size 8.0pt on input line 219.
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+19) Traditional
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Interpretable
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\T1/LinuxLibertineT-TLF/m/n/8 (+20) fea-tures; bi-nary
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 222--222
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Deep
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 222--222
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) CNN, CNN-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 222--222
+\T1/LinuxLibertineT-TLF/m/n/8 (+20) LSTM, ViT;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 222--222
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) High ac-cu-racy;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 223--223
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) CLIP, GPT-4V,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 223--224
+\T1/LinuxLibertineT-TLF/m/n/8 (+20) natural-language
+ []
+
+
+Underfull \vbox (badness 3623) has occurred while \output is active []
+
+ [3.3]
+Underfull \hbox (badness 10000) in paragraph at lines 270--270
+[]|\T1/LinuxLibertineT-TLF/b/n/8 (+20) Companion
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--270
+[]|\T1/LinuxLibertineT-TLF/b/n/8 (+20) Dashboard
+ []
+
+
+Overfull \hbox (1.29874pt too wide) in paragraph at lines 272--272
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (-20) Transparency| 
+ []
+
+
+Underfull \hbox (badness 2538) in paragraph at lines 272--272
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Color-coded sta-
+ []
+
+
+Overfull \hbox (1.90692pt too wide) in paragraph at lines 274--274
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (-20) Explainability| 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 274--274
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) ``Your eyes are
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 274--274
+\T1/LinuxLibertineT-TLF/m/n/8 (+20) get-ting heavy''
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 276--276
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Multiple cues
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 276--276
+\T1/LinuxLibertineT-TLF/m/n/8 (+20) from mul-ti-ple
+ []
+
+
+Overfull \hbox (14.24811pt too wide) in paragraph at lines 268--281
+ [][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 327--327
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Camera
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 329--329
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Drives sta-tus
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 329--330
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) All met-rics
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 331--332
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Composite
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 333--333
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Speech bub-ble
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 333--334
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Full-screen
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 335--335
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Driver Ac-
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[4.4]
+Underfull \vbox (badness 2600) has occurred while \output is active []
+
+<figures/fig_demographics.png, id=358, 2719.15875pt x 842.14626pt>
+File: figures/fig_demographics.png Graphic file (type png)
+<use figures/fig_demographics.png>
+Package pdftex.def Info: figures/fig_demographics.png  used on input line 369.
+(pdftex.def)             Requested size: 241.14749pt x 74.68478pt.
+
+
+Class acmart Warning: A possible image without description on input line 372.
+
+<figures/fig_drowsiness_experience.png, id=359, 2409.0pt x 903.375pt>
+File: figures/fig_drowsiness_experience.png Graphic file (type png)
+<use figures/fig_drowsiness_experience.png>
+Package pdftex.def Info: figures/fig_drowsiness_experience.png  used on input l
+ine 380.
+(pdftex.def)             Requested size: 241.14749pt x 90.42549pt.
+
+Class acmart Warning: A possible image without description on input line 383.
+
+<figures/fig_coping_times.png, id=360, 2407.99625pt x 903.375pt>
+File: figures/fig_coping_times.png Graphic file (type png)
+<use figures/fig_coping_times.png>
+Package pdftex.def Info: figures/fig_coping_times.png  used on input line 389.
+(pdftex.def)             Requested size: 241.14749pt x 90.46684pt.
+
+Class acmart Warning: A possible image without description on input line 392.
+
+[5.5 <./figures/fig_demographics.png> <./figures/fig_drowsiness_experience.png>
+]
+<figures/fig_privacy_dms.png, id=375, 2409.0pt x 903.375pt>
+File: figures/fig_privacy_dms.png Graphic file (type png)
+<use figures/fig_privacy_dms.png>
+Package pdftex.def Info: figures/fig_privacy_dms.png  used on input line 400.
+(pdftex.def)             Requested size: 241.14749pt x 90.42549pt.
+
+
+Class acmart Warning: A possible image without description on input line 403.
+
+<figures/fig_feature_ranking.png, id=377, 2007.5pt x 1003.75pt>
+File: figures/fig_feature_ranking.png Graphic file (type png)
+<use figures/fig_feature_ranking.png>
+Package pdftex.def Info: figures/fig_feature_ranking.png  used on input line 41
+3.
+(pdftex.def)             Requested size: 241.14749pt x 120.56732pt.
+
+Class acmart Warning: A possible image without description on input line 416.
+
+<figures/fig_alert_interface.png, id=378, 2409.0pt x 903.375pt>
+File: figures/fig_alert_interface.png Graphic file (type png)
+<use figures/fig_alert_interface.png>
+Package pdftex.def Info: figures/fig_alert_interface.png  used on input line 42
+6.
+(pdftex.def)             Requested size: 241.14749pt x 90.42549pt.
+
+Class acmart Warning: A possible image without description on input line 429.
+
+[6.6 <./figures/fig_coping_times.png> <./figures/fig_privacy_dms.png> <./figure
+s/fig_feature_ranking.png> <./figures/fig_alert_interface.png>]
+Underfull \hbox (badness 1796) in paragraph at lines 448--449
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Mandatory Bangla alert in all
+ []
+
+
+Underfull \hbox (badness 1454) in paragraph at lines 450--451
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Progressive on-board-ing; Saathi
+ []
+
+
+Underfull \hbox (badness 6316) in paragraph at lines 454--454
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Interface pref-er-ence split
+ []
+
+
+Overfull \hbox (3.84811pt too wide) in paragraph at lines 442--457
+ [][] 
+ []
+
+[7.7]
+LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 49
+8.
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/inconsolata/t
+1zi4.fd
+File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
+)
+LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
+(Font)              scaled to size 9.0pt on input line 498.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `zi4' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+
+Underfull \hbox (badness 2103) in paragraph at lines 527--527
+[]|\T1/LinuxLibertineT-TLF/b/n/8 (+20) Tech Lit-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 529--529
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Rahim
+ []
+
+
+Underfull \hbox (badness 4341) in paragraph at lines 529--529
+\T1/LinuxLibertineT-TLF/m/n/8 (+20) (Truck Dri-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 529--529
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Design 2:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 529--529
+\T1/LinuxLibertineT-TLF/m/n/8 (+20) Com-pan-ion
+ []
+
+
+Underfull \hbox (badness 1728) in paragraph at lines 531--531
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Karim (Bus
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 531--531
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Design 1:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 531--531
+\T1/LinuxLibertineT-TLF/m/n/8 (+20) Dash-board
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 531--531
+\T1/LinuxLibertineT-TLF/m/n/8 (+20) (Drowsy-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 533--533
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Design 3:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 533--533
+\T1/LinuxLibertineT-TLF/m/n/8 (+20) HUD
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 533--533
+\T1/LinuxLibertineT-TLF/m/n/8 (+20) (Drowsy-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 533--534
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Transparency through
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 533--534
+\T1/LinuxLibertineT-TLF/m/n/8 (+20) full real-time met-ric
+ []
+
+[8.8{/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/enc/dvips/inc
+onsolata/i4-t1-4.enc}]
+<figures/DrowsyGuard-Monitoring.png, id=417, 542.025pt x 1029.8475pt>
+File: figures/DrowsyGuard-Monitoring.png Graphic file (type png)
+<use figures/DrowsyGuard-Monitoring.png>
+Package pdftex.def Info: figures/DrowsyGuard-Monitoring.png  used on input line
+ 567.
+(pdftex.def)             Requested size: 82.35887pt x 156.49014pt.
+<figures/DrowsyGuard-Alert.png, id=418, 1084.05pt x 2085.7925pt>
+File: figures/DrowsyGuard-Alert.png Graphic file (type png)
+<use figures/DrowsyGuard-Alert.png>
+Package pdftex.def Info: figures/DrowsyGuard-Alert.png  used on input line 568.
+
+(pdftex.def)             Requested size: 81.31677pt x 156.49014pt.
+<figures/DrowsyGuard-Settings.png, id=419, 1084.05pt x 2146.0175pt>
+File: figures/DrowsyGuard-Settings.png Graphic file (type png)
+<use figures/DrowsyGuard-Settings.png>
+Package pdftex.def Info: figures/DrowsyGuard-Settings.png  used on input line 5
+69.
+(pdftex.def)             Requested size: 79.05063pt x 156.49014pt.
+<figures/DrowsyGuard-Stats.png, id=420, 1084.05pt x 2060.69875pt>
+File: figures/DrowsyGuard-Stats.png Graphic file (type png)
+<use figures/DrowsyGuard-Stats.png>
+Package pdftex.def Info: figures/DrowsyGuard-Stats.png  used on input line 570.
+
+(pdftex.def)             Requested size: 82.30925pt x 156.49014pt.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
+(Font)              scaled to size 7.0pt on input line 572.
+
+
+Class acmart Warning: A possible image without description on input line 575.
+
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
+(Font)              scaled to size 8.0pt on input line 615.
+<figures/Saathi-Monitoring.png, id=423, 1084.05pt x 2409.0pt>
+File: figures/Saathi-Monitoring.png Graphic file (type png)
+<use figures/Saathi-Monitoring.png>
+Package pdftex.def Info: figures/Saathi-Monitoring.png  used on input line 632.
+
+(pdftex.def)             Requested size: 70.41609pt x 156.49014pt.
+<figures/Saathi-Explain.png, id=424, 1084.05pt x 2409.0pt>
+File: figures/Saathi-Explain.png Graphic file (type png)
+<use figures/Saathi-Explain.png>
+Package pdftex.def Info: figures/Saathi-Explain.png  used on input line 633.
+(pdftex.def)             Requested size: 70.41609pt x 156.49014pt.
+<figures/Saathi-Warning.png, id=425, 1084.05pt x 2409.0pt>
+File: figures/Saathi-Warning.png Graphic file (type png)
+<use figures/Saathi-Warning.png>
+Package pdftex.def Info: figures/Saathi-Warning.png  used on input line 634.
+(pdftex.def)             Requested size: 70.41609pt x 156.49014pt.
+<figures/Saathi-Settings.png, id=426, 1084.05pt x 2409.0pt>
+File: figures/Saathi-Settings.png Graphic file (type png)
+<use figures/Saathi-Settings.png>
+Package pdftex.def Info: figures/Saathi-Settings.png  used on input line 635.
+(pdftex.def)             Requested size: 70.41609pt x 156.49014pt.
+
+Class acmart Warning: A possible image without description on input line 640.
+
+[9.9]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [10.10{/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/enc/dvips/
+libertine/lbtn_oexx6f.enc} <./figures/DrowsyGuard-Monitoring.png> <./figures/Dr
+owsyGuard-Alert.png> <./figures/DrowsyGuard-Settings.png> <./figures/DrowsyGuar
+d-Stats.png> <./figures/Saathi-Monitoring.png> <./figures/Saathi-Explain.png> <
+./figures/Saathi-Warning.png> <./figures/Saathi-Settings.png>]
+<figures/DrowsyHUD-Monitoring.png, id=454, 1084.05pt x 2409.0pt>
+File: figures/DrowsyHUD-Monitoring.png Graphic file (type png)
+<use figures/DrowsyHUD-Monitoring.png>
+Package pdftex.def Info: figures/DrowsyHUD-Monitoring.png  used on input line 6
+94.
+(pdftex.def)             Requested size: 70.41609pt x 156.49014pt.
+<figures/DrowsyHUD-Alert.png, id=455, 1084.05pt x 2409.0pt>
+File: figures/DrowsyHUD-Alert.png Graphic file (type png)
+<use figures/DrowsyHUD-Alert.png>
+Package pdftex.def Info: figures/DrowsyHUD-Alert.png  used on input line 695.
+(pdftex.def)             Requested size: 70.41609pt x 156.49014pt.
+<figures/DrowsyHUD-Heatmap.png, id=456, 1084.05pt x 2409.0pt>
+File: figures/DrowsyHUD-Heatmap.png Graphic file (type png)
+<use figures/DrowsyHUD-Heatmap.png>
+Package pdftex.def Info: figures/DrowsyHUD-Heatmap.png  used on input line 696.
+
+(pdftex.def)             Requested size: 70.41609pt x 156.49014pt.
+<figures/DrowsyHUD-Settings.png, id=457, 1084.05pt x 2409.0pt>
+File: figures/DrowsyHUD-Settings.png Graphic file (type png)
+<use figures/DrowsyHUD-Settings.png>
+Package pdftex.def Info: figures/DrowsyHUD-Settings.png  used on input line 697
+.
+(pdftex.def)             Requested size: 70.41609pt x 156.49014pt.
+
+
+Class acmart Warning: A possible image without description on input line 702.
+
+<figures/comparative_interface.png, id=461, 1284.8pt x 856.19875pt>
+File: figures/comparative_interface.png Graphic file (type png)
+<use figures/comparative_interface.png>
+Package pdftex.def Info: figures/comparative_interface.png  used on input line 
+736.
+(pdftex.def)             Requested size: 480.9787pt x 320.52502pt.
+
+Class acmart Warning: A possible image without description on input line 740.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[11.11]
+
+LaTeX Warning: Text page 12 contains only floats.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+LaTeX Warning: Text page 12 contains only floats.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [12.12 <./figures/DrowsyHUD-Monitoring.png> <./figures/DrowsyHUD-Alert.png> <.
+/figures/DrowsyHUD-Heatmap.png> <./figures/DrowsyHUD-Settings.png> <./figures/c
+omparative_interface.png>]
+LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
+(Font)              scaled to size 8.0pt on input line 818.
+
+Underfull \hbox (badness 1515) in paragraph at lines 824--825
+[]\T1/LinuxLibertineT-TLF/b/n/8 (+20) ROUTING: \T1/zi4/m/n/8 / $\LMS/ntxsy/m/n/
+8 !$ \T1/LinuxLibertineT-TLF/m/n/8 (+20) Splash/Onboarding (first launch) or re
+di-rect
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 826--827
+[]\T1/LinuxLibertineT-TLF/b/n/8 (+20) GLOBAL STATE (Zu-s-tand store): \T1/Linux
+LibertineT-TLF/m/n/8 (+20) User pref-er-ences:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 826--827
+\T1/zi4/m/n/8 interfaceMode \T1/LinuxLibertineT-TLF/m/n/8 (+20) (com-pan-ion/da
+shboard/hud), \T1/zi4/m/n/8 sensitivity
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 826--827
+\T1/LinuxLibertineT-TLF/m/n/8 (+20) (false), \T1/zi4/m/n/8 employerSharing \T1/
+LinuxLibertineT-TLF/m/n/8 (+20) (false), \T1/zi4/m/n/8 dataRetention \T1/LinuxL
+ibertineT-TLF/m/n/8 (+20) (end-of-
+ []
+
+
+Underfull \hbox (badness 7308) in paragraph at lines 826--827
+\T1/zi4/m/n/8 perclosScore \T1/LinuxLibertineT-TLF/m/n/8 (+20) (0--100), \T1/zi
+4/m/n/8 eyeAspectRatio \T1/LinuxLibertineT-TLF/m/n/8 (+20) (0.0--0.5), \T1/zi4/
+m/n/8 blinkRate\T1/LinuxLibertineT-TLF/m/n/8 (+20) ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 826--827
+\T1/zi4/m/n/8 headPose \T1/LinuxLibertineT-TLF/m/n/8 (+20) (pitch/yaw/roll), \T
+1/zi4/m/n/8 aiConfidence \T1/LinuxLibertineT-TLF/m/n/8 (+20) (0--100), \T1/zi4/
+m/n/8 eyeState
+ []
+
+LaTeX Font Info:    Font shape `T1/zi4/b/n' will be
+(Font)              scaled to size 8.0pt on input line 842.
+
+Underfull \hbox (badness 10000) in paragraph at lines 842--843
+[]\T1/LinuxLibertineT-TLF/b/n/8 (+20) SIMULATION EN-GINE (\T1/zi4/b/n/8 useDrow
+sinessSimulation \T1/LinuxLibertineT-TLF/b/n/8 (+20) hook):
+ []
+
+[13.13]
+Underfull \hbox (badness 3646) in paragraph at lines 852--853
+\T1/LinuxLibertineT-TLF/m/n/8 (+20) Top bar: green pri-vacy badge with lock ``A
+ll data on your
+ []
+
+
+Underfull \hbox (badness 3158) in paragraph at lines 852--853
+\T1/LinuxLibertineT-TLF/m/n/8 (+20) de-vice'' \T1/LinuxLibertineT-TLF/b/n/8 (+2
+0) [Bangla] \T1/LinuxLibertineT-TLF/m/n/8 (+20) + trip timer + sen-si-tiv-ity l
+a-bel (Con-ser-va-
+ []
+
+LaTeX Font Info:    Font shape `TS1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 8.0pt on input line 854.
+
+Underfull \hbox (badness 10000) in paragraph at lines 884--885
+[]\T1/LinuxLibertineT-TLF/b/n/8 (+20) DASHBOARD SET-TINGS: \T1/LinuxLibertineT-
+TLF/m/n/8 (+20) Sen-si-tiv-ity (3-button: Con-ser-va-
+ []
+
+
+Underfull \hbox (badness 1077) in paragraph at lines 884--885
+\T1/LinuxLibertineT-TLF/b/n/8 (+20) [Bangla]\T1/LinuxLibertineT-TLF/m/n/8 (+20)
+ , model: ``Drowsy-CLIP --- Vi-sion Trans-former + CLIP
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 914--915
+[]\T1/LinuxLibertineT-TLF/b/n/8 (+20) ANIMATIONS: \T1/LinuxLibertineT-TLF/m/n/8
+ (+20) (1) Saathi: CSS keyframe
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [14.14]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+<figures/Unified-Onboarding.png, id=502, 722.7pt x 1606.0pt>
+File: figures/Unified-Onboarding.png Graphic file (type png)
+<use figures/Unified-Onboarding.png>
+Package pdftex.def Info: figures/Unified-Onboarding.png  used on input line 933
+.
+(pdftex.def)             Requested size: 70.41058pt x 156.49014pt.
+<figures/Unified-ModeSelect.png, id=503, 722.7pt x 1606.0pt>
+File: figures/Unified-ModeSelect.png Graphic file (type png)
+<use figures/Unified-ModeSelect.png>
+Package pdftex.def Info: figures/Unified-ModeSelect.png  used on input line 934
+.
+(pdftex.def)             Requested size: 70.41058pt x 156.49014pt.
+<figures/Unified-Companion-Drive.png, id=504, 722.7pt x 1606.0pt>
+File: figures/Unified-Companion-Drive.png Graphic file (type png)
+<use figures/Unified-Companion-Drive.png>
+Package pdftex.def Info: figures/Unified-Companion-Drive.png  used on input lin
+e 935.
+(pdftex.def)             Requested size: 70.41058pt x 156.49014pt.
+<figures/Unified-Dashboard-Drive.png, id=505, 722.7pt x 1606.0pt>
+File: figures/Unified-Dashboard-Drive.png Graphic file (type png)
+<use figures/Unified-Dashboard-Drive.png>
+Package pdftex.def Info: figures/Unified-Dashboard-Drive.png  used on input lin
+e 936.
+(pdftex.def)             Requested size: 70.41058pt x 156.49014pt.
+<figures/Unified-HUD-Drive.png, id=506, 722.7pt x 1606.0pt>
+File: figures/Unified-HUD-Drive.png Graphic file (type png)
+<use figures/Unified-HUD-Drive.png>
+Package pdftex.def Info: figures/Unified-HUD-Drive.png  used on input line 937.
+
+(pdftex.def)             Requested size: 70.41058pt x 156.49014pt.
+<figures/Unified-Settings-ModeSwitch.png, id=507, 722.7pt x 1606.0pt>
+File: figures/Unified-Settings-ModeSwitch.png Graphic file (type png)
+<use figures/Unified-Settings-ModeSwitch.png>
+Package pdftex.def Info: figures/Unified-Settings-ModeSwitch.png  used on input
+ line 938.
+(pdftex.def)             Requested size: 70.41058pt x 156.49014pt.
+
+
+Class acmart Warning: A possible image without description on input line 944.
+
+
+Overfull \hbox (3.18422pt too wide) in paragraph at lines 947--948
+\T1/LinuxLibertineT-TLF/m/n/9 (-20) maps HCAI prin-ci-ples to their mode-specif
+ic im-ple-men-ta-tions within
+ []
+
+
+Underfull \hbox (badness 1009) in paragraph at lines 960--961
+[]|\T1/LinuxLibertineT-TLF/m/it/8 (+20) Companion: \T1/LinuxLibertineT-TLF/m/n/
+8 (+20) Con-ver-sa-tional Bangla (no jar-gon).
+ []
+
+
+Overfull \hbox (13.94128pt too wide) in paragraph at lines 978--979
+\T1/LinuxLibertineT-TLF/m/n/9 (-20) The eval-u-a-tion of the uni-fied pro-to-ty
+pe fol-lowed a for-ma-tive, inspection-
+ []
+
+[15.15]
+Underfull \vbox (badness 3209) has occurred while \output is active []
+
+ [16.16 <./figures/Unified-Onboarding.png> <./figures/Unified-ModeSelect.png> <
+./figures/Unified-Companion-Drive.png> <./figures/Unified-Dashboard-Drive.png> 
+<./figures/Unified-HUD-Drive.png> <./figures/Unified-Settings-ModeSwitch.png>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1100--1101
+[]|\T1/zi4/m/n/8 expo-camera \T1/LinuxLibertineT-TLF/m/n/8 (+20) (\T1/zi4/m/n/8
+ CameraView\T1/LinuxLibertineT-TLF/m/n/8 (+20) ,
+ []
+
+
+Overfull \hbox (11.9626pt too wide) in paragraph at lines 1102--1103
+[]|\T1/zi4/m/n/8 @react-native-ml-kit/face-detection
+ []
+
+[17.17]
+Overfull \hbox (56.92674pt too wide) in paragraph at lines 1115--1116
+[]\T1/LinuxLibertineT-TLF/m/n/9 (-20) A key ar-chi-tec-tural con-straint is tha
+t \T1/zi4/m/n/9 @react-native-ml-kit/face-detection
+ []
+
+
+Overfull \hbox (2.65561pt too wide) in paragraph at lines 1115--1116
+\T1/LinuxLibertineT-TLF/m/n/9 (-20) An ini-tial in-te-gra-tion at-tempt us-ing 
+\T1/zi4/m/n/9 react-native-vision-camera
+ []
+
+
+Overfull \hbox (2.33392pt too wide) in paragraph at lines 1115--1116
+\T1/LinuxLibertineT-TLF/m/n/9 (-20) v4 with \T1/zi4/m/n/9 react-native-vision-c
+amera-face-detector \T1/LinuxLibertineT-TLF/m/n/9 (-20) was aban-
+ []
+
+
+Overfull \hbox (5.08598pt too wide) in paragraph at lines 1115--1116
+\T1/LinuxLibertineT-TLF/m/n/9 (-20) worklets run-times: Re-an-i-mated 4's \T1/z
+i4/m/n/9 react-native-worklets \T1/LinuxLibertineT-TLF/m/n/9 (-20) (loaded
+ []
+
+
+Overfull \hbox (98.57652pt too wide) in paragraph at lines 1115--1116
+\T1/LinuxLibertineT-TLF/m/n/9 (-20) au-to-mat-i-cally by \T1/zi4/m/n/9 babel-pr
+eset-expo\T1/LinuxLibertineT-TLF/m/n/9 (-20) ) and the face de-tec-tor's \T1/zi
+4/m/n/9 react-native-worklets-core\T1/LinuxLibertineT-TLF/m/n/9 (-20) .
+ []
+
+
+Overfull \hbox (49.62968pt too wide) in paragraph at lines 1119--1120
+\T1/LinuxLibertineT-TLF/m/n/9 (-20) time cam-era cap-ture loop. On ev-ery it-er
+-a-tion, \T1/zi4/m/n/9 CameraView.takePictureAsync()
+ []
+
+
+Overfull \hbox (36.26381pt too wide) in paragraph at lines 1119--1120
+\T1/zi4/m/n/9 FaceDetection.detect() \T1/LinuxLibertineT-TLF/m/n/9 (-20) from \
+T1/zi4/m/n/9 @react-native-ml-kit/face-detection\T1/LinuxLibertineT-TLF/m/n/9 (
+-20) .
+ []
+
+
+Overfull \hbox (1.90218pt too wide) in paragraph at lines 1123--1124
+[]\T1/zi4/m/n/9 leftEyeOpenProbability \T1/LinuxLibertineT-TLF/m/n/9 (-20) and 
+\T1/zi4/m/n/9 rightEyeOpenProbability
+ []
+
+
+Overfull \hbox (25.20853pt too wide) in paragraph at lines 1127--1128
+[]\T1/LinuxLibertineT-TLF/m/n/9 (-20) Each cap-tured im-age is deleted af-ter d
+e-tec-tion us-ing \T1/zi4/m/n/9 expo-file-system
+ []
+
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 6.6pt on input line 1135.
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1141.
+
+LaTeX Font Info:    Font shape `TS1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 9.0pt on input line 1141.
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1141.
+
+Missing character: There is no � in font LinLibertineT-tlf-ot1!
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1141.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1141.
+
+Missing character: There is no � in font LinLibertineT-tlf-ot1!
+
+Overfull \hbox (44.16609pt too wide) detected at line 1146
+[] \U/ntxmia/m/it/9 = \OT1/LinuxLibertineT-TLF/m/n/9 0\OML/nxlmi/m/it/9 :\OT1/L
+inuxLibertineT-TLF/m/n/9 40 \LMS/ntxsy/m/n/9 ^^A [] � \OT1/LinuxLibertineT-TLF/
+m/n/9 0\OML/nxlmi/m/it/9 :\OT1/LinuxLibertineT-TLF/m/n/9 25 \LMS/ntxsy/m/n/9 ^^
+A \U/ntxmia/m/it/9 ^^A[] \LMS/ntxsy/m/n/9 � \OT1/LinuxLibertineT-TLF/m/n/9 0\OM
+L/nxlmi/m/it/9 :\OT1/LinuxLibertineT-TLF/m/n/9 20 \LMS/ntxsy/m/n/9 ^^A [] � \OT
+1/LinuxLibertineT-TLF/m/n/9 0\OML/nxlmi/m/it/9 :\OT1/LinuxLibertineT-TLF/m/n/9 
+15 \LMS/ntxsy/m/n/9 ^^A []
+ []
+
+
+Overfull \hbox (16.08536pt too wide) in paragraph at lines 1155--1156
+\T1/LinuxLibertineT-TLF/m/n/9 (-20) for Level 2, sus-tained alarm for Level 3) 
+are im-ple-mented via \T1/zi4/m/n/9 expo-audio
+ []
+
+
+! LaTeX Error: Unicode character আ (U+0986)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1159 ...n link]'' / ``I am drowsy in the car.''}
+                                                   The feature requires expl...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! LaTeX Error: Unicode character ম (U+09AE)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1159 ...n link]'' / ``I am drowsy in the car.''}
+                                                   The feature requires expl...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! LaTeX Error: Unicode character ি (U+09BF)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1159 ...n link]'' / ``I am drowsy in the car.''}
+                                                   The feature requires expl...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! LaTeX Error: Unicode character গ (U+0997)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1159 ...n link]'' / ``I am drowsy in the car.''}
+                                                   The feature requires expl...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! LaTeX Error: Unicode character া (U+09BE)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1159 ...n link]'' / ``I am drowsy in the car.''}
+                                                   The feature requires expl...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! LaTeX Error: Unicode character ড (U+09A1)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1159 ...n link]'' / ``I am drowsy in the car.''}
+                                                   The feature requires expl...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! LaTeX Error: Unicode character ় (U+09BC)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1159 ...n link]'' / ``I am drowsy in the car.''}
+                                                   The feature requires expl...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! LaTeX Error: Unicode character ি (U+09BF)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1159 ...n link]'' / ``I am drowsy in the car.''}
+                                                   The feature requires expl...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! LaTeX Error: Unicode character ত (U+09A4)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1159 ...n link]'' / ``I am drowsy in the car.''}
+                                                   The feature requires expl...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! LaTeX Error: Unicode character ে (U+09C7)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1159 ...n link]'' / ``I am drowsy in the car.''}
+                                                   The feature requires expl...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! LaTeX Error: Unicode character ক (U+0995)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1159 ...n link]'' / ``I am drowsy in the car.''}
+                                                   The feature requires expl...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! LaTeX Error: Unicode character ্ (U+09CD)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1159 ...n link]'' / ``I am drowsy in the car.''}
+                                                   The feature requires expl...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! LaTeX Error: Unicode character ল (U+09B2)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1159 ...n link]'' / ``I am drowsy in the car.''}
+                                                   The feature requires expl...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! LaTeX Error: Unicode character া (U+09BE)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1159 ...n link]'' / ``I am drowsy in the car.''}
+                                                   The feature requires expl...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! LaTeX Error: Unicode character ন (U+09A8)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1159 ...n link]'' / ``I am drowsy in the car.''}
+                                                   The feature requires expl...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! LaTeX Error: Unicode character ্ (U+09CD)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1159 ...n link]'' / ``I am drowsy in the car.''}
+                                                   The feature requires expl...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! LaTeX Error: Unicode character ত (U+09A4)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1159 ...n link]'' / ``I am drowsy in the car.''}
+                                                   The feature requires expl...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! LaTeX Error: Unicode character । (U+0964)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1159 ...n link]'' / ``I am drowsy in the car.''}
+                                                   The feature requires expl...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+[18.18]
+Overfull \hbox (11.5352pt too wide) in paragraph at lines 1171--1172
+\T1/LinuxLibertineT-TLF/m/n/9 (-20) con-trolled eval-u-a-tion was con-ducted wi
+th a co-hort of three Bangladeshi
+ []
+
+
+Overfull \hbox (1.13145pt too wide) in paragraph at lines 1180--1181
+[]\T1/LinuxLibertineT-TLF/b/n/9 (-20) System Us-abil-ity Scale (SUS): \T1/Linux
+LibertineT-TLF/m/n/9 (-20) 10-item stan-dard scale scored
+ []
+
+
+Overfull \hbox (24.2636pt too wide) in paragraph at lines 1195--1196
+\T1/LinuxLibertineT-TLF/m/n/9 (-20) The three participants---all daily pri-vate
+ com-muters in Dhaka, Bangladesh---
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1208--1208
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) School
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1210--1210
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Driving Ex-pe-ri-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1212--1212
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Low-
+ []
+
+
+Overfull \hbox (14.24768pt too wide) in paragraph at lines 1202--1221
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Overfull \hbox (60.06042pt too wide) in paragraph at lines 1233--1253
+ [][] 
+ []
+
+[19.19]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Overfull \hbox (7.44122pt too wide) in paragraph at lines 1317--1318
+[]\T1/LinuxLibertineT-TLF/m/n/9 (-20) The highest-rated features---false-alarm 
+con-trol and explainability---
+ []
+
+[20.20]
+Overfull \hbox (3.82422pt too wide) in paragraph at lines 1358--1359
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (-20) Medium| 
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 1359--1359
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Mirror-check gaze mis-clas-si-
+ []
+
+
+Underfull \hbox (badness 3343) in paragraph at lines 1362--1362
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Calibration screen too text-
+ []
+
+
+Overfull \hbox (3.82422pt too wide) in paragraph at lines 1362--1363
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (-20) Medium| 
+ []
+
+
+Overfull \hbox (3.82422pt too wide) in paragraph at lines 1364--1365
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (-20) Medium| 
+ []
+
+
+Overfull \hbox (3.82422pt too wide) in paragraph at lines 1367--1368
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (-20) Medium| 
+ []
+
+
+Overfull \hbox (3.82422pt too wide) in paragraph at lines 1368--1369
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (-20) Medium| 
+ []
+
+
+Overfull \hbox (3.82422pt too wide) in paragraph at lines 1369--1370
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (-20) Medium| 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1370--1370
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Continuous cam-era drain
+ []
+
+
+Overfull \hbox (3.82422pt too wide) in paragraph at lines 1372--1373
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (-20) Medium| 
+ []
+
+
+Underfull \hbox (badness 1178) in paragraph at lines 1373--1373
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Prayer-time breaks not in-te-
+ []
+
+
+Overfull \hbox (3.82422pt too wide) in paragraph at lines 1375--1376
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (-20) Medium| 
+ []
+
+
+Overfull \hbox (25.0936pt too wide) in paragraph at lines 1354--1378
+ [][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [21.21]
+Overfull \hbox (16.66254pt too wide) in paragraph at lines 1438--1439
+[]\T1/LinuxLibertineT-TLF/b/n/9 (-20) Trust cal-i-bra-tion across per-sonas. \T
+1/LinuxLibertineT-TLF/m/n/9 (-20) The zero-prior-DMS-experience
+ []
+
+
+Overfull \hbox (17.24664pt too wide) in paragraph at lines 1456--1457
+[]\T1/LinuxLibertineT-TLF/b/n/9 (-20) Persona-driven de-sign pre-vents ma-jor-i
+ty tyranny. \T1/LinuxLibertineT-TLF/m/n/9 (-20) The 45/36/18%
+ []
+
+[22.22]
+Overfull \hbox (22.38222pt too wide) in paragraph at lines 1460--1461
+[]\T1/LinuxLibertineT-TLF/b/n/9 (-20) Cultural con-text de-mands more than tran
+s-la-tion. \T1/LinuxLibertineT-TLF/m/n/9 (-20) The Bangladeshi
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (7.8128pt too wide) in paragraph at lines 1476--1477
+[]\T1/LinuxLibertineT-TLF/b/n/9 (-20) Sample size. \T1/LinuxLibertineT-TLF/m/n/
+9 (-20) The user re-search was con-ducted with 11 Bangladeshi
+ []
+
+
+Overfull \hbox (6.34949pt too wide) in paragraph at lines 1478--1479
+[]\T1/LinuxLibertineT-TLF/b/n/9 (-20) Formative eval-u-a-tion only. \T1/LinuxLi
+bertineT-TLF/m/n/9 (-20) The eval-u-a-tion em-ployed inspection-
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [23.23]
+Overfull \hbox (95.09993pt too wide) in paragraph at lines 1496--1497
+\T1/LinuxLibertineT-TLF/m/n/9 (-20) Na-tive) with real on-device ML Kit face de
+-tec-tion (\T1/zi4/m/n/9 @react-native-ml-kit/face-detection\T1/LinuxLibertineT
+-TLF/m/n/9 (-20) )
+ []
+
+(./AHCI_Assignment 2.bbl
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
+(Font)              scaled to size 7.0pt on input line 45.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+)
+
+Class acmart Warning: Some images may lack descriptions.
+(acmart)              ACM is committed to complying with the upcoming US ADA ht
+tps://accessiblyapp.com/accessibility-compliance/ada/ and European Accessibilit
+y Act (EAA) https://accessiblyapp.com/accessibility-compliance/eaa/ regulations
+ by actively working to ensure our publications and application services are ac
+cessible to individuals with disabilities, adhering to the WCAG guidelines to p
+rovide a seamless experience for all users, and regularly reviewing our accessi
+bility practices to maintain compliance with evolving standards. 
+(acmart)              To this end, we strongly encourage our authors to provide
+ alternative text and captions for images and multimedia content. It is also im
+portant to optimize color contrast for the visually impaired. Taking these impo
+rtant steps when creating your papers will ensure that the widest possible audi
+ence can ingest your work..
+
+
+Class acmart Warning: ACM reference format is mandatory 
+(acmart)              for papers over one page. 
+(acmart)              Please add printacmref=true to the 
+(acmart)              \settopmatter command..
+
+
+Class acmart Warning: CCS concepts are mandatory for papers over two pages.
+
+
+Package balance Warning: You have called \balance in second column
+(balance)                Columns might not be balanced.
+
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/stringenc/s
+e-pdfdoc.def
+File: se-pdfdoc.def 2019/11/29 v1.12 stringenc: PDFDocEncoding
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/stringenc/s
+e-utf8.def
+File: se-utf8.def 2019/11/29 v1.12 stringenc: UTF-8
+) [24.24] (./AHCI_Assignment 2.aux)
+ ***********
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+ ***********
+Package rerunfilecheck Info: File `"AHCI_Assignment 2".out' has not changed.
+(rerunfilecheck)             Checksum: 4851D4F1D5AA75888AC88D0481DBEED9;14744.
+ ) 
+Here is how much of TeX's memory you used:
+ 34967 strings out of 467525
+ 665461 string characters out of 5408440
+ 1111057 words of memory out of 5000000
+ 62147 multiletter control sequences out of 15000+600000
+ 857028 words of font info for 669 fonts, out of 8000000 for 9000
+ 1302 hyphenation exceptions out of 8191
+ 98i,12n,131p,1489b,872s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/in
+consolata/Inconsolata-zi4b.pfb></opt/homebrew/Cellar/texlive/20260301/share/tex
+mf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></opt/homebrew/Cell
+ar/texlive/20260301/share/texmf-dist/fonts/type1/public/newtx/LibertineMathMI.p
+fb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/n
+ewtx/LibertineMathRM.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dis
+t/fonts/type1/public/libertine/LinBiolinumT.pfb></opt/homebrew/Cellar/texlive/2
+0260301/share/texmf-dist/fonts/type1/public/libertine/LinBiolinumTB.pfb></opt/h
+omebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/libertine/L
+inLibertineT.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/
+type1/public/libertine/LinLibertineTB.pfb></opt/homebrew/Cellar/texlive/2026030
+1/share/texmf-dist/fonts/type1/public/libertine/LinLibertineTI.pfb></opt/homebr
+ew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/newtx/NewTXMI.pf
+b></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/ne
+wtx/NewTXMI7.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/
+type1/public/newtx/txmiaX.pfb></opt/homebrew/Cellar/texlive/20260301/share/texm
+f-dist/fonts/type1/public/newtx/txsym.pfb></opt/homebrew/Cellar/texlive/2026030
+1/share/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
+Output written on "AHCI_Assignment 2.pdf" (24 pages, 1990755 bytes).
+PDF statistics:
+ 701 PDF objects out of 1000 (max. 8388607)
+ 589 compressed objects within 6 object streams
+ 182 named destinations out of 1000 (max. 500000)
+ 111802 words of extra memory for PDF output out of 128383 (max. 10000000)
+
