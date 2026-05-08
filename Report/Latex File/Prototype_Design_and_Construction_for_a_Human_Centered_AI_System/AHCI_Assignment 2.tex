@@ -6,10 +6,10 @@
 
 %Course information
 \acmConference
-[CSE 6275/CSE 6391: AHCI, Assignment 2]
-{}
-{CSE Dept.}
-{IUT}
+[AHCI 2026]
+{Advanced Human-Computer Interaction}
+{2026}
+{IUT, OIC, Dhaka, Bangladesh}
 
 \usepackage[utf8]{inputenc}
 \usepackage{microtype}
@@ -46,7 +46,7 @@
    }
 
 
-\title{Human-Centered AI for Driver Drowsiness Detection: Design and Prototype Development}
+\title[DrowsyGuard: HCAI Design and Mobile Deployment for Driver Drowsiness Detection]{DrowsyGuard: Multi-Variant Human-Centered AI Design and Mobile Deployment for Driver Drowsiness Detection in Bangladesh}
 
 
 \author{Sadik Yasin Eftee}
@@ -1198,7 +1198,7 @@ The evaluation instrument comprised the following validated and purpose-designed
 
 The three participants---all daily private commuters in Dhaka---were recruited to match the Persona~3 (Fatema) profile: educated, moderate-to-high technology comfort, and regular exposure to urban driving fatigue (Table~\ref{tab:eval_participants}). No participant had prior experience with a driver monitoring system. Participants are referred to by anonymous codes (P1--P3); all personally identifying information has been withheld.
 
-\begin{table}[h]
+\begin{table}[H]
 \centering
 \caption{Anonymised Evaluation Cohort: Private Commuter Participants ($n = 3$)}
 \label{tab:eval_participants}
@@ -1229,7 +1229,7 @@ Test Context & In-vehicle & In-vehicle & Lab setup \\
 \paragraph{Task Performance.}
 Mean task ease-of-completion across all 12 tasks was \textbf{5.64/7.0}, indicating that most tasks were completed with minimal difficulty (Table~\ref{tab:task_results}). The easiest tasks were ending a session (T12: 6.67/7) and granting initial permissions (T1: 6.0/7). The most challenging tasks---mode switching (T3), sensitivity toggle discovery (T7), and weekly summary navigation (T11), all scoring 5.0/7---reflect icon-discoverability issues between Dashboard and HUD modes identified in the qualitative feedback.
 
-\begin{table}[h]
+\begin{table}[H]
 \centering
 \caption{Task Ease-of-Completion Ratings (1--7, 7~=~easiest)}
 \label{tab:task_results}
@@ -1265,7 +1265,7 @@ Raw NASA-TLX scores~\cite{ref16} (0--10, lower~=~better) were \textbf{2.33} (P1)
 \paragraph{Alert Quality, Trust, and Privacy.}
 The alert quality mean across seven items was \textbf{4.14/5} (Table~\ref{tab:quant_summary}), with Level-3 urgency (A3: 5.0/5) and Level-2 attention capture (A2: 4.67/5) scoring highest. Alert volume calibration for ambient noise (A7: 3.33/5) was the lowest-rated item and a consistent concern across all participants. The trust mean was \textbf{4.25/5}; highest-rated trust items were on-device processing (TR11: 5.0/5), false-alarm flagging empowerment (TR7: 4.67/5), and human override control (TR5: 4.67/5). Initial AI accuracy trust (TR1: 3.33/5) and fairness trust (TR2: 3.33/5) were lower, consistent with first-exposure scepticism documented in HCAI adoption research~\cite{ref23}. Privacy ratings were the highest-scoring dimension overall (\textbf{4.73/5}), with unanimous perfect scores (5/5) on the right to delete all data, employer opt-in requirement, insurance consent, transparent data disclosure, and protection from employer penalties for system misclassification.
 
-\begin{table}[h]
+\begin{table}[H]
 \centering
 \caption{Quantitative Evaluation Summary (All Instruments)}
 \label{tab:quant_summary}
@@ -1297,7 +1297,7 @@ NPS scores of 8, 7, and 9 yield a \textbf{mean NPS of 8.0}, placing all three pa
 \paragraph{Top- and Bottom-Rated Features.}
 Table~\ref{tab:feature_ratings} presents the five highest-rated and two lowest-rated features by mean score across all participants.
 
-\begin{table}[h]
+\begin{table}[H]
 \centering
 \caption{Feature Preference Ratings (1--5 Likert)}
 \label{tab:feature_ratings}
@@ -1348,8 +1348,6 @@ Three critical incidents with direct implications for the detection pipeline and
 
 \subsection{Prioritised Improvement Recommendations}
 
-Table~\ref{tab:improvements} summarises the 18 improvements derived from the evaluation, categorised by severity (Critical / High / Medium / Low) and implementation effort.
-
 \begin{table}[H]
 \centering
 \caption{Prioritised Improvement Recommendations ($n = 18$)}
@@ -1381,8 +1379,7 @@ I-18 & Noise & Alert volume not adaptive to noise & Low & Medium \\
 \end{tabular}}
 \end{table}
 
-
-The two Critical improvements (I-01, I-02) require changes to the detection pipeline rather than the interface layer. Speed-aware sensitivity suppression (I-01) and gaze-direction-aware classification (I-02) together address the root causes of the false-alarm incidents that P2 identified as the primary barrier to daily adoption. Based on the participants' descriptions of incident frequency, resolving these two issues is estimated to reduce the experienced false-alarm rate in Dhaka urban driving by approximately 60--70\%.
+Table~\ref{tab:improvements} categorises 18 improvements by severity (Critical / High / Medium / Low) and implementation effort. The two Critical improvements (I-01, I-02) require changes to the detection pipeline rather than the interface layer. Speed-aware sensitivity suppression (I-01) and gaze-direction-aware classification (I-02) together address the root causes of the false-alarm incidents that P2 identified as the primary barrier to daily adoption. Based on the participants' descriptions of incident frequency, resolving these two issues is estimated to reduce the experienced false-alarm rate in Dhaka urban driving by approximately 60--70\%.
 
 
 % ================================================================
@@ -1398,7 +1395,7 @@ The two highest-priority requirements identified by the survey---detection accur
 
 Table~\ref{tab:req_alignment_final} provides a detailed mapping between the key survey findings and their implementation in the unified prototype.
 
-\begin{table}[h]
+\begin{table}[H]
 \centering
 \caption{Alignment Between Key Survey Findings and Unified Prototype Features}
 \label{tab:req_alignment_final}

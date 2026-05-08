@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Homebrew) (preloaded format=pdflatex 2026.3.4)  8 MAY 2026 08:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Homebrew) (preloaded format=pdflatex 2026.3.4)  8 MAY 2026 09:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1551,6 +1551,9 @@ LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
 (Font)              scaled to size 9.0pt on input line 116.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
 (Font)              scaled to size 9.0pt on input line 116.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
  [1.1{/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/map/pdftex/u
 pdmap/pdftex.map}{/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/
 enc/dvips/libertine/lbtn_25tcsq.enc}{/opt/homebrew/Cellar/texlive/20260301/shar
@@ -1570,9 +1573,9 @@ Overfull \hbox (7.67453pt too wide) in paragraph at lines 159--180
  []
 
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 9.0pt on input line 192.
+(Font)              scaled to size 9.0pt on input line 191.
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 7.0pt on input line 192.
+(Font)              scaled to size 7.0pt on input line 191.
 [2.2{/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/enc/dvips/lib
 ertine/lbtn_7grukw.enc}]
 Underfull \hbox (badness 3179) in paragraph at lines 193--194
@@ -1587,9 +1590,6 @@ Package natbib Warning: Citation `ref21' on page 3 undefined on input line 203.
 
 Package natbib Warning: Citation `ref22' on page 3 undefined on input line 203.
 
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
 (Font)              scaled to size 8.0pt on input line 218.
@@ -1725,10 +1725,7 @@ Overfull \hbox (14.24811pt too wide) in paragraph at lines 271--284
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [4.4]
+[4.4]
 Underfull \hbox (badness 10000) in paragraph at lines 330--330
 []|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Camera
  []
@@ -2291,77 +2288,77 @@ T1/LinuxLibertineT-TLF/m/n/9 (-20) The UEQ-S mean was \T1/LinuxLibertineT-TLF/b
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Overfull \hbox (2.37593pt too wide) in paragraph at lines 1381--1381
+Overfull \hbox (2.37593pt too wide) in paragraph at lines 1379--1379
 []|\T1/LinuxLibertineT-TLF/b/n/8 (-20) Effort| 
  []
 
 
-Overfull \hbox (8.09239pt too wide) in paragraph at lines 1381--1381
+Overfull \hbox (8.09239pt too wide) in paragraph at lines 1379--1379
 []|\T1/LinuxLibertineT-TLF/m/n/8 (-20) Medium| 
  []
 
 
-Overfull \hbox (8.09239pt too wide) in paragraph at lines 1381--1381
+Overfull \hbox (8.09239pt too wide) in paragraph at lines 1379--1379
 []|\T1/LinuxLibertineT-TLF/m/n/8 (-20) Medium| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1381--1381
+Underfull \hbox (badness 10000) in paragraph at lines 1379--1379
 []|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Mode
  []
 
 
-Overfull \hbox (8.09239pt too wide) in paragraph at lines 1381--1381
+Overfull \hbox (8.09239pt too wide) in paragraph at lines 1379--1379
 []|\T1/LinuxLibertineT-TLF/m/n/8 (-20) Medium| 
  []
 
 
-Underfull \hbox (badness 4229) in paragraph at lines 1381--1381
+Underfull \hbox (badness 4229) in paragraph at lines 1379--1379
 []|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Alert dis-torts over Blue-
  []
 
 
-Overfull \hbox (8.09239pt too wide) in paragraph at lines 1381--1381
+Overfull \hbox (8.09239pt too wide) in paragraph at lines 1379--1379
 []|\T1/LinuxLibertineT-TLF/m/n/8 (-20) Medium| 
  []
 
 
-Underfull \hbox (badness 1354) in paragraph at lines 1381--1381
+Underfull \hbox (badness 1354) in paragraph at lines 1379--1379
 []|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Readability in di-rect sun-
  []
 
 
-Overfull \hbox (8.09239pt too wide) in paragraph at lines 1381--1381
+Overfull \hbox (8.09239pt too wide) in paragraph at lines 1379--1379
 []|\T1/LinuxLibertineT-TLF/m/n/8 (-20) Medium| 
  []
 
 
-Overfull \hbox (8.09239pt too wide) in paragraph at lines 1381--1381
+Overfull \hbox (8.09239pt too wide) in paragraph at lines 1379--1379
 []|\T1/LinuxLibertineT-TLF/m/n/8 (-20) Medium| 
  []
 
 
-Underfull \hbox (badness 3375) in paragraph at lines 1381--1381
+Underfull \hbox (badness 3375) in paragraph at lines 1379--1379
 []|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Camera drain on 45min
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1381--1381
+Underfull \hbox (badness 10000) in paragraph at lines 1379--1379
 []|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Nav. In-te-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1381--1381
+Underfull \hbox (badness 10000) in paragraph at lines 1379--1379
 []|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Multi-
  []
 
 
-Overfull \hbox (8.09239pt too wide) in paragraph at lines 1381--1381
+Overfull \hbox (8.09239pt too wide) in paragraph at lines 1379--1379
 []|\T1/LinuxLibertineT-TLF/m/n/8 (-20) Medium| 
  []
 
 
-Overfull \hbox (8.09239pt too wide) in paragraph at lines 1381--1381
+Overfull \hbox (8.09239pt too wide) in paragraph at lines 1379--1379
 []|\T1/LinuxLibertineT-TLF/m/n/8 (-20) Medium| 
  []
 
@@ -2370,13 +2367,16 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [21.21]
 [22.22]
-Underfull \hbox (badness 1371) in paragraph at lines 1467--1468
+Underfull \hbox (badness 1371) in paragraph at lines 1464--1465
 \T1/LinuxLibertineT-TLF/m/n/9 (+20) con-nec-tion (Saathi), pro-fes-sional cred-
 i-bil-ity (Dash-board with
  []
 
 
-Underfull \hbox (badness 1939) in paragraph at lines 1481--1482
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [23.23]
+Underfull \hbox (badness 1939) in paragraph at lines 1478--1479
 []\T1/LinuxLibertineT-TLF/b/n/9 (+20) Sample size. \T1/LinuxLibertineT-TLF/m/n/
 9 (+20) The user re-search was con-ducted with 11
  []
@@ -2384,16 +2384,10 @@ Underfull \hbox (badness 1939) in paragraph at lines 1481--1482
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [23.23]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 
 (./AHCI_Assignment 2.bbl
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
 (Font)              scaled to size 7.0pt on input line 50.
-
-Underfull \vbox (badness 6396) has occurred while \output is active []
-
  [24.24])
 
 Package natbib Warning: There were undefined citations.
@@ -2423,6 +2417,9 @@ Class acmart Warning: ACM reference format is mandatory
 Class acmart Warning: CCS concepts are mandatory for papers over two pages.
 
 
+Overfull \vbox (1.55576pt too high) has occurred while \output is active []
+
+
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/stringenc/s
 e-pdfdoc.def
 File: se-pdfdoc.def 2019/11/29 v1.12 stringenc: PDFDocEncoding
@@ -2435,15 +2432,19 @@ File: se-utf8.def 2019/11/29 v1.12 stringenc: UTF-8
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `"AHCI_Assignment 2".out' has not changed.
 (rerunfilecheck)             Checksum: 4851D4F1D5AA75888AC88D0481DBEED9;14744.
  ) 
 Here is how much of TeX's memory you used:
- 35067 strings out of 467525
- 667658 string characters out of 5408440
- 1116019 words of memory out of 5000000
+ 35064 strings out of 467525
+ 667583 string characters out of 5408440
+ 1117049 words of memory out of 5000000
  62192 multiletter control sequences out of 15000+600000
- 860961 words of font info for 695 fonts, out of 8000000 for 9000
+ 860674 words of font info for 693 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
  98i,13n,131p,1489b,851s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/in
@@ -2464,7 +2465,7 @@ wtx/NewTXMI7.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/
 type1/public/newtx/txmiaX.pfb></opt/homebrew/Cellar/texlive/20260301/share/texm
 f-dist/fonts/type1/public/newtx/txsym.pfb></opt/homebrew/Cellar/texlive/2026030
 1/share/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
-Output written on "AHCI_Assignment 2.pdf" (25 pages, 1996808 bytes).
+Output written on "AHCI_Assignment 2.pdf" (25 pages, 1997425 bytes).
 PDF statistics:
  751 PDF objects out of 1000 (max. 8388607)
  637 compressed objects within 7 object streams
