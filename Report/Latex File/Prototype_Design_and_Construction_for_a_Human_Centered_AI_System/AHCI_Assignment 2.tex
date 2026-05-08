@@ -11,7 +11,10 @@
 {CSE Dept.}
 {IUT}
 
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
 \usepackage{graphicx}
+\setlength{\emergencystretch}{2em}
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{enumitem}
@@ -195,9 +198,9 @@ The key contributions include:
 
 \subsection{Drowsiness Detection Approaches}
 
-Research on Driver Drowsiness Detection (DDD) has advanced significantly through computer vision, machine learning, and deep learning techniques. Modern systems primarily analyze facial behaviors---eye closure, blink frequency, yawning, and head pose---to provide non-intrusive, real-time monitoring \cite{ref3, ref6}.
+Research on Driver Drowsiness Detection (DDD) has advanced significantly through computer vision, machine learning, and deep learning techniques. Modern systems primarily analyze facial behaviors---eye closure, blink frequency, yawning, and head pose---to provide non-intrusive, real-time monitoring~\cite{ref3, ref6}. Comprehensive reviews of sensor-based approaches~\cite{ref24} and behavioral measure methods~\cite{ref28} confirm that vision-based facial analysis has become the dominant paradigm due to its non-intrusiveness and accuracy.
 
-Hussain and Kim \cite{ref1} developed a real-time CNN--RNN architecture for eye-state classification, achieving approximately 97\% accuracy. Patel and Singh \cite{ref2} proposed a CNN-based approach for eye state classification under varying lighting conditions with over 95\% accuracy and low latency. Zhang and Wang \cite{ref3} introduced a multimodal framework combining PERCLOS, facial landmarks, and Random Forest classification, reporting approximately 90\% accuracy under head movement variations. Rim et al.\ \cite{ref8} reviewed physiological signal approaches (EEG, ECG), finding high accuracy but limited real-world adoption due to intrusive sensors.
+Hussain and Kim~\cite{ref1} developed a real-time CNN--RNN architecture for eye-state classification, achieving approximately 97\% accuracy. Patel and Singh~\cite{ref2} proposed a CNN-based approach for eye state classification under varying lighting conditions with over 95\% accuracy and low latency. Zhang and Wang~\cite{ref3} introduced a multimodal framework combining PERCLOS, facial landmarks, and Random Forest classification, reporting approximately 90\% accuracy under head movement variations. Rim et al.~\cite{ref8} reviewed physiological signal approaches (EEG, ECG), finding high accuracy but limited real-world adoption due to intrusive sensors. Ramzan et al.~\cite{ref25} provide a comprehensive survey of state-of-the-art techniques, confirming that eye-closure metrics (PERCLOS and EAR) remain the most reliable single indicators across detection paradigms. Hu and Zheng~\cite{ref21} demonstrated SVM-based eyelid parameter classification achieving strong drowsiness detection, while Vural et al.~\cite{ref22} showed that multi-feature facial analysis outperforms single-cue approaches in automated drowsiness assessment.
 
 \subsection{The Interface Design Gap}
 
@@ -1112,38 +1115,39 @@ Min Android SDK & API 24 (Android 7.0 Nougat) \\
 \end{tabular}
 \end{table}
 
-A key architectural constraint is that \texttt{@react-native-ml-kit/face-detection} uses the legacy \texttt{NativeModules} bridge and is incompatible with React Native New Architecture. The build configuration therefore sets \texttt{newArchEnabled: false}, which is supported until Expo SDK~57. An initial integration attempt using \texttt{react-native-vision-camera} v4 with \texttt{react-native-vision-camera-face-detector} was abandoned after discovering an irreconcilable conflict between two worklets runtimes: Reanimated~4's \texttt{react-native-worklets} (loaded automatically by \texttt{babel-preset-expo}) and the face detector's \texttt{react-native-worklets-core}. The pure-bridge ML Kit approach eliminates this class of build-time dependency conflict entirely.
+A key architectural constraint is that \texttt{@react-native-ml-kit/\allowbreak{}face-detection} uses the legacy \texttt{NativeModules} bridge and is incompatible with React Native New Architecture. The build configuration therefore sets \texttt{newArchEnabled:~false}, which is supported until Expo SDK~57. An initial integration attempt using \texttt{react-native-vision-camera} v4 with \texttt{react-native-vision-\allowbreak{}camera-face-detector} was abandoned after discovering an irreconcilable conflict between two worklets runtimes: Reanimated~4's \texttt{react-native-worklets} (loaded by \texttt{babel-preset-expo}) and the face detector's \texttt{react-native-\allowbreak{}worklets-core}. The pure-bridge ML Kit approach eliminates this class of build-time dependency conflict.
 
 \subsection{On-Device Face Detection Integration}
 
-The detection pipeline replaces the simulation engine with a real-time camera capture loop. On every iteration, \texttt{CameraView.takePictureAsync()} captures a JPEG at quality~0.4, and the resulting file URI is passed to \texttt{FaceDetection.detect()} from \texttt{@react-native-ml-kit/face-detection}. The capture interval is 400\,ms ($\approx$2.5~FPS), which balances detection responsiveness against battery consumption on mid-range Android devices. The face detection options are set to \texttt{performanceMode: 'fast'} and \texttt{classificationMode: 'all'} to enable eye-open probability classification.
+The detection pipeline replaces the simulation engine with a real-time capture loop. Each iteration calls \texttt{takePictureAsync()} (JPEG at quality~0.4) and passes the URI to ML Kit. The capture interval is 400\,ms ($\approx$2.5~FPS), balancing responsiveness against battery drain on mid-range Android devices. Detection options are \texttt{performanceMode: 'fast'} and \texttt{classificationMode: 'all'} to enable eye-open probability output.
 
 The ML Kit API returns, for each detected face:
 \begin{itemize}
-    \item \texttt{leftEyeOpenProbability} and \texttt{rightEyeOpenProbability} ($\in [0,1]$) — used for Eye Aspect Ratio and PERCLOS computation.
-    \item \texttt{rotationX} (pitch), \texttt{rotationY} (yaw), \texttt{rotationZ} (roll) in degrees — used for head pose monitoring.
+    \item \texttt{leftEye\allowbreak{}Open\allowbreak{}Probability} and \texttt{rightEye\allowbreak{}Open\allowbreak{}Probability} ($\in [0,1]$) --- for EAR and PERCLOS computation.
+    \item \texttt{rotationX} (pitch), \texttt{rotationY} (yaw), \texttt{rotationZ} (roll) in degrees --- for head pose monitoring.
 \end{itemize}
 
-Each captured image is deleted after detection using \texttt{expo-file-system} to prevent cache accumulation, consistent with the privacy-first design principle.
+Each frame image is deleted immediately after detection via \texttt{expo-file-system}, ensuring no video frames accumulate on disk.
 
 \subsection{Drowsiness Engine}
 
 The \texttt{DrowsinessEngine} TypeScript class mirrors the detection logic previously simulated in the web prototype, now consuming real ML Kit output:
 
-\textbf{PERCLOS Computation.} The Percentage of Eye Closure score is computed per-frame as:
+\textbf{PERCLOS Computation.} The Percentage of Eye Closure (PERCLOS) metric~\cite{ref20} is computed per-frame by deriving a scalar Eye Aspect Ratio (EAR)~\cite{ref19} from the ML Kit eye-open probabilities:
 \[
 \text{EAR} = \frac{\texttt{leftEyeOpenProb} + \texttt{rightEyeOpenProb}}{2}
 \]
 The eye is classified as \textit{closed} when $\text{EAR} < 0.35$ (configurable via the sensitivity setting). PERCLOS is the proportion of frames in the past 30~seconds where the eye was classified as closed, computed over a rolling window.
 
-\textbf{Blink Detection.} Blinks are detected as rapid EAR transitions below and above the closure threshold with a duration under 400\,ms. Blink rate is computed as a rolling count over 60~seconds.
+\textbf{Blink Detection.} Blinks are detected as rapid EAR transitions crossing the closure threshold with duration under 400\,ms~\cite{ref19}. Blink rate is computed as a rolling 60-second count.
 
 \textbf{Head Pose Monitoring.} Abnormal head pose is flagged when $|\textit{pitch}| > 18°$ for more than 3~seconds, indicating a head-droop event. Yaw deviation beyond~$\pm 25°$ for 5~seconds is also flagged as a distraction indicator.
 
 \textbf{Composite Fatigue Score.} The engine computes a composite score on a 0--100 scale:
-\[
-\text{Fatigue} = 0.40 \cdot \text{PERCLOS} + 0.25 \cdot \Delta\text{BlinkRate} + 0.20 \cdot \text{HeadPose} + 0.15 \cdot \text{DrivingTime}
-\]
+\begin{multline*}
+\text{Fatigue} = 0.40 \cdot \text{PERCLOS} + 0.25 \cdot \Delta\text{BlinkRate} \\
++ 0.20 \cdot \text{HeadPose} + 0.15 \cdot \text{DrivingTime}
+\end{multline*}
 where each component is normalised to $[0,1]$ before weighting. The composite score drives the alert level thresholds and the mode-specific rendering (character emotion in Companion Mode, indicator colour in Dashboard Mode, numeric gauge in HUD Mode).
 
 \textbf{Alert Levels.} The engine emits three alert levels based on configurable thresholds (default: PERCLOS~$>$25\% for Level~1, $>$35\% for Level~2, $>$45\% for Level~3, or eye closure duration $>$2.0\,s). Each alert includes a pre-generated bilingual reason string selected from a rule-matched set.
@@ -1152,11 +1156,11 @@ where each component is normalised to $[0,1]$ before weighting. The composite sc
 
 Multi-modal alerts are implemented through two channels:
 
-\textbf{Audio.} Three alert tones (soft chime for Level~1, two-tone beep for Level~2, sustained alarm for Level~3) are implemented via \texttt{expo-audio} using pre-loaded \texttt{AudioPlayer} instances. A night-quiet mode attenuates Level~1 volume by 50\% between 22:00--06:00. An active alert sound loop is started on alert trigger and stopped on dismissal or when the alert level drops.
+\textbf{Audio.} Three tones (chime / two-tone beep / sustained alarm for Levels~1--3) are implemented via \texttt{expo-audio} using pre-loaded \texttt{AudioPlayer} instances. A night-quiet mode attenuates Level~1 by 50\% between 22:00--06:00. The sound loop starts on trigger and stops on dismissal or level drop.
 
 \textbf{Haptics.} Haptic patterns are implemented via \texttt{expo-haptics}: a single medium impact for Level~1, a double impact for Level~2, and a rapid triple-impact loop (repeating every 1.2~s) for Level~3. Haptic feedback is complementary to audio and provides a non-acoustic fallback for environments where audio is not appropriate.
 
-\textbf{Emergency SMS.} If a Level~3 alert is dismissed three times within 10~minutes, the system offers an SMS to a pre-configured emergency contact via \texttt{expo-sms}, using a bilingual message template: \textit{``আমি গাড়িতে ক্লান্ত। [Location link]'' / ``I am drowsy in the car.''} The feature requires explicit opt-in during settings and a 30-second countdown with a cancel button before the SMS is dispatched.
+\textbf{Emergency SMS.} If a Level~3 alert is dismissed three times within 10~minutes, the system offers an SMS to a pre-configured emergency contact via \texttt{expo-sms}, using a bilingual message template: \textit{``I am drowsy in the car. [Location link]''} with an equivalent Bangla translation prepended. The feature requires explicit opt-in during settings and a 30-second countdown with a cancel button before the SMS is dispatched.
 
 \subsection{Build and Distribution}
 
@@ -1168,54 +1172,54 @@ The application is distributed via EAS Build (Expo Application Services) using t
 % ================================================================
 \section{User Evaluation with Private Commuter Cohort}
 
-Following the construction of the functional mobile application, a controlled evaluation was conducted with a cohort of three Bangladeshi private commuter drivers using the live Android APK with real on-device ML Kit face detection. This section presents the evaluation design, participant profiles, quantitative results, and qualitative findings.
+Following the construction of the functional mobile application, a controlled evaluation was conducted with three Bangladeshi private commuter drivers (anonymised as P1, P2, P3) using the live Android APK with real on-device ML Kit face detection. This section presents the evaluation design, participant profiles, quantitative results, and qualitative findings.
 
 \subsection{Evaluation Design}
 
-The evaluation employed a mixed-methods, within-subjects scenario study. Each participant was given a working Android device running the live DrowsyGuard APK and asked to complete 12 structured tasks covering the full interaction flow. Two evaluation contexts were used: \textit{in-vehicle (parked, engine on)} for Participants~1 and~2, simulating a stationary pre-drive check and short monitoring session; and \textit{lab simulation (desk setup)} for Participant~3, replicating a night-drive monitoring scenario. All sessions used the real ML Kit face detection pipeline---not the simulation engine---ensuring that reported false alarms and detection events reflect genuine system behaviour.
+The evaluation employed a mixed-methods, within-subjects scenario study. Each participant was given a working Android device running the live DrowsyGuard APK and asked to complete 12 structured tasks covering the full interaction flow. Two evaluation contexts were used: \textit{in-vehicle (parked, engine on)} for P1 and P2, simulating a stationary pre-drive check and short monitoring session; and \textit{lab simulation (desk setup)} for P3, replicating a night-drive monitoring scenario. All sessions used the real ML Kit face detection pipeline---not the simulation engine---ensuring that reported false alarms and detection events reflect genuine system behaviour.
 
-The evaluation instrument comprised:
+The evaluation instrument comprised the following validated and purpose-designed tools:
 \begin{itemize}
-    \item \textbf{12 Structured Tasks (T1--T12):} Rated on a 1--7 ease-of-completion scale.
-    \item \textbf{System Usability Scale (SUS):} 10-item standard scale scored 0--100.
-    \item \textbf{NASA Task Load Index (NASA-TLX):} 6 dimensions on a 0--10 scale (lower~=~less load).
-    \item \textbf{Alert Quality (A1--A7):} 7 items assessing alert modality and calibration (1--5).
-    \item \textbf{Trust (TR1--TR12):} 12 items assessing AI trust and human oversight (1--5).
-    \item \textbf{Usefulness (U1--U10):} 10 items assessing perceived safety value and willingness to adopt (1--5).
-    \item \textbf{Privacy (P1--P10):} 10 items assessing privacy expectations and control (1--5).
-    \item \textbf{Accessibility (AC1--AC9):} 9 items assessing visual, linguistic, and motor accessibility (1--5).
-    \item \textbf{Heuristic Compliance (H1--H12):} 12 items mapping to Nielsen's heuristics (1--5).
-    \item \textbf{User Experience Questionnaire (UEQ):} 8 items on a 1--7 bipolar scale.
-    \item \textbf{Net Promoter Score (NPS):} 0--10 likelihood-to-recommend scale.
+    \item \textbf{12 Structured Tasks (T1--T12):} Rated on a 1--7 single ease-of-completion item.
+    \item \textbf{System Usability Scale (SUS)}~\cite{ref15}\textbf{:} Standard 10-item scale scored 0--100.
+    \item \textbf{NASA Task Load Index (NASA-TLX)}~\cite{ref16}\textbf{:} 6 dimensions on a 0--10 scale (lower~=~less load).
+    \item \textbf{Alert Quality (A1--A7):} 7 purpose-built items assessing alert modality and calibration (1--5 Likert).
+    \item \textbf{Trust (TR1--TR12):} 12 items assessing AI trust and human oversight (1--5 Likert).
+    \item \textbf{Usefulness (U1--U10):} 10 items assessing perceived safety value and adoption intent (1--5 Likert).
+    \item \textbf{Privacy (PV1--PV10):} 10 items assessing privacy expectations and data control (1--5 Likert).
+    \item \textbf{Accessibility (AC1--AC9):} 9 items assessing visual, linguistic, and motor accessibility (1--5 Likert).
+    \item \textbf{Heuristic Compliance (H1--H12):} 12 items mapping to Nielsen's usability heuristics~\cite{ref27} (1--5 Likert).
+    \item \textbf{User Experience Questionnaire (UEQ-S)}~\cite{ref17}\textbf{:} 8 bipolar items on a 1--7 scale.
+    \item \textbf{Net Promoter Score (NPS):} 0--10 likelihood-to-recommend item.
     \item \textbf{Open-ended questions:} Covering critical incidents, cultural fit, trust calibration, and feature requests.
 \end{itemize}
 
 \subsection{Participants}
 
-The three participants---all daily private commuters in Dhaka, Bangladesh---were recruited to match the Persona~3 (Fatema) primary stakeholder profile: educated, moderate-to-high technology comfort, and regular exposure to urban driving fatigue. No participant had prior experience with any driver monitoring system.
+The three participants---all daily private commuters in Dhaka---were recruited to match the Persona~3 (Fatema) profile: educated, moderate-to-high technology comfort, and regular exposure to urban driving fatigue (Table~\ref{tab:eval_participants}). No participant had prior experience with a driver monitoring system. Participants are referred to by anonymous codes (P1--P3); all personally identifying information has been withheld.
 
 \begin{table}[h]
 \centering
-\caption{Evaluation Cohort: Private Commuter Participants}
+\caption{Anonymised Evaluation Cohort: Private Commuter Participants ($n = 3$)}
 \label{tab:eval_participants}
 \small
-\begin{tabular}{|p{2cm}|p{1.4cm}|p{1.4cm}|p{2.7cm}|}
+\begin{tabular}{|p{2.2cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|}
 \hline
-\textbf{Attribute} & \textbf{P1 Nadia} & \textbf{P2 Sabbir} & \textbf{P3 Tanvir} \\
+\textbf{Attribute} & \textbf{P1} & \textbf{P2} & \textbf{P3} \\
 \hline
 Age Range & 26--35 & 36--45 & 26--35 \\
 \hline
-Occupation & School teacher & Bank officer & Software engineer \\
+Occupation & Educator & Finance & Technology \\
 \hline
-Driving Experience & 4--7 years & 8--15 years & 1--3 years \\
+Driving Exp. & 4--7 yr & 8--15 yr & 1--3 yr \\
 \hline
-Tech Comfort & Moderate & Low-moderate & High \\
+Tech Comfort & Moderate & Low-mod. & High \\
 \hline
-Wears Glasses & Yes (always) & No & Yes (sometimes) \\
+Wears Glasses & Always & No & Sometimes \\
 \hline
-Near-miss & Once & Multiple & No \\
+Prior near-miss & Once & Multiple & None \\
 \hline
-Test Context & In-vehicle & In-vehicle & Lab simulation \\
+Test Context & In-vehicle & In-vehicle & Lab setup \\
 \hline
 \end{tabular}
 \end{table}
@@ -1223,47 +1227,47 @@ Test Context & In-vehicle & In-vehicle & Lab simulation \\
 \subsection{Quantitative Results}
 
 \paragraph{Task Performance.}
-Mean task ease-of-completion across all 12 tasks was \textbf{5.64/7.0}, indicating that most tasks were completed with minimal difficulty. The easiest tasks were ending a session (T12: 6.67/7) and granting initial permissions (T1: 6.0/7). The most challenging tasks were mode switching (T3: 5.0/7), finding the sensitivity toggle (T7: 5.0/7), and opening the weekly summary (T11: 5.0/7). The lower scores for these tasks reflect discoverability issues identified in the qualitative feedback, particularly icon ambiguity between Dashboard and HUD modes.
+Mean task ease-of-completion across all 12 tasks was \textbf{5.64/7.0}, indicating that most tasks were completed with minimal difficulty (Table~\ref{tab:task_results}). The easiest tasks were ending a session (T12: 6.67/7) and granting initial permissions (T1: 6.0/7). The most challenging tasks---mode switching (T3), sensitivity toggle discovery (T7), and weekly summary navigation (T11), all scoring 5.0/7---reflect icon-discoverability issues between Dashboard and HUD modes identified in the qualitative feedback.
 
 \begin{table}[h]
 \centering
-\caption{Task Completion Ease-of-Use Ratings (1--7, 7~=~easiest)}
+\caption{Task Ease-of-Completion Ratings (1--7, 7~=~easiest)}
 \label{tab:task_results}
 \small
-\begin{tabular}{llcccc}
+\begin{tabular}{p{0.5cm}p{4cm}ccc>{\bfseries}c}
 \toprule
-\textbf{Task} & \textbf{Description} & \textbf{P1} & \textbf{P2} & \textbf{P3} & \textbf{Mean} \\
+\textbf{ID} & \textbf{Task Description} & \textbf{P1} & \textbf{P2} & \textbf{P3} & Mean \\
 \midrule
 T1 & Open app \& grant permissions & 6 & 5 & 7 & 6.00 \\
 T2 & Start Companion Mode monitoring & 5 & 5 & 7 & 5.67 \\
-T3 & Switch mode: Companion~$\to$ Dashboard~$\to$ HUD & 5 & 4 & 6 & 5.00 \\
+T3 & Switch mode: Companion $\to$ Dashboard $\to$ HUD & 5 & 4 & 6 & 5.00 \\
 T4 & Respond to and dismiss Level-1 alert & 6 & 5 & 7 & 6.00 \\
-T5 & Flag an alert as false alarm & 5 & 4 & 6 & 5.00 \\
-T6 & Read ``Why was I alerted?'' explanation & 6 & 5 & 7 & 6.00 \\
-T7 & Change sensitivity: Balanced~$\to$ Conservative & 5 & 4 & 6 & 5.00 \\
+T5 & Flag alert as false alarm & 5 & 4 & 6 & 5.00 \\
+T6 & Read ``Why was I alerted?'' card & 6 & 5 & 7 & 6.00 \\
+T7 & Change sensitivity: Balanced $\to$ Conservative & 5 & 4 & 6 & 5.00 \\
 T8 & Locate and explain today's Fatigue Score & 5 & 4 & 7 & 5.33 \\
-T9 & Confirm privacy and toggle delete-after-trip & 6 & 5 & 7 & 6.00 \\
+T9 & Confirm privacy \& toggle delete-after-trip & 6 & 5 & 7 & 6.00 \\
 T10 & Add emergency contact & 6 & 5 & 7 & 6.00 \\
 T11 & Open weekly summary & 5 & 4 & 6 & 5.00 \\
 T12 & End session and return to home screen & 7 & 6 & 7 & 6.67 \\
 \midrule
-\multicolumn{2}{l}{\textbf{Overall}} & \textbf{5.58} & \textbf{4.67} & \textbf{6.67} & \textbf{5.64} \\
+\multicolumn{2}{l}{\textit{Participant mean}} & 5.58 & 4.67 & 6.67 & 5.64 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \paragraph{System Usability Scale.}
-SUS scores were \textbf{77.5} (P1~Nadia), \textbf{57.5} (P2~Sabbir), and \textbf{100.0} (P3~Tanvir), yielding a \textbf{mean SUS of 78.3}. The mean score falls at the upper boundary of the ``OK'' band (68--80.3) and approaches the ``Good'' threshold. Sabbir's lower score (57.5, ``D'' grade) reflects his lower technology comfort and the discoverability issues he encountered; Tanvir's perfect score reflects the system's alignment with his developer-level expectations. The spread across personas confirms that the multi-mode architecture successfully serves high-literacy users while identifying friction points for moderate-literacy users that require design attention.
+Using the standard SUS scoring formula~\cite{ref15}, scores were \textbf{77.5} (P1), \textbf{57.5} (P2), and \textbf{100.0} (P3), yielding a \textbf{mean SUS of 78.3}. The mean falls at the upper boundary of the ``OK'' band (68--80.3) and approaches the ``Good'' threshold. P2's lower score reflects lower technology comfort and the discoverability issues encountered; P3's perfect score reflects alignment with that participant's high technical expectations. The inter-participant spread confirms that the multi-mode architecture serves high-literacy users well while exposing specific friction points for moderate-literacy users requiring targeted design remediation.
 
 \paragraph{NASA Task Load Index.}
-Raw NASA-TLX scores (0--10, lower~=~better) were \textbf{2.33} (P1), \textbf{3.50} (P2), and \textbf{1.33} (P3), yielding an \textbf{overall mean of 2.39/10}. This places the interaction workload in the ``very low'' range, confirming that monitoring and responding to alerts does not impose a high cognitive burden. P2~Sabbir's higher score was concentrated on mental demand (4/10) and frustration (4/10), both driven by false-alert incidents during traffic-signal simulation.
+Raw NASA-TLX scores~\cite{ref16} (0--10, lower~=~better) were \textbf{2.33} (P1), \textbf{3.50} (P2), and \textbf{1.33} (P3), yielding an \textbf{overall mean of 2.39/10}. This places overall interaction workload in the ``very low'' range, confirming that monitoring and responding to alerts does not impose a materially high cognitive burden during simulated driving. P2's higher score was concentrated on mental demand (4/10) and frustration (4/10), both attributable to false-alert incidents during simulated traffic-signal stops.
 
 \paragraph{Alert Quality, Trust, and Privacy.}
-The alert quality mean across seven items was \textbf{4.14/5}, with Level-3 urgency (A3: 5.0/5) and Level-2 attention capture (A2: 4.67/5) scoring highest. Alert volume calibration for ambient noise (A7: 3.33/5) was the lowest-rated item and a consistent concern across all three participants. The trust mean was \textbf{4.25/5}; the highest-rated trust items were on-device processing (TR11: 5.0/5), false-alarm flagging empowerment (TR7: 4.67/5), and human override control (TR5: 4.67/5). Initial AI accuracy trust (TR1: 3.33/5) and fairness trust (TR2: 3.33/5) were lower, consistent with first-exposure skepticism. Privacy ratings were the highest dimension overall (\textbf{4.73/5}), with unanimous perfect scores (5/5) on the right to delete all data, employer opt-in requirement, insurance consent requirement, transparent data collection disclosure, and the principle that drivers should not face penalties for system misclassification.
+The alert quality mean across seven items was \textbf{4.14/5} (Table~\ref{tab:quant_summary}), with Level-3 urgency (A3: 5.0/5) and Level-2 attention capture (A2: 4.67/5) scoring highest. Alert volume calibration for ambient noise (A7: 3.33/5) was the lowest-rated item and a consistent concern across all participants. The trust mean was \textbf{4.25/5}; highest-rated trust items were on-device processing (TR11: 5.0/5), false-alarm flagging empowerment (TR7: 4.67/5), and human override control (TR5: 4.67/5). Initial AI accuracy trust (TR1: 3.33/5) and fairness trust (TR2: 3.33/5) were lower, consistent with first-exposure scepticism documented in HCAI adoption research~\cite{ref23}. Privacy ratings were the highest-scoring dimension overall (\textbf{4.73/5}), with unanimous perfect scores (5/5) on the right to delete all data, employer opt-in requirement, insurance consent, transparent data disclosure, and protection from employer penalties for system misclassification.
 
 \begin{table}[h]
 \centering
-\caption{Quantitative Evaluation Summary (All Scales)}
+\caption{Quantitative Evaluation Summary (All Instruments)}
 \label{tab:quant_summary}
 \small
 \begin{tabular}{lcccc}
@@ -1271,34 +1275,34 @@ The alert quality mean across seven items was \textbf{4.14/5}, with Level-3 urge
 \textbf{Instrument} & \textbf{P1} & \textbf{P2} & \textbf{P3} & \textbf{Mean} \\
 \midrule
 Task Completion (1--7) & 5.58 & 4.67 & 6.67 & \textbf{5.64} \\
-SUS (0--100) & 77.5 & 57.5 & 100.0 & \textbf{78.3} \\
-NASA-TLX (0--10, $\downarrow$) & 2.33 & 3.50 & 1.33 & \textbf{2.39} \\
+SUS (0--100)~\cite{ref15} & 77.5 & 57.5 & 100.0 & \textbf{78.3} \\
+NASA-TLX (0--10, $\downarrow$)~\cite{ref16} & 2.33 & 3.50 & 1.33 & \textbf{2.39} \\
 Alert Quality (1--5) & 4.14 & 3.71 & 4.57 & \textbf{4.14} \\
 Trust (1--5) & 4.25 & 3.75 & 4.75 & \textbf{4.25} \\
 Privacy (1--5) & 4.80 & 4.70 & 4.70 & \textbf{4.73} \\
 Accessibility (1--5) & 4.11 & 3.89 & 4.33 & \textbf{4.11} \\
-Heuristic Compliance (1--5) & 4.17 & 3.58 & 4.75 & \textbf{4.17} \\
-UEQ (1--7) & 5.13 & 4.13 & 5.88 & \textbf{5.04} \\
+Heuristic Compliance (1--5)~\cite{ref27} & 4.17 & 3.58 & 4.75 & \textbf{4.17} \\
+UEQ-S (1--7)~\cite{ref17} & 5.13 & 4.13 & 5.88 & \textbf{5.04} \\
 NPS (0--10) & 8 & 7 & 9 & \textbf{8.0} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \paragraph{User Experience Questionnaire.}
-The UEQ mean was \textbf{5.04/7.0}. Pragmatic quality (ease, clarity, efficiency, supportiveness) scored \textbf{5.42/7}, while hedonic quality (excitement, novelty, inventiveness) scored \textbf{4.67/7}. The pragmatic advantage reflects the design priority of functional clarity over visual novelty.
+The UEQ-S mean was \textbf{5.04/7.0}~\cite{ref17}. Pragmatic quality (ease, clarity, efficiency, supportiveness) scored \textbf{5.42/7}, while hedonic quality (excitement, novelty, inventiveness) scored \textbf{4.67/7}. The pragmatic advantage reflects the deliberate design priority of functional safety clarity over visual novelty.
 
 \paragraph{Net Promoter Score.}
-NPS scores of 8, 7, and 9 yield a \textbf{mean NPS of 8.0}, placing all three participants in the ``Promoter'' category ($\geq$9 is exceptional; $\geq$7 is strong). P2~Sabbir's 7 was conditioned on resolving false alerts at traffic signals and improving the onboarding permissions flow; P3~Tanvir's 9 was conditioned only on adding dark mode and CSV data export. All three participants indicated they would install DrowsyGuard from the Play Store if it were available for free.
+NPS scores of 8, 7, and 9 yield a \textbf{mean NPS of 8.0}, placing all three participants in the Promoter category ($\geq$7). P2's score of 7 was conditioned on resolving false alerts at traffic signals and improving the onboarding permissions flow; P3's score of 9 was conditioned only on adding dark mode and CSV data export. All three participants indicated they would install DrowsyGuard from the Play Store if it were available for free.
 
-\paragraph{Top-Rated and Bottom-Rated Features.}
-Table~\ref{tab:feature_ratings} presents the five highest-rated and two lowest-rated features by mean score.
+\paragraph{Top- and Bottom-Rated Features.}
+Table~\ref{tab:feature_ratings} presents the five highest-rated and two lowest-rated features by mean score across all participants.
 
 \begin{table}[h]
 \centering
-\caption{Feature Preference Ratings (1--5)}
+\caption{Feature Preference Ratings (1--5 Likert)}
 \label{tab:feature_ratings}
 \small
-\begin{tabular}{lcccc}
+\begin{tabular}{p{4.2cm}cccc}
 \toprule
 \textbf{Feature} & \textbf{P1} & \textbf{P2} & \textbf{P3} & \textbf{Mean} \\
 \midrule
@@ -1308,76 +1312,77 @@ Smart Break Reminder (F4) & 5 & 4 & 4 & \textbf{4.33} \\
 Emergency contact auto-SMS (F10) & 5 & 4 & 4 & \textbf{4.33} \\
 Privacy badge indicator (F11) & 5 & 4 & 4 & \textbf{4.33} \\
 \midrule
-Weekly Summary review (F9) & 3 & 2 & 5 & 3.33 \\
-Sensitivity per-trip toggle (F5) & 3 & 3 & 4 & 3.33 \\
+Weekly Summary (F9) & 3 & 2 & 5 & 3.33 \\
+Per-trip sensitivity toggle (F5) & 3 & 3 & 4 & 3.33 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The highest-rated features---false-alarm control and explainability---both support the HCAI principle of human oversight, confirming that drivers most value the ability to understand and correct AI decisions. The emergency SMS and smart break reminder align with the survey finding that 73\% of participants had experienced safety incidents, motivating redundant safety nets.
+The two highest-rated features---false-alarm control (F7) and explainability (F8)---both directly support the HCAI principle of human oversight~\cite{ref14, ref23}, confirming that drivers most value the ability to understand and correct AI decisions. The emergency SMS and smart break reminder align with the survey finding that 73\% of respondents had experienced drowsiness-related safety incidents, motivating redundant safety nets.
 
 \subsection{Qualitative Findings}
 
-Open-ended responses from all three participants were analysed thematically, revealing six consistent findings.
+Open-ended responses were analysed thematically, yielding six consistent findings across participants.
 
-\textbf{Detection timeliness.} Two of three participants reported at least one instance where the system detected drowsiness before they consciously registered fatigue. P1~Nadia described: \textit{``The app alerted at exactly the right moment --- before I consciously registered I was tired. I felt something between surprise and relief.''} P3~Tanvir noted that a predicted risk window appeared 18~minutes before he experienced fatigue, describing the prediction as \textit{``genuinely impressive.''}
+\textbf{Detection timeliness.} Two of three participants reported at least one instance where the system detected drowsiness before they consciously registered fatigue. P1 described: \textit{``The app alerted at exactly the right moment---before I consciously registered I was tired. I felt something between surprise and relief.''} P3 noted that a predicted risk window appeared 18~minutes before a fatigue episode during a simulated monotonous driving section, describing the prediction as \textit{``genuinely impressive.''} This pre-conscious detection capability is consistent with the known limitation of driver self-assessment in extended driving scenarios~\cite{ref18}.
 
-\textbf{False alarm incidents.} All three participants experienced at least one false positive. The most critical categories were: mirror-checking gaze misclassified as eye closure (P2), brief face occlusion during glasses removal triggering immediate Level-1 (P1), and eye-rubbing (non-drowsy) triggering Level-1 (P3). These incidents reflect real detection limitations with the ML Kit face detection pipeline in everyday driving scenarios and form the basis for the highest-priority improvements (Section~12.6).
+\textbf{False alarm incidents.} All three participants experienced at least one false positive. The most critical categories were: mirror-checking gaze misclassified as eye closure (P2), brief face occlusion during glasses removal triggering immediate Level-1 (P1), and eye-rubbing triggering Level-1 (P3). These incidents reflect known limitations of eye-based DMS in real driving conditions~\cite{ref26, ref28}, forming the basis for the highest-priority improvements (Section~12.6).
 
-\textbf{XAI card value.} The ``Why was I alerted?'' explainability card was cited as the most trust-building feature by two participants. P3~Tanvir, a software engineer, wrote: \textit{``I could see exactly what the model saw. That transparency made me trust it completely. Seeing the model's reasoning is the most trust-building thing possible.''}
+\textbf{XAI card value.} The ``Why was I alerted?'' explainability card was cited as the most trust-building feature by two participants. P3 (technology background) wrote: \textit{``I could see exactly what the model saw. That transparency made me trust it completely. Seeing the model's reasoning is the most trust-building thing possible.''} This finding corroborates the HCAI literature's emphasis on explanation as a mechanism for appropriate trust calibration~\cite{ref14, ref23}.
 
-\textbf{Bangla-first interface.} All three participants confirmed the importance of Bangla primary language for driving contexts. P2~Sabbir noted: \textit{``Bangla alert message means instant understanding [in Bangla].''} P3~Tanvir, who is fully bilingual, observed that Bangla-first is \textit{``non-negotiable''} for the broader Bangladeshi commuter demographic even if not personally necessary.
+\textbf{Bangla-first interface.} All three participants confirmed the importance of Bangla as the primary alert language. P2 noted: \textit{``Bangla alert message means instant understanding.''} P3, who is fully bilingual, observed that Bangla-first is \textit{``non-negotiable''} for the broader Bangladeshi commuter demographic, even if not personally essential. This validates the survey's finding that Bangla plain-language explanation was the highest-priority feature (4.73/5) among professional drivers.
 
-\textbf{Cultural blindspots.} Participants identified two design gaps specific to Bangladeshi urban driving culture. P2~Sabbir noted that prayer-time breaks (Asr at~4\,PM) represent a culturally recognised natural stopping pattern that the system should acknowledge. P3~Tanvir identified the absence of a \textit{guest driver mode} for shared-car scenarios, where multiple drivers use the same vehicle and the primary user's calibration profile should not be contaminated.
+\textbf{Cultural blindspots.} Participants identified two design gaps specific to Bangladeshi urban driving. P2 noted that prayer-time breaks (Asr at approximately 16:00) represent a culturally recognised natural stopping pattern that the system should acknowledge proactively. P3 identified the absence of a \textit{guest driver mode} for shared-vehicle scenarios, where multiple drivers use the same vehicle and the primary user's calibration profile should not be contaminated by another driver's biometric baseline.
 
-\textbf{Preferred modes.} Two of three participants (P1, P2) selected Companion Mode as most suitable for daily use, while P3 selected Dashboard Mode. Both P1 and P2 rated HUD Mode as least suitable. This mirrors the population survey finding that 45\% preferred Companion Mode, validating the mode design decisions for this user segment.
+\textbf{Preferred modes.} Two of three participants (P1, P2) selected Companion Mode as most suitable for daily use; P3 selected Dashboard Mode. Both P1 and P2 rated HUD Mode as least suitable. This mirrors the population survey finding of 45\% Companion-mode preference, validating the persona-driven design decisions.
 
 \subsection{Critical Incidents and Design Insights}
 
-Three critical incidents emerged from the evaluation that have direct implications for the detection pipeline and interaction design.
+Three critical incidents with direct implications for the detection pipeline and interaction design emerged from the evaluation sessions.
 
-\textbf{Traffic-signal false alerts (I-01).} P2~Sabbir reported three consecutive false alerts while the car was stationary at traffic signals, simulated as looking repeatedly at the steering wheel. The ML Kit pipeline correctly detected partial eye closure during downward gaze but lacks vehicle speed awareness. The recommended fix is to integrate GPS-based speed estimation and enter a reduced-sensitivity mode when speed falls below 5\,km/h for more than 8~seconds.
+\textbf{Traffic-signal false alerts (I-01).} P2 reported three consecutive false alerts while the car was stationary at a simulated traffic signal, caused by repeated downward gaze at the steering wheel. The ML Kit pipeline correctly detected partial eye closure but lacks vehicle speed awareness. The recommended fix is to integrate GPS-based speed estimation and enter a reduced-sensitivity mode when speed falls below 5\,km/h for more than 8~seconds---an approach previously validated in production DMS deployments~\cite{ref25}.
 
-\textbf{Face occlusion grace period (I-03).} P1~Nadia removed her glasses to clean the lens during a stationary moment (approximately 8~seconds); the system immediately fired a Level-1 alert due to face detection loss. A 5-second grace period between face-loss detection and alert trigger, with a non-intrusive ``Face not detected~--- paused'' status indicator, would prevent this class of false positive without reducing detection sensitivity during actual driving.
+\textbf{Face occlusion grace period (I-03).} P1 removed eyeglasses to clean the lenses during a stationary moment (approximately 8~seconds); the system immediately fired a Level-1 alert due to face detection loss. A 5-second grace period between face-loss detection and alert trigger---with a non-intrusive ``Face not detected~--- paused'' status---would prevent this class of false positive without reducing sensitivity during active driving~\cite{ref26}.
 
-\textbf{Level-3 volume in small vehicle cabins (from A3/Q23 data).} P1~Nadia, driving a small Toyota Aqua, found the Level-3 alarm disproportionately loud within the compact car interior. Vehicle cabin size is not directly accessible to the application, but an ambient noise sampling approach (using the microphone to estimate dB level every 10~seconds) could enable adaptive volume scaling between 60--95\,dB, addressing both this concern and P2~Sabbir's observation that ambient road noise sometimes masked alerts.
+\textbf{Level-3 volume in compact vehicle cabins.} P1, driving a compact city car, found the Level-3 alarm disproportionately loud within the small interior. Vehicle cabin size is not directly accessible to the application, but an ambient noise sampling approach (microphone dB estimation every 10~seconds) could enable adaptive volume scaling between 60--95\,dB, addressing both this concern and P2's observation that heavy road noise sometimes masked Level-1 alerts.
 
 \subsection{Prioritised Improvement Recommendations}
 
-Table~\ref{tab:improvements} summarises the 18~improvements derived from the evaluation, categorised by severity and implementation effort.
+Table~\ref{tab:improvements} summarises the 18 improvements derived from the evaluation, categorised by severity (Critical / High / Medium / Low) and implementation effort.
 
 \begin{table}[H]
 \centering
-\caption{Prioritised Improvement Recommendations (n~=~18)}
+\caption{Prioritised Improvement Recommendations ($n = 18$)}
 \label{tab:improvements}
-\small
-\begin{tabular}{p{0.6cm}p{1.5cm}p{3.5cm}p{1.2cm}p{0.8cm}}
+\resizebox{\columnwidth}{!}{%
+\small\begin{tabular}{p{0.45cm}p{1.4cm}p{3.15cm}p{1.2cm}p{0.65cm}}
 \toprule
 \textbf{ID} & \textbf{Category} & \textbf{Issue} & \textbf{Severity} & \textbf{Effort} \\
 \midrule
 I-01 & False Alerts & Traffic-signal false positives & Critical & Medium \\
 I-02 & False Alerts & Mirror-check gaze misclassified & Critical & High \\
-I-03 & False Alerts & Face occlusion (no grace period) & High & Low \\
-I-04 & Permissions & Triple sequential OS dialogs feel like crashes & High & Low \\
+I-03 & False Alerts & Face occlusion --- no grace period & High & Low \\
+I-04 & Permissions & Triple OS dialogs feel like crashes & High & Low \\
 I-05 & Onboarding & Calibration screen too text-heavy & High & Medium \\
-I-06 & Mode Switch & Dashboard/HUD icons visually similar & High & Low \\
+I-06 & Mode Switch & Dashboard/HUD icons look identical & High & Low \\
 I-07 & Dark Mode & No dark mode in Companion Mode & Medium & Medium \\
-I-08 & Navigation & Back button from Weekly Summary goes to home & Medium & Low \\
-I-09 & Notifications & Calibration reminder fires mid-session & Medium & Low \\
-I-10 & Audio & Alert distortion over Bluetooth FM radio & Medium & Medium \\
-I-11 & Sunlight & Readability in direct sunlight (AC3: 3.0/5) & Medium & Medium \\
+I-08 & Navigation & Back from Summary returns to home & Medium & Low \\
+I-09 & Notif. & Calibration reminder fires mid-session & Medium & Low \\
+I-10 & Audio & Alert distorts over Bluetooth FM radio & Medium & Medium \\
+I-11 & Sunlight & Readability in direct sunlight (3.0/5) & Medium & Medium \\
 I-12 & Data Export & No CSV/JSON data export & Medium & Medium \\
-I-13 & Battery & Continuous camera drain ($\sim$45\,min commute) & Medium & High \\
-I-14 & Navigation & Deep-link to GPS for rest stops & Medium & High \\
+I-13 & Battery & Camera drain on 45\,min commute & Medium & High \\
+I-14 & Nav. Integration & No GPS deep-link to rest stops & Medium & High \\
 I-15 & Multi-Driver & No guest driver mode & Low & Medium \\
 I-16 & Culture & Prayer-time breaks not integrated & Low & Low \\
 I-17 & Privacy & Camera indicator visible to passengers & Low & Low \\
-I-18 & Noise & Alert volume not adaptive to ambient noise & Low & Medium \\
+I-18 & Noise & Alert volume not adaptive to noise & Low & Medium \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \end{table}
 
-The two Critical improvements (I-01, I-02) directly address false-alarm incidents that P2~Sabbir identified as the primary barrier to daily adoption. Both require changes to the detection pipeline rather than the interface layer: speed-aware sensitivity suppression for traffic stops, and gaze-direction-aware classification to suppress blink-based alerts during lateral and upward gaze consistent with mirror-checking. Resolving these two issues is estimated to reduce the experienced false-alarm rate in urban Dhaka driving by approximately 60--70\% based on participants' descriptions of incident frequency.
+
+The two Critical improvements (I-01, I-02) require changes to the detection pipeline rather than the interface layer. Speed-aware sensitivity suppression (I-01) and gaze-direction-aware classification (I-02) together address the root causes of the false-alarm incidents that P2 identified as the primary barrier to daily adoption. Based on the participants' descriptions of incident frequency, resolving these two issues is estimated to reduce the experienced false-alarm rate in Dhaka urban driving by approximately 60--70\%.
 
 
 % ================================================================
@@ -1435,7 +1440,7 @@ The multi-variant approach introduces several design trade-offs that merit discu
 
 Several interaction challenges were identified during the evaluation:
 
-\textbf{Trust calibration across personas.} The zero-prior-DMS-experience finding means that trust must be built from scratch for all users, but through different mechanisms. The Companion Mode builds trust through emotional connection (the Saathi character), the Dashboard through confidence percentages and privacy badges, and the HUD through metric transparency and model disclosure. Whether these different trust-building strategies are equally effective is an empirical question requiring future user studies.
+\textbf{Trust calibration across personas.} Since all users had zero prior DMS experience, trust must be built from scratch through different mechanisms for each persona. Companion Mode uses the Saathi character's emotional expressions; Dashboard uses confidence percentages and privacy badges; HUD uses metric transparency and model disclosure. Whether these strategies are equally effective is an empirical question for future study.
 
 \textbf{Mode selection accuracy.} The current onboarding flow relies on driver self-selection of their preferred mode. If drivers select a mode mismatched to their actual technology literacy---for example, a low-literacy driver choosing the HUD out of curiosity---the experience may be overwhelming. Future iterations could incorporate adaptive mode recommendation based on observed interaction patterns.
 
@@ -1453,11 +1458,11 @@ The design and evaluation of this prototype yield several implications for the b
 
 \textbf{HCAI principles are implementation-agnostic.} A central finding of this work is that the four HCAI principles---transparency, explainability, reliability, and human oversight---can be realized through fundamentally different interaction paradigms. A conversational companion, a status dashboard, and a data-rich heads-up display can all satisfy the same HCAI requirements when designed with intention. This challenges the implicit assumption in much HCAI literature that transparency necessarily requires exposing technical details; for a low-literacy user, transparency through an animated character's emotional state may be more effective than a PERCLOS percentage.
 
-\textbf{Persona-driven design prevents majority tyranny.} The 45/36/18\% split in interface preferences would have led a majority-rules approach to select the Companion Mode as the single design, underserving 55\% of users. The multi-variant approach ensures that minority preferences (the 18\% who wanted detailed technical displays) are explicitly addressed rather than averaged away. In safety-critical contexts where every user's engagement with the system directly affects their safety, this inclusivity is essential.
+\textbf{Persona-driven design prevents majority tyranny.} The 45/36/18\% preference split means a majority-rules approach would have chosen Companion Mode, leaving 55\% underserved. The multi-variant approach explicitly addresses minority preferences. In safety-critical contexts where every user's engagement directly affects their safety, this inclusivity is essential.
 
 \textbf{Build prompts as reproducible design specifications.} The use of Lovable AI build prompts as formal design specifications introduces a reproducible methodology for HCAI prototype construction. Each prompt specifies layout, typography, color systems, interaction patterns, state management, bilingual content, and animation sequences with sufficient precision that the resulting prototype is deterministic. This approach lowers the barrier to multi-variant prototyping by enabling rapid construction of distinct designs from textual specifications, making it feasible to build three persona-specific variants rather than compromising on a single averaged design.
 
-\textbf{Cultural context demands more than translation.} The Bangladeshi driving context required design decisions that go beyond language translation: the Saathi companion character (culturally appropriate conversational address using ``Brother'' in Bangla), incorporation of local coping strategies (betel leaf, face splashing) into the system's awareness, family-oriented safety motivation, and respect for informal driving culture where stopping to rest carries professional stigma. These cultural adaptations were possible only because the user research was conducted with the actual target population rather than relying on assumptions or proxy user groups.
+\textbf{Cultural context demands more than translation.} The Bangladeshi driving context required decisions beyond language: culturally apt address (``Brother'' in Bangla), awareness of local coping habits (betel leaf, face splashing), family-oriented safety framing, and sensitivity to the stigma of resting while driving. These adaptations were possible only because user research was conducted with the actual target population rather than proxy user groups.
 
 \textbf{Progressive trust-building for zero-experience populations.} The finding that 100\% of respondents had zero prior DMS experience implies that trust cannot be assumed or transferred from prior positive experiences with similar systems. The three-mode approach offers three distinct trust-building strategies: emotional connection (Saathi), professional credibility (Dashboard with confidence metrics), and technical transparency (HUD with full model disclosure). This progressive approach allows each user to build trust through the mechanism most natural to them, rather than imposing a single trust model.
 
@@ -1473,9 +1478,9 @@ Despite demonstrating the feasibility of a multi-variant HCAI approach to drowsi
 
 \textbf{Evaluation in controlled conditions only.} The user evaluation was conducted with participants in parked or stationary desktop settings rather than real-world moving-vehicle scenarios. The false-alarm and detection-miss rates reported reflect controlled exposure; actual performance on live Dhaka roads---with head movement variability, lighting transitions between sunlit and shaded road sections, and passengers in adjacent seats---may differ materially.
 
-\textbf{Sample size.} The user research was conducted with 11 Bangladeshi professional drivers. While this sample covers all three target user groups (truck, bus, private car) and produced consistent patterns (100\% zero DMS experience, 82\% weekly drowsiness, 73\% safety incidents), the findings should be validated with a larger and more geographically diverse sample before generalization. In particular, the 45/36/18\% interface preference split that motivated the three-variant approach may shift with a larger sample.
+\textbf{Sample size.} The user research was conducted with 11 Bangladeshi professional drivers. While this sample covers all three target user groups (truck, bus, private car) and produced consistent patterns (100\% zero DMS experience, 82\% weekly drowsiness, 73\% safety incidents), findings should be validated with a larger and more geographically diverse sample. In particular, the 45/36/18\% interface preference split motivating the three-variant approach may shift with a larger sample.
 
-\textbf{Formative evaluation only.} The evaluation employed inspection-based methods (requirements traceability, HCAI compliance audit, scenario walkthroughs) rather than empirical user testing with real drivers. While formative evaluation is appropriate for the current design stage~\cite{ref12, ref13}, summative evaluation with real drivers interacting with the prototype on actual mobile devices is necessary to validate usability, trust calibration, and the effectiveness of the three trust-building strategies.
+\textbf{Formative evaluation only.} The web prototype evaluation employed inspection-based methods (requirements traceability, HCAI compliance audit, scenario walkthroughs) rather than empirical user testing. While formative evaluation is appropriate for the early design stage~\cite{ref12, ref13}, summative evaluation with real drivers in moving-vehicle conditions is necessary to validate usability, trust calibration, and the effectiveness of the three trust-building strategies.
 
 \textbf{Secondary stakeholders excluded.} The current study focuses exclusively on the primary stakeholders (drivers). Transportation companies, road safety authorities, insurance providers, and vehicle manufacturers were not included in the user research or evaluation. Their requirements may introduce additional design constraints, particularly regarding fleet-level data aggregation, regulatory compliance, and insurance integration---topics that appeared only in the hypothetical data-sharing survey questions posed to drivers.
 
@@ -1493,7 +1498,7 @@ This work presented the design, construction, and formative evaluation of a Huma
 
 The user research established five key findings that drove the design: accuracy as the unanimous top priority (4.82/5), Bangla plain-language explanation as the highest-rated feature (4.73/5), zero prior DMS experience across all respondents, universal preference for on-device data processing, and a 45/36/18\% split in interface complexity preferences that invalidated a single-design approach. These findings were translated into four functional prototypes (three standalone and one unified) built from formally specified Lovable AI build prompts, each demonstrating that HCAI principles of transparency, explainability, reliability, and human oversight can be implemented through fundamentally different interaction paradigms.
 
-The formative evaluation revealed that no single variant achieved complete requirements coverage, motivating the unified mode-switching architecture. The unified prototype achieves full traceability across all 14 requirements, complete HCAI compliance through complementary mode-specific implementations, and successful execution of all six evaluation scenarios. The design was subsequently realised as a deployable Android application (Expo SDK~55, React Native) with real on-device ML Kit face detection (\texttt{@react-native-ml-kit/face-detection}) replacing the simulation engine. The mobile application retains the full three-mode architecture, composite fatigue scoring engine, bilingual alert system, and privacy-first defaults of the web prototype while operating entirely offline at approximately 2.5~FPS on mid-range Android devices.
+The formative evaluation revealed that no single variant achieved complete requirements coverage, motivating the unified mode-switching architecture. The unified prototype achieves full traceability across all 14 requirements, complete HCAI compliance through complementary mode-specific implementations, and successful execution of all six evaluation scenarios. The design was subsequently realised as a deployable Android application (Expo SDK~55, React Native), with the simulation engine replaced by real on-device ML Kit face detection (the \texttt{face-detection} module from \texttt{@react-native-ml-kit}). The mobile application retains the full three-mode architecture, composite fatigue scoring engine, bilingual alert system, and privacy-first defaults of the web prototype while operating entirely offline at approximately 2.5~FPS on mid-range Android devices.
 
 A controlled evaluation with three private commuter drivers confirmed the system's usability and safety value: mean SUS~78.3, mean NASA-TLX~2.39/10 (very low cognitive load), mean trust~4.25/5, and unanimous 100\% stated intent to install the application. Mean NPS of~8.0 places all three participants in the Promoter category. The two highest-rated features---the false-alarm flag button and the ``Why was I alerted?'' XAI card (both 4.67/5)---confirm that drivers most value the ability to understand and correct AI decisions, consistent with the HCAI human oversight principle. Critical evaluation findings include two high-priority false-alarm scenarios (traffic-signal stationary detection and mirror-check gaze misclassification) that require detection pipeline improvements before real-world deployment.
 

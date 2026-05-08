@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{12}
+\begin{thebibliography}{24}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -36,6 +36,46 @@
 \providecommand\natexlab[1]{#1}
 \providecommand\showeprint[2][]{arXiv:#2}
 
+\bibitem[Amershi et~al\mbox{.}(2019)]%
+        {ref23}
+\bibfield{author}{\bibinfo{person}{Saleema Amershi}, \bibinfo{person}{Dan
+  Weld}, \bibinfo{person}{Mihaela Vorvoreanu}, \bibinfo{person}{Adam Fourney},
+  \bibinfo{person}{Besmira Nushi}, \bibinfo{person}{Penny Collisson},
+  \bibinfo{person}{Jina Suh}, \bibinfo{person}{Shamsi Iqbal},
+  \bibinfo{person}{Paul~N. Bennett}, \bibinfo{person}{Kori Inkpen},
+  \bibinfo{person}{Jaime Teevan}, \bibinfo{person}{Ruth Kikin-Gil}, {and}
+  \bibinfo{person}{Eric Horvitz}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{Guidelines for human-{AI} interaction}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 2019 CHI Conference on Human
+  Factors in Computing Systems}}. \bibinfo{publisher}{ACM},
+  \bibinfo{pages}{1--13}.
+\newblock
+
+
+\bibitem[Brooke(1996)]%
+        {ref15}
+\bibfield{author}{\bibinfo{person}{John Brooke}.}
+  \bibinfo{year}{1996}\natexlab{}.
+\newblock \showarticletitle{{SUS}: A `quick and dirty' usability scale}.
+\newblock \bibinfo{journal}{\emph{Usability Evaluation in Industry}}
+  (\bibinfo{year}{1996}), \bibinfo{pages}{189--194}.
+\newblock
+
+
+\bibitem[Dingus et~al\mbox{.}(2016)]%
+        {ref18}
+\bibfield{author}{\bibinfo{person}{Thomas~A. Dingus}, \bibinfo{person}{Feng
+  Guo}, \bibinfo{person}{Suzie Lee}, \bibinfo{person}{Jonathan~F. Antin},
+  \bibinfo{person}{Miguel Perez}, \bibinfo{person}{Mindy Buchanan-King}, {and}
+  \bibinfo{person}{Jonathan Hankey}.} \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{Driver crash risk factors and prevalence evaluation
+  using naturalistic driving data}.
+\newblock \bibinfo{journal}{\emph{Proceedings of the National Academy of
+  Sciences}} \bibinfo{volume}{113}, \bibinfo{number}{10}
+  (\bibinfo{year}{2016}), \bibinfo{pages}{2636--2641}.
+\newblock
+
+
 \bibitem[Doma and Pirouz(2020)]%
         {ref8}
 \bibfield{author}{\bibinfo{person}{V. Doma} {and} \bibinfo{person}{M. Pirouz}.}
@@ -64,6 +104,17 @@
 \href{https://doi.org/10.3390/s25030812}{doi:\nolinkurl{10.3390/s25030812}}
 
 
+\bibitem[Hart and Staveland(1988)]%
+        {ref16}
+\bibfield{author}{\bibinfo{person}{Sandra~G. Hart} {and}
+  \bibinfo{person}{Lowell~E. Staveland}.} \bibinfo{year}{1988}\natexlab{}.
+\newblock \showarticletitle{Development of {NASA-TLX} ({Task Load Index}):
+  Results of empirical and theoretical research}.
+\newblock \bibinfo{journal}{\emph{Advances in Psychology}}
+  \bibinfo{volume}{52} (\bibinfo{year}{1988}), \bibinfo{pages}{139--183}.
+\newblock
+
+
 \bibitem[Hashemi et~al\mbox{.}(2020)]%
         {ref5}
 \bibfield{author}{\bibinfo{person}{M. Hashemi}, \bibinfo{person}{A. Mirrashid},
@@ -73,6 +124,17 @@
   neural network}.
 \newblock \bibinfo{journal}{\emph{SN Computer Science}}  \bibinfo{volume}{1}
   (\bibinfo{year}{2020}), \bibinfo{pages}{289}.
+\newblock
+
+
+\bibitem[Ji and Yang(2002)]%
+        {ref26}
+\bibfield{author}{\bibinfo{person}{Qiang Ji} {and} \bibinfo{person}{Xiaojie
+  Yang}.} \bibinfo{year}{2002}\natexlab{}.
+\newblock \showarticletitle{Real-time eye, gaze, and face pose tracking for
+  monitoring driver vigilance}.
+\newblock \bibinfo{journal}{\emph{Real-Time Imaging}} \bibinfo{volume}{8},
+  \bibinfo{number}{5} (\bibinfo{year}{2002}), \bibinfo{pages}{357--377}.
 \newblock
 
 
@@ -111,12 +173,48 @@
   (accessed on 3 January 2025)}.
 
 
+\bibitem[Ngxande et~al\mbox{.}(2017)]%
+        {ref28}
+\bibfield{author}{\bibinfo{person}{Mkhuseli Ngxande},
+  \bibinfo{person}{Jules-Raymond Tapamo}, {and} \bibinfo{person}{Michael
+  Burke}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Driver drowsiness detection using behavioral
+  measures and machine learning: {A} review of state-of-the-art techniques}.
+\newblock \bibinfo{journal}{\emph{2017 Pattern Recognition Association of South
+  Africa and Robotics and Mechatronics International Conference
+  (PRASA-RobMech)}} (\bibinfo{year}{2017}), \bibinfo{pages}{156--161}.
+\newblock
+
+
+\bibitem[Nielsen(1994)]%
+        {ref27}
+\bibfield{author}{\bibinfo{person}{Jakob Nielsen}.}
+  \bibinfo{year}{1994}\natexlab{}.
+\newblock \showarticletitle{Heuristic evaluation}. In
+  \bibinfo{booktitle}{\emph{Usability Inspection Methods}}.
+  \bibinfo{publisher}{Wiley}, \bibinfo{pages}{25--62}.
+\newblock
+
+
 \bibitem[Norman(2013)]%
         {ref13}
 \bibfield{author}{\bibinfo{person}{Donald Norman}.}
   \bibinfo{year}{2013}\natexlab{}.
 \newblock \bibinfo{booktitle}{\emph{The Design of Everyday Things}}.
 \newblock \bibinfo{publisher}{Basic Books}.
+\newblock
+
+
+\bibitem[Ramzan et~al\mbox{.}(2019)]%
+        {ref25}
+\bibfield{author}{\bibinfo{person}{Muhammad Ramzan},
+  \bibinfo{person}{Hikmat~Ullah Khan}, \bibinfo{person}{Sikandar~Mahmood Awan},
+  \bibinfo{person}{Asif Ismail}, \bibinfo{person}{Muhammad Ilyas}, {and}
+  \bibinfo{person}{Ayesha Mahmood}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{A survey on state-of-the-art drowsiness detection
+  techniques}.
+\newblock \bibinfo{journal}{\emph{IEEE Access}}  \bibinfo{volume}{7}
+  (\bibinfo{year}{2019}), \bibinfo{pages}{61904--61919}.
 \newblock
 
 
@@ -128,6 +226,31 @@
 \newblock \bibinfo{booktitle}{\emph{Interaction Design: Beyond Human-Computer
   Interaction}}.
 \newblock \bibinfo{publisher}{Wiley}.
+\newblock
+
+
+\bibitem[Sahayadhas et~al\mbox{.}(2012)]%
+        {ref24}
+\bibfield{author}{\bibinfo{person}{Arun Sahayadhas}, \bibinfo{person}{Kenneth
+  Sundaraj}, {and} \bibinfo{person}{Murugappan Murugappan}.}
+  \bibinfo{year}{2012}\natexlab{}.
+\newblock \showarticletitle{Detecting driver drowsiness based on sensors: {A}
+  review}.
+\newblock \bibinfo{journal}{\emph{Sensors}} \bibinfo{volume}{12},
+  \bibinfo{number}{12} (\bibinfo{year}{2012}), \bibinfo{pages}{16937--16953}.
+\newblock
+
+
+\bibitem[Schrepp et~al\mbox{.}(2017)]%
+        {ref17}
+\bibfield{author}{\bibinfo{person}{Martin Schrepp}, \bibinfo{person}{Andreas
+  Hinderks}, {and} \bibinfo{person}{J\"{o}rg Thomaschewski}.}
+  \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Design and evaluation of a short version of the
+  user experience questionnaire ({UEQ-S})}.
+\newblock \bibinfo{journal}{\emph{International Journal of Interactive
+  Multimedia and Artificial Intelligence}} \bibinfo{volume}{4},
+  \bibinfo{number}{6} (\bibinfo{year}{2017}), \bibinfo{pages}{103--108}.
 \newblock
 
 
@@ -149,6 +272,27 @@
   \bibinfo{year}{2022}\natexlab{}.
 \newblock \bibinfo{booktitle}{\emph{Human-Centered AI}}.
 \newblock \bibinfo{publisher}{Oxford University Press}.
+\newblock
+
+
+\bibitem[Soukupov\'{a} and \v{C}ech(2016)]%
+        {ref19}
+\bibfield{author}{\bibinfo{person}{Tereza Soukupov\'{a}} {and}
+  \bibinfo{person}{Jan \v{C}ech}.} \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{Real-Time Eye Blink Detection Using Facial
+  Landmarks}. In \bibinfo{booktitle}{\emph{Proceedings of the 21st Computer
+  Vision Winter Workshop (CVWW)}}. \bibinfo{pages}{1--8}.
+\newblock
+
+
+\bibitem[Wierwille and Ellsworth(1994)]%
+        {ref20}
+\bibfield{author}{\bibinfo{person}{Walter~W. Wierwille} {and}
+  \bibinfo{person}{Leslie~A. Ellsworth}.} \bibinfo{year}{1994}\natexlab{}.
+\newblock \showarticletitle{Evaluation of driver drowsiness by trained raters}.
+\newblock \bibinfo{journal}{\emph{Accident Analysis \& Prevention}}
+  \bibinfo{volume}{26}, \bibinfo{number}{5} (\bibinfo{year}{1994}),
+  \bibinfo{pages}{571--581}.
 \newblock
 
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Homebrew) (preloaded format=pdflatex 2026.3.4)  8 MAY 2026 00:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Homebrew) (preloaded format=pdflatex 2026.3.4)  8 MAY 2026 08:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -789,6 +789,12 @@ LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
 )
 Class acmart Info: Suppressing bibformat on input line 3.
 
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/base/inputenc
+.sty
+Package: inputenc 2024/02/08 v1.3d Input encoding file
+\inpenc@prehook=\toks42
+\inpenc@posthook=\toks43
+)
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/multirow/mult
 irow.sty
 Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
@@ -800,10 +806,10 @@ Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/enumitem/enum
 item.sty
 Package: enumitem 2025/02/06 v3.11 Customized lists
-\enitkv@toks@=\toks42
+\enitkv@toks@=\toks44
 \labelindent=\skip84
 \enit@outerparindent=\dimen258
-\enit@toks=\toks43
+\enit@toks=\toks45
 \enit@inbox=\box63
 \enit@count@id=\count335
 \enitdp@description=\count336
@@ -814,7 +820,7 @@ Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
 \col@sep=\dimen259
 \ar@mcellbox=\box64
 \extrarowheight=\dimen260
-\NC@list=\toks44
+\NC@list=\toks46
 \extratabsurround=\skip85
 \backup@length=\skip86
 \ar@cellbox=\box65
@@ -831,7 +837,7 @@ r/pgf.sty
 /pgfrcs.sty
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/utiliti
 es/pgfutil-common.tex
-\pgfutil@everybye=\toks45
+\pgfutil@everybye=\toks47
 \pgfutil@tempdima=\dimen261
 \pgfutil@tempdimb=\dimen262
 )
@@ -857,12 +863,12 @@ Package: pgfsys 2025-08-29 v3.1.11a (3.1.11a)
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/utiliti
 es/pgfkeys.code.tex
-\pgfkeys@pathtoks=\toks46
-\pgfkeys@temptoks=\toks47
+\pgfkeys@pathtoks=\toks48
+\pgfkeys@temptoks=\toks49
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/utiliti
 es/pgfkeyslibraryfiltered.code.tex
-\pgfkeys@tmptoks=\toks48
+\pgfkeys@tmptoks=\toks50
 ))
 \pgf@x=\dimen263
 \pgf@y=\dimen264
@@ -880,9 +886,9 @@ es/pgfkeyslibraryfiltered.code.tex
 \c@pgf@countb=\count338
 \c@pgf@countc=\count339
 \c@pgf@countd=\count340
-\t@pgf@toka=\toks49
-\t@pgf@tokb=\toks50
-\t@pgf@tokc=\toks51
+\t@pgf@toka=\toks51
+\t@pgf@tokb=\toks52
+\t@pgf@tokc=\toks53
 \pgf@sys@id@count=\count341
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/systeml
@@ -922,9 +928,9 @@ fmathparser.code.tex
 \pgfmath@dimen=\dimen273
 \pgfmath@count=\count344
 \pgfmath@box=\box67
-\pgfmath@toks=\toks52
-\pgfmath@stack@operand=\toks53
-\pgfmath@stack@operation=\toks54
+\pgfmath@toks=\toks54
+\pgfmath@stack@operand=\toks55
+\pgfmath@stack@operation=\toks56
 )
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/math/pg
 fmathfunctions.code.tex)
@@ -1085,8 +1091,8 @@ es/pgffor.code.tex
 Package: pgffor 2025-08-29 v3.1.11a (3.1.11a)
 \pgffor@iter=\dimen300
 \pgffor@skip=\dimen301
-\pgffor@stack=\toks55
-\pgffor@toks=\toks56
+\pgffor@stack=\toks57
+\pgffor@toks=\toks58
 ))
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pgf/fronten
 dlayer/tikz/tikz.code.tex
@@ -1131,8 +1137,8 @@ File: tikzlibrarytopaths.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/tools/verbati
 m.sty
 Package: verbatim 2024-01-22 v1.5x LaTeX2e package for verbatim enhancements
-\every@verbatim=\toks57
-\verbatim@line=\toks58
+\every@verbatim=\toks59
+\verbatim@line=\toks60
 \verbatim@in@stream=\read4
 )
 \tcb@titlebox=\box77
@@ -1162,8 +1168,8 @@ Package pdfcol Info: New color stack `tcb@breakable' = 1 on input line 23.
 \tcb@totalupperbox=\box87
 \tcb@totallowerbox=\box88
 )
-Package hyperref Info: Option `pdfdisplaydoctitle' set `true' on input line 97.
-
+Package hyperref Info: Option `pdfdisplaydoctitle' set `true' on input line 100
+.
 \c@theorem=\count361
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/preprint/bala
@@ -1179,60 +1185,60 @@ File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 ) (./AHCI_Assignment 2.aux)
 \openout1 = `"AHCI_Assignment 2.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/nxlmi/m/it on input line 97.
+LaTeX Font Info:    Checking defaults for OML/nxlmi/m/it on input line 100.
 LaTeX Font Info:    Trying to load font information for OML+nxlmi on input line
- 97.
+ 100.
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/newtx/omlnxlm
 i.fd
 File: omlnxlmi.fd 2013/11/19 Fontinst v1.933 font definitions for OML/nxlmi.
 )
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 97.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 100.
 LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 
-97.
+100.
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/newtx/untxexa
 .fd
 File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
 )
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 97.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 100.
 LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line
- 97.
+ 100.
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/newtx/lmsntxs
 y.fd
 File: lmsntxsy.fd 2016/07/02 Fontinst v1.933 font definitions for LMS/ntxsy.
 )
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 97.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 100.
 LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input lin
-e 97.
+e 100.
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/newtx/lmxntxe
 xx.fd
 File: lmxntxexx.fd 2016/07/03 Fontinst v1.933 font definitions for LMX/ntxexx.
 )
-LaTeX Font Info:    ... okay on input line 97.
+LaTeX Font Info:    ... okay on input line 100.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 7.0pt on input line 97.
+(Font)              scaled to size 7.0pt on input line 100.
 LaTeX Font Info:    Trying to load font information for OT1+LinuxLibertineT-TLF
- on input line 97.
+ on input line 100.
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/libertine/OT1
 LinuxLibertineT-TLF.fd
@@ -1240,83 +1246,83 @@ File: OT1LinuxLibertineT-TLF.fd 2017/03/20 (autoinst) Font definitions for OT1/
 LinuxLibertineT-TLF.
 )
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 7.3pt on input line 97.
+(Font)              scaled to size 7.3pt on input line 100.
 <<ot1.cmap>>
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 5.5pt on input line 97.
+(Font)              scaled to size 5.5pt on input line 100.
 LaTeX Font Info:    Font shape `OML/nxlmi/m/it' will be
-(Font)              scaled to size 7.3pt on input line 97.
+(Font)              scaled to size 7.3pt on input line 100.
 <<oml.cmap>>
 LaTeX Font Info:    Font shape `OML/nxlmi/m/it' will be
-(Font)              scaled to size 5.5pt on input line 97.
+(Font)              scaled to size 5.5pt on input line 100.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 7.3pt on input line 97.
+(Font)              scaled to size 7.3pt on input line 100.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 5.5pt on input line 97.
+(Font)              scaled to size 5.5pt on input line 100.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 7.3pt on input line 97.
+(Font)              scaled to size 7.3pt on input line 100.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 5.5pt on input line 97.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 97.
-
+(Font)              scaled to size 5.5pt on input line 100.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 100
+.
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/umsa
 .fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 97.
-
+LaTeX Font Info:    Trying to load font information for U+msb on input line 100
+.
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/umsb
 .fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 
-97.
+100.
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/newtx/untxmia
 .fd
 File: untxmia.fd 2024/04/09 Fontinst v1.933 font definitions for U/ntxmia.
 )
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 7.3pt on input line 97.
+(Font)              scaled to size 7.3pt on input line 100.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 5.5pt on input line 97.
+(Font)              scaled to size 5.5pt on input line 100.
 LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 
-97.
+100.
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/newtx/untxsym
 .fd
 File: untxsym.fd 2023/08/16 Fontinst v1.933 font definitions for U/ntxsym.
 )
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 7.3pt on input line 97.
+(Font)              scaled to size 7.3pt on input line 100.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 5.5pt on input line 97.
+(Font)              scaled to size 5.5pt on input line 100.
 LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 
-97.
+100.
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/newtx/untxsyc
 .fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 7.3pt on input line 97.
+(Font)              scaled to size 7.3pt on input line 100.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 5.5pt on input line 97.
+(Font)              scaled to size 5.5pt on input line 100.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 7.3pt on input line 97.
+(Font)              scaled to size 7.3pt on input line 100.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 5.5pt on input line 97.
-LaTeX Info: Command `\dddot' is already robust on input line 97.
-LaTeX Info: Command `\ddddot' is already robust on input line 97.
-LaTeX Info: Redefining \microtypecontext on input line 97.
-Package microtype Info: Applying patch `item' on input line 97.
-Package microtype Info: Applying patch `toc' on input line 97.
-Package microtype Info: Applying patch `eqnum' on input line 97.
-Package microtype Info: Applying patch `footnote' on input line 97.
-Package microtype Info: Applying patch `verbatim' on input line 97.
-LaTeX Info: Redefining \microtypesetup on input line 97.
+(Font)              scaled to size 5.5pt on input line 100.
+LaTeX Info: Command `\dddot' is already robust on input line 100.
+LaTeX Info: Command `\ddddot' is already robust on input line 100.
+LaTeX Info: Redefining \microtypecontext on input line 100.
+Package microtype Info: Applying patch `item' on input line 100.
+Package microtype Info: Applying patch `toc' on input line 100.
+Package microtype Info: Applying patch `eqnum' on input line 100.
+Package microtype Info: Applying patch `footnote' on input line 100.
+Package microtype Info: Applying patch `verbatim' on input line 100.
+LaTeX Info: Redefining \microtypesetup on input line 100.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1331,7 +1337,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `LinuxLibertineT-TLF' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-Package hyperref Info: Link coloring OFF on input line 97.
+Package hyperref Info: Link coloring OFF on input line 100.
  (./AHCI_Assignment 2.out) (./AHCI_Assignment 2.out)
 \@outlinefile=\write5
 \openout5 = `"AHCI_Assignment 2.out"'.
@@ -1345,12 +1351,12 @@ upp-pdf.mkii
 \scratchbox=\box89
 \nofMPsegments=\count364
 \nofMParguments=\count365
-\everyMPshowfont=\toks59
+\everyMPshowfont=\toks61
 \MPscratchCnt=\count366
 \MPscratchDim=\dimen314
 \MPnumerator=\count367
 \makeMPintoPDFobject=\count368
-\everyMPtoPDFconversion=\toks60
+\everyMPtoPDFconversion=\toks62
 )
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/epstopdf-pkg/
 epstopdf-base.sty
@@ -1409,9 +1415,9 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 17.28pt on input line 113.
+(Font)              scaled to size 17.28pt on input line 116.
 LaTeX Font Info:    Trying to load font information for T1+LinuxBiolinumT-TLF o
-n input line 113.
+n input line 116.
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/libertine/T1L
 inuxBiolinumT-TLF.fd
@@ -1419,29 +1425,29 @@ File: T1LinuxBiolinumT-TLF.fd 2017/03/20 (autoinst) Font definitions for T1/Lin
 uxBiolinumT-TLF.
 )
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 17.28pt on input line 113.
+(Font)              scaled to size 17.28pt on input line 116.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `LinuxBiolinumT-TLF' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/b/n' will be
-(Font)              scaled to size 17.28pt on input line 113.
+(Font)              scaled to size 17.28pt on input line 116.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 12.0pt on input line 113.
+(Font)              scaled to size 12.0pt on input line 116.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 113.
+(Font)              scaled to size 10.0pt on input line 116.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 113.
+(Font)              scaled to size 10.0pt on input line 116.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `LinuxLibertineT-TLF' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `OML/nxlmi/m/it' will be
-(Font)              scaled to size 10.0pt on input line 113.
+(Font)              scaled to size 10.0pt on input line 116.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 10.0pt on input line 113.
+(Font)              scaled to size 10.0pt on input line 116.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 10.0pt on input line 113.
+(Font)              scaled to size 10.0pt on input line 116.
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mt-
 msa.cfg
@@ -1452,63 +1458,63 @@ msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 10.0pt on input line 113.
+(Font)              scaled to size 10.0pt on input line 116.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 10.0pt on input line 113.
+(Font)              scaled to size 10.0pt on input line 116.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 10.0pt on input line 113.
+(Font)              scaled to size 10.0pt on input line 116.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 10.0pt on input line 113.
+(Font)              scaled to size 10.0pt on input line 116.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 12.0pt on input line 113.
+(Font)              scaled to size 12.0pt on input line 116.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 8.8pt on input line 113.
+(Font)              scaled to size 8.8pt on input line 116.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 6.6pt on input line 113.
+(Font)              scaled to size 6.6pt on input line 116.
 LaTeX Font Info:    Font shape `OML/nxlmi/m/it' will be
-(Font)              scaled to size 12.0pt on input line 113.
+(Font)              scaled to size 12.0pt on input line 116.
 LaTeX Font Info:    Font shape `OML/nxlmi/m/it' will be
-(Font)              scaled to size 8.8pt on input line 113.
+(Font)              scaled to size 8.8pt on input line 116.
 LaTeX Font Info:    Font shape `OML/nxlmi/m/it' will be
-(Font)              scaled to size 6.6pt on input line 113.
+(Font)              scaled to size 6.6pt on input line 116.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 12.0pt on input line 113.
+(Font)              scaled to size 12.0pt on input line 116.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 8.8pt on input line 113.
+(Font)              scaled to size 8.8pt on input line 116.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 6.6pt on input line 113.
+(Font)              scaled to size 6.6pt on input line 116.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 12.0pt on input line 113.
+(Font)              scaled to size 12.0pt on input line 116.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 8.8pt on input line 113.
+(Font)              scaled to size 8.8pt on input line 116.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 6.6pt on input line 113.
+(Font)              scaled to size 6.6pt on input line 116.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 12.0pt on input line 113.
+(Font)              scaled to size 12.0pt on input line 116.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 8.8pt on input line 113.
+(Font)              scaled to size 8.8pt on input line 116.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 6.6pt on input line 113.
+(Font)              scaled to size 6.6pt on input line 116.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 12.0pt on input line 113.
+(Font)              scaled to size 12.0pt on input line 116.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 8.8pt on input line 113.
+(Font)              scaled to size 8.8pt on input line 116.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 6.6pt on input line 113.
+(Font)              scaled to size 6.6pt on input line 116.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 12.0pt on input line 113.
+(Font)              scaled to size 12.0pt on input line 116.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 8.8pt on input line 113.
+(Font)              scaled to size 8.8pt on input line 116.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 6.6pt on input line 113.
+(Font)              scaled to size 6.6pt on input line 116.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 12.0pt on input line 113.
+(Font)              scaled to size 12.0pt on input line 116.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 8.8pt on input line 113.
+(Font)              scaled to size 8.8pt on input line 116.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 6.6pt on input line 113.
+(Font)              scaled to size 6.6pt on input line 116.
 LaTeX Font Info:    Trying to load font information for TS1+LinuxLibertineT-TLF
- on input line 113.
+ on input line 116.
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/libertine/TS1
 LinuxLibertineT-TLF.fd
@@ -1516,35 +1522,35 @@ File: TS1LinuxLibertineT-TLF.fd 2017/03/20 (autoinst) Font definitions for TS1/
 LinuxLibertineT-TLF.
 )
 LaTeX Font Info:    Font shape `TS1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 8.8pt on input line 113.
+(Font)              scaled to size 8.8pt on input line 116.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `LinuxLibertineT-TLF' (encoding: TS1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 5.5pt on input line 113.
+(Font)              scaled to size 5.5pt on input line 116.
 LaTeX Font Info:    Font shape `TS1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 5.5pt on input line 113.
+(Font)              scaled to size 5.5pt on input line 116.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 9.0pt on input line 113.
+(Font)              scaled to size 9.0pt on input line 116.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 10.95pt on input line 113.
+(Font)              scaled to size 10.95pt on input line 116.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 9.0pt on input line 113.
+(Font)              scaled to size 9.0pt on input line 116.
 LaTeX Font Info:    Font shape `OML/nxlmi/m/it' will be
-(Font)              scaled to size 9.0pt on input line 113.
+(Font)              scaled to size 9.0pt on input line 116.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 9.0pt on input line 113.
+(Font)              scaled to size 9.0pt on input line 116.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 9.0pt on input line 113.
+(Font)              scaled to size 9.0pt on input line 116.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 9.0pt on input line 113.
+(Font)              scaled to size 9.0pt on input line 116.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 9.0pt on input line 113.
+(Font)              scaled to size 9.0pt on input line 116.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 9.0pt on input line 113.
+(Font)              scaled to size 9.0pt on input line 116.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 9.0pt on input line 113.
+(Font)              scaled to size 9.0pt on input line 116.
  [1.1{/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/map/pdftex/u
 pdmap/pdftex.map}{/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/
 enc/dvips/libertine/lbtn_25tcsq.enc}{/opt/homebrew/Cellar/texlive/20260301/shar
@@ -1554,473 +1560,485 @@ xlive/20260301/share/texmf-dist/fonts/enc/dvips/libertine/lbtn_naooyc.enc}
 {/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/enc/dvips/liberti
 ne/lbtn_nh77jq.enc}]
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
-(Font)              scaled to size 9.0pt on input line 124.
+(Font)              scaled to size 9.0pt on input line 127.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Overfull \hbox (7.67453pt too wide) in paragraph at lines 156--177
+Overfull \hbox (7.67453pt too wide) in paragraph at lines 159--180
  [][] 
  []
 
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 9.0pt on input line 189.
+(Font)              scaled to size 9.0pt on input line 192.
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 7.0pt on input line 189.
+(Font)              scaled to size 7.0pt on input line 192.
 [2.2{/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/enc/dvips/lib
 ertine/lbtn_7grukw.enc}]
-Overfull \hbox (3.73509pt too wide) in paragraph at lines 190--191
-[]\T1/LinuxLibertineT-TLF/m/n/9 (-20) An evaluation-driven uni-fi-ca-tion into 
-a sin-gle mode-switching
+Underfull \hbox (badness 3179) in paragraph at lines 193--194
+[]\T1/LinuxLibertineT-TLF/m/n/9 (+20) An evaluation-driven uni-fi-ca-tion into 
+a sin-gle mode-
  []
 
 
-Overfull \hbox (18.27869pt too wide) in paragraph at lines 198--199
-\T1/LinuxLibertineT-TLF/m/n/9 (-20) learn-ing tech-niques. Mod-ern sys-tems pri
--mar-ily an-a-lyze fa-cial behaviors---
- []
+Package natbib Warning: Citation `ref21' on page 3 undefined on input line 203.
+
+
+
+Package natbib Warning: Citation `ref22' on page 3 undefined on input line 203.
+
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 8.0pt on input line 215.
+(Font)              scaled to size 8.0pt on input line 218.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 8.0pt on input line 217.
+(Font)              scaled to size 8.0pt on input line 220.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 6.0pt on input line 217.
+(Font)              scaled to size 6.0pt on input line 220.
 LaTeX Font Info:    Font shape `OML/nxlmi/m/it' will be
-(Font)              scaled to size 8.0pt on input line 217.
+(Font)              scaled to size 8.0pt on input line 220.
 LaTeX Font Info:    Font shape `OML/nxlmi/m/it' will be
-(Font)              scaled to size 6.0pt on input line 217.
+(Font)              scaled to size 6.0pt on input line 220.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 8.0pt on input line 217.
+(Font)              scaled to size 8.0pt on input line 220.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 6.0pt on input line 217.
+(Font)              scaled to size 6.0pt on input line 220.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 8.0pt on input line 217.
+(Font)              scaled to size 8.0pt on input line 220.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 6.0pt on input line 217.
+(Font)              scaled to size 6.0pt on input line 220.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 8.0pt on input line 217.
+(Font)              scaled to size 8.0pt on input line 220.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 6.0pt on input line 217.
+(Font)              scaled to size 6.0pt on input line 220.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 8.0pt on input line 217.
+(Font)              scaled to size 8.0pt on input line 220.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 6.0pt on input line 217.
+(Font)              scaled to size 6.0pt on input line 220.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 8.0pt on input line 217.
+(Font)              scaled to size 8.0pt on input line 220.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 6.0pt on input line 217.
+(Font)              scaled to size 6.0pt on input line 220.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 8.0pt on input line 217.
+(Font)              scaled to size 8.0pt on input line 220.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 6.0pt on input line 217.
+(Font)              scaled to size 6.0pt on input line 220.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 8.0pt on input line 219.
+(Font)              scaled to size 8.0pt on input line 222.
 
-Underfull \hbox (badness 10000) in paragraph at lines 221--221
+Underfull \hbox (badness 10000) in paragraph at lines 224--224
 []|\T1/LinuxLibertineT-TLF/m/n/8 (+19) Traditional
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 221--221
+Underfull \hbox (badness 10000) in paragraph at lines 224--224
 []|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Interpretable
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 221--221
+Underfull \hbox (badness 10000) in paragraph at lines 224--224
 \T1/LinuxLibertineT-TLF/m/n/8 (+20) fea-tures; bi-nary
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 222--222
+Underfull \hbox (badness 10000) in paragraph at lines 225--225
 []|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Deep
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 222--222
+Underfull \hbox (badness 10000) in paragraph at lines 225--225
 []|\T1/LinuxLibertineT-TLF/m/n/8 (+20) CNN, CNN-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 222--222
+Underfull \hbox (badness 10000) in paragraph at lines 225--225
 \T1/LinuxLibertineT-TLF/m/n/8 (+20) LSTM, ViT;
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 222--222
+Underfull \hbox (badness 10000) in paragraph at lines 225--225
 []|\T1/LinuxLibertineT-TLF/m/n/8 (+20) High ac-cu-racy;
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 223--223
+Underfull \hbox (badness 10000) in paragraph at lines 226--226
 []|\T1/LinuxLibertineT-TLF/m/n/8 (+20) CLIP, GPT-4V,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 223--224
+Underfull \hbox (badness 10000) in paragraph at lines 226--227
 \T1/LinuxLibertineT-TLF/m/n/8 (+20) natural-language
  []
 
-
-Underfull \vbox (badness 3623) has occurred while \output is active []
-
- [3.3]
-Underfull \hbox (badness 10000) in paragraph at lines 270--270
+[3.3]
+Underfull \hbox (badness 10000) in paragraph at lines 273--273
 []|\T1/LinuxLibertineT-TLF/b/n/8 (+20) Companion
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 270--270
+Underfull \hbox (badness 10000) in paragraph at lines 273--273
 []|\T1/LinuxLibertineT-TLF/b/n/8 (+20) Dashboard
  []
 
 
-Overfull \hbox (1.29874pt too wide) in paragraph at lines 272--272
+Overfull \hbox (1.29874pt too wide) in paragraph at lines 275--275
 []|\T1/LinuxLibertineT-TLF/m/n/8 (-20) Transparency| 
  []
 
 
-Underfull \hbox (badness 2538) in paragraph at lines 272--272
+Underfull \hbox (badness 2538) in paragraph at lines 275--275
 []|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Color-coded sta-
  []
 
 
-Overfull \hbox (1.90692pt too wide) in paragraph at lines 274--274
+Overfull \hbox (1.90692pt too wide) in paragraph at lines 277--277
 []|\T1/LinuxLibertineT-TLF/m/n/8 (-20) Explainability| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 274--274
+Underfull \hbox (badness 10000) in paragraph at lines 277--277
 []|\T1/LinuxLibertineT-TLF/m/n/8 (+20) ``Your eyes are
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 274--274
+Underfull \hbox (badness 10000) in paragraph at lines 277--277
 \T1/LinuxLibertineT-TLF/m/n/8 (+20) get-ting heavy''
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 276--276
+Underfull \hbox (badness 10000) in paragraph at lines 279--279
 []|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Multiple cues
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 276--276
+Underfull \hbox (badness 10000) in paragraph at lines 279--279
 \T1/LinuxLibertineT-TLF/m/n/8 (+20) from mul-ti-ple
  []
 
 
-Overfull \hbox (14.24811pt too wide) in paragraph at lines 268--281
+Overfull \hbox (14.24811pt too wide) in paragraph at lines 271--284
  [][] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 327--327
-[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Camera
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 329--329
-[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Drives sta-tus
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 329--330
-[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) All met-rics
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 331--332
-[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Composite
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 333--333
-[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Speech bub-ble
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 333--334
-[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Full-screen
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 335--335
-[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Driver Ac-
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[4.4]
-Underfull \vbox (badness 2600) has occurred while \output is active []
 
-<figures/fig_demographics.png, id=358, 2719.15875pt x 842.14626pt>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [4.4]
+Underfull \hbox (badness 10000) in paragraph at lines 330--330
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Camera
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--332
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Drives sta-tus
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--333
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) All met-rics
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 334--335
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Composite
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 336--336
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Speech bub-ble
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 336--337
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Full-screen
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 338--338
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Driver Ac-
+ []
+
+<figures/fig_demographics.png, id=364, 2719.15875pt x 842.14626pt>
 File: figures/fig_demographics.png Graphic file (type png)
 <use figures/fig_demographics.png>
-Package pdftex.def Info: figures/fig_demographics.png  used on input line 369.
+Package pdftex.def Info: figures/fig_demographics.png  used on input line 372.
 (pdftex.def)             Requested size: 241.14749pt x 74.68478pt.
 
+Class acmart Warning: A possible image without description on input line 375.
 
-Class acmart Warning: A possible image without description on input line 372.
-
-<figures/fig_drowsiness_experience.png, id=359, 2409.0pt x 903.375pt>
+<figures/fig_drowsiness_experience.png, id=365, 2409.0pt x 903.375pt>
 File: figures/fig_drowsiness_experience.png Graphic file (type png)
 <use figures/fig_drowsiness_experience.png>
 Package pdftex.def Info: figures/fig_drowsiness_experience.png  used on input l
-ine 380.
+ine 383.
 (pdftex.def)             Requested size: 241.14749pt x 90.42549pt.
 
-Class acmart Warning: A possible image without description on input line 383.
+Class acmart Warning: A possible image without description on input line 386.
 
-<figures/fig_coping_times.png, id=360, 2407.99625pt x 903.375pt>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [5.5 <./figures/fig_demographics.png>]
+<figures/fig_coping_times.png, id=378, 2407.99625pt x 903.375pt>
 File: figures/fig_coping_times.png Graphic file (type png)
 <use figures/fig_coping_times.png>
-Package pdftex.def Info: figures/fig_coping_times.png  used on input line 389.
+Package pdftex.def Info: figures/fig_coping_times.png  used on input line 392.
 (pdftex.def)             Requested size: 241.14749pt x 90.46684pt.
 
-Class acmart Warning: A possible image without description on input line 392.
 
-[5.5 <./figures/fig_demographics.png> <./figures/fig_drowsiness_experience.png>
-]
-<figures/fig_privacy_dms.png, id=375, 2409.0pt x 903.375pt>
+Class acmart Warning: A possible image without description on input line 395.
+
+<figures/fig_privacy_dms.png, id=379, 2409.0pt x 903.375pt>
 File: figures/fig_privacy_dms.png Graphic file (type png)
 <use figures/fig_privacy_dms.png>
-Package pdftex.def Info: figures/fig_privacy_dms.png  used on input line 400.
+Package pdftex.def Info: figures/fig_privacy_dms.png  used on input line 403.
 (pdftex.def)             Requested size: 241.14749pt x 90.42549pt.
 
+Class acmart Warning: A possible image without description on input line 406.
 
-Class acmart Warning: A possible image without description on input line 403.
 
-<figures/fig_feature_ranking.png, id=377, 2007.5pt x 1003.75pt>
+Underfull \vbox (badness 5681) has occurred while \output is active []
+
+<figures/fig_feature_ranking.png, id=381, 2007.5pt x 1003.75pt>
 File: figures/fig_feature_ranking.png Graphic file (type png)
 <use figures/fig_feature_ranking.png>
 Package pdftex.def Info: figures/fig_feature_ranking.png  used on input line 41
-3.
+6.
 (pdftex.def)             Requested size: 241.14749pt x 120.56732pt.
 
-Class acmart Warning: A possible image without description on input line 416.
 
-<figures/fig_alert_interface.png, id=378, 2409.0pt x 903.375pt>
+Class acmart Warning: A possible image without description on input line 419.
+
+[6.6 <./figures/fig_drowsiness_experience.png> <./figures/fig_coping_times.png>
+ <./figures/fig_privacy_dms.png> <./figures/fig_feature_ranking.png>]
+<figures/fig_alert_interface.png, id=394, 2409.0pt x 903.375pt>
 File: figures/fig_alert_interface.png Graphic file (type png)
 <use figures/fig_alert_interface.png>
 Package pdftex.def Info: figures/fig_alert_interface.png  used on input line 42
-6.
+9.
 (pdftex.def)             Requested size: 241.14749pt x 90.42549pt.
 
-Class acmart Warning: A possible image without description on input line 429.
 
-[6.6 <./figures/fig_coping_times.png> <./figures/fig_privacy_dms.png> <./figure
-s/fig_feature_ranking.png> <./figures/fig_alert_interface.png>]
-Underfull \hbox (badness 1796) in paragraph at lines 448--449
+Class acmart Warning: A possible image without description on input line 432.
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 451--452
 []|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Mandatory Bangla alert in all
  []
 
 
-Underfull \hbox (badness 1454) in paragraph at lines 450--451
+Underfull \hbox (badness 1454) in paragraph at lines 453--454
 []|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Progressive on-board-ing; Saathi
  []
 
 
-Underfull \hbox (badness 6316) in paragraph at lines 454--454
+Underfull \hbox (badness 6316) in paragraph at lines 457--457
 []|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Interface pref-er-ence split
  []
 
 
-Overfull \hbox (3.84811pt too wide) in paragraph at lines 442--457
+Overfull \hbox (3.84811pt too wide) in paragraph at lines 445--460
  [][] 
  []
 
-[7.7]
-LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 49
-8.
+
+Underfull \vbox (badness 6332) has occurred while \output is active []
+
+ [7.7 <./figures/fig_alert_interface.png>]
+LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 50
+1.
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/inconsolata/t
 1zi4.fd
 File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 9.0pt on input line 498.
+(Font)              scaled to size 9.0pt on input line 501.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `zi4' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-Underfull \hbox (badness 2103) in paragraph at lines 527--527
+Underfull \hbox (badness 2103) in paragraph at lines 530--530
 []|\T1/LinuxLibertineT-TLF/b/n/8 (+20) Tech Lit-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 529--529
+Underfull \hbox (badness 10000) in paragraph at lines 532--532
 []|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Rahim
  []
 
 
-Underfull \hbox (badness 4341) in paragraph at lines 529--529
+Underfull \hbox (badness 4341) in paragraph at lines 532--532
 \T1/LinuxLibertineT-TLF/m/n/8 (+20) (Truck Dri-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 529--529
+Underfull \hbox (badness 10000) in paragraph at lines 532--532
 []|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Design 2:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 529--529
+Underfull \hbox (badness 10000) in paragraph at lines 532--532
 \T1/LinuxLibertineT-TLF/m/n/8 (+20) Com-pan-ion
  []
 
 
-Underfull \hbox (badness 1728) in paragraph at lines 531--531
+Underfull \hbox (badness 1728) in paragraph at lines 534--534
 []|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Karim (Bus
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 531--531
+Underfull \hbox (badness 10000) in paragraph at lines 534--534
 []|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Design 1:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 531--531
+Underfull \hbox (badness 10000) in paragraph at lines 534--534
 \T1/LinuxLibertineT-TLF/m/n/8 (+20) Dash-board
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 531--531
+Underfull \hbox (badness 10000) in paragraph at lines 534--534
 \T1/LinuxLibertineT-TLF/m/n/8 (+20) (Drowsy-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 533--533
+Underfull \hbox (badness 10000) in paragraph at lines 536--536
 []|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Design 3:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 533--533
+Underfull \hbox (badness 10000) in paragraph at lines 536--536
 \T1/LinuxLibertineT-TLF/m/n/8 (+20) HUD
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 533--533
+Underfull \hbox (badness 10000) in paragraph at lines 536--536
 \T1/LinuxLibertineT-TLF/m/n/8 (+20) (Drowsy-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 533--534
+Underfull \hbox (badness 10000) in paragraph at lines 536--537
 []|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Transparency through
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 533--534
+Underfull \hbox (badness 10000) in paragraph at lines 536--537
 \T1/LinuxLibertineT-TLF/m/n/8 (+20) full real-time met-ric
  []
 
 [8.8{/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/enc/dvips/inc
 onsolata/i4-t1-4.enc}]
-<figures/DrowsyGuard-Monitoring.png, id=417, 542.025pt x 1029.8475pt>
+<figures/DrowsyGuard-Monitoring.png, id=421, 542.025pt x 1029.8475pt>
 File: figures/DrowsyGuard-Monitoring.png Graphic file (type png)
 <use figures/DrowsyGuard-Monitoring.png>
 Package pdftex.def Info: figures/DrowsyGuard-Monitoring.png  used on input line
- 567.
+ 570.
 (pdftex.def)             Requested size: 82.35887pt x 156.49014pt.
-<figures/DrowsyGuard-Alert.png, id=418, 1084.05pt x 2085.7925pt>
+<figures/DrowsyGuard-Alert.png, id=422, 1084.05pt x 2085.7925pt>
 File: figures/DrowsyGuard-Alert.png Graphic file (type png)
 <use figures/DrowsyGuard-Alert.png>
-Package pdftex.def Info: figures/DrowsyGuard-Alert.png  used on input line 568.
+Package pdftex.def Info: figures/DrowsyGuard-Alert.png  used on input line 571.
 
 (pdftex.def)             Requested size: 81.31677pt x 156.49014pt.
-<figures/DrowsyGuard-Settings.png, id=419, 1084.05pt x 2146.0175pt>
+<figures/DrowsyGuard-Settings.png, id=423, 1084.05pt x 2146.0175pt>
 File: figures/DrowsyGuard-Settings.png Graphic file (type png)
 <use figures/DrowsyGuard-Settings.png>
 Package pdftex.def Info: figures/DrowsyGuard-Settings.png  used on input line 5
-69.
+72.
 (pdftex.def)             Requested size: 79.05063pt x 156.49014pt.
-<figures/DrowsyGuard-Stats.png, id=420, 1084.05pt x 2060.69875pt>
+<figures/DrowsyGuard-Stats.png, id=424, 1084.05pt x 2060.69875pt>
 File: figures/DrowsyGuard-Stats.png Graphic file (type png)
 <use figures/DrowsyGuard-Stats.png>
-Package pdftex.def Info: figures/DrowsyGuard-Stats.png  used on input line 570.
+Package pdftex.def Info: figures/DrowsyGuard-Stats.png  used on input line 573.
 
 (pdftex.def)             Requested size: 82.30925pt x 156.49014pt.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 7.0pt on input line 572.
+(Font)              scaled to size 7.0pt on input line 575.
 
 
-Class acmart Warning: A possible image without description on input line 575.
-
-LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
-(Font)              scaled to size 8.0pt on input line 615.
-<figures/Saathi-Monitoring.png, id=423, 1084.05pt x 2409.0pt>
-File: figures/Saathi-Monitoring.png Graphic file (type png)
-<use figures/Saathi-Monitoring.png>
-Package pdftex.def Info: figures/Saathi-Monitoring.png  used on input line 632.
-
-(pdftex.def)             Requested size: 70.41609pt x 156.49014pt.
-<figures/Saathi-Explain.png, id=424, 1084.05pt x 2409.0pt>
-File: figures/Saathi-Explain.png Graphic file (type png)
-<use figures/Saathi-Explain.png>
-Package pdftex.def Info: figures/Saathi-Explain.png  used on input line 633.
-(pdftex.def)             Requested size: 70.41609pt x 156.49014pt.
-<figures/Saathi-Warning.png, id=425, 1084.05pt x 2409.0pt>
-File: figures/Saathi-Warning.png Graphic file (type png)
-<use figures/Saathi-Warning.png>
-Package pdftex.def Info: figures/Saathi-Warning.png  used on input line 634.
-(pdftex.def)             Requested size: 70.41609pt x 156.49014pt.
-<figures/Saathi-Settings.png, id=426, 1084.05pt x 2409.0pt>
-File: figures/Saathi-Settings.png Graphic file (type png)
-<use figures/Saathi-Settings.png>
-Package pdftex.def Info: figures/Saathi-Settings.png  used on input line 635.
-(pdftex.def)             Requested size: 70.41609pt x 156.49014pt.
-
-Class acmart Warning: A possible image without description on input line 640.
-
-[9.9]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [10.10{/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/enc/dvips/
-libertine/lbtn_oexx6f.enc} <./figures/DrowsyGuard-Monitoring.png> <./figures/Dr
-owsyGuard-Alert.png> <./figures/DrowsyGuard-Settings.png> <./figures/DrowsyGuar
-d-Stats.png> <./figures/Saathi-Monitoring.png> <./figures/Saathi-Explain.png> <
-./figures/Saathi-Warning.png> <./figures/Saathi-Settings.png>]
-<figures/DrowsyHUD-Monitoring.png, id=454, 1084.05pt x 2409.0pt>
-File: figures/DrowsyHUD-Monitoring.png Graphic file (type png)
-<use figures/DrowsyHUD-Monitoring.png>
-Package pdftex.def Info: figures/DrowsyHUD-Monitoring.png  used on input line 6
-94.
-(pdftex.def)             Requested size: 70.41609pt x 156.49014pt.
-<figures/DrowsyHUD-Alert.png, id=455, 1084.05pt x 2409.0pt>
-File: figures/DrowsyHUD-Alert.png Graphic file (type png)
-<use figures/DrowsyHUD-Alert.png>
-Package pdftex.def Info: figures/DrowsyHUD-Alert.png  used on input line 695.
-(pdftex.def)             Requested size: 70.41609pt x 156.49014pt.
-<figures/DrowsyHUD-Heatmap.png, id=456, 1084.05pt x 2409.0pt>
-File: figures/DrowsyHUD-Heatmap.png Graphic file (type png)
-<use figures/DrowsyHUD-Heatmap.png>
-Package pdftex.def Info: figures/DrowsyHUD-Heatmap.png  used on input line 696.
-
-(pdftex.def)             Requested size: 70.41609pt x 156.49014pt.
-<figures/DrowsyHUD-Settings.png, id=457, 1084.05pt x 2409.0pt>
-File: figures/DrowsyHUD-Settings.png Graphic file (type png)
-<use figures/DrowsyHUD-Settings.png>
-Package pdftex.def Info: figures/DrowsyHUD-Settings.png  used on input line 697
-.
-(pdftex.def)             Requested size: 70.41609pt x 156.49014pt.
-
-
-Class acmart Warning: A possible image without description on input line 702.
-
-<figures/comparative_interface.png, id=461, 1284.8pt x 856.19875pt>
-File: figures/comparative_interface.png Graphic file (type png)
-<use figures/comparative_interface.png>
-Package pdftex.def Info: figures/comparative_interface.png  used on input line 
-736.
-(pdftex.def)             Requested size: 480.9787pt x 320.52502pt.
-
-Class acmart Warning: A possible image without description on input line 740.
+Class acmart Warning: A possible image without description on input line 578.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[11.11]
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
+(Font)              scaled to size 8.0pt on input line 618.
+<figures/Saathi-Monitoring.png, id=427, 1084.05pt x 2409.0pt>
+File: figures/Saathi-Monitoring.png Graphic file (type png)
+<use figures/Saathi-Monitoring.png>
+Package pdftex.def Info: figures/Saathi-Monitoring.png  used on input line 635.
+
+(pdftex.def)             Requested size: 70.41609pt x 156.49014pt.
+<figures/Saathi-Explain.png, id=428, 1084.05pt x 2409.0pt>
+File: figures/Saathi-Explain.png Graphic file (type png)
+<use figures/Saathi-Explain.png>
+Package pdftex.def Info: figures/Saathi-Explain.png  used on input line 636.
+(pdftex.def)             Requested size: 70.41609pt x 156.49014pt.
+<figures/Saathi-Warning.png, id=429, 1084.05pt x 2409.0pt>
+File: figures/Saathi-Warning.png Graphic file (type png)
+<use figures/Saathi-Warning.png>
+Package pdftex.def Info: figures/Saathi-Warning.png  used on input line 637.
+(pdftex.def)             Requested size: 70.41609pt x 156.49014pt.
+<figures/Saathi-Settings.png, id=430, 1084.05pt x 2409.0pt>
+File: figures/Saathi-Settings.png Graphic file (type png)
+<use figures/Saathi-Settings.png>
+Package pdftex.def Info: figures/Saathi-Settings.png  used on input line 638.
+(pdftex.def)             Requested size: 70.41609pt x 156.49014pt.
+
+Class acmart Warning: A possible image without description on input line 643.
+
+[9.9]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [10.10 <./figures/DrowsyGuard-Monitoring.png> <./figures/DrowsyGuard-Alert.png
+> <./figures/DrowsyGuard-Settings.png> <./figures/DrowsyGuard-Stats.png> <./fig
+ures/Saathi-Monitoring.png> <./figures/Saathi-Explain.png> <./figures/Saathi-Wa
+rning.png> <./figures/Saathi-Settings.png>]
+<figures/DrowsyHUD-Monitoring.png, id=459, 1084.05pt x 2409.0pt>
+File: figures/DrowsyHUD-Monitoring.png Graphic file (type png)
+<use figures/DrowsyHUD-Monitoring.png>
+Package pdftex.def Info: figures/DrowsyHUD-Monitoring.png  used on input line 6
+97.
+(pdftex.def)             Requested size: 70.41609pt x 156.49014pt.
+<figures/DrowsyHUD-Alert.png, id=460, 1084.05pt x 2409.0pt>
+File: figures/DrowsyHUD-Alert.png Graphic file (type png)
+<use figures/DrowsyHUD-Alert.png>
+Package pdftex.def Info: figures/DrowsyHUD-Alert.png  used on input line 698.
+(pdftex.def)             Requested size: 70.41609pt x 156.49014pt.
+<figures/DrowsyHUD-Heatmap.png, id=461, 1084.05pt x 2409.0pt>
+File: figures/DrowsyHUD-Heatmap.png Graphic file (type png)
+<use figures/DrowsyHUD-Heatmap.png>
+Package pdftex.def Info: figures/DrowsyHUD-Heatmap.png  used on input line 699.
+
+(pdftex.def)             Requested size: 70.41609pt x 156.49014pt.
+<figures/DrowsyHUD-Settings.png, id=462, 1084.05pt x 2409.0pt>
+File: figures/DrowsyHUD-Settings.png Graphic file (type png)
+<use figures/DrowsyHUD-Settings.png>
+Package pdftex.def Info: figures/DrowsyHUD-Settings.png  used on input line 700
+.
+(pdftex.def)             Requested size: 70.41609pt x 156.49014pt.
+
+
+Class acmart Warning: A possible image without description on input line 705.
+
+<figures/comparative_interface.png, id=466, 1284.8pt x 856.19875pt>
+File: figures/comparative_interface.png Graphic file (type png)
+<use figures/comparative_interface.png>
+Package pdftex.def Info: figures/comparative_interface.png  used on input line 
+739.
+(pdftex.def)             Requested size: 480.9787pt x 320.52502pt.
+
+Class acmart Warning: A possible image without description on input line 743.
+
+[11.11{/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/enc/dvips/l
+ibertine/lbtn_oexx6f.enc}]
 
 LaTeX Warning: Text page 12 contains only floats.
 
@@ -2038,84 +2056,93 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 /figures/DrowsyHUD-Heatmap.png> <./figures/DrowsyHUD-Settings.png> <./figures/c
 omparative_interface.png>]
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 8.0pt on input line 818.
+(Font)              scaled to size 8.0pt on input line 821.
 
-Underfull \hbox (badness 1515) in paragraph at lines 824--825
+Underfull \hbox (badness 1515) in paragraph at lines 827--828
 []\T1/LinuxLibertineT-TLF/b/n/8 (+20) ROUTING: \T1/zi4/m/n/8 / $\LMS/ntxsy/m/n/
 8 !$ \T1/LinuxLibertineT-TLF/m/n/8 (+20) Splash/Onboarding (first launch) or re
 di-rect
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 826--827
+Underfull \hbox (badness 10000) in paragraph at lines 829--830
 []\T1/LinuxLibertineT-TLF/b/n/8 (+20) GLOBAL STATE (Zu-s-tand store): \T1/Linux
 LibertineT-TLF/m/n/8 (+20) User pref-er-ences:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 826--827
+Underfull \hbox (badness 10000) in paragraph at lines 829--830
 \T1/zi4/m/n/8 interfaceMode \T1/LinuxLibertineT-TLF/m/n/8 (+20) (com-pan-ion/da
 shboard/hud), \T1/zi4/m/n/8 sensitivity
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 826--827
+Underfull \hbox (badness 10000) in paragraph at lines 829--830
 \T1/LinuxLibertineT-TLF/m/n/8 (+20) (false), \T1/zi4/m/n/8 employerSharing \T1/
 LinuxLibertineT-TLF/m/n/8 (+20) (false), \T1/zi4/m/n/8 dataRetention \T1/LinuxL
 ibertineT-TLF/m/n/8 (+20) (end-of-
  []
 
 
-Underfull \hbox (badness 7308) in paragraph at lines 826--827
+Underfull \hbox (badness 7308) in paragraph at lines 829--830
 \T1/zi4/m/n/8 perclosScore \T1/LinuxLibertineT-TLF/m/n/8 (+20) (0--100), \T1/zi
 4/m/n/8 eyeAspectRatio \T1/LinuxLibertineT-TLF/m/n/8 (+20) (0.0--0.5), \T1/zi4/
 m/n/8 blinkRate\T1/LinuxLibertineT-TLF/m/n/8 (+20) ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 826--827
+Underfull \hbox (badness 10000) in paragraph at lines 829--830
 \T1/zi4/m/n/8 headPose \T1/LinuxLibertineT-TLF/m/n/8 (+20) (pitch/yaw/roll), \T
 1/zi4/m/n/8 aiConfidence \T1/LinuxLibertineT-TLF/m/n/8 (+20) (0--100), \T1/zi4/
 m/n/8 eyeState
  []
 
 LaTeX Font Info:    Font shape `T1/zi4/b/n' will be
-(Font)              scaled to size 8.0pt on input line 842.
+(Font)              scaled to size 8.0pt on input line 845.
 
-Underfull \hbox (badness 10000) in paragraph at lines 842--843
+Underfull \hbox (badness 10000) in paragraph at lines 845--846
 []\T1/LinuxLibertineT-TLF/b/n/8 (+20) SIMULATION EN-GINE (\T1/zi4/b/n/8 useDrow
 sinessSimulation \T1/LinuxLibertineT-TLF/b/n/8 (+20) hook):
  []
 
-[13.13]
-Underfull \hbox (badness 3646) in paragraph at lines 852--853
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [13.13]
+Underfull \hbox (badness 3646) in paragraph at lines 855--856
 \T1/LinuxLibertineT-TLF/m/n/8 (+20) Top bar: green pri-vacy badge with lock ``A
 ll data on your
  []
 
 
-Underfull \hbox (badness 3158) in paragraph at lines 852--853
+Underfull \hbox (badness 3158) in paragraph at lines 855--856
 \T1/LinuxLibertineT-TLF/m/n/8 (+20) de-vice'' \T1/LinuxLibertineT-TLF/b/n/8 (+2
 0) [Bangla] \T1/LinuxLibertineT-TLF/m/n/8 (+20) + trip timer + sen-si-tiv-ity l
 a-bel (Con-ser-va-
  []
 
 LaTeX Font Info:    Font shape `TS1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 8.0pt on input line 854.
+(Font)              scaled to size 8.0pt on input line 857.
 
-Underfull \hbox (badness 10000) in paragraph at lines 884--885
+Underfull \vbox (badness 3525) has occurred while \output is active []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 887--888
 []\T1/LinuxLibertineT-TLF/b/n/8 (+20) DASHBOARD SET-TINGS: \T1/LinuxLibertineT-
 TLF/m/n/8 (+20) Sen-si-tiv-ity (3-button: Con-ser-va-
  []
 
 
-Underfull \hbox (badness 1077) in paragraph at lines 884--885
+Underfull \hbox (badness 1077) in paragraph at lines 887--888
 \T1/LinuxLibertineT-TLF/b/n/8 (+20) [Bangla]\T1/LinuxLibertineT-TLF/m/n/8 (+20)
  , model: ``Drowsy-CLIP --- Vi-sion Trans-former + CLIP
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 914--915
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [14.14]
+Underfull \hbox (badness 10000) in paragraph at lines 917--918
 []\T1/LinuxLibertineT-TLF/b/n/8 (+20) ANIMATIONS: \T1/LinuxLibertineT-TLF/m/n/8
  (+20) (1) Saathi: CSS keyframe
  []
@@ -2123,69 +2150,63 @@ Underfull \hbox (badness 10000) in paragraph at lines 914--915
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [14.14]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-<figures/Unified-Onboarding.png, id=502, 722.7pt x 1606.0pt>
+<figures/Unified-Onboarding.png, id=508, 722.7pt x 1606.0pt>
 File: figures/Unified-Onboarding.png Graphic file (type png)
 <use figures/Unified-Onboarding.png>
-Package pdftex.def Info: figures/Unified-Onboarding.png  used on input line 933
+Package pdftex.def Info: figures/Unified-Onboarding.png  used on input line 936
 .
 (pdftex.def)             Requested size: 70.41058pt x 156.49014pt.
-<figures/Unified-ModeSelect.png, id=503, 722.7pt x 1606.0pt>
+<figures/Unified-ModeSelect.png, id=509, 722.7pt x 1606.0pt>
 File: figures/Unified-ModeSelect.png Graphic file (type png)
 <use figures/Unified-ModeSelect.png>
-Package pdftex.def Info: figures/Unified-ModeSelect.png  used on input line 934
+Package pdftex.def Info: figures/Unified-ModeSelect.png  used on input line 937
 .
 (pdftex.def)             Requested size: 70.41058pt x 156.49014pt.
-<figures/Unified-Companion-Drive.png, id=504, 722.7pt x 1606.0pt>
+<figures/Unified-Companion-Drive.png, id=510, 722.7pt x 1606.0pt>
 File: figures/Unified-Companion-Drive.png Graphic file (type png)
 <use figures/Unified-Companion-Drive.png>
 Package pdftex.def Info: figures/Unified-Companion-Drive.png  used on input lin
-e 935.
+e 938.
 (pdftex.def)             Requested size: 70.41058pt x 156.49014pt.
-<figures/Unified-Dashboard-Drive.png, id=505, 722.7pt x 1606.0pt>
+<figures/Unified-Dashboard-Drive.png, id=511, 722.7pt x 1606.0pt>
 File: figures/Unified-Dashboard-Drive.png Graphic file (type png)
 <use figures/Unified-Dashboard-Drive.png>
 Package pdftex.def Info: figures/Unified-Dashboard-Drive.png  used on input lin
-e 936.
+e 939.
 (pdftex.def)             Requested size: 70.41058pt x 156.49014pt.
-<figures/Unified-HUD-Drive.png, id=506, 722.7pt x 1606.0pt>
+<figures/Unified-HUD-Drive.png, id=512, 722.7pt x 1606.0pt>
 File: figures/Unified-HUD-Drive.png Graphic file (type png)
 <use figures/Unified-HUD-Drive.png>
-Package pdftex.def Info: figures/Unified-HUD-Drive.png  used on input line 937.
+Package pdftex.def Info: figures/Unified-HUD-Drive.png  used on input line 940.
 
 (pdftex.def)             Requested size: 70.41058pt x 156.49014pt.
-<figures/Unified-Settings-ModeSwitch.png, id=507, 722.7pt x 1606.0pt>
+<figures/Unified-Settings-ModeSwitch.png, id=513, 722.7pt x 1606.0pt>
 File: figures/Unified-Settings-ModeSwitch.png Graphic file (type png)
 <use figures/Unified-Settings-ModeSwitch.png>
 Package pdftex.def Info: figures/Unified-Settings-ModeSwitch.png  used on input
- line 938.
+ line 941.
 (pdftex.def)             Requested size: 70.41058pt x 156.49014pt.
 
 
-Class acmart Warning: A possible image without description on input line 944.
+Class acmart Warning: A possible image without description on input line 947.
 
 
-Overfull \hbox (3.18422pt too wide) in paragraph at lines 947--948
-\T1/LinuxLibertineT-TLF/m/n/9 (-20) maps HCAI prin-ci-ples to their mode-specif
-ic im-ple-men-ta-tions within
- []
-
-
-Underfull \hbox (badness 1009) in paragraph at lines 960--961
+Underfull \hbox (badness 1009) in paragraph at lines 963--964
 []|\T1/LinuxLibertineT-TLF/m/it/8 (+20) Companion: \T1/LinuxLibertineT-TLF/m/n/
 8 (+20) Con-ver-sa-tional Bangla (no jar-gon).
  []
 
 
-Overfull \hbox (13.94128pt too wide) in paragraph at lines 978--979
-\T1/LinuxLibertineT-TLF/m/n/9 (-20) The eval-u-a-tion of the uni-fied pro-to-ty
-pe fol-lowed a for-ma-tive, inspection-
- []
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-[15.15]
-Underfull \vbox (badness 3209) has occurred while \output is active []
+
+Underfull \vbox (badness 2460) has occurred while \output is active []
+
+ [15.15]
+Underfull \vbox (badness 2512) has occurred while \output is active []
+
+
+Underfull \vbox (badness 2932) has occurred while \output is active []
 
  [16.16 <./figures/Unified-Onboarding.png> <./figures/Unified-ModeSelect.png> <
 ./figures/Unified-Companion-Drive.png> <./figures/Unified-Dashboard-Drive.png> 
@@ -2193,533 +2214,190 @@ Underfull \vbox (badness 3209) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1100--1101
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [17.17]
+Underfull \hbox (badness 10000) in paragraph at lines 1103--1104
 []|\T1/zi4/m/n/8 expo-camera \T1/LinuxLibertineT-TLF/m/n/8 (+20) (\T1/zi4/m/n/8
  CameraView\T1/LinuxLibertineT-TLF/m/n/8 (+20) ,
  []
 
 
-Overfull \hbox (11.9626pt too wide) in paragraph at lines 1102--1103
+Overfull \hbox (11.9626pt too wide) in paragraph at lines 1105--1106
 []|\T1/zi4/m/n/8 @react-native-ml-kit/face-detection
  []
 
-[17.17]
-Overfull \hbox (56.92674pt too wide) in paragraph at lines 1115--1116
-[]\T1/LinuxLibertineT-TLF/m/n/9 (-20) A key ar-chi-tec-tural con-straint is tha
-t \T1/zi4/m/n/9 @react-native-ml-kit/face-detection
+
+Underfull \hbox (badness 1515) in paragraph at lines 1118--1119
+\T1/LinuxLibertineT-TLF/m/n/9 (+20) the face de-tec-tor's \T1/zi4/m/n/9 react-n
+ative-worklets-core\T1/LinuxLibertineT-TLF/m/n/9 (+20) . The pure-
  []
 
 
-Overfull \hbox (2.65561pt too wide) in paragraph at lines 1115--1116
-\T1/LinuxLibertineT-TLF/m/n/9 (-20) An ini-tial in-te-gra-tion at-tempt us-ing 
-\T1/zi4/m/n/9 react-native-vision-camera
+Underfull \hbox (badness 1997) in paragraph at lines 1118--1119
+\T1/LinuxLibertineT-TLF/m/n/9 (+20) bridge ML Kit ap-proach elim-i-nates this c
+lass of build-time
  []
 
 
-Overfull \hbox (2.33392pt too wide) in paragraph at lines 1115--1116
-\T1/LinuxLibertineT-TLF/m/n/9 (-20) v4 with \T1/zi4/m/n/9 react-native-vision-c
-amera-face-detector \T1/LinuxLibertineT-TLF/m/n/9 (-20) was aban-
- []
-
-
-Overfull \hbox (5.08598pt too wide) in paragraph at lines 1115--1116
-\T1/LinuxLibertineT-TLF/m/n/9 (-20) worklets run-times: Re-an-i-mated 4's \T1/z
-i4/m/n/9 react-native-worklets \T1/LinuxLibertineT-TLF/m/n/9 (-20) (loaded
- []
-
-
-Overfull \hbox (98.57652pt too wide) in paragraph at lines 1115--1116
-\T1/LinuxLibertineT-TLF/m/n/9 (-20) au-to-mat-i-cally by \T1/zi4/m/n/9 babel-pr
-eset-expo\T1/LinuxLibertineT-TLF/m/n/9 (-20) ) and the face de-tec-tor's \T1/zi
-4/m/n/9 react-native-worklets-core\T1/LinuxLibertineT-TLF/m/n/9 (-20) .
- []
-
-
-Overfull \hbox (49.62968pt too wide) in paragraph at lines 1119--1120
-\T1/LinuxLibertineT-TLF/m/n/9 (-20) time cam-era cap-ture loop. On ev-ery it-er
--a-tion, \T1/zi4/m/n/9 CameraView.takePictureAsync()
- []
-
-
-Overfull \hbox (36.26381pt too wide) in paragraph at lines 1119--1120
-\T1/zi4/m/n/9 FaceDetection.detect() \T1/LinuxLibertineT-TLF/m/n/9 (-20) from \
-T1/zi4/m/n/9 @react-native-ml-kit/face-detection\T1/LinuxLibertineT-TLF/m/n/9 (
--20) .
- []
-
-
-Overfull \hbox (1.90218pt too wide) in paragraph at lines 1123--1124
+Overfull \hbox (1.90218pt too wide) in paragraph at lines 1126--1127
 []\T1/zi4/m/n/9 leftEyeOpenProbability \T1/LinuxLibertineT-TLF/m/n/9 (-20) and 
 \T1/zi4/m/n/9 rightEyeOpenProbability
  []
 
-
-Overfull \hbox (25.20853pt too wide) in paragraph at lines 1127--1128
-[]\T1/LinuxLibertineT-TLF/m/n/9 (-20) Each cap-tured im-age is deleted af-ter d
-e-tec-tion us-ing \T1/zi4/m/n/9 expo-file-system
- []
-
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 6.6pt on input line 1135.
+(Font)              scaled to size 6.6pt on input line 1138.
 
-LaTeX Warning: Command \textdegree invalid in math mode on input line 1141.
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1144.
 
 LaTeX Font Info:    Font shape `TS1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 9.0pt on input line 1141.
+(Font)              scaled to size 9.0pt on input line 1144.
 
-LaTeX Warning: Command \textdegree invalid in math mode on input line 1141.
-
-Missing character: There is no � in font LinLibertineT-tlf-ot1!
-
-LaTeX Warning: Command \textdegree invalid in math mode on input line 1141.
-
-
-LaTeX Warning: Command \textdegree invalid in math mode on input line 1141.
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1144.
 
 Missing character: There is no � in font LinLibertineT-tlf-ot1!
 
-Overfull \hbox (44.16609pt too wide) detected at line 1146
-[] \U/ntxmia/m/it/9 = \OT1/LinuxLibertineT-TLF/m/n/9 0\OML/nxlmi/m/it/9 :\OT1/L
-inuxLibertineT-TLF/m/n/9 40 \LMS/ntxsy/m/n/9 ^^A [] � \OT1/LinuxLibertineT-TLF/
-m/n/9 0\OML/nxlmi/m/it/9 :\OT1/LinuxLibertineT-TLF/m/n/9 25 \LMS/ntxsy/m/n/9 ^^
-A \U/ntxmia/m/it/9 ^^A[] \LMS/ntxsy/m/n/9 � \OT1/LinuxLibertineT-TLF/m/n/9 0\OM
-L/nxlmi/m/it/9 :\OT1/LinuxLibertineT-TLF/m/n/9 20 \LMS/ntxsy/m/n/9 ^^A [] � \OT
-1/LinuxLibertineT-TLF/m/n/9 0\OML/nxlmi/m/it/9 :\OT1/LinuxLibertineT-TLF/m/n/9 
-15 \LMS/ntxsy/m/n/9 ^^A []
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1144.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1144.
+
+Missing character: There is no � in font LinLibertineT-tlf-ot1!
+[18.18] [19.19]
+Underfull \hbox (badness 1558) in paragraph at lines 1247--1247
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Change sen-si-tiv-ity: Bal-anced $\LMS/n
+txsy/m/n/8 !$
  []
 
 
-Overfull \hbox (16.08536pt too wide) in paragraph at lines 1155--1156
-\T1/LinuxLibertineT-TLF/m/n/9 (-20) for Level 2, sus-tained alarm for Level 3) 
-are im-ple-mented via \T1/zi4/m/n/9 expo-audio
- []
-
-
-! LaTeX Error: Unicode character আ (U+0986)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1159 ...n link]'' / ``I am drowsy in the car.''}
-                                                   The feature requires expl...
-
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-
-! LaTeX Error: Unicode character ম (U+09AE)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1159 ...n link]'' / ``I am drowsy in the car.''}
-                                                   The feature requires expl...
-
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-
-! LaTeX Error: Unicode character ি (U+09BF)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1159 ...n link]'' / ``I am drowsy in the car.''}
-                                                   The feature requires expl...
-
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-
-! LaTeX Error: Unicode character গ (U+0997)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1159 ...n link]'' / ``I am drowsy in the car.''}
-                                                   The feature requires expl...
-
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-
-! LaTeX Error: Unicode character া (U+09BE)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1159 ...n link]'' / ``I am drowsy in the car.''}
-                                                   The feature requires expl...
-
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-
-! LaTeX Error: Unicode character ড (U+09A1)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1159 ...n link]'' / ``I am drowsy in the car.''}
-                                                   The feature requires expl...
-
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-
-! LaTeX Error: Unicode character ় (U+09BC)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1159 ...n link]'' / ``I am drowsy in the car.''}
-                                                   The feature requires expl...
-
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-
-! LaTeX Error: Unicode character ি (U+09BF)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1159 ...n link]'' / ``I am drowsy in the car.''}
-                                                   The feature requires expl...
-
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-
-! LaTeX Error: Unicode character ত (U+09A4)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1159 ...n link]'' / ``I am drowsy in the car.''}
-                                                   The feature requires expl...
-
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-
-! LaTeX Error: Unicode character ে (U+09C7)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1159 ...n link]'' / ``I am drowsy in the car.''}
-                                                   The feature requires expl...
-
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-
-! LaTeX Error: Unicode character ক (U+0995)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1159 ...n link]'' / ``I am drowsy in the car.''}
-                                                   The feature requires expl...
-
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-
-! LaTeX Error: Unicode character ্ (U+09CD)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1159 ...n link]'' / ``I am drowsy in the car.''}
-                                                   The feature requires expl...
-
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-
-! LaTeX Error: Unicode character ল (U+09B2)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1159 ...n link]'' / ``I am drowsy in the car.''}
-                                                   The feature requires expl...
-
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-
-! LaTeX Error: Unicode character া (U+09BE)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1159 ...n link]'' / ``I am drowsy in the car.''}
-                                                   The feature requires expl...
-
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-
-! LaTeX Error: Unicode character ন (U+09A8)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1159 ...n link]'' / ``I am drowsy in the car.''}
-                                                   The feature requires expl...
-
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-
-! LaTeX Error: Unicode character ্ (U+09CD)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1159 ...n link]'' / ``I am drowsy in the car.''}
-                                                   The feature requires expl...
-
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-
-! LaTeX Error: Unicode character ত (U+09A4)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1159 ...n link]'' / ``I am drowsy in the car.''}
-                                                   The feature requires expl...
-
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-
-! LaTeX Error: Unicode character । (U+0964)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1159 ...n link]'' / ``I am drowsy in the car.''}
-                                                   The feature requires expl...
-
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-[18.18]
-Overfull \hbox (11.5352pt too wide) in paragraph at lines 1171--1172
-\T1/LinuxLibertineT-TLF/m/n/9 (-20) con-trolled eval-u-a-tion was con-ducted wi
-th a co-hort of three Bangladeshi
- []
-
-
-Overfull \hbox (1.13145pt too wide) in paragraph at lines 1180--1181
-[]\T1/LinuxLibertineT-TLF/b/n/9 (-20) System Us-abil-ity Scale (SUS): \T1/Linux
-LibertineT-TLF/m/n/9 (-20) 10-item stan-dard scale scored
- []
-
-
-Overfull \hbox (24.2636pt too wide) in paragraph at lines 1195--1196
-\T1/LinuxLibertineT-TLF/m/n/9 (-20) The three participants---all daily pri-vate
- com-muters in Dhaka, Bangladesh---
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1208--1208
-[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) School
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1210--1210
-[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Driving Ex-pe-ri-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1212--1212
-[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Low-
- []
-
-
-Overfull \hbox (14.24768pt too wide) in paragraph at lines 1202--1221
+Overfull \hbox (5.72993pt too wide) in paragraph at lines 1237--1257
  [][] 
  []
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Overfull \hbox (60.06042pt too wide) in paragraph at lines 1233--1253
- [][] 
+Underfull \hbox (badness 1348) in paragraph at lines 1263--1264
+ []\T1/LinuxLibertineT-TLF/m/it/9 (+20) NASA Task Load In-dex.[] \T1/LinuxLiber
+tineT-TLF/m/n/9 (+20) Raw NASA-TLX scores [[]] (0--10,
  []
 
-[19.19]
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Overfull \hbox (7.44122pt too wide) in paragraph at lines 1317--1318
-[]\T1/LinuxLibertineT-TLF/m/n/9 (-20) The highest-rated features---false-alarm 
-con-trol and explainability---
+Overfull \hbox (3.06793pt too wide) in paragraph at lines 1292--1293
+ []\T1/LinuxLibertineT-TLF/m/it/9 (-20) User Ex-pe-ri-ence Ques-tion-naire.[] \
+T1/LinuxLibertineT-TLF/m/n/9 (-20) The UEQ-S mean was \T1/LinuxLibertineT-TLF/b
+/n/9 (-20) 5.04/7.0 \T1/LinuxLibertineT-TLF/m/n/9 (-20) [[]].
  []
 
 [20.20]
-Overfull \hbox (3.82422pt too wide) in paragraph at lines 1358--1359
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (2.37593pt too wide) in paragraph at lines 1381--1381
+[]|\T1/LinuxLibertineT-TLF/b/n/8 (-20) Effort| 
+ []
+
+
+Overfull \hbox (8.09239pt too wide) in paragraph at lines 1381--1381
 []|\T1/LinuxLibertineT-TLF/m/n/8 (-20) Medium| 
  []
 
 
-Underfull \hbox (badness 1796) in paragraph at lines 1359--1359
-[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Mirror-check gaze mis-clas-si-
- []
-
-
-Underfull \hbox (badness 3343) in paragraph at lines 1362--1362
-[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Calibration screen too text-
- []
-
-
-Overfull \hbox (3.82422pt too wide) in paragraph at lines 1362--1363
+Overfull \hbox (8.09239pt too wide) in paragraph at lines 1381--1381
 []|\T1/LinuxLibertineT-TLF/m/n/8 (-20) Medium| 
  []
 
 
-Overfull \hbox (3.82422pt too wide) in paragraph at lines 1364--1365
+Underfull \hbox (badness 10000) in paragraph at lines 1381--1381
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Mode
+ []
+
+
+Overfull \hbox (8.09239pt too wide) in paragraph at lines 1381--1381
 []|\T1/LinuxLibertineT-TLF/m/n/8 (-20) Medium| 
  []
 
 
-Overfull \hbox (3.82422pt too wide) in paragraph at lines 1367--1368
+Underfull \hbox (badness 4229) in paragraph at lines 1381--1381
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Alert dis-torts over Blue-
+ []
+
+
+Overfull \hbox (8.09239pt too wide) in paragraph at lines 1381--1381
 []|\T1/LinuxLibertineT-TLF/m/n/8 (-20) Medium| 
  []
 
 
-Overfull \hbox (3.82422pt too wide) in paragraph at lines 1368--1369
+Underfull \hbox (badness 1354) in paragraph at lines 1381--1381
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Readability in di-rect sun-
+ []
+
+
+Overfull \hbox (8.09239pt too wide) in paragraph at lines 1381--1381
 []|\T1/LinuxLibertineT-TLF/m/n/8 (-20) Medium| 
  []
 
 
-Overfull \hbox (3.82422pt too wide) in paragraph at lines 1369--1370
+Overfull \hbox (8.09239pt too wide) in paragraph at lines 1381--1381
 []|\T1/LinuxLibertineT-TLF/m/n/8 (-20) Medium| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1370--1370
-[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Continuous cam-era drain
+Underfull \hbox (badness 3375) in paragraph at lines 1381--1381
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Camera drain on 45min
  []
 
 
-Overfull \hbox (3.82422pt too wide) in paragraph at lines 1372--1373
+Underfull \hbox (badness 10000) in paragraph at lines 1381--1381
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Nav. In-te-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1381--1381
+[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Multi-
+ []
+
+
+Overfull \hbox (8.09239pt too wide) in paragraph at lines 1381--1381
 []|\T1/LinuxLibertineT-TLF/m/n/8 (-20) Medium| 
  []
 
 
-Underfull \hbox (badness 1178) in paragraph at lines 1373--1373
-[]|\T1/LinuxLibertineT-TLF/m/n/8 (+20) Prayer-time breaks not in-te-
- []
-
-
-Overfull \hbox (3.82422pt too wide) in paragraph at lines 1375--1376
+Overfull \hbox (8.09239pt too wide) in paragraph at lines 1381--1381
 []|\T1/LinuxLibertineT-TLF/m/n/8 (-20) Medium| 
- []
-
-
-Overfull \hbox (25.0936pt too wide) in paragraph at lines 1354--1378
- [][] 
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [21.21]
-Overfull \hbox (16.66254pt too wide) in paragraph at lines 1438--1439
-[]\T1/LinuxLibertineT-TLF/b/n/9 (-20) Trust cal-i-bra-tion across per-sonas. \T
-1/LinuxLibertineT-TLF/m/n/9 (-20) The zero-prior-DMS-experience
- []
-
-
-Overfull \hbox (17.24664pt too wide) in paragraph at lines 1456--1457
-[]\T1/LinuxLibertineT-TLF/b/n/9 (-20) Persona-driven de-sign pre-vents ma-jor-i
-ty tyranny. \T1/LinuxLibertineT-TLF/m/n/9 (-20) The 45/36/18%
- []
-
 [22.22]
-Overfull \hbox (22.38222pt too wide) in paragraph at lines 1460--1461
-[]\T1/LinuxLibertineT-TLF/b/n/9 (-20) Cultural con-text de-mands more than tran
-s-la-tion. \T1/LinuxLibertineT-TLF/m/n/9 (-20) The Bangladeshi
+Underfull \hbox (badness 1371) in paragraph at lines 1467--1468
+\T1/LinuxLibertineT-TLF/m/n/9 (+20) con-nec-tion (Saathi), pro-fes-sional cred-
+i-bil-ity (Dash-board with
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (7.8128pt too wide) in paragraph at lines 1476--1477
-[]\T1/LinuxLibertineT-TLF/b/n/9 (-20) Sample size. \T1/LinuxLibertineT-TLF/m/n/
-9 (-20) The user re-search was con-ducted with 11 Bangladeshi
- []
-
-
-Overfull \hbox (6.34949pt too wide) in paragraph at lines 1478--1479
-[]\T1/LinuxLibertineT-TLF/b/n/9 (-20) Formative eval-u-a-tion only. \T1/LinuxLi
-bertineT-TLF/m/n/9 (-20) The eval-u-a-tion em-ployed inspection-
+Underfull \hbox (badness 1939) in paragraph at lines 1481--1482
+[]\T1/LinuxLibertineT-TLF/b/n/9 (+20) Sample size. \T1/LinuxLibertineT-TLF/m/n/
+9 (+20) The user re-search was con-ducted with 11
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [23.23]
-Overfull \hbox (95.09993pt too wide) in paragraph at lines 1496--1497
-\T1/LinuxLibertineT-TLF/m/n/9 (-20) Na-tive) with real on-device ML Kit face de
--tec-tion (\T1/zi4/m/n/9 @react-native-ml-kit/face-detection\T1/LinuxLibertineT
--TLF/m/n/9 (-20) )
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 
 (./AHCI_Assignment 2.bbl
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
-(Font)              scaled to size 7.0pt on input line 45.
+(Font)              scaled to size 7.0pt on input line 50.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 6396) has occurred while \output is active []
 
-)
+ [24.24])
+
+Package natbib Warning: There were undefined citations.
+
 
 Class acmart Warning: Some images may lack descriptions.
 (acmart)              ACM is committed to complying with the upcoming US ADA ht
@@ -2745,10 +2423,6 @@ Class acmart Warning: ACM reference format is mandatory
 Class acmart Warning: CCS concepts are mandatory for papers over two pages.
 
 
-Package balance Warning: You have called \balance in second column
-(balance)                Columns might not be balanced.
-
-
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/stringenc/s
 e-pdfdoc.def
 File: se-pdfdoc.def 2019/11/29 v1.12 stringenc: PDFDocEncoding
@@ -2756,7 +2430,7 @@ File: se-pdfdoc.def 2019/11/29 v1.12 stringenc: PDFDocEncoding
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/stringenc/s
 e-utf8.def
 File: se-utf8.def 2019/11/29 v1.12 stringenc: UTF-8
-) [24.24] (./AHCI_Assignment 2.aux)
+) [25.25] (./AHCI_Assignment 2.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
@@ -2765,13 +2439,13 @@ Package rerunfilecheck Info: File `"AHCI_Assignment 2".out' has not changed.
 (rerunfilecheck)             Checksum: 4851D4F1D5AA75888AC88D0481DBEED9;14744.
  ) 
 Here is how much of TeX's memory you used:
- 34967 strings out of 467525
- 665461 string characters out of 5408440
- 1111057 words of memory out of 5000000
- 62147 multiletter control sequences out of 15000+600000
- 857028 words of font info for 669 fonts, out of 8000000 for 9000
+ 35067 strings out of 467525
+ 667658 string characters out of 5408440
+ 1116019 words of memory out of 5000000
+ 62192 multiletter control sequences out of 15000+600000
+ 860961 words of font info for 695 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 98i,12n,131p,1489b,872s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 98i,13n,131p,1489b,851s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/in
 consolata/Inconsolata-zi4b.pfb></opt/homebrew/Cellar/texlive/20260301/share/tex
 mf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></opt/homebrew/Cell
@@ -2790,10 +2464,10 @@ wtx/NewTXMI7.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/
 type1/public/newtx/txmiaX.pfb></opt/homebrew/Cellar/texlive/20260301/share/texm
 f-dist/fonts/type1/public/newtx/txsym.pfb></opt/homebrew/Cellar/texlive/2026030
 1/share/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
-Output written on "AHCI_Assignment 2.pdf" (24 pages, 1990755 bytes).
+Output written on "AHCI_Assignment 2.pdf" (25 pages, 1996808 bytes).
 PDF statistics:
- 701 PDF objects out of 1000 (max. 8388607)
- 589 compressed objects within 6 object streams
- 182 named destinations out of 1000 (max. 500000)
+ 751 PDF objects out of 1000 (max. 8388607)
+ 637 compressed objects within 7 object streams
+ 195 named destinations out of 1000 (max. 500000)
  111802 words of extra memory for PDF output out of 128383 (max. 10000000)
 
