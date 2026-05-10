@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, Pressable, StyleSheet } from 'react-native';
+import { View, Text, Pressable, StyleSheet, ScrollView, Dimensions } from 'react-native';
+
+const { height: SCREEN_H } = Dimensions.get('window');
 import { useRouter } from 'expo-router';
 import Animated, { FadeIn, SlideInDown } from 'react-native-reanimated';
 import Svg, { Ellipse, Circle } from 'react-native-svg';
@@ -157,21 +159,30 @@ function DashboardAlert({
   return (
     <Animated.View entering={FadeIn.duration(200)} style={[styles.fullScreen, { backgroundColor: colors.overlay, justifyContent: 'flex-end' }]}>
       <Animated.View entering={SlideInDown.springify().damping(20)} style={styles.dashSheet}>
-        <Text style={styles.dashTitle}>{alert.reason_bn}</Text>
-        <Text style={styles.dashSub}>
-          {alert.reason_en} — PERCLOS {alert.perclosAtTrigger}%
-        </Text>
+        {/* Scrollable content — grows to fit smsBanner without pushing buttons off-screen */}
+        <ScrollView
+          bounces={false}
+          showsVerticalScrollIndicator={false}
+          style={styles.dashScrollArea}
+          contentContainerStyle={styles.dashScrollContent}
+        >
+          <Text style={styles.dashTitle}>{alert.reason_bn}</Text>
+          <Text style={styles.dashSub}>
+            {alert.reason_en} — PERCLOS {alert.perclosAtTrigger}%
+          </Text>
 
-        <View style={styles.confidenceRow}>
-          <Text style={styles.confidenceLabel}>নিশ্চিততা:</Text>
-          <View style={styles.confidenceTrack}>
-            <View style={[styles.confidenceFill, { width: `${alert.confidence}%` }]} />
+          <View style={styles.confidenceRow}>
+            <Text style={styles.confidenceLabel}>নিশ্চিততা:</Text>
+            <View style={styles.confidenceTrack}>
+              <View style={[styles.confidenceFill, { width: `${alert.confidence}%` }]} />
+            </View>
+            <Text style={styles.confidenceVal}>{Math.round(alert.confidence)}%</Text>
           </View>
-          <Text style={styles.confidenceVal}>{Math.round(alert.confidence)}%</Text>
-        </View>
 
-        {smsBanner}
+          {smsBanner}
+        </ScrollView>
 
+        {/* Buttons always pinned at the bottom of the sheet */}
         <View style={styles.dashBtnRow}>
           <Pressable onPress={onDismiss} style={[styles.dashBtn, styles.dashBtnGhost]}>
             <Text style={styles.dashBtnGhostText}>ঠিক আছি</Text>
@@ -262,9 +273,12 @@ const styles = StyleSheet.create({
   dashSheet: {
     backgroundColor: colors.card,
     borderTopLeftRadius: 24, borderTopRightRadius: 24,
-    padding: 24,
+    paddingTop: 24,
+    paddingHorizontal: 24,
     borderTopWidth: 4, borderTopColor: colors.coral,
   },
+  dashScrollArea: { maxHeight: SCREEN_H * 0.38 },
+  dashScrollContent: { paddingBottom: 8 },
   dashTitle: { color: colors.foreground, fontSize: 20, fontWeight: '800', marginBottom: 4 },
   dashSub:   { color: colors.muted, fontSize: 13, marginBottom: 12 },
   confidenceRow: { flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 16 },
@@ -272,7 +286,7 @@ const styles = StyleSheet.create({
   confidenceTrack: { flex: 1, height: 8, backgroundColor: colors.border, borderRadius: 4, overflow: 'hidden' },
   confidenceFill:  { height: '100%', backgroundColor: colors.primary },
   confidenceVal:   { color: colors.foreground, fontSize: 13, fontVariant: ['tabular-nums'] },
-  dashBtnRow: { flexDirection: 'row', gap: 12 },
+  dashBtnRow: { flexDirection: 'row', gap: 12, paddingTop: 16, paddingBottom: 24 },
   dashBtn: { flex: 1, paddingVertical: 14, borderRadius: radius.lg, alignItems: 'center' },
   dashBtnGhost: { borderWidth: 1, borderColor: colors.border },
   dashBtnGhostText: { color: colors.foreground, fontWeight: '700' },

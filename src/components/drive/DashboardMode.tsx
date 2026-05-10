@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Text, Pressable, StyleSheet } from 'react-native';
-import { useRouter } from 'expo-router';
+import { View, Text, StyleSheet } from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -12,7 +11,7 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import { useAppStore } from '@/store/useAppStore';
-import { LockIcon, ZapIcon, MapPinIcon, InfoIcon } from '@/components/Icons';
+import { LockIcon } from '@/components/Icons';
 import { colors, radius } from '@/lib/theme';
 import { toBn, formatTime } from '@/lib/i18n';
 
@@ -25,7 +24,6 @@ export function DashboardMode() {
   const tripElapsedSeconds = useAppStore((s) => s.tripElapsedSeconds);
   const drowsinessEvents   = useAppStore((s) => s.drowsinessEvents);
   const nextRiskEtaMin     = useAppStore((s) => s.nextRiskEtaMin);
-  const router = useRouter();
 
   const ringColor =
     currentAlertLevel >= 3 ? colors.danger :
@@ -106,11 +104,6 @@ export function DashboardMode() {
         </View>
       </View>
 
-      <View style={styles.actions}>
-        <ActionBtn label="ভুল সতর্কতা" Icon={ZapIcon} onPress={() => {}} />
-        <ActionBtn label="বিশ্রাম" Icon={MapPinIcon} onPress={() => router.push('/rest-stops')} />
-        <ActionBtn label="কেন সতর্ক?" Icon={InfoIcon} onPress={() => router.push('/analytics')} />
-      </View>
     </View>
   );
 }
@@ -121,17 +114,6 @@ function Stat({ label, value, highlight }: { label: string; value: string; highl
       <Text style={styles.statLabel}>{label}</Text>
       <Text style={[styles.statValue, highlight && styles.statValueHighlight]}>{value}</Text>
     </View>
-  );
-}
-
-function ActionBtn({
-  label, Icon, onPress,
-}: { label: string; Icon: React.ComponentType<{ size?: number; color?: string }>; onPress: () => void }) {
-  return (
-    <Pressable onPress={onPress} style={styles.actionBtn}>
-      <Icon size={22} color={colors.muted} />
-      <Text style={styles.actionLabel}>{label}</Text>
-    </Pressable>
   );
 }
 
@@ -162,7 +144,4 @@ const styles = StyleSheet.create({
   statValue: { color: colors.foreground, fontSize: 16, fontWeight: '700', marginTop: 2 },
   statValueHighlight: { color: colors.danger },
 
-  actions: { flexDirection: 'row', justifyContent: 'space-around', paddingTop: 8 },
-  actionBtn: { alignItems: 'center', minHeight: 48, gap: 4 },
-  actionLabel: { color: colors.muted, fontSize: 11 },
 });

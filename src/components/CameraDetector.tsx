@@ -105,30 +105,43 @@ export function CameraDetector({ active, onFaceResult }: Props) {
                   : 'No face';
 
   return (
-    <View
-      pointerEvents="none"
-      style={[styles.pill, { top: insets.top + 8 }]}
-    >
+    <>
+      {/* Camera rendered off-screen — Android SurfaceView punches through any
+          overlay, so the only way to hide the shutter flicker is to position
+          the view outside the visible viewport entirely. */}
       {permitted && active ? (
         <CameraView
           ref={cameraRef}
-          style={StyleSheet.absoluteFillObject}
+          style={styles.offScreen}
           facing="front"
+          flash="off"
+          animateShutter={false}
         />
       ) : null}
 
-      {/* Opaque cover hides the camera surface */}
-      <View style={[StyleSheet.absoluteFillObject, styles.cover]} />
-
-      <View style={styles.content}>
-        <View style={[styles.dot, { backgroundColor: dotColor }]} />
-        <Text style={styles.label}>{label}</Text>
+      <View
+        pointerEvents="none"
+        style={[styles.pill, { top: insets.top + 8 }]}
+      >
+        <View style={[StyleSheet.absoluteFillObject, styles.cover]} />
+        <View style={styles.content}>
+          <View style={[styles.dot, { backgroundColor: dotColor }]} />
+          <Text style={styles.label}>{label}</Text>
+        </View>
       </View>
-    </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
+  offScreen: {
+    position: 'absolute',
+    top: -9999,
+    left: -9999,
+    width: 100,
+    height: 100,
+  },
+
   pill: {
     position: 'absolute',
     right: 16,
