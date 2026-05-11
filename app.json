@@ -7,7 +7,7 @@
     "icon": "./assets/icon.png",
     "scheme": "drowsyguard",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": false,
+    "newArchEnabled": true,
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
