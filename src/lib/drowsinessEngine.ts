@@ -83,8 +83,12 @@ const DEFAULTS = {
   headDroopPitchDeg: 18,
   /** Microsleep — eye closure ≥ this is a guaranteed Level-3 alert */
   microsleepMs: 1_500,
-  /** Min ms between alert events (debounce) */
-  minAlertGapMs: 8_000,
+  /**
+   * Minimum ms between alert events, per alert level.
+   * Level 1 fires gently and needs a longer gap so the driver can respond.
+   * Level 3 (urgent/microsleep) should re-fire quickly if the situation persists.
+   */
+  minAlertGapByLevel: { 1: 25_000, 2: 15_000, 3: 8_000 } as Record<1|2|3, number>,
 };
 
 /* ────────────────────────────────────────────────────────────────────────── */
@@ -254,14 +258,19 @@ export class DrowsinessEngine {
       reason_en = 'Eyes getting heavy.';
     }
 
-    // Debounce alerts: clear reason if we've fired recently
-    const allowEvent = now - this.lastAlertAt > DEFAULTS.minAlertGapMs;
-    if (alertLevel >= 2 && allowEvent) {
-      this.lastAlertAt = now;
-    } else if (alertLevel >= 2 && !allowEvent) {
-      // Keep alertLevel for the UI ring colour, but suppress the event reason
-      reason_bn = null;
-      reason_en = null;
+    // Per-level debounce: Level 1 fires less often than Level 3 so the
+    // experience escalates naturally (gentle → warning → urgent).
+    if (alertLevel >= 1) {
+      const minGap = DEFAULTS.minAlertGapByLevel[alertLevel as 1|2|3];
+      const allowEvent = now - this.lastAlertAt > minGap;
+      if (allowEvent) {
+        this.lastAlertAt = now;
+      } else {
+        // Suppress event reason so the overlay doesn't re-fire, but keep
+        // alertLevel so the UI ring/status continues to reflect the state.
+        reason_bn = null;
+        reason_en = null;
+      }
     }
 
     // Composite fatigue score (0..100) — visual indicator only, does not gate alerts

@@ -14,7 +14,7 @@ import React, { useState } from 'react';
 import { View, Text, Pressable, StyleSheet, ScrollView, TextInput } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { useAppStore, type Sensitivity, type InterfaceMode } from '@/store/useAppStore';
+import { useAppStore, type Sensitivity, type InterfaceMode, type AlertMode } from '@/store/useAppStore';
 import { BottomNav } from '@/components/BottomNav';
 import { ShieldIcon, LockIcon, VolumeIcon } from '@/components/Icons';
 import { colors, radius } from '@/lib/theme';
@@ -100,26 +100,24 @@ export default function SettingsPage() {
         <View style={styles.card}>
           <View style={styles.cardHeader}>
             <VolumeIcon size={16} color={colors.primary} />
-            <Text style={styles.cardLabelTight}>শব্দ / Sound</Text>
+            <Text style={styles.cardLabelTight}>সতর্কতার ধরন / Alert Mode</Text>
           </View>
-          <Toggle
-            value={store.soundAlerts}
-            onChange={store.setSoundAlerts}
-            bn="শব্দে সতর্ক করুন"
-            en="Sound alerts"
+          <SegmentedControl<AlertMode>
+            options={[
+              { val: 'sound',     label: '🔊 শব্দ' },
+              { val: 'vibration', label: '📳 কম্পন' },
+              { val: 'night',     label: '🌙 রাত' },
+            ]}
+            value={store.alertMode}
+            onChange={(v) => store.setAlertMode(v)}
           />
-          <Toggle
-            value={store.hapticAlerts}
-            onChange={store.setHapticAlerts}
-            bn="কম্পনে সতর্ক করুন"
-            en="Haptic vibration alerts"
-          />
-          <Toggle
-            value={store.nightQuiet}
-            onChange={store.setNightQuiet}
-            bn="রাতে শান্ত মোড"
-            en="Night quiet mode"
-          />
+          <Text style={styles.alertModeHint}>
+            {store.alertMode === 'sound'
+              ? 'শুধু শব্দ সতর্কতা — কম্পন বন্ধ।\nSound only — no vibration.'
+              : store.alertMode === 'vibration'
+              ? 'শুধু কম্পন সতর্কতা — শব্দ বন্ধ।\nVibration only — no sound.'
+              : 'হালকা শব্দ + কম্পন — রাতের ড্রাইভিংয়ের জন্য।\nQuiet sound + vibration for night driving.'}
+          </Text>
         </View>
 
         {/* Threshold (HUD only) */}
@@ -306,6 +304,8 @@ const styles = StyleSheet.create({
   stepBtnText: { color: colors.foreground, fontSize: 20, fontWeight: '700' },
   stepperTrack: { flex: 1, height: 8, backgroundColor: colors.bgDark, borderRadius: 4, overflow: 'hidden' },
   stepperFill: { height: '100%', backgroundColor: colors.primary },
+
+  alertModeHint: { color: colors.muted, fontSize: 12, marginTop: 10, lineHeight: 18 },
 
   aboutChip: { backgroundColor: colors.primaryAlpha10, padding: 12, borderRadius: 8 },
   aboutChipMain: { color: colors.primary, fontSize: 12, fontWeight: '600' },

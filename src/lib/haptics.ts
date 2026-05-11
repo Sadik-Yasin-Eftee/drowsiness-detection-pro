@@ -1,62 +1,78 @@
 /**
  * Haptic feedback for drowsiness alerts.
  *
- * startHapticLoop(level) — fires a vibration pattern and repeats on an
- *   interval until stopHapticLoop() is called.
- * stopHapticLoop()       — cancels the repeating pattern immediately.
+ * Android: uses the native Vibration API for reliable vibration control.
+ *   expo-haptics calls are not guaranteed on all Android OEMs; Vibration is.
+ * iOS: uses expo-haptics (Taptic Engine).
  *
- * Repeat intervals by level:
- *   Level 1 → gentle pulse every 3 s  (early reminder)
- *   Level 2 → warning burst every 2 s (needs attention)
- *   Level 3 → urgent burst every 1.2 s (critical — microsleep)
+ * startHapticLoop(level) — fires a vibration pattern and repeats until
+ *   stopHapticLoop() is called.
+ *   Level 1 → gentle single pulse every ~3 s
+ *   Level 2 → double burst every ~2 s
+ *   Level 3 → triple urgent burst every ~1.2 s
  */
 
+import { Platform, Vibration } from 'react-native';
 import * as Haptics from 'expo-haptics';
 
 let _hapticInterval: ReturnType<typeof setInterval> | null = null;
 
-// ── Single-shot patterns ──────────────────────────────────────────────────────
+// ── Patterns for Android Vibration.vibrate(pattern, repeat) ─────────────────
+// Pattern: [delay, vib, pause, vib, pause, …]
+const ANDROID_PATTERNS: Record<1 | 2 | 3, number[]> = {
+  1: [0, 120, 2880],               // 120ms vib, 2.88s quiet → ~3s cycle
+  2: [0, 180, 120, 180, 1520],     // double burst, 1.52s quiet → ~2s cycle
+  3: [0, 280, 100, 280, 100, 280, 460], // triple burst, 0.46s quiet → ~1.5s cycle
+};
 
-async function _firePattern(level: 1 | 2 | 3): Promise<void> {
+// ── iOS single-shot patterns ─────────────────────────────────────────────────
+async function _fireIosPattern(level: 1 | 2 | 3): Promise<void> {
   try {
     if (level === 1) {
-      await Haptics.selectionAsync();
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     } else if (level === 2) {
       await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
     } else {
-      // Level 3: strong triple burst
       await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
-      setTimeout(() => { void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy); }, 200);
-      setTimeout(() => { void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy); }, 400);
+      setTimeout(() => { void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy); }, 220);
+      setTimeout(() => { void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy); }, 440);
     }
-  } catch { /* haptics unsupported */ }
+  } catch { /* Taptic Engine unavailable */ }
 }
 
-// ── Looping API ───────────────────────────────────────────────────────────────
+const IOS_INTERVAL: Record<1 | 2 | 3, number> = { 1: 3000, 2: 2000, 3: 1200 };
 
-const HAPTIC_INTERVAL: Record<1 | 2 | 3, number> = {
-  1: 3000,
-  2: 2000,
-  3: 1200,
-};
+// ── Public API ───────────────────────────────────────────────────────────────
 
 /** Start repeating the haptic pattern for `level` until stopHapticLoop(). */
 export function startHapticLoop(level: 1 | 2 | 3): void {
   stopHapticLoop();
-  void _firePattern(level);   // fire immediately
-  _hapticInterval = setInterval(() => { void _firePattern(level); }, HAPTIC_INTERVAL[level]);
+
+  if (Platform.OS === 'android') {
+    Vibration.vibrate(ANDROID_PATTERNS[level], true /* repeat */);
+  } else {
+    void _fireIosPattern(level);
+    _hapticInterval = setInterval(() => { void _fireIosPattern(level); }, IOS_INTERVAL[level]);
+  }
 }
 
 /** Cancel the repeating haptic pattern. */
 export function stopHapticLoop(): void {
+  if (Platform.OS === 'android') {
+    Vibration.cancel();
+  }
   if (_hapticInterval !== null) {
     clearInterval(_hapticInterval);
     _hapticInterval = null;
   }
 }
 
-// ── One-shot (kept for backwards compat) ─────────────────────────────────────
-
+/** One-shot haptic (kept for backwards compat). */
 export async function buzzForAlert(level: 1 | 2 | 3): Promise<void> {
-  await _firePattern(level);
+  if (Platform.OS === 'android') {
+    const pattern = ANDROID_PATTERNS[level];
+    Vibration.vibrate(pattern);
+  } else {
+    await _fireIosPattern(level);
+  }
 }

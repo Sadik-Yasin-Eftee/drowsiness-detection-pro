@@ -14,27 +14,27 @@ import { toBn, formatTime } from '@/lib/i18n';
 
 const MESSAGES = {
   safe: [
-    'আপনি ভালো করছেন। নিরাপদ থাকুন। 😊',
-    'সব ঠিক আছে। আমি পাশে আছি। 🛡️',
-    'আপনার চোখ খোলা এবং মনোযোগ ঠিক আছে।',
+    'আপনি ভালো করছেন! নিরাপদে চলুন।',
+    'সব ঠিক আছে। আমি পাশে আছি।',
+    'আপনার চোখ খোলা। মনোযোগ ঠিক আছে।',
     'দারুণ! নিরাপদ গাড়ি চালাচ্ছেন।',
-    'চলুন সতর্কে থাকি। আপনি ভালো আছেন। ✅',
+    'চলুন সতর্কে থাকি। আপনি ভালো আছেন।',
   ],
   watch: [
-    '⚠️ সামান্য ক্লান্তির লক্ষণ দেখছি।',
+    'সামান্য ক্লান্তির লক্ষণ দেখছি।',
     'একটু সতর্ক থাকুন। পানি পান করুন।',
     'চোখ ভারী হচ্ছে? একটু বিরতি নিন।',
     'গান ছেড়ে দিন বা জানালা খুলুন।',
     'একটু সতেজ থাকার চেষ্টা করুন।',
   ],
   danger: [
-    '🛑 বিশ্রাম নেওয়া দরকার। থামুন।',
-    'আপনার চোখ বন্ধ হয়ে যাচ্ছে!',
+    'আপনার চোখ বন্ধ হয়ে যাচ্ছে...',
+    'বিশ্রাম নেওয়া দরকার। থামুন।',
     'বিপজ্জনক! নিরাপদ স্থানে থামান।',
-    '⚠️ অনুগ্রহ করে এখনই থামুন।',
+    'অনুগ্রহ করে এখনই থামুন।',
   ],
   noFace: [
-    '👀 আপনার মুখ দেখছি না।',
+    'আপনার মুখ দেখছি না।',
     'ক্যামেরার দিকে তাকান।',
     'মুখ সামনে রাখুন।',
   ],
@@ -83,29 +83,9 @@ function SaathiBubble({ msgState }: { msgState: MsgState }) {
 
   const animStyle = useAnimatedStyle(() => ({ opacity: opacity.value }));
 
-  const bubbleBg =
-    msgState === 'danger' ? 'rgba(239,68,68,0.15)'
-    : msgState === 'watch' ? 'rgba(245,158,11,0.15)'
-    : msgState === 'noFace' ? 'rgba(100,116,139,0.15)'
-    : 'rgba(20,184,166,0.12)';
-
-  const bubbleBorder =
-    msgState === 'danger' ? colors.danger
-    : msgState === 'watch' ? colors.warning
-    : msgState === 'noFace' ? colors.muted
-    : colors.primary;
-
-  const textColor =
-    msgState === 'danger' ? colors.danger
-    : msgState === 'watch' ? colors.warning
-    : msgState === 'noFace' ? colors.muted
-    : colors.foreground;
-
   return (
-    <Animated.View style={[styles.bubble, { backgroundColor: bubbleBg, borderColor: bubbleBorder, shadowColor: bubbleBorder }, animStyle]}>
-      <Text style={[styles.bubbleText, { color: textColor }]}>{text}</Text>
-      {/* Downward tip pointing toward Saathi */}
-      <View style={[styles.bubbleTip, { borderTopColor: bubbleBg }]} />
+    <Animated.View style={[styles.bubble, animStyle]}>
+      <Text style={styles.bubbleText}>{text}</Text>
     </Animated.View>
   );
 }
@@ -123,6 +103,18 @@ export function CompanionMode() {
     : perclos > 20 ? 'watch'
     : 'safe';
 
+  const statusLabel =
+    msgState === 'noFace'  ? 'মুখ দেখছি না'
+    : msgState === 'danger'  ? 'বিশ্রাম নিন'
+    : msgState === 'watch'   ? 'সতর্ক থাকুন'
+    : 'নিরাপদ';
+
+  const statusColor =
+    msgState === 'danger'  ? colors.coral
+    : msgState === 'watch'   ? colors.warning
+    : msgState === 'noFace'  ? colors.muted
+    : colors.primary;
+
   return (
     <View style={[styles.root, { backgroundColor: colors.bgWarm }]}>
       <View style={styles.topBar}>
@@ -134,8 +126,17 @@ export function CompanionMode() {
       </View>
 
       <View style={styles.centre}>
+        {/* Conversational bubble above the eye */}
         <SaathiBubble msgState={msgState} />
+
+        {/* Saathi eye character */}
         <SaathiCharacter size={200} />
+
+        {/* Status label below the eye */}
+        <Text style={[styles.statusLabel, { color: statusColor }]}>
+          {statusLabel}
+        </Text>
+
         {alertLevel === 0 && nextRiskEtaMin !== null && (
           <View style={[
             styles.etaChip,
@@ -172,41 +173,37 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 24,
+    gap: 20,
     paddingHorizontal: 16,
-    // The topBar above this view (~54px) shifts the mathematical center downward.
-    // Equal paddingBottom pulls the content back toward true screen center.
     paddingBottom: 54,
   },
 
   bubble: {
-    borderWidth: 1.5,
-    borderRadius: 18,
-    paddingHorizontal: 18,
-    paddingVertical: 12,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    paddingHorizontal: 20,
+    paddingVertical: 14,
     maxWidth: 280,
     alignItems: 'center',
-    shadowOpacity: 0.18,
-    shadowRadius: 8,
-    shadowOffset: { width: 0, height: 2 },
-    elevation: 3,
+    shadowColor: '#000',
+    shadowOpacity: 0.10,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 4,
   },
   bubbleText: {
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: '600',
     textAlign: 'center',
-    lineHeight: 22,
+    lineHeight: 24,
+    color: '#1E293B',
   },
-  bubbleTip: {
-    position: 'absolute',
-    bottom: -11,
-    width: 0,
-    height: 0,
-    borderLeftWidth: 10,
-    borderRightWidth: 10,
-    borderTopWidth: 11,
-    borderLeftColor: 'transparent',
-    borderRightColor: 'transparent',
+
+  statusLabel: {
+    fontSize: 22,
+    fontWeight: '800',
+    textAlign: 'center',
+    letterSpacing: 0.3,
   },
 
   etaChip: {

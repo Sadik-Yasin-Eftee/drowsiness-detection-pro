@@ -32,6 +32,8 @@ export type Language = 'bn' | 'en';
 export type DataRetention = 'end-of-trip' | '7-days' | '30-days' | 'never';
 export type EyeState = 'open' | 'closing' | 'closed';
 export type CameraPermissionStatus = 'undetermined' | 'denied' | 'granted';
+/** Alert notification mode: sound-only, vibration-only, or night (quiet sound + vibration) */
+export type AlertMode = 'sound' | 'vibration' | 'night';
 
 export interface AppState {
   // Persisted preferences
@@ -50,6 +52,7 @@ export interface AppState {
   soundAlerts: boolean;
   hapticAlerts: boolean;
   nightQuiet: boolean;
+  alertMode: AlertMode;
   emergencyContact: string;
   calibrated: boolean;
 
@@ -76,6 +79,10 @@ export interface AppState {
   showAlert: boolean;
   currentAlert: DrowsinessEvent | null;
 
+  // Auto-SMS after 3 dismissed Level-3 alerts
+  dismissedLevel3Count: number;
+  autoSmsFired: boolean;
+
   // Actions ── preferences
   setInterfaceMode: (mode: InterfaceMode) => void;
   setSensitivity: (s: Sensitivity) => void;
@@ -90,7 +97,9 @@ export interface AppState {
   setSoundAlerts: (v: boolean) => void;
   setHapticAlerts: (v: boolean) => void;
   setNightQuiet: (v: boolean) => void;
+  setAlertMode: (mode: AlertMode) => void;
   setEmergencyContact: (v: string) => void;
+  markAutoSmsFired: () => void;
   setAnalyticsPIN: (pin: string) => void;
   setPerclosThreshold: (v: number) => void;
 
@@ -126,6 +135,7 @@ const PERSIST_FIELDS: (keyof AppState)[] = [
   'soundAlerts',
   'hapticAlerts',
   'nightQuiet',
+  'alertMode',
   'emergencyContact',
   'calibrated',
 ];
@@ -188,6 +198,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   soundAlerts: true,
   hapticAlerts: true,
   nightQuiet: false,
+  alertMode: 'sound' as AlertMode,
   emergencyContact: '',
   calibrated: false,
 
@@ -212,6 +223,8 @@ export const useAppStore = create<AppState>((set, get) => ({
   isNightMode: new Date().getHours() >= 19 || new Date().getHours() < 6,
   showAlert: false,
   currentAlert: null,
+  dismissedLevel3Count: 0,
+  autoSmsFired: false,
 
   // Actions ── preferences (auto-persist)
   setInterfaceMode: (mode) => {
@@ -267,6 +280,14 @@ export const useAppStore = create<AppState>((set, get) => ({
     set({ nightQuiet: v });
     void persist(get());
   },
+  setAlertMode: (mode) => {
+    const soundAlerts  = mode !== 'vibration';
+    const hapticAlerts = mode !== 'sound';
+    const nightQuiet   = mode === 'night';
+    set({ alertMode: mode, soundAlerts, hapticAlerts, nightQuiet });
+    void persist(get());
+  },
+  markAutoSmsFired: () => set({ autoSmsFired: true }),
   setEmergencyContact: (v) => {
     set({ emergencyContact: v });
     void persist(get());
@@ -288,6 +309,8 @@ export const useAppStore = create<AppState>((set, get) => ({
       tripElapsedSeconds: 0,
       drowsinessEvents: [],
       eyeStateTimeline: [],
+      dismissedLevel3Count: 0,
+      autoSmsFired: false,
     }),
   endTrip: () => {
     const { deleteDataAfterTrip } = get();
@@ -314,16 +337,19 @@ export const useAppStore = create<AppState>((set, get) => ({
 
   dismissAlert: () =>
     set((s) => {
+      const isL3 = s.currentAlert?.alertLevel === 3;
+      const newL3Count = isL3 ? s.dismissedLevel3Count + 1 : s.dismissedLevel3Count;
       if (s.currentAlert) {
         return {
           showAlert: false,
           currentAlert: null,
+          dismissedLevel3Count: newL3Count,
           drowsinessEvents: s.drowsinessEvents.map((e) =>
             e.id === s.currentAlert?.id ? { ...e, dismissed: true } : e,
           ),
         };
       }
-      return { showAlert: false, currentAlert: null };
+      return { showAlert: false, currentAlert: null, dismissedLevel3Count: newL3Count };
     }),
 
   flagFalseAlarm: () =>

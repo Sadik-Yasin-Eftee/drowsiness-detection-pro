@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, Pressable, StyleSheet, ScrollView, Dimensions } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const { height: SCREEN_H } = Dimensions.get('window');
 import { useRouter } from 'expo-router';
@@ -156,8 +157,9 @@ function DashboardAlert({
   alert, onDismiss, onRest, smsBanner,
 }: { alert: NonNullable<ReturnType<typeof useAppStore.getState>['currentAlert']>;
      onDismiss: () => void; onRest: () => void; smsBanner: React.ReactNode }) {
+  const insets = useSafeAreaInsets();
   return (
-    <Animated.View entering={FadeIn.duration(200)} style={[styles.fullScreen, { backgroundColor: colors.overlay, justifyContent: 'flex-end' }]}>
+    <Animated.View entering={FadeIn.duration(200)} style={[styles.fullScreen, { backgroundColor: colors.overlay, justifyContent: 'flex-end', paddingBottom: insets.bottom }]}>
       <Animated.View entering={SlideInDown.springify().damping(20)} style={styles.dashSheet}>
         {/* Scrollable content — grows to fit smsBanner without pushing buttons off-screen */}
         <ScrollView
@@ -277,7 +279,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     borderTopWidth: 4, borderTopColor: colors.coral,
   },
-  dashScrollArea: { maxHeight: SCREEN_H * 0.38 },
+  dashScrollArea: { maxHeight: SCREEN_H * 0.44 },
   dashScrollContent: { paddingBottom: 8 },
   dashTitle: { color: colors.foreground, fontSize: 20, fontWeight: '800', marginBottom: 4 },
   dashSub:   { color: colors.muted, fontSize: 13, marginBottom: 12 },

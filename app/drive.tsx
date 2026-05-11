@@ -20,6 +20,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useAppStore } from '@/store/useAppStore';
 import { useDrowsinessDetection } from '@/hooks/useDrowsinessDetection';
+import { sendEmergencySms } from '@/lib/emergencySms';
 import { CompanionMode } from '@/components/drive/CompanionMode';
 import { DashboardMode } from '@/components/drive/DashboardMode';
 import { HUDMode } from '@/components/drive/HUDMode';
@@ -29,15 +30,27 @@ import { BottomNav } from '@/components/BottomNav';
 import { colors } from '@/lib/theme';
 
 export default function Drive() {
-  const interfaceMode = useAppStore((s) => s.interfaceMode);
-  const showAlert = useAppStore((s) => s.showAlert);
-  const endTrip = useAppStore((s) => s.endTrip);
+  const interfaceMode        = useAppStore((s) => s.interfaceMode);
+  const showAlert            = useAppStore((s) => s.showAlert);
+  const endTrip              = useAppStore((s) => s.endTrip);
+  const dismissedLevel3Count = useAppStore((s) => s.dismissedLevel3Count);
+  const autoSmsFired         = useAppStore((s) => s.autoSmsFired);
+  const markAutoSmsFired     = useAppStore((s) => s.markAutoSmsFired);
+  const emergencyContact     = useAppStore((s) => s.emergencyContact);
   const insets = useSafeAreaInsets();
 
   const { onFaceResult } = useDrowsinessDetection(true);
 
   // End trip when this screen unmounts (e.g. user navigates away)
   useEffect(() => () => endTrip(), [endTrip]);
+
+  // Auto-SMS after driver dismisses 3 Level-3 alerts without resting
+  useEffect(() => {
+    if (dismissedLevel3Count >= 3 && emergencyContact && !autoSmsFired) {
+      markAutoSmsFired();
+      void sendEmergencySms(emergencyContact);
+    }
+  }, [dismissedLevel3Count, emergencyContact, autoSmsFired, markAutoSmsFired]);
 
   return (
     <View style={styles.root}>
