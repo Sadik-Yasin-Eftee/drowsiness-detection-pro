@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, Pressable, StyleSheet, ScrollView, Dimensions } from 'react-native';
+import { View, Text, Pressable, StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const { height: SCREEN_H } = Dimensions.get('window');
 import { useRouter } from 'expo-router';
 import Animated, { FadeIn, SlideInDown } from 'react-native-reanimated';
 import Svg, { Ellipse, Circle } from 'react-native-svg';
@@ -158,33 +157,25 @@ function DashboardAlert({
 }: { alert: NonNullable<ReturnType<typeof useAppStore.getState>['currentAlert']>;
      onDismiss: () => void; onRest: () => void; smsBanner: React.ReactNode }) {
   const insets = useSafeAreaInsets();
+  const bottomPad = Math.max(insets.bottom, 20);
   return (
-    <Animated.View entering={FadeIn.duration(200)} style={[styles.fullScreen, { backgroundColor: colors.overlay, justifyContent: 'flex-end', paddingBottom: insets.bottom }]}>
-      <Animated.View entering={SlideInDown.springify().damping(20)} style={styles.dashSheet}>
-        {/* Scrollable content — grows to fit smsBanner without pushing buttons off-screen */}
-        <ScrollView
-          bounces={false}
-          showsVerticalScrollIndicator={false}
-          style={styles.dashScrollArea}
-          contentContainerStyle={styles.dashScrollContent}
-        >
-          <Text style={styles.dashTitle}>{alert.reason_bn}</Text>
-          <Text style={styles.dashSub}>
-            {alert.reason_en} — PERCLOS {alert.perclosAtTrigger}%
-          </Text>
+    <Animated.View entering={FadeIn.duration(200)} style={[styles.fullScreen, { backgroundColor: colors.overlay, justifyContent: 'flex-end' }]}>
+      <Animated.View entering={SlideInDown.springify().damping(20)} style={[styles.dashSheet, { paddingBottom: bottomPad }]}>
+        <Text style={styles.dashTitle}>{alert.reason_bn}</Text>
+        <Text style={styles.dashSub}>
+          {alert.reason_en} — PERCLOS {alert.perclosAtTrigger}%
+        </Text>
 
-          <View style={styles.confidenceRow}>
-            <Text style={styles.confidenceLabel}>নিশ্চিততা:</Text>
-            <View style={styles.confidenceTrack}>
-              <View style={[styles.confidenceFill, { width: `${alert.confidence}%` }]} />
-            </View>
-            <Text style={styles.confidenceVal}>{Math.round(alert.confidence)}%</Text>
+        <View style={styles.confidenceRow}>
+          <Text style={styles.confidenceLabel}>নিশ্চিততা:</Text>
+          <View style={styles.confidenceTrack}>
+            <View style={[styles.confidenceFill, { width: `${alert.confidence}%` }]} />
           </View>
+          <Text style={styles.confidenceVal}>{Math.round(alert.confidence)}%</Text>
+        </View>
 
-          {smsBanner}
-        </ScrollView>
+        {smsBanner}
 
-        {/* Buttons always pinned at the bottom of the sheet */}
         <View style={styles.dashBtnRow}>
           <Pressable onPress={onDismiss} style={[styles.dashBtn, styles.dashBtnGhost]}>
             <Text style={styles.dashBtnGhostText}>ঠিক আছি</Text>
@@ -279,8 +270,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     borderTopWidth: 4, borderTopColor: colors.coral,
   },
-  dashScrollArea: { maxHeight: SCREEN_H * 0.44 },
-  dashScrollContent: { paddingBottom: 8 },
   dashTitle: { color: colors.foreground, fontSize: 20, fontWeight: '800', marginBottom: 4 },
   dashSub:   { color: colors.muted, fontSize: 13, marginBottom: 12 },
   confidenceRow: { flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 16 },
@@ -288,7 +277,7 @@ const styles = StyleSheet.create({
   confidenceTrack: { flex: 1, height: 8, backgroundColor: colors.border, borderRadius: 4, overflow: 'hidden' },
   confidenceFill:  { height: '100%', backgroundColor: colors.primary },
   confidenceVal:   { color: colors.foreground, fontSize: 13, fontVariant: ['tabular-nums'] },
-  dashBtnRow: { flexDirection: 'row', gap: 12, paddingTop: 16, paddingBottom: 24 },
+  dashBtnRow: { flexDirection: 'row', gap: 12, paddingTop: 16 },
   dashBtn: { flex: 1, paddingVertical: 14, borderRadius: radius.lg, alignItems: 'center' },
   dashBtnGhost: { borderWidth: 1, borderColor: colors.border },
   dashBtnGhostText: { color: colors.foreground, fontWeight: '700' },
