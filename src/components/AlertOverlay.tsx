@@ -158,24 +158,21 @@ function DashboardAlert({
   alert, onDismiss, onRest, smsBanner,
 }: { alert: NonNullable<ReturnType<typeof useAppStore.getState>['currentAlert']>;
      onDismiss: () => void; onRest: () => void; smsBanner: React.ReactNode }) {
-  const insets = useSafeAreaInsets();
-  const bottomPad = Math.max(insets.bottom, 20);
-
-  // Sheet = paddingTop(28) + scrollArea + btnRow(16+48) + bottomPad
-  // Cap sheet at 82% of screen; derive scroll area max from what's left.
-  const SHEET_OVERHEAD = 28 + 16 + 48 + bottomPad; // border+padding + btnPaddingTop + btn height + safe-bottom
-  const scrollMaxH = Math.max(80, SCREEN_H * 0.82 - SHEET_OVERHEAD);
+  // Scroll area capped so card never overflows the screen
+  const scrollMaxH = SCREEN_H * 0.45;
 
   return (
-    <Animated.View entering={FadeIn.duration(200)} style={[styles.fullScreen, { backgroundColor: colors.overlay, justifyContent: 'flex-end' }]}>
-      <Animated.View entering={SlideInDown.springify().damping(20)} style={[styles.dashSheet, { paddingBottom: bottomPad }]}>
+    <Animated.View entering={FadeIn.duration(200)} style={[styles.fullScreen, { backgroundColor: colors.overlay, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }]}>
+      <Animated.View entering={FadeIn.delay(80).springify()} style={styles.dashCard}>
 
-        {/* Scrollable content — capped so buttons are always visible */}
+        {/* Accent bar at top */}
+        <View style={styles.dashCardAccent} />
+
         <ScrollView
           bounces={false}
           showsVerticalScrollIndicator={false}
           style={{ maxHeight: scrollMaxH }}
-          contentContainerStyle={{ paddingBottom: 8 }}
+          contentContainerStyle={{ padding: 20, paddingBottom: 12 }}
         >
           <Text style={styles.dashTitle}>{alert.reason_bn}</Text>
           <Text style={styles.dashSub}>
@@ -193,7 +190,6 @@ function DashboardAlert({
           {smsBanner}
         </ScrollView>
 
-        {/* Buttons — always pinned below the scroll area */}
         <View style={styles.dashBtnRow}>
           <Pressable onPress={onDismiss} style={[styles.dashBtn, styles.dashBtnGhost]}>
             <Text style={styles.dashBtnGhostText}>ঠিক আছি</Text>
@@ -281,12 +277,23 @@ const styles = StyleSheet.create({
 
   linkUnderline: { color: colors.muted, textDecorationLine: 'underline', fontSize: 13 },
 
-  dashSheet: {
+  dashCard: {
+    width: '100%',
+    maxWidth: 400,
     backgroundColor: colors.card,
-    borderTopLeftRadius: 24, borderTopRightRadius: 24,
-    paddingTop: 24,
-    paddingHorizontal: 24,
-    borderTopWidth: 4, borderTopColor: colors.coral,
+    borderRadius: 20,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: colors.border,
+    elevation: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.35,
+    shadowRadius: 16,
+  },
+  dashCardAccent: {
+    height: 4,
+    backgroundColor: colors.coral,
   },
   dashTitle: { color: colors.foreground, fontSize: 20, fontWeight: '800', marginBottom: 4 },
   dashSub:   { color: colors.muted, fontSize: 13, marginBottom: 12 },
@@ -295,7 +302,7 @@ const styles = StyleSheet.create({
   confidenceTrack: { flex: 1, height: 8, backgroundColor: colors.border, borderRadius: 4, overflow: 'hidden' },
   confidenceFill:  { height: '100%', backgroundColor: colors.primary },
   confidenceVal:   { color: colors.foreground, fontSize: 13, fontVariant: ['tabular-nums'] },
-  dashBtnRow: { flexDirection: 'row', gap: 12, paddingTop: 16 },
+  dashBtnRow: { flexDirection: 'row', gap: 12, paddingHorizontal: 20, paddingTop: 12, paddingBottom: 20 },
   dashBtn: { flex: 1, paddingVertical: 14, borderRadius: radius.lg, alignItems: 'center' },
   dashBtnGhost: { borderWidth: 1, borderColor: colors.border },
   dashBtnGhostText: { color: colors.foreground, fontWeight: '700' },
