@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, Pressable, StyleSheet } from 'react-native';
+import { View, Text, Pressable, StyleSheet, ScrollView, Dimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+const SCREEN_H = Dimensions.get('window').height;
 
 import { useRouter } from 'expo-router';
 import Animated, { FadeIn, SlideInDown } from 'react-native-reanimated';
@@ -158,24 +160,40 @@ function DashboardAlert({
      onDismiss: () => void; onRest: () => void; smsBanner: React.ReactNode }) {
   const insets = useSafeAreaInsets();
   const bottomPad = Math.max(insets.bottom, 20);
+
+  // Sheet = paddingTop(28) + scrollArea + btnRow(16+48) + bottomPad
+  // Cap sheet at 82% of screen; derive scroll area max from what's left.
+  const SHEET_OVERHEAD = 28 + 16 + 48 + bottomPad; // border+padding + btnPaddingTop + btn height + safe-bottom
+  const scrollMaxH = Math.max(80, SCREEN_H * 0.82 - SHEET_OVERHEAD);
+
   return (
     <Animated.View entering={FadeIn.duration(200)} style={[styles.fullScreen, { backgroundColor: colors.overlay, justifyContent: 'flex-end' }]}>
       <Animated.View entering={SlideInDown.springify().damping(20)} style={[styles.dashSheet, { paddingBottom: bottomPad }]}>
-        <Text style={styles.dashTitle}>{alert.reason_bn}</Text>
-        <Text style={styles.dashSub}>
-          {alert.reason_en} — PERCLOS {alert.perclosAtTrigger}%
-        </Text>
 
-        <View style={styles.confidenceRow}>
-          <Text style={styles.confidenceLabel}>নিশ্চিততা:</Text>
-          <View style={styles.confidenceTrack}>
-            <View style={[styles.confidenceFill, { width: `${alert.confidence}%` }]} />
+        {/* Scrollable content — capped so buttons are always visible */}
+        <ScrollView
+          bounces={false}
+          showsVerticalScrollIndicator={false}
+          style={{ maxHeight: scrollMaxH }}
+          contentContainerStyle={{ paddingBottom: 8 }}
+        >
+          <Text style={styles.dashTitle}>{alert.reason_bn}</Text>
+          <Text style={styles.dashSub}>
+            {alert.reason_en} — PERCLOS {alert.perclosAtTrigger}%
+          </Text>
+
+          <View style={styles.confidenceRow}>
+            <Text style={styles.confidenceLabel}>নিশ্চিততা:</Text>
+            <View style={styles.confidenceTrack}>
+              <View style={[styles.confidenceFill, { width: `${alert.confidence}%` }]} />
+            </View>
+            <Text style={styles.confidenceVal}>{Math.round(alert.confidence)}%</Text>
           </View>
-          <Text style={styles.confidenceVal}>{Math.round(alert.confidence)}%</Text>
-        </View>
 
-        {smsBanner}
+          {smsBanner}
+        </ScrollView>
 
+        {/* Buttons — always pinned below the scroll area */}
         <View style={styles.dashBtnRow}>
           <Pressable onPress={onDismiss} style={[styles.dashBtn, styles.dashBtnGhost]}>
             <Text style={styles.dashBtnGhostText}>ঠিক আছি</Text>
