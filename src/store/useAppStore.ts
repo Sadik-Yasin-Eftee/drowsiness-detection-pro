@@ -198,7 +198,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   soundAlerts: true,
   hapticAlerts: true,
   nightQuiet: false,
-  alertMode: 'sound' as AlertMode,
+  alertMode: 'night' as AlertMode,
   emergencyContact: '',
   calibrated: false,
 
@@ -374,12 +374,18 @@ export const useAppStore = create<AppState>((set, get) => ({
       const raw = await AsyncStorage.getItem(PERSIST_KEY);
       if (!raw) return;
       const parsed = JSON.parse(raw);
-      // Only restore keys in PERSIST_FIELDS — stale keys (e.g. onboardingComplete,
-      // permissionsRequested) in old AsyncStorage data are ignored this way.
       const safe: Record<string, unknown> = {};
       PERSIST_FIELDS.forEach((k) => {
         if (k in parsed) safe[k as string] = parsed[k as string];
       });
+      // Re-derive sound/haptic/night flags from alertMode so they stay in sync
+      // even if the user had an older install with inconsistent stored values.
+      if (safe.alertMode) {
+        const mode = safe.alertMode as AlertMode;
+        safe.soundAlerts  = mode !== 'vibration';
+        safe.hapticAlerts = mode !== 'sound';
+        safe.nightQuiet   = mode === 'night';
+      }
       set((s) => ({ ...s, ...safe }));
     } catch (err) {
       console.warn('[store] hydrate failed:', err);
