@@ -1,19 +1,28 @@
 /**
- * AlertSoundManager — looping AHCI alert tones via expo-audio.
+ * AlertSoundManager — looping alert tones via expo-audio.
  *
- * On alert fire  → startLoop(level)  plays the tone, then repeats every
- *                  LOOP_GAP_MS until stopLoop() is called.
- * On dismiss     → stopLoop() pauses playback and cancels the repeat timer.
+ * ── Sound mode ───────────────────────────────────────────────────────────────
+ *   Full escalation: different sound file per level + rising volume + faster
+ *   repeat rate so the driver clearly feels the urgency increase.
  *
- * Singleton pattern: pre-load all three sounds once to avoid native resource
- * leaks from creating a new AudioPlayer on every alert.
+ *   L1  alert_level1.wav  vol 0.50  every 3.0 s  (gentle nudge)
+ *   L2  alert_level2.wav  vol 0.78  every 2.0 s  (clear warning)
+ *   L3  alert_level3.wav  vol 1.00  every 1.2 s  (urgent alarm)
  *
- * Volume escalates with level (0.55 → 0.75 → 1.0).
- * Night-quiet mode skips levels 1+2 and dampens level 3.
+ * ── Night mode ───────────────────────────────────────────────────────────────
+ *   Designed for late-night driving where passengers may be asleep.
+ *   Vibration handles L1 completely (no sound).
+ *   L2 adds a whisper-level tone so only the driver hears it.
+ *   L3 steps up to a clearly audible but non-blaring alarm.
+ *
+ *   L1  (silent — vibration only)
+ *   L2  alert_level2.wav  vol 0.28  every 2.0 s
+ *   L3  alert_level3.wav  vol 0.60  every 1.2 s
  */
 
 import { createAudioPlayer, setAudioModeAsync, AudioPlayer } from 'expo-audio';
 
+export type AlertMode = 'sound' | 'vibration' | 'night';
 type Level = 1 | 2 | 3;
 
 const SOURCES = {
@@ -22,8 +31,15 @@ const SOURCES = {
   3: require('../../assets/sounds/alert_level3.wav'),
 } as const;
 
-// Gap between repeated plays (ms). Level 3 repeats faster for urgency.
+// Repeat gap (ms) — shorter = more urgent
 const LOOP_GAP: Record<Level, number> = { 1: 3000, 2: 2000, 3: 1200 };
+
+// Volume per level per mode (0 = silent, don't play)
+const VOLUME: Record<AlertMode, Record<Level, number>> = {
+  sound:     { 1: 0.50, 2: 0.78, 3: 1.00 },
+  night:     { 1: 0,    2: 0.28, 3: 0.60 },
+  vibration: { 1: 0,    2: 0,    3: 0    },   // vibration-only, never plays
+};
 
 class AlertSoundManager {
   private players: Partial<Record<Level, AudioPlayer>> = {};
@@ -31,7 +47,7 @@ class AlertSoundManager {
   private loadingPromise: Promise<void> | null = null;
   private loopTimer: ReturnType<typeof setTimeout> | null = null;
   private activeLevel: Level | null = null;
-  private activeOpts: { nightQuiet?: boolean } = {};
+  private activeMode: AlertMode = 'night';
 
   private async ensureLoaded(): Promise<void> {
     if (this.loaded) return;
@@ -60,14 +76,13 @@ class AlertSoundManager {
     return this.loadingPromise;
   }
 
-  /** Start looping the alert tone until stopLoop() is called. */
-  async startLoop(level: Level, opts: { nightQuiet?: boolean } = {}): Promise<void> {
-    // If already looping the same level, don't restart
+  /** Start looping the alert tone for `level` until stopLoop() is called. */
+  async startLoop(level: Level, opts: { alertMode?: AlertMode } = {}): Promise<void> {
     if (this.activeLevel === level) return;
     this.stopLoop();
 
     this.activeLevel = level;
-    this.activeOpts  = opts;
+    this.activeMode  = opts.alertMode ?? 'sound';
 
     await this.ensureLoaded();
     this._playOnce();
@@ -77,28 +92,21 @@ class AlertSoundManager {
     const level = this.activeLevel;
     if (!level) return;
 
-    const opts   = this.activeOpts;
-    const player = this.players[level];
-    if (!player) return;
+    const volume = VOLUME[this.activeMode][level];
 
-    if (opts.nightQuiet && level < 3) {
-      // Still schedule the next tick so we stop cleanly when dismissed
-      this.loopTimer = setTimeout(() => this._playOnce(), LOOP_GAP[level]);
-      return;
+    if (volume > 0) {
+      const player = this.players[level];
+      if (player) {
+        try {
+          player.volume = volume;
+          player.seekTo(0);
+          player.play();
+        } catch (err) {
+          console.warn('[AlertSound] play failed:', err);
+        }
+      }
     }
-
-    const baseVol = level === 1 ? 0.55 : level === 2 ? 0.78 : 1.0;
-    const volume  = opts.nightQuiet && level === 3 ? baseVol * 0.7 : baseVol;
-
-    try {
-      player.volume = volume;
-      player.seekTo(0);
-      player.play();
-    } catch (err) {
-      console.warn('[AlertSound] play failed:', err);
-    }
-
-    // Schedule the next repeat
+    // Schedule next repeat regardless (so stopLoop cleans up properly)
     this.loopTimer = setTimeout(() => this._playOnce(), LOOP_GAP[level]);
   }
 
@@ -109,30 +117,10 @@ class AlertSoundManager {
       this.loopTimer = null;
     }
     this.activeLevel = null;
-    this.activeOpts  = {};
     Object.values(this.players).forEach((p) => {
       try { p?.pause(); } catch {}
     });
   }
-
-  /** One-shot play (kept for non-alert use cases). */
-  async play(level: Level, opts: { nightQuiet?: boolean } = {}): Promise<void> {
-    await this.ensureLoaded();
-    const player = this.players[level];
-    if (!player) return;
-    if (opts.nightQuiet && level < 3) return;
-    const baseVol = level === 1 ? 0.55 : level === 2 ? 0.78 : 1.0;
-    const volume  = opts.nightQuiet && level === 3 ? baseVol * 0.7 : baseVol;
-    try {
-      player.volume = volume;
-      player.seekTo(0);
-      player.play();
-    } catch (err) {
-      console.warn('[AlertSound] play failed:', err);
-    }
-  }
-
-  stopAll(): void { this.stopLoop(); }
 
   release(): void {
     this.stopLoop();

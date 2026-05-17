@@ -25,7 +25,7 @@ export function useDrowsinessDetection(active: boolean) {
   const perclosThreshold = useAppStore((s) => s.perclosThreshold);
   const soundAlerts      = useAppStore((s) => s.soundAlerts);
   const hapticAlerts     = useAppStore((s) => s.hapticAlerts);
-  const nightQuiet       = useAppStore((s) => s.nightQuiet);
+  const alertMode        = useAppStore((s) => s.alertMode);
   const tripActive       = useAppStore((s) => s.tripActive);
 
   const startTrip          = useAppStore((s) => s.startTrip);
@@ -51,10 +51,10 @@ export function useDrowsinessDetection(active: boolean) {
   // store update (which would cause the frame processor dep to change 30×/s).
   const soundAlertsRef  = useRef(soundAlerts);
   const hapticAlertsRef = useRef(hapticAlerts);
-  const nightQuietRef   = useRef(nightQuiet);
+  const alertModeRef    = useRef(alertMode);
   useEffect(() => { soundAlertsRef.current  = soundAlerts;  }, [soundAlerts]);
   useEffect(() => { hapticAlertsRef.current = hapticAlerts; }, [hapticAlerts]);
-  useEffect(() => { nightQuietRef.current   = nightQuiet;   }, [nightQuiet]);
+  useEffect(() => { alertModeRef.current    = alertMode;    }, [alertMode]);
 
   // ── Frame callback — called by CameraDetector via runOnJS @ ~30 FPS ─────
   const onFaceResult = useCallback((frame: RawFaceFrame | null) => {
@@ -100,7 +100,7 @@ export function useDrowsinessDetection(active: boolean) {
       addDrowsinessEvent(event);
       setShowAlert(true, event);
 
-      if (soundAlertsRef.current)  void alertSounds.startLoop(tick.alertLevel as 1 | 2 | 3, { nightQuiet: nightQuietRef.current });
+      if (soundAlertsRef.current)  void alertSounds.startLoop(tick.alertLevel as 1 | 2 | 3, { alertMode: alertModeRef.current });
       if (hapticAlertsRef.current) startHapticLoop(tick.alertLevel as 1 | 2 | 3);
     }
   }, [updateDetection, addDrowsinessEvent, setShowAlert]);
