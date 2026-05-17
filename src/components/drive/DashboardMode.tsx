@@ -12,6 +12,7 @@ import Animated, {
 
 import { useAppStore } from '@/store/useAppStore';
 import { LockIcon } from '@/components/Icons';
+import { BreakReminderStrip } from '@/components/drive/BreakReminderBanner';
 import { colors, radius } from '@/lib/theme';
 import { toBn, formatTime } from '@/lib/i18n';
 
@@ -69,6 +70,8 @@ export function DashboardMode() {
       </View>
 
       <View style={styles.centreContent}>
+        <BreakReminderStrip />
+
         <View style={styles.ringWrap}>
           <Animated.View
             style={[

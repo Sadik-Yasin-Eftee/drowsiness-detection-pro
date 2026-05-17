@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import Svg, { Path, Line } from 'react-native-svg';
 
 import { useAppStore } from '@/store/useAppStore';
+import { BreakReminderHUD } from '@/components/drive/BreakReminderBanner';
 import { colors, radius } from '@/lib/theme';
 import { toBn, formatTime } from '@/lib/i18n';
 
@@ -92,6 +93,8 @@ export function HUDMode() {
         <Text style={styles.footer}>
           Sensitivity: {sensitivity} | Threshold: {toBn(String(perclosThreshold))}%
         </Text>
+
+        <BreakReminderHUD />
       </View>
     </View>
   );

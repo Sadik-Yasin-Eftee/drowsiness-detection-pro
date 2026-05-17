@@ -9,6 +9,7 @@ import Animated, {
 import { useAppStore } from '@/store/useAppStore';
 import { SaathiCharacter } from '@/components/SaathiCharacter';
 import { LockIcon } from '@/components/Icons';
+import { BreakReminderCard } from '@/components/drive/BreakReminderBanner';
 import { colors, radius } from '@/lib/theme';
 import { toBn, formatTime } from '@/lib/i18n';
 
@@ -126,6 +127,9 @@ export function CompanionMode() {
       </View>
 
       <View style={styles.centre}>
+        {/* Smart break reminder — shown after 2h, re-appears every 30 min */}
+        <BreakReminderCard />
+
         {/* Conversational bubble above the eye */}
         <SaathiBubble msgState={msgState} />
 

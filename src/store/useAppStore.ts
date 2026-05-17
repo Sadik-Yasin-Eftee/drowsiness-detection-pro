@@ -83,6 +83,9 @@ export interface AppState {
   dismissedLevel3Count: number;
   autoSmsFired: boolean;
 
+  // Smart break reminder
+  breakReminderDismissedAt: number | null;
+
   // Actions ── preferences
   setInterfaceMode: (mode: InterfaceMode) => void;
   setSensitivity: (s: Sensitivity) => void;
@@ -112,6 +115,7 @@ export interface AppState {
   dismissAlert: () => void;
   flagFalseAlarm: () => void;
   setShowAlert: (show: boolean, alert?: DrowsinessEvent | null) => void;
+  dismissBreakReminder: () => void;
 
   // Hydration
   hydrate: () => Promise<void>;
@@ -225,6 +229,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   currentAlert: null,
   dismissedLevel3Count: 0,
   autoSmsFired: false,
+  breakReminderDismissedAt: null,
 
   // Actions ── preferences (auto-persist)
   setInterfaceMode: (mode) => {
@@ -311,6 +316,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       eyeStateTimeline: [],
       dismissedLevel3Count: 0,
       autoSmsFired: false,
+      breakReminderDismissedAt: null,
     }),
   endTrip: () => {
     const { deleteDataAfterTrip } = get();
@@ -367,6 +373,7 @@ export const useAppStore = create<AppState>((set, get) => ({
     }),
 
   setShowAlert: (show, alert = null) => set({ showAlert: show, currentAlert: alert }),
+  dismissBreakReminder: () => set({ breakReminderDismissedAt: Date.now() }),
 
   // Hydration from AsyncStorage on app start
   hydrate: async () => {
